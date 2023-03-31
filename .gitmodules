@@ -1,0 +1,3 @@
+[submodule "lib/AspNetCore.Hashids"]
+	path = lib/AspNetCore.Hashids
+	url = https://github.com/justinwritescode/AspNetCore.Hashids.git
