@@ -28,10 +28,11 @@
         <PackageReference Include="System.Usings" />
         <PackageReference Include="System.Text.Usings" />
         <PackageReference Include="Dgmjr.System.Extensions" />
+        <PackageReference Include="Dgmjr.Http.Meta" />
     </ItemGroup>
     <ItemGroup>
         <!-- <ProjectReference Include="../../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
-        <ProjectReference Include="../../Http/Http/Dgmjr.Http.Meta.csproj" />
+        <!-- <ProjectReference Include="../../Http/Http/Dgmjr.Http.Meta.csproj" /> -->
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles"  />

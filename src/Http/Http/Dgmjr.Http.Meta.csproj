@@ -21,6 +21,7 @@
         <PackageReference Include="System.Net.Http" />
         <PackageReference Include="Dgmjr.Abstractions" />
         <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
+        <PackageReference Include="Dgmjr.ComponentModel" />
         <!-- <Compile Remove="./MediaTypeNames.netstandard2.0Patch.cs" /> -->
         <!-- <ProjectReference Include="../../../../Types/src/Enumerations/CodeGeneration/Dgmjr.Enumerations.CodeGeneration.csproj" TreatAsPackageReference="true" OutputItemType="Analyzer" ReferenceOutputAssembly="false" /> -->
         <!-- <ProjectReference Include="../../../../Types/src/Enumerations/Enumeration/Dgmjr.Enumerations.Enumeration.csproj" /> -->
