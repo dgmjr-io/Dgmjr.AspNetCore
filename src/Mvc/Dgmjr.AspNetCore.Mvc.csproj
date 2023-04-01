@@ -1,0 +1,29 @@
+<!--
+ * Dgmjr.AspNetCore.Mvs.csproj
+ * 
+ *   Created: 2023-01-05-04:15:03
+ *   Modified: 2023-01-05-04:15:04
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
+        <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="System.Compat" IncludeAssets="ContentFiles" ExlcudeAssets="Runtime;Compile;Lib;Native;Analyzers" />
+        <PackageReference Include="System.Text.Json" />
+        <PackageReference Include="System.Net.Http.Json" />
+        <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+        <SourceGenerator  Include="Dgmjr.InterfaceGenerator" />
+    </ItemGroup>
+</Project>

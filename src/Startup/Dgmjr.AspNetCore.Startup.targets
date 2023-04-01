@@ -1,0 +1,33 @@
+<!--
+ * Dgmjr.AspNetCore.Startup.targets
+ * 
+ *   Created: 2022-12-10-11:52:16
+ *   Modified: 2022-12-10-11:52:16
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <!-- <Target Name="RemoveDuplicateCompileItems"  BeforeTargets="CoreCompile">
+    <RemoveDuplicates Inputs="@(Compile)">
+      <Output TaskParameter="Filtered" ItemName="UniqueCompile" />
+    </RemoveDuplicates>
+    <ItemGroup>
+      <Compile Remove="@(Compile)" />
+      <Compile Include="@(UniqueCompile)" />
+    </ItemGroup>
+  </Target>
+
+  <UsingTask TaskName="WriteSwaggerGenExtensionsClassToTempFile" AssemblyFile="$(MSBuildThisFileDirectory)../lib/net7.0/Dgmjr.AspNetCore.Startup.dll" />
+    <Target Name="WriteSwaggerGenExtensionsClassToTempFile" BeforeTargets="CoreCompile" Condition="'$(MSBuildProjectName)' != 'Dgmjr.AspNetCore.Startup'">
+      <WriteSwaggerGenExtensionsClassToTempFile>
+        <Output TaskParameter="Output" ItemName="SwaggerGenExtensionsClass" />
+      </WriteSwaggerGenExtensionsClassToTempFile>
+      <ItemGroup>
+        <Compile Include="SwaggerGenExtensionsClass" />
+      </ItemGroup>
+    </Target> -->
+</Project>

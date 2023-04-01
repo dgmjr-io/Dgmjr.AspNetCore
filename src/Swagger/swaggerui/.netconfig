@@ -1,0 +1,5 @@
+[file "src/Swashbuckle.AspNetCore.SwaggerUI/index.html"]
+	url = https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/src/Swashbuckle.AspNetCore.SwaggerUI/index.html
+	sha = d6c8d26db4e10172fc89650469a59daf7d7c5b97
+	etag = f474d3127adb7ea68922e3e393d56feb7f93cacbf0180c2187216da274c6a432
+	weak

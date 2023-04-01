@@ -1,0 +1,35 @@
+[file "theme-feeling-blue.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-feeling-blue.css
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = 235a210a6c4f34e370e80b1f7820bba2503b2de537bd466b14927535b2066b3f
+	weak
+[file "theme-flattop.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-flattop.css
+	weak
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = b17d1d78cc6bd70d10e3fbe555fe33aff09362680c32e52e0aad247ed6017020
+[file "theme-material.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-material.css
+	weak
+	sha = 5cfee97c2f0a382c58bab0c6cd496f079de84497
+	etag = 18292570408d487bbed4ff56c4df567e6a912b8372b1d7cf8edf3bf72cc47fd6
+[file "theme-monokai.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-monokai.css
+	weak
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = 3b9ce591a7dee130d04a5492cb8e161f27010cf73e50ecfa4ef9a2351cc0c0b7
+[file "theme-muted.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-muted.css
+	weak
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = ccb0302cfedb20e2ad09b7f0e18fc03ac5df707e4a4ced0a5fbaecf0ede7db18
+[file "theme-newspaper.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-newspaper.css
+	weak
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = 89ef1da572e1a4dce4f40e4d11b32b444589c3e08393a2be508ba872f7b59b4a
+[file "theme-outline.css"]
+	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-outline.css
+	weak
+	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
+	etag = 8391c9e7af72b609809adc2b0a63b84874cb0f24a0e19cdd515cde99b89ded97

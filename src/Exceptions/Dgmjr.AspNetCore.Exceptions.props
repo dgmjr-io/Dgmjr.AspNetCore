@@ -1,0 +1,20 @@
+<!--
+ * Dgmjr.Exceptions.csproj
+ * 
+ *   Created: 2022-12-05-11:46:17
+ *   Modified: 2022-12-05-11:46:18
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <Using Include="Microsoft.AspNetCore" />
+    <Using Include="Microsoft.AspNetCore.Mvc" />
+    <Using Include="Microsoft.AspNetCore.Http.StatusCodes" Static="true" />
+    <Using Include="System.Net.HttpStatusCode" Static="true" />
+  </ItemGroup>
+</Project>

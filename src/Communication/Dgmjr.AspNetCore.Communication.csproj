@@ -1,0 +1,28 @@
+<!--
+ * Dgmjr.AspNetCore.Mail.csproj
+ * 
+ *   Created: 2022-12-24-05:27:04
+ *   Modified: 2022-12-24-05:27:04
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+        <Description>This package contains the communication classes for the project.  It's used for sending SMS and email messages.</Description>
+        <SlnGenSolutionFolder>comms</SlnGenSolutionFolder>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Azure.Communication.Email" />
+        <PackageReference Include="Azure.Communication.Sms" />
+        <PackageReference Include="Azure.Identity" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
+        <PackageReference Include="Dgmjr.Primitives" />
+        <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Build;Analyzers" ExcludeAssets="Runtime;Native;Source;ContentFiles" PrivateAssets="All" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,53 @@
+#nullable enable
+
+namespace {{ namespace }}
+
+using System.Net.Mime.MediaTypes;
+using System.Threading.Tasks;
+using AutoMapper;
+using Dgmjr.Abstractions;
+using Dgmjr.Payloads;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using static Microsoft.AspNetCore.Http.StatusCodes;
+
+public partial class {{ model_type_name }}Controller : Dgmjr.Asp/NetCore.Controllers.CrudController<{{ model_type_name }}, {{ insert_dto_type_name }}, {{ db_context_type_name }}, {{ id_type_name }}>
+{
+    public {{ model_type_name }}Controller({{ db_context_type_name }} db, ILogger<{{ model_type_name }}Controller> logger, IMapper mapper) : base(db, logger, mapper) { }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(Pager<{{ model_type_name }}>), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    [ProducesResponseType(typeof(SingleItemPager<{{ model_type_name }}>), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    [ProducesResponseType(typeof(Pager<{{ model_type_name }}>), Status206PartialContent, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    [ProducesResponseType(typeof(SingleItemPager<{{ model_type_name }}>), Status206PartialContent, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    public override async Task<ActionResult<IEnumerable<{{ model_type_name }}>>> GetAll([FromQuery] int page = 1, [FromQuery] int pageSize = int.MaxValue, [FromQuery] string itemSeparator = DefaultItemSeparator, [FromQuery] string? orderBy = null, [FromQuery] ListSortDirection sortDirection = ListSortDirection.Ascending)
+        => base.GetAll();
+
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof({{ model_type_name }}), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    public virtual async Task<ActionResult<{{ model_type_name }}>> Get({{ id_type_name }} id)
+        => base.Get(id);
+
+    [HttpPut("{id}")]
+    [ProducesResponseType(typeof({{ model_type_name }}), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    public virtual async Task<ActionResult<{{ model_type_name }}>> Put({{ id_type_name }} id, {{ model_type_name }} model)
+        => base.Put(id, model);
+
+    [HttpPost]
+    [ProducesResponseType(typeof({{ model_type_name }}), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    public virtual async Task<ActionResult<{{ model_type_name }}>> Post([FromBody] {{ insert_dto_type_name }} model)
+        => base.Post(model);
+
+    [HttpDelete("{id}")]
+    [ProducesResponseType(typeof({{ model_type_name }}), Status200OK, ApplicationMediaTypeNames.Json, ApplicationMediaTypeNames.Xml, TextMediaTypeNames.Plain)]
+    public virtual async Task<IActionResult> Delete({{ id_type_name }} id)
+        => base.Delete(id);
+
+    [HttpPatch("{id}")]
+    [Consumes(ApplicationMediaTypeNames.JsonPatch)]
+    public virtual async Task<ActionResult<{{ model_type_name }}>> Patch([FromRoute] {{ id_type_name }} id, [FromBody] JsonPatchDocument patch)
+        => base.Patch(id, patch);
+}

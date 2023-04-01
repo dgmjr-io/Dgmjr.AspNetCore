@@ -1,0 +1,38 @@
+<!--
+ Extensions.csproj
+ 
+   Created: 2022-10-31-08:16:34
+   Modified: 2022-10-31-08:16:35
+ 
+   Author: David G. Moore, Jr, <david@dgmjr.io>
+   
+   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+      License: MIT (https://opensource.org/licenses/MIT)
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <PackageId>Dgmjr.Http.Extensions</PackageId>
+        <AssemblyName>$(PackageId)</AssemblyName>
+        <RootNamespace>$(PackageId)</RootNamespace>
+        <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
+        <SlnGenSolutionFolder>src</SlnGenSolutionFolder>
+        <ProjectGuid>f52d8a04-cd74-4a5d-900f-9df28dcce542</ProjectGuid>
+        <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Dgmjr.Http.Meta" />
+        <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+        <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+        <PackageReference Include="System.Text.Json.Usings" />
+        <PackageReference Include="System.ComponentModel.Usings" />
+        <!-- <ProjectReference Include="../Http/Dgmjr.Http.csproj" /> -->
+        <!-- <ProjectReference Include="../MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
+        <!-- <PackageReference Include="Dgmjr.Payloads" /> -->
+        <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
+        <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
+    </ItemGroup>
+    <!-- <Import Project="./Dgmjr.Http.Extensions.props" /> -->
+</Project>

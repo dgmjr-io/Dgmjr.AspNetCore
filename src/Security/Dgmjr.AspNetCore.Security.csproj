@@ -1,0 +1,24 @@
+<!--
+ * Dgmjr.AspNetCore.Controllers.csproj
+ *
+ *   Created: 2022-12-10-07:12:05
+ *   Modified: 2022-12-10-07:12:06
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <Sdk Name="MetapackageSdk" />
+  <PropertyGroup>
+    <targetFramework>netstandard2.0</targetFramework>
+    <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" />
+    <ProjectReference Include="./Authentication/Dgmjr.AspNetCore.Authentication.csproj" />
+    <ProjectReference Include="./Authorization/Dgmjr.AspNetCore.Authorization.csproj" />
+  </ItemGroup>
+</Project>

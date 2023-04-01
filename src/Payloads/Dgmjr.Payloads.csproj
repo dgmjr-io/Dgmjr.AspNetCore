@@ -1,0 +1,42 @@
+<!--
+ * Dgmjr.Payloads.csproj
+ * 
+ *   Created: 2022-11-20-07:14:18
+ *   Modified: 2022-12-01-06:04:25
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
+        <TargetFrameworks>net7.0</TargetFrameworks>
+        <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
+        <PackageId>Dgmjr.Payloads</PackageId>
+        <AssemblyName>$(PackageId)</AssemblyName>
+        <RootNamespace>$(PackageId)</RootNamespace>
+        <ExcludeRestorePackageImports>false</ExcludeRestorePackageImports>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+    </PropertyGroup>
+    <ItemGroup>
+        <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+        <PackageReference Include="System.Text.Json.Usings" />
+        <PackageReference Include="System.Text.RegularExpressions.Usings" />
+        <PackageReference Include="Vogen" />
+        <PackageReference Include="Dgmjr.Primitives" />
+        <PackageReference Include="Dgmjr.Abstractions" />
+        <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+
+        <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
+        <ProjectReference Include="../Http/Http/Dgmjr.Http.Meta.csproj" />
+        <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
+        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+        <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
+    </ItemGroup>
+</Project>

@@ -1,0 +1,40 @@
+<!--
+ * Dgmjr.Swagger.csproj
+ * 
+ *   Created: 2022-12-05-07:29:55
+ *   Modified: 2022-12-05-07:29:55
+ * 
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="ThisAssembly.Project" />
+    <PackageReference Include="ThisAssembly" />
+    <PackageReference Include="Dgmjr.Primitives" />
+  </ItemGroup>
+  <PropertyGroup>
+    
+  </PropertyGroup>
+  <!-- <ItemGroup>
+    <ProjectProperty Include="PackageVersion" />
+    <ProjectProperty Include="Version" />
+    <ProjectProperty Include="Title" />
+    <ProjectProperty Include="Description" />
+    <ProjectProperty Include="TermsOfServiceUrl" />
+    <ProjectProperty Include="Company" />
+    <ProjectProperty Include="Owners" />
+    <ProjectProperty Include="Authors" />
+    <ProjectProperty Include="LicenseExpression" />
+    <ProjectProperty Include="ContactEmail" />
+    <ProjectProperty Include="PackageProjectUrl" />
+  </ItemGroup> -->
+  <ItemGroup>
+    <!-- This file will be compiled into the target project's code -->
+    <!-- <Compile Include="./AddSwaggerGenExtension.cs" /> -->
+  </ItemGroup>
+</Project>

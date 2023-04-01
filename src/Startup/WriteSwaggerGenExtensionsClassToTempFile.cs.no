@@ -1,0 +1,33 @@
+/*
+ * WriteSwaggerGenExtensionsClassToProjectDirectory.cs
+ *
+ *   Created: 2022-12-11-12:47:17
+ *   Modified: 2022-12-11-12:47:17
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+ */
+
+using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using Microsoft.Build.Framework;
+using Microsoft.Build.Utilities;
+
+namespace Dgmjr.AspNetCore.Startup;
+
+public class WriteSwaggerGenExtensionsClassToTempFile : MSBTask
+{
+    [Output]
+    public ITaskItem Output { get; set; }
+
+    public override bool Execute()
+    {
+        var outputFile = $"{Path.GetTempFileName()}.cs";
+        File.WriteAllText(outputFile, new StreamReader(GetType().Assembly.GetManifestResourceStream("AddSwaggerGenExtensions.cs")).ReadToEnd());
+        this.Output = new TaskItem(outputFile);
+        return true;
+    }
+}

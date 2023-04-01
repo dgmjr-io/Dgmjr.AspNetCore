@@ -1,0 +1,55 @@
+<!--
+ * Dgmjr.AspNetCore.Swagger.csproj
+ *
+ *   Created: 2022-12-17-01:58:38
+ *   Modified: 2022-12-17-01:58:39
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
+    </PropertyGroup>
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
+        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+        <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
+        <PackageReference Include="ThisAssembly" />
+        <PackageReference Include="ThisAssembly.Resources" />
+        <!-- <PackageReference Include="ThisAssembly.Project" /> -->
+        <!-- <PackageReference Include="ThisAssembly.AssemblyInfo" /> -->
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+        <PackageReference Include="Unchase.Swashbuckle.AspNetCore.Extensions" />
+        <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
+        <PackageReference Include="Dgmjr.Identity.Claims" ExcludeAssets="ContentFiles" />
+        <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+        <PackageReference Include="System.Usings" />
+        <PackageReference Include="System.Text.Usings" />
+        <PackageReference Include="System.Xml.XPath" />
+        <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+        <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" />
+        <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" />
+        <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" />
+        <!-- <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
+    </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="./swaggerui/themes/*.css" LogicalName="%(Filename)%(Extension)" Type="text" />
+        <EmbeddedResource Include="./swaggerui/swagger-ui.css" LogicalName="%(Filename)%(Extension)" Type="text" />
+        <EmbeddedResource Include="./swaggerui/indexmod.html" LogicalName="%(Filename)%(Extension)"  Type="text" />
+        <EmbeddedResource Include="./swaggerui/index.html" LogicalName="%(Filename)%(Extension)"  Type="text" />
+        <EmbeddedResource Include="swaggerui/swaggerui.*" LogicalName="%(Filename)%(Extension)" Type="text" />
+    </ItemGroup>
+</Project>

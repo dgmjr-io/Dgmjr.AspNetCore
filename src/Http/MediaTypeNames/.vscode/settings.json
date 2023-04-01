@@ -1,0 +1,10 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#1C303A",
+        "titleBar.activeBackground": "#274352",
+        "titleBar.activeForeground": "#F9FBFC"
+    },
+    "docify.translateService.programmingLanguage": "c_sharp",
+    "docify.translateService.docstringFormat": "XML",
+    "docify.commentService.docstringFormat": "XML"
+}
