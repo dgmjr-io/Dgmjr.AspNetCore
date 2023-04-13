@@ -1,16 +1,17 @@
-﻿/*
- * BasicApiAuthHandler.cs
- *
- *   Created: 2022-12-19-06:50:32
- *   Modified: 2022-12-31-05:07:17
- *
- *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *
- *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+﻿/* 
+ * JwtAuthHandler.cs
+ * 
+ *   Created: 2023-04-06-02:15:37
+ *   Modified: 2023-04-06-02:15:53
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
- */
+ */ 
 
-namespace Dgmjr.AspNetCore.Authentication;
+
+namespace Dgmjr.AspNetCore.Authentication.Handlers;
 
 using System;
 using System.Net.Http.Headers;
@@ -18,6 +19,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using Dgmjr.Abstractions;
+using Dgmjr.AspNetCore.Authentication.Options;
 using Dgmjr.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
@@ -25,22 +27,21 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-public class BasicApiAuthHandler
-    : AuthenticationHandler<ApiBasicAuthenticationOptions>,
+public class JwtAuthHandler
+    : AuthenticationHandler<BasicAuthenticationSchemeOptions>,
         IHttpContextAccessor,
         ILog
 {
-    public new ILogger Logger { get; init; }
     private readonly UserManager _userManager;
-    private readonly ApiBasicAuthenticationOptions _options;
+    private readonly BasicAuthenticationSchemeOptions _options;
     public HttpContext? HttpContext
     {
         get => Request.HttpContext;
         set { }
     }
 
-    public BasicApiAuthHandler(
-        IOptionsMonitor<ApiBasicAuthenticationOptions> options,
+    public JwtAuthHandler(
+        IOptionsMonitor<BasicAuthenticationSchemeOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
@@ -49,20 +50,26 @@ public class BasicApiAuthHandler
     {
         _userManager = userManager;
         _options = options.CurrentValue;
-        Logger = logger.CreateLogger<BasicApiAuthHandler>();
     }
+
+    protected virtual string? AuthenticationSchemeName => _options?.AuthenticationSchemeName;
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
         try
         {
             var authHeader = AuthenticationHeaderValue.Parse(
-                Request.Headers[nameof(System.Net.Http.Headers.HttpRequestHeaders.Authorization)]
+                Request.Headers[nameof(HttpRequestHeaders.Authorization)]
             );
-            var credentialBytes = authHeader.Parameter.FromBase64String();
-            var credentials = credentialBytes.ToUTF8String().Split(':', 2);
-            var authUsername = credentials[0];
-            var authPassword = credentials[1];
+            opts.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidIssuer = _options?.ClaimsIssuer ?? DgmjrCt.BaseUri,
+                ValidAudience = builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Audience)}"],
+                IssuerSigningKey = new SymmetricSecurityKey(builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Secret)}"].ToUTF8Bytes()),
+                ValidateIssuer = true,
+                ValidateAudience = true,
+                ValidateIssuerSigningKey = true
+            };
             Logger.LogAuthenticatingUser(authUsername);
 
             // authenticate credentials with user service and attach user to http context
@@ -70,7 +77,7 @@ public class BasicApiAuthHandler
             if (user is not null && await _userManager.CheckPasswordAsync(user, authPassword))
             {
                 var identity = new ClaimsIdentity(
-                    ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                    AuthenticationSchemeName
                 );
                 var userClaims = await _userManager.GetClaimsAsync(user);
 
@@ -80,7 +87,7 @@ public class BasicApiAuthHandler
                 userClaims.Add(
                     new(
                         DgmjrCt.AuthenticationMethod,
-                        ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                        AuthenticationSchemeName
                     )
                 );
                 userClaims.Add(new(DgmjrCt.CommonName, user.GoByName));
@@ -100,7 +107,7 @@ public class BasicApiAuthHandler
                     userClaims.Add(new(DgmjrCt.HomePhone, user.PhoneNumber));
                 }
 
-                if (user.EmailAddress.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.Email))
+                if (user.EmailAddsress.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.Email))
                 {
                     userClaims.Add(new(DgmjrCt.Email, user.EmailAddress));
                 }
@@ -114,8 +121,9 @@ public class BasicApiAuthHandler
                 };
                 var ticket = new AuthenticationTicket(
                     principal,
-                    ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                    AuthenticationSchemeName
                 );
+                HttpContext.User = principal;;
                 Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }
@@ -131,36 +139,8 @@ public class BasicApiAuthHandler
         }
         catch (Exception ex)
         {
-            Logger.LogError(ex, "An error occurred while authenticating the user.");
+            Logger.LogAuthenticationError(ex.Message, ex.StackTrace);
             return AuthenticateResult.Fail("An error occurred while authenticating the user.");
         }
     }
-
-    // public async Task<IAuthenticationHandler?> GetHandlerAsync(HttpContext context, string authenticationScheme)
-    // {
-    //     if (authenticationScheme == ApiBasicAuthenticationOptions.AuthenticationSchemeName)
-    //     {
-    //         await InitializeAsync(new AuthenticationScheme(authenticationScheme, authenticationScheme, GetType()), context);
-    //         return this;
-    //     }
-    //     return null;
-    // }
-
-    // public Task InitializeAsync(AuthenticationScheme scheme, HttpContext context)
-    // {
-    //     HttpContext = context;
-    //     return Task.CompletedTask;
-    // }
-    // public Task<AuthenticateResult> AuthenticateAsync() => HandleAuthenticateAsync();
-    // public Task ChallengeAsync(AuthenticationProperties? properties)
-    // {
-    //     HttpContext.Response.StatusCode = 401;
-    //     HttpContext.Response.Headers["WWW-Authenticate"] = "Basic";
-    //     return Task.CompletedTask;
-    // }
-    // public Task ForbidAsync(AuthenticationProperties? properties)
-    // {
-    //     HttpContext.Response.StatusCode = 403;
-    //     return Task.CompletedTask;
-    // }
 }

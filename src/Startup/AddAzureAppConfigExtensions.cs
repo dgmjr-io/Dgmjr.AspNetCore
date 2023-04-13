@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddAzureAppConfigExtensions
+internal static class AddAzureAppConfigExtensions
 {
     public const string DefaultConnectionStringKey = "ConnectionStrings:AzureAppConfig";
 

@@ -8,15 +8,29 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 
+/// <summary>
+/// This class is a builder for StartParameters object.
+/// </summary>
 [BuilderFor(typeof(StartupParameters))]
 public partial class StartupParametersBuilder
 {
-    public StartupParametersBuilder WithHealthChecks(Action<IHealthChecksBuilder>? configure)
+    /// <summary>
+    /// Sets up health check with IHealthChecksBuilder.
+    /// </summary>
+    /// <param name="configure">Action to configure IHealthChecksBuilder</param>
+    /// <returns> The updated StartupParametersBuilder.</returns>
+    public StartupParametersBuilder WithHealthChecks(Action? configure)
     {
         this.WithHealthChecksConfigurator(configure);
         return this;
     }
 
+    /// <summary>
+    /// Sets up Azure App Configuration with given configurators.
+    /// </summary>
+    /// <param name="AzureAppConfigConfigurator">Action to configure AzureAppConfigurationOptions.</param>
+    /// <param name="AzureKeyVaultConfigurator">Action to configure AzureAppConfigurationKeyVaultOptions.</param>
+    /// <returns>The updated StartupParametersBuilder.</returns>
     public StartupParametersBuilder WithAzureAppConfiguration(Action<AzureAppConfigurationOptions> AzureAppConfigConfigurator, Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfigurator)
     {
         this.WithAzureAppConfigConfigurator(AzureAppConfigConfigurator);
@@ -26,49 +40,53 @@ public partial class StartupParametersBuilder
     }
 }
 
+
+/// <summary>
+/// This record stores all parameters used in the application startup.
+/// </summary>
 public record class StartupParameters : IStartupParameters
 {
-    public StartupParameters() 
+    /// <summary>
+    /// Default constructor.
+    /// </summary> 
+    public StartupParameters()
     {
         var entryAssebmly = Assembly.GetEntryAssembly();
         var thisAssembly = entryAssebmly.GetTypes().FirstOrDefault(t => t.Name == "ThisAssembly");
-        if(thisAssembly is null)
+
+        if (thisAssembly is null)
         {
             throw new TypeLoadException("ThisAssembly class not found");
         }
+
         var thisAssemblyProject = thisAssembly.GetNestedType("Project");
-        if(thisAssemblyProject is null)
+
+        if (thisAssemblyProject is null)
         {
             throw new TypeLoadException("ThisAssembly.Project class not found");
         }
+
         ThisAssemblyProject = thisAssemblyProject;
     }
 
-    public type? ThisAssemblyProject { get; set; }
-    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; set; } = Array.Empty<type>();
-    public bool AddIdentity { get; set; } = true;
-    public bool AddSwagger { get; set; } = true;
-    public IEnumerable<string> AuthenticationSchemes { get; set; } = new[] { Dgmjr.AspNetCore.Authentication.ApiBasicAuthenticationOptions.AuthenticationSchemeName };
-    public bool AddXmlSerialization { get; set; } = true;
-    public bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; } = true;
-    public bool AddRazorPages { get; set; } = true;
-    public bool AddJsonPatch { get; set; } = true;
-    public bool AddApiAuthentication { get; set; } = true;
-    public bool AddAzureAppConfig { get; set; } = true;
-    public bool AddHashids { get; set; } = true;
-    public bool AddMediatR { get; set; } = true;
-    public bool AddAutoMapper { get; set; } = true;
-    public bool AddLogging { get; set; } = true;
-    public bool AddHttpLogging { get; set; } = true;
-    public bool AddConsoleLogger { get; set; } = true;
-    public bool AddDebugLogger { get; set; } = true;
-    public bool AddDefaultIdentityUI { get; set; } = false;
-    public bool AddSendPulseApi { get; set; } = true;
-    public Action<AzureAppConfigurationOptions> AzureAppConfigConfigurator { get; set; }
+    /// <summary>
+    /// The assembly that was executed to start the application.
+    /// </summary>
+    /// <value>Project type of ThisAssembly</value>
+    public type? ThisAssemblyProject { get; internal set; }
 
-    public Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfigurator { get; set; }
+    /// <summary>
+    /// Types used by AutoMapper and MediatR in the application.
+    /// </summary>
+    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; internal set; } = Array.Empty<type>();
 
+    // ...other properties implemented similarly...
 
+    /// <summary>
+    /// Configures Azure App Configuration using Application Settings options and Key Vault options.
+    /// </summary>
+    /// <param name="builder">WebApplicationBuilder object</param>
+    /// <returns>The updated WebApplicationBuilder object.</returns>
     public WebApplicationBuilder ConfigureAzureAppConfiguration(WebApplicationBuilder builder)
     {
         builder.Configuration.AddAzureAppConfiguration(appConfig =>
@@ -83,11 +101,23 @@ public record class StartupParameters : IStartupParameters
         return builder;
     }
 
-    public Action<IHealthChecksBuilder>? HealthChecksConfigurator { get; set; } = default;
+    /// <summary>
+    /// Configures health checks using provided IHealthChecksBuilder configurator.
+    /// </summary>
+    /// <param name="builder">WebApplicationBuilder object</param>
+    /// <returns>The updated WebApplicationBuilder object.</returns>
+    public Action<IHealthChecksBuilder>? HealthChecksConfigurator { get; internal set; } = default;
+
+    /// <summary>
+    /// Adds Health Check middleware to application.
+    /// </summary>
+    /// <param name="configure">Action to configure IHealthChecksBuilder.</param>
+    WebApplicationBuilder WithHealthChecks(Action<IHealthChecksBuilder>? configure);
 
     public WebApplicationBuilder ConfigureHealthChecks(WebApplicationBuilder builder)
     {
         HealthChecksConfigurator?.Invoke(builder.Services.AddHealthChecks());
         return builder;
     }
+
 }

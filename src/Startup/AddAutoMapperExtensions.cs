@@ -12,7 +12,7 @@
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddAutoMapperExtensions
+internal static class AddAutoMapperExtensions
 {
     public static IServiceCollection AddAutoMapper<T>(this IServiceCollection services)
     {

@@ -14,32 +14,43 @@ public static class AddTheWorksExtensions
 {
     public static WebApplicationBuilder AddTheWorks(
         this WebApplicationBuilder builder,
+        Action<StartupParametersBuilder>? configure = default!,
+        Action<WebApplicationBuilder>? configureWebApp = default!
+    )
+    {
+        var @params = new StartupParametersBuilder();
+        configure?.Invoke(@params);
+        return builder.AddTheWorks(@params.Build(), configureWebApp);
+    }
+
+    public static WebApplicationBuilder AddTheWorks(
+        this WebApplicationBuilder builder,
         IStartupParameters @params = default,
         Action<WebApplicationBuilder>? configure = default
     )
     {
-        if (@params.AddLogging)
+        if (@params.Logging)
             _ = builder.Logging
                     .AddConfiguration(builder.Configuration.GetSection("Logging"));
 
-        if (@params.AddConsoleLogger)
+        if (@params.ConsoleLogger)
             builder.Logging.AddConsole();
 
-        if (@params.AddDebugLogger)
+        if (@params.DebugLogger)
             builder.Logging.AddDebug();
 
-        if (@params.AddIdentity)
-            _ = builder.AddIdentity(@params.AddDefaultIdentityUI);
+        if (@params.Identity)
+            _ = builder.AddIdentity(@params.DefaultIdentityUI);
 
         @params.TypesForAutoMapperAndMediatR ??= Empty<type>();
 
         if (@params.SearchEntireAppDomainForAutoMapperAndMediatRTypes)
             @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => { try { return a.GetTypes(); } catch { return Array.Empty<type>(); } }));
 
-        if (@params.AddAutoMapper)
+        if (@params.AutoMapper)
             _ = builder.Services.AddAutoMapper(@params.TypesForAutoMapperAndMediatR.ToArray());
 
-        if (@params.AddSwagger)
+        if (@params.Swagger)
             _ = builder.AddSwaggerGen()
                 .AddSwaggerMetadata(@params.ThisAssemblyProject ?? typeof(ThisAssembly.Project))
             .DescribeDataTypesToSwagger()
@@ -51,32 +62,32 @@ public static class AddTheWorksExtensions
             .DescribeFileUploads()
             .AddDescribeTypesForAllOutputFormatters();
 
-        if (@params.AddXmlSerialization)
+        if (@params.XmlSerialization)
             _ = builder.Services.AddControllers().AddXmlSerializerFormatters();
 
-        if (@params.AddRazorPages)
+        if (@params.RazorPages)
             _ = builder.Services.AddRazorPages();
 
-        if (@params.AddJsonPatch)
+        if (@params.JsonPatch)
             _ = builder.AddJsonPatch();
 
 
         _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
 
         if (@params.AddAzureAppConfig)
-            _ = @params.ConfigureAzureAppConfiguration(builder);
+            _ = @params.WithAzureAppConfiguration(builder);
 
-        if (@params.AddApiAuthentication)
+        if (@params.ApiAuthentication)
             _ = builder.AddApiAuthentication();
 
-        if (@params.AddHttpLogging)
+        if (@params.HttpLogging)
             _ = builder.AddHttpLogging();
 
         // builder.AddApiAuthentication(_ => { });
 
         _ = builder.AddFormatters();
 
-        @params.ConfigureHealthChecks(builder);
+        @params.WithHealthChecks(builder);
 
         _ = builder.AddPayloadServices();
 
@@ -84,10 +95,10 @@ public static class AddTheWorksExtensions
 
         _ = builder.DescribeSchemasViaAttributes();
 
-        if (@params.AddHashids)
+        if (@params.Hashids)
             _ = builder.AddHashids();
 
-        if (@params.AddMediatR)
+        if (@params.MediatR)
             _ = builder.Services.AddMediatR(@params.TypesForAutoMapperAndMediatR.ToArray());
 
         _ = builder.AddJsonSerializer();

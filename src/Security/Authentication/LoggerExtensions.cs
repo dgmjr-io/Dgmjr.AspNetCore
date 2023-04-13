@@ -49,4 +49,10 @@ internal static partial class LoggerExtensions
 
     [LoggerMessage(-4, Debug, "{TraceIdentifier} presented an expired auth token for use {username}.  Originally issued: {initiallyIssued}; Expiration: {originalExpiration}; Now: {now}")]
     public static partial void LogExpiredToken(this ILogger logger, string traceIdentifier, string? username, DateTimeOffset initiallyIssued, DateTimeOffset originalExpiration, DateTimeOffset now);
+
+    [LoggerMessage(-5, Debug, "No authenticationSchemeOptions are configured. Configure named options for this middleware with services.AddAuthentication(\"SchemeName\").AddScheme<TOptions, THandler>(\"SchemeName\", o => {{ }})")]
+    public static partial void LogNoDefaultAuthenticationScheme(this ILogger logger);
+
+    [LoggerMessage(-6, Error, "An error occurred while authenticating the user: {message}, {stacktrace}")]
+    public static partial void LogAuthenticationError(this ILogger logger, string message, string stackTrace);
 }

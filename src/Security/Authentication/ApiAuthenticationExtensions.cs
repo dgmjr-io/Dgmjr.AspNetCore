@@ -92,7 +92,7 @@ public class ApiAuthenticationExtensions : ILog
                     if (user is not null && await UserManager.CheckPasswordAsync(user, authPassword))
                     {
                         var identity = new ClaimsIdentity(
-                        ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                        ApiAuthenticationOptions.BasicAuthenticationSchemeName
                     );          
                     var userClaims = await UserManager.GetClaimsAsync(user);
 
@@ -102,7 +102,7 @@ public class ApiAuthenticationExtensions : ILog
                     userClaims.Add(
                         new(
                             DgmjrCt.AuthenticationMethod,
-                            ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                            ApiAuthenticationOptions.BasicAuthenticationSchemeName
                         )
                     );
                     userClaims.Add(new(DgmjrCt.CommonName, user.GoByName));

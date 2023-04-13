@@ -15,6 +15,7 @@ using System.Buffers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Dgmjr.AspNetCore.Authentication.Options;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -36,10 +37,10 @@ public static class JwtExtensions
         .AddJwtBearer(opts =>
         {
             configureOptions(opts);
-            opts.SaveToken = true;
+            opts.SaveToken = truez;
             opts.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidIssuer = builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Issuer)}"],
+                ValidIssuer = builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.ClaimsIssuer)}"],
                 ValidAudience = builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Audience)}"],
                 IssuerSigningKey = new SymmetricSecurityKey(builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Secret)}"].ToUTF8Bytes()),
                 ValidateIssuer = true,
@@ -53,8 +54,6 @@ public static class JwtExtensions
     {
         _ = app.MapGet("/auth/token", async context =>
         {
-
-
 
             var claims = new[]
             {

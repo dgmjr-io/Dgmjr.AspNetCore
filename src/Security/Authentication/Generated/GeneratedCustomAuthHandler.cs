@@ -113,7 +113,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
         if (user is not null && UserManager.CheckPasswordAsync(user, password).Result)
         {
             identity = new ClaimsIdentity(
-                ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                ApiAuthenticationOptions.BasicAuthenticationSchemeName
             );
             var userClaims = UserManager.GetClaimsAsync(user).Result;
 
@@ -123,7 +123,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
             userClaims.Add(
                 new(
                     DgmjrCt.AuthenticationMethod,
-                    ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                    ApiAuthenticationOptions.BasicAuthenticationSchemeName
                 )
             );
             userClaims.Add(new(DgmjrCt.CommonName, user.GoByName, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
@@ -157,7 +157,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
             };
             ticket = new AuthenticationTicket(
                 principal,
-                ApiBasicAuthenticationOptions.AuthenticationSchemeName
+                ApiAuthenticationOptions.BasicAuthenticationSchemeName
             );
             Logger.LogUserAuthenticated(username, userClaims.Count);
             return Task.FromResult(true);

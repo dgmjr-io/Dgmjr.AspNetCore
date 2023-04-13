@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-public static class JsonSerializerExtensions
+internal static class JsonSerializerExtensions
 {
     public static WebApplicationBuilder AddJsonSerializer(this WebApplicationBuilder builder)
     {

@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Net.NetworkInformation;
+/*
  * DbContextExtensions.cs
  *
  *   Created: 2022-12-11-07:35:28
@@ -13,14 +14,37 @@
 using System.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Abstractions;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.Configuration;
 using static System.String;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddDbContextExtensions
+internal static class AddDbContextExtensions
 {
+    /// <summary>
+    /// Gets all registered DbContext implementations from the WebApplicationBuilder services.
+    /// </summary>
+    /// <param name="builder">The WebApplicationBuilder object.</param>
+    /// <returns>An IEnumerable of IDbContext objects.</returns>
+    public static IEnumerable<IDbContext> GetAllRegisteredDbContexts(this WebAppplicationBuilder builder)
+    {
+        var dbContexts = builder.Services
+            .Where(s => typeof(IDbContext).IsAssignableFrom(s.ServiceType))
+            .Select(s => s.ImplementationInstance)
+            .Cast<IDbContext>();
+        return dbContexts;
+    }
+
+
+    /// <summary>
+    /// Adds a DbContext of type TContext to the WebApplicationBuilder services.
+    /// </summary>
+    /// <typeparam name="TContext">The type of DbContext to add.</typeparam>
+    /// <param name="builder">The WebApplicationBuilder object.</param>
+    /// <param name="connectionStringKey">The key for the connection string in configuration.</param>
+    /// <returns>The updated WebApplicationBuilder object.</returns>
     public static WebApplicationBuilder AddDbContext<TContext>(
         this WebApplicationBuilder builder,
         string? connectionStringKey = default
@@ -29,10 +53,10 @@ public static class AddDbContextExtensions
         var dbContextName = typeof(TContext).Name;
         var connectionStringKeyNames = new[]
         {
-            dbContextName,
-            dbContextName.Replace(nameof(DbContext), string.Empty),
-            dbContextName.Replace(nameof(DbContext), string.Empty) + "Db"
-        };
+        dbContextName,
+        dbContextName.Replace(nameof(DbContext), string.Empty),
+        dbContextName.Replace(nameof(DbContext), string.Empty) + "Db"
+    };
         connectionStringKeyNames = connectionStringKeyNames
             .Concat(
                 connectionStringKeyNames.Select(
