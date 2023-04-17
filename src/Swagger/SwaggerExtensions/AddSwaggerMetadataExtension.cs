@@ -154,13 +154,13 @@ public static partial class AddSwaggerMetadataExtension
             TermsOfService = thisAssemblyProject.TermsOfServiceUrl,
             Extensions =
             {
-                [nameof(thisAssemblyProject.PackageProjectUrl)] = new OpenApiString(
+                ["x-project-url"] = new OpenApiString(
                     thisAssemblyProject.PackageProjectUrl
                 ),
-                [nameof(thisAssemblyProject.RepositoryUrl)] = new OpenApiString(
+                ["x-repositor-url"] = new OpenApiString(
                     thisAssemblyProject.RepositoryUrl
                 ),
-                ["Tags"] = packageTags
+                ["x-package-tags"] = packageTags
             },
             Contact = new()
             {
@@ -169,10 +169,10 @@ public static partial class AddSwaggerMetadataExtension
                 Url = thisAssemblyProject.PackageProjectUrl,
                 Extensions =
                 {
-                    [nameof(thisAssemblyProject.Authors)] = new OpenApiString(
+                    ["x-authors"] = new OpenApiString(
                         thisAssemblyProject.Authors
                     ),
-                    [nameof(thisAssemblyProject.Owners)] = new OpenApiString(
+                    ["x-owners"] = new OpenApiString(
                         thisAssemblyProject.Owners
                     )
                 }

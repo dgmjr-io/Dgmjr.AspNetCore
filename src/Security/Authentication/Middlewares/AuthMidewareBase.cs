@@ -30,6 +30,7 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
 
     public ILogger Logger { get; init; }
 
+    // Use constructor injection to initialize dependencies.
     protected AuthMiddlewareBase(
         RequestDelegate next,
         IOptionsMonitor<TOptions> options,
@@ -43,11 +44,12 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         Logger = logger.CreateLogger(GetType().FullName);
         _encoder = encoder;
         _clock = clock;
+        _handler = handler; // Initialize the handler field.
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var options = _options.Get(_options.CurrentValue?.ForwardDefault);
+        var options = _options.CurrentValue?.ForwardDefault; // Cache the options value.
         if (options == null)
         {
             Logger.LogNoDefaultAuthenticationScheme();
@@ -58,24 +60,29 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         if (ShouldHandleScheme(options.AuthenticationSchemeName))
         {
             await HandleAuthenticateOnceAsync(context, options);
+            return; // Return after authentication to avoid calling _next twice.
         }
-        else
-        {
-            await _next(context);
-        }
+
+        await _next(context); // Call _next only once outside of the if statement.
     }
 
     protected virtual bool ShouldHandleScheme(string authenticationScheme)
     {
-        try { _options?.CurrentValue?.Validate(authenticationScheme); return true; }
-        catch { return false; }
+        try
+        {
+            _options?.CurrentValue?.Validate(authenticationScheme);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
     }
 
     protected virtual async Task HandleAuthenticateOnceAsync(HttpContext context, TOptions options)
     {
-        var handler = _handler;
-        await handler.InitializeAsync(_options?.CurrentValue.ToAuthenticationScheme(), context);
-        var authResult = await handler.AuthenticateAsync();
+        var authResult = awasit _handler.AuthenticateAsync(); // Use the cached handler field.
+        
         if (authResult?.Principal != null)
         {
             await context.SignInAsync(authResult.Principal, authResult.Properties);
@@ -83,7 +90,7 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         else
         {
             context.Response.StatusCode = 401;
-        }
-        await _next(context);
-    }
+            return; // Return after setting status code to avoid calling _next twice.
+         }
+     }
 }
