@@ -11,7 +11,8 @@
  */
 
 namespace Dgmjr.AspNetCore.Communication.Sms;
-
+using Dgmjr.AspNetCore.Communication;
+using System;
 public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNumber>
 {
     /// <summary>
@@ -32,18 +33,22 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     /// <param name="connectionString">The connection string.</param>
-    public SmsSenderOptions(string connectionString) : base(connectionString) { }
+    public SmsSenderOptions(string connectionString) : this(connectionString) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     /// <param name="connectionString">The connection string.</param>
     /// <param name="fromPhoneNumber">The from phone number.</param>
-    public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber = null)
-        : base(connectionString) { }
+    public SmsSenderOptions() : this(string.Empty) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
-    public SmsSenderOptions() : this(string.Empty) { }
+    /// <param name="connectionString">The connection string.</param>
+    /// <param name="fromPhoneNumber">The from phone number.</param>
+    public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber = null) : base(connectionString)
+    {
+        DefaultFrom = fromPhoneNumber.asValue ? fromPhoneNumber.Value : PhoneNumber.Default;
+    }
 }
