@@ -27,7 +27,18 @@ public class UriResponsePayload : ResponsePayload<uri?>
     ]
     public override string? StringValue
     {
-        get => Value.ToString();
-        set => Value = value?.ToUri();
+        get => _stringValue ?? Value.ToString();
+        set
+        {
+            if (uri.TryParse(value, out var u))
+            {
+                _stringValue = u.ToString();
+                Value = u;
+            }
+            else
+            {
+                throw new InvalidCastException($"Cannot cast {value} to {nameof(UriResponsePayload)}");
+            }
+        }
     }
 }

@@ -24,11 +24,11 @@ public partial record class AzureCommunicationServicesOptionsBase
 
 public abstract partial record class AzureCommunicationServicesOptions<TAddressType> : AzureCommunicationServicesOptionsBase
 {
-    public AzureCommunicationServicesOptions(string connectionString) : base(connectionString) { }
+    protected AzureCommunicationServicesOptions(string connectionString) : base(connectionString) { }
 
-    public AzureCommunicationServicesOptions(uri endpoint, string accessKey) : base(endpoint, accessKey) { }
+    protected AzureCommunicationServicesOptions(uri endpoint, string accessKey) : base(endpoint, accessKey) { }
 
-    public AzureCommunicationServicesOptions() : this(string.Empty) { }
+    protected AzureCommunicationServicesOptions() : this(string.Empty) { }
 
     public abstract TAddressType DefaultFrom { get; set; }
 

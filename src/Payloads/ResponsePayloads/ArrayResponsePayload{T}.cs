@@ -32,14 +32,14 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     }
 
     /// <summary>The arrray of values</summary>
-    [JProp("values"), XmlAttribute("values"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
+    [JProp("values"), XAttr("values"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
     public virtual T[]? Values
     {
         get => Value;
         set => Value = value;
     }
 
-    [JIgnore, XmlIgnore]
+    [JIgnore, XIgnore]
     public override T[]? Value
     {
         get => base.Value;
@@ -47,7 +47,7 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     }
 
     /// <summary>The number of items in the array</summary>
-    [JProp("count"), XmlAttribute("count")]
+    [JProp("count"), XAttr("count")]
     public virtual int Count => Values.Length;
 
     public override string ToString() => _stringValue ?? Join(ItemSeparator, Values);
@@ -67,6 +67,6 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
         set => _stringValue = value;
     }
 
-    [JIgnore, XmlIgnore]
+    [JIgnore, XIgnore]
     public virtual string ItemSeparator { get; set; }
 }

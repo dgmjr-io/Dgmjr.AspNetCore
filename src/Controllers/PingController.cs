@@ -65,14 +65,14 @@ public static class PingExtensions
                     Description = "Pong",
                     Content =
                     {
-                        [TextMediaTypeNames.Plain] = new()
+                        [ApplicationMediaTypeNames.Json] = new()
                         {
                             Schema = new()
                             {
                                 Reference = new()
                                 {
                                     Type = ReferenceType.Schema,
-                                    Id = typeof(HealthReport).Name
+                                    Id = typeof(HealthReport).FullName
                                 }
                             }
                         }

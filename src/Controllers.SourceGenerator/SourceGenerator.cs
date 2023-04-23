@@ -1,4 +1,5 @@
-﻿/*
+﻿#if GENERATE_CONTROLLERS
+/*
  * SourceGenerator.cs
  *
  *   Created: 2022-12-14-07:23:00
@@ -48,3 +49,4 @@ public class SourceGenerator : IIncrementalGenerator
         );
     }
 }
+#endif
