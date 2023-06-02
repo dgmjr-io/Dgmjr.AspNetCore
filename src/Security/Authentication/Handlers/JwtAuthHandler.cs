@@ -8,7 +8,7 @@
  *   
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
- */ 
+ */
 
 
 namespace Dgmjr.AspNetCore.Authentication.Handlers;
@@ -123,7 +123,7 @@ public class JwtAuthHandler
                     principal,
                     AuthenticationSchemeName
                 );
-                HttpContext.User = principal;;
+                HttpContext.User = principal; ;
                 Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }

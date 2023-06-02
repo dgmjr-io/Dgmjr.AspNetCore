@@ -20,4 +20,4 @@ public class ApiMultiAuthenticationScheme : AuthenticationScheme, IAuthenticatio
     public ApiMultiAuthenticationScheme(string name, string? displayName, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)] type handlerType) : base(name, displayName, handlerType)
     {
     }
-}   
+}

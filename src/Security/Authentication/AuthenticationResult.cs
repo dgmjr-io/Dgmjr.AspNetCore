@@ -38,7 +38,7 @@ namespace Dgmjr.AspNetCore.Authentication
             Token = token;
         }
 
-        public static AuthenticationResult Success(string token) => new (Enums.AuthenticationResult.SuccessTokenIssued, token);
+        public static AuthenticationResult Success(string token) => new(Enums.AuthenticationResult.SuccessTokenIssued, token);
 
         public string Token { get; set; }
 

@@ -20,11 +20,11 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
 {
     public override required EmailAddress DefaultFrom { get; set; }
 
-    public EmailSenderOptions(string connectionString)
-    {
-        ConnectionString = connectionString;
-    }
+public EmailSenderOptions(string connectionString)
+{
+    ConnectionString = connectionString;
+}
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions() : this(string.Empty) { }
+[SetsRequiredMembers]
+public EmailSenderOptions() : this(string.Empty) { }
 }
