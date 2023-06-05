@@ -12,7 +12,8 @@
 
 namespace Dgmjr.AspNetCore.Communication.Sms;
 using Dgmjr.AspNetCore.Communication;
-using System;
+using System.Domain;
+
 public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNumber>
 {
     /// <summary>

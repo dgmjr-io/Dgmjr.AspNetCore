@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0;net6.0;net7.0</TargetFrameworks>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Description>This package contains the communication classes for the project.  It's used for sending SMS and email messages.</Description>
         <SlnGenSolutionFolder>comms</SlnGenSolutionFolder>
     </PropertyGroup>
@@ -24,6 +24,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
         <PackageReference Include="Microsoft.Extensions.Options" />
         <PackageReference Include="Dgmjr.Primitives" />
-        <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Build;Analyzers" ExcludeAssets="Runtime;Native;Source;ContentFiles" PrivateAssets="All" />
+        <SourceGenerator  Include="Dgmjr.RegexDtoGenerator" />
+        <SourceGenerator   Include="Dgmjr.Enumerations.CodeGenerator" />
     </ItemGroup>
 </Project>

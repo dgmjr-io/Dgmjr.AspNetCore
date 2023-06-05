@@ -1,6 +1,6 @@
 ---
 authors:
-  - dgmjr
+  - DGMJR-IO
 title: Media Type Names
 description: Provides a set of constants for the most common media types.  Fills in the gaps left by the System.Net.Mime.MediaTypeNames class.
 lastmod: 2023-03-31T09:30:29.207Z

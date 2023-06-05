@@ -26,6 +26,6 @@ public class ApiMultiAuthenticationHandler : AuthenticationHandler<ApiAuthentica
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        
+
     }
 }

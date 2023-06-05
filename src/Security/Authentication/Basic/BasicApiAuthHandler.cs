@@ -31,6 +31,7 @@ public class BasicApiAuthHandler
         IHttpContextAccessor,
         ILog
 {
+    public ILogger Logger { get; }
     private readonly UserManager _userManager;
     private readonly BasicAuthenticationSchemeOptions _options;
     public HttpContext? HttpContext
@@ -49,6 +50,7 @@ public class BasicApiAuthHandler
     {
         _userManager = userManager;
         _options = options.CurrentValue;
+        Logger = loger.CreateLogger<BasicApiAuthHandler>();
     }
 
     protected virtual string? AuthenticationSchemeName => _options?.AuthenticationSchemeName;
@@ -64,7 +66,7 @@ public class BasicApiAuthHandler
             var credentials = credentialBytes.ToUTF8String().Split(':', 2);
             var authUsername = credentials[0];
             var authPassword = credentials[1];
-            Logger.LogAuthenticatingUser(authUsername);
+            Logger.LogAuthenticatingUser(authUsername, BasicAuthenticationSchemeOptions.SchemeName);
 
             // authenticate credentials with user service and attach user to http context
             var user = await _userManager.FindByNameAsync(authUsername);

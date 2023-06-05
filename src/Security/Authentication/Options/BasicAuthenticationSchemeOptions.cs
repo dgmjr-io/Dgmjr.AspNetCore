@@ -32,12 +32,12 @@ public class BasicAuthenticationSchemeOptions : AuthenticationSchemeOptions, IBa
         this.ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
         this.ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
         this.ForwardSignIn = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardSignOut= ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        this.ForwardSignOut = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
     }
 
-    public  AuthenticationScheme ToAuthenticationScheme() 
-        
-        => new (((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName, ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeDisplayName, typeof(BasicApiAuthHandler));
+    public AuthenticationScheme ToAuthenticationScheme()
+
+        => new(((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName, ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeDisplayName, typeof(BasicApiAuthHandler));
 
     AuthenticationScheme IAuthenticationSchemeOptions.ToAuthenticationScheme()
     {

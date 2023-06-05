@@ -77,7 +77,7 @@ public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthent
             Logger.UserAuthenticationFailed(authUsername);
             return AuthenticateResult.Fail("An unknown error occurred while authenticating the user.");
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             Logger.LogError(ex, "An error occurred while authenticating the user.");
             return AuthenticateResult.Fail("An error occurred while authenticating the user.");
