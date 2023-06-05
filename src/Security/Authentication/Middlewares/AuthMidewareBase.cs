@@ -91,6 +91,6 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         {
             context.Response.StatusCode = 401;
             return; // Return after setting status code to avoid calling _next twice.
-         }
-     }
+        }
+    }
 }

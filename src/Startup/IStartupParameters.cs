@@ -46,7 +46,7 @@ public interface IStartupParameters
     /// Gets or sets a value indicating whether to search the entire AppDomain for AutoMapper and MediatR types.
     /// </summary>
     bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; }
-    
+
     /// <summary>
     /// Gets or sets a value indicating whether to use Razor Pages.
     /// </summary>

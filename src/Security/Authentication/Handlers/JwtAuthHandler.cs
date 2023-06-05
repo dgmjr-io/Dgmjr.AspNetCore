@@ -9,6 +9,7 @@
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
+ */
 
 
 namespace Dgmjr.AspNetCore.Authentication.Handlers;
@@ -123,9 +124,11 @@ public class JwtAuthHandler
                     Subject = identity,
                     Expires = UtcNow + _options.TokenLifetime,
                 };
-                var ticket = new AuthenticationTicket(principal, AuthenticationSchemeName);
+                var ticket = new AuthenticationTicket(
+                    principal,
+                    AuthenticationSchemeName
+                );
                 HttpContext.User = principal;
-                ;
                 Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }

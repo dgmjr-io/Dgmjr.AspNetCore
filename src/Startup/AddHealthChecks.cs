@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 internal static class DgmjrHealthChecksExtensions
 {
     public static IHealthChecksBuilder AddDgmjrHealthChecks(
-        this WebApplicationBuilder webApplicationBuilder, 
+        this WebApplicationBuilder webApplicationBuilder,
         Action<IHealthChecksBuilder>? configure = default!
     )
     {

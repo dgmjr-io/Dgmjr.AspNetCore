@@ -38,7 +38,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
     public JwtBearerBasicAuthHandler(IOptionsMonitor<GeneratedAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, UserManager userManager)
         : base(options, logger, encoder, clock)
     {
-        if(options?.CurrentValue?.Secret.IsNullOrWhitespace() ?? true)
+        if (options?.CurrentValue?.Secret.IsNullOrWhitespace() ?? true)
         {
             throw new ArgumentNullException($"{nameof(options)}.{nameof(options.CurrentValue)}.{nameof(options.CurrentValue.Secret)}");
         }
@@ -51,7 +51,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
         if (Request.Headers.ContainsKey(AuthorizationHeaderName))
         {
             var authHeaderStringValue = Request.Headers[AuthorizationHeaderName].FirstOrDefault();
-            
+
             if (authHeaderStringValue == null)
             {
                 return AuthenticateResult.NoResult();
@@ -107,7 +107,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
         return AuthenticateResult.NoResult();
     }
 
-    private  Task<bool> IsAuthenticated(string username, string password, out User? user, out AuthenticationTicket? ticket, out ClaimsIdentity? identity)
+    private Task<bool> IsAuthenticated(string username, string password, out User? user, out AuthenticationTicket? ticket, out ClaimsIdentity? identity)
     {
         user = UserManager.FindByNameAsync(username).Result;
         if (user is not null && UserManager.CheckPasswordAsync(user, password).Result)
