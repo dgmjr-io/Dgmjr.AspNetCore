@@ -1,4 +1,5 @@
 namespace Dgmjr.AspNetCore.Communication;
+using System;
 
 [RegexDto("^endpoint=(?<Endpoint:uri>https://.*);accessKey=(?<AccessKey:string>.*)$")]
 public partial record class AzureCommunicationServicesOptionsBase
@@ -14,7 +15,7 @@ public partial record class AzureCommunicationServicesOptionsBase
         get => $"endpoint={Endpoint};accessKey={AccessKey}";
         set
         {
-            var other = AzureCommunicationServicesOptionsBase.Parse(value);
+            var other = Parse(value);
             Endpoint = other.Endpoint;
             AccessKey = other.AccessKey;
         }

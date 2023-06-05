@@ -1,14 +1,14 @@
-﻿/* 
+﻿/*
  * JwtAuthHandler.cs
- * 
+ *
  *   Created: 2023-04-06-02:15:37
  *   Modified: 2023-04-06-02:15:53
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
- */ 
+ */
 
 
 namespace Dgmjr.AspNetCore.Authentication.Handlers;
@@ -26,12 +26,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 public class JwtAuthHandler
-    : AuthenticationHandler<BasicAuthenticationSchemeOptions>,
+    : Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler,
         IHttpContextAccessor,
         ILog
 {
+    public new ILogger Logger { get; }
     private readonly UserManager _userManager;
     private readonly BasicAuthenticationSchemeOptions _options;
     public HttpContext? HttpContext
@@ -41,7 +43,7 @@ public class JwtAuthHandler
     }
 
     public JwtAuthHandler(
-        IOptionsMonitor<BasicAuthenticationSchemeOptions> options,
+        IOptionsMonitor<JwtConfigurationOptions> options,
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
@@ -50,6 +52,7 @@ public class JwtAuthHandler
     {
         _userManager = userManager;
         _options = options.CurrentValue;
+        Logger = logger.CreateLogger<JwtAuthHandler>();
     }
 
     protected virtual string? AuthenticationSchemeName => _options?.AuthenticationSchemeName;
@@ -64,8 +67,14 @@ public class JwtAuthHandler
             opts.TokenValidationParameters = new TokenValidationParameters
             {
                 ValidIssuer = _options?.ClaimsIssuer ?? DgmjrCt.BaseUri,
-                ValidAudience = builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Audience)}"],
-                IssuerSigningKey = new SymmetricSecurityKey(builder.Configuration[$"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Secret)}"].ToUTF8Bytes()),
+                ValidAudience = builder.Configuration[
+                    $"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Audience)}"
+                ],
+                IssuerSigningKey = new SymmetricSecurityKey(
+                    builder.Configuration[
+                        $"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Secret)}"
+                    ].ToUTF8Bytes()
+                ),
                 ValidateIssuer = true,
                 ValidateAudience = true,
                 ValidateIssuerSigningKey = true
@@ -76,20 +85,15 @@ public class JwtAuthHandler
             var user = await _userManager.FindByNameAsync(authUsername);
             if (user is not null && await _userManager.CheckPasswordAsync(user, authPassword))
             {
-                var identity = new ClaimsIdentity(
-                    AuthenticationSchemeName
-                );
+                var identity = new ClaimsIdentity(AuthenticationSchemeName);
                 var userClaims = await _userManager.GetClaimsAsync(user);
 
                 userClaims.Add(new(TelegramID.ClaimType.UserId.Uri, user.Id.ToString()));
                 userClaims.Add(new(DgmjrCt.NameIdentifier, user.Id.ToString()));
-                userClaims.Add(new(DgmjrCt.AuthenticationInstant, DateTimeOffset.UtcNow.ToString()));
                 userClaims.Add(
-                    new(
-                        DgmjrCt.AuthenticationMethod,
-                        AuthenticationSchemeName
-                    )
+                    new(DgmjrCt.AuthenticationInstant, DateTimeOffset.UtcNow.ToString())
                 );
+                userClaims.Add(new(DgmjrCt.AuthenticationMethod, AuthenticationSchemeName));
                 userClaims.Add(new(DgmjrCt.CommonName, user.GoByName));
                 userClaims.Add(new(DgmjrCt.GivenName, user.GivenName));
                 userClaims.Add(new(DgmjrCt.Surname, user.Surname));
@@ -119,11 +123,9 @@ public class JwtAuthHandler
                     Subject = identity,
                     Expires = UtcNow + _options.TokenLifetime,
                 };
-                var ticket = new AuthenticationTicket(
-                    principal,
-                    AuthenticationSchemeName
-                );
-                HttpContext.User = principal;;
+                var ticket = new AuthenticationTicket(principal, AuthenticationSchemeName);
+                HttpContext.User = principal;
+                ;
                 Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }

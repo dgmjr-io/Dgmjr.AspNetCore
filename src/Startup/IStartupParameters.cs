@@ -63,11 +63,6 @@ public interface IStartupParameters
     bool ApiAuthentication { get; }
 
     /// <summary>
-    /// Gets or sets a value indicating whether Azure App Configuration is to be added.
-    /// </summary>
-    bool AddAzureAppConfig { get; }
-
-    /// <summary>
     /// Gets or sets a value indicating whether to use Hashids.
     /// </summary>
     bool Hashids { get; }
@@ -107,19 +102,11 @@ public interface IStartupParameters
     /// </summary>
     bool DefaultIdentityUI { get; }
 
-    /// <summary>
-    /// Configures Azure App Configuration using Application Settings options and Key Vault options.
-    /// </summary>
-    /// <param name="builder">WebApplicationBuilder object</param>
-    /// <returns>The updated WebApplicationBuilder object.</returns>
-    WebApplicationBuilder WithAzureAppConfiguration(WebApplicationBuilder builder);
+    Action<AzureAppConfigurationOptions> AzureAppConfig { get; set; }
 
-    /// <summary>
-    /// Configures health checks using a provided IHealthChecksBuilder configurator.
-    /// </summary>
-    /// <param name="configure">Action to configure IHealthChecksBuilder.</param>
-    /// <returns>The updated WebApplicationBuilder object.</returns>
-    WebApplicationBuilder WithHealthChecks(Action<IHealthChecksBuilder>? configure);
+    Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVault { get; set; }
+
+    Action<IHealthChecksBuilder> HealthChecks { get; set; }
 
     bool Equals(object obj);
     bool Equals(StartupParameters other);

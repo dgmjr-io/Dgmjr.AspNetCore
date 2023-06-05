@@ -16,6 +16,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http.Headers;
 using System.Text;
 using Dgmjr.AspNetCore.Authentication.JwtBearer;
+using Dgmjr.AspNetCore.Authentication.Options;
 using Dgmjr.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Configuration;

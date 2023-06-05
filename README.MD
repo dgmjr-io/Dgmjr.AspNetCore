@@ -11,14 +11,14 @@ title: README.MD
 lastmod: 2023-03-09-07:20:44
 created: 2023-03-09-07:20:44
 license: MIT
-keywords: 
-  - Dgmjr
+keywords:
+  - DGMJR-IO
   - ASP.NET Core
-tags: 
-  - Dgmjr
+tags:
+  - DGMJR-IO
   - ASP.NET Core
-categories: 
-  - Dgmjr
+categories:
+  - DGMJR-IO
   - ASP.NET Core
   - Libraries
 ---
@@ -116,10 +116,10 @@ npm install npm@latest -g
 
 1. If you're only running one package (rather than pulling down the whole repository), you'll have to do something special:
     a. Clone rhe repo
-    b. **Next to it**, also clone the [Packages](httpd://jwc.wtf/Packages) repo.   
-    b. **Next to those**, also clone the [Packages](httpd://jwc.wtf/Packages) repo.   
+    b. **Next to it**, also clone the [Packages](httpd://jwc.wtf/Packages) repo.
+    b. **Next to those**, also clone the [Packages](httpd://jwc.wtf/Packages) repo.
     This will enable just-in-time package registration.
-    c. You likely don't have any of the packages installed, so you'll to run `dotnet 
+    c. You likely don't have any of the packages installed, so you'll to run `dotnet
 
 
 ```

@@ -12,6 +12,7 @@
 
 namespace Dgmjr.AspNetCore.Communication.Sms;
 using System.Threading.Tasks;
+using System.Domain;
 
 /// <summary>
 /// The sms sender interface.

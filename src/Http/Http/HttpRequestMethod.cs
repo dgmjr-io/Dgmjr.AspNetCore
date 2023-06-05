@@ -17,7 +17,7 @@ public partial record struct HttpRequestMethod
     public static implicit operator HttpRequestMethod(string value) => HttpRequestMethod.Parse(value);
     public static implicit operator string(HttpRequestMethod value) => value.ToString();
     public static implicit operator Enums.HttpRequestMethod(HttpRequestMethod value) => value.Value;
-    public static implicit operator HttpRequestMethod(Enums.HttpRequestMethod value) => HttpRequestMethod.TryFromValue(value, out var result) ? result : throw new ArgumentException($"Invalid value: {value}", nameof(value));
-    public static implicit operator System.Net.Http.HttpMethod(HttpRequestMethod value) => new Http.HttpMethod(value.ToString());
-    public static implicit operator HttpRequestMethod(System.Net.Http.HttpMethod value) => HttpRequestMethod.TryParse(value.Method, out var result) ? result : throw new ArgumentException($"Invalid value: {value}", nameof(value));
+    public static implicit operator HttpRequestMethod(Enums.HttpRequestMethod value) => HttpRequestMethod.TryFromValue(value, out var result) ? result : default;
+    public static implicit operator HttpMethod(HttpRequestMethod value) => new HttpMethod(value.ToString());
+    public static implicit operator HttpRequestMethod(HttpMethod value) => HttpRequestMethod.TryParse(value.Method, out var result) ? result : default;
 }
