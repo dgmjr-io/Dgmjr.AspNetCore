@@ -58,7 +58,7 @@ namespace Dgmjr.AspNetCore.Authentication
         }
 
         public override bool Equals(object? other) => other is AuthenticationResult oar && Equals(oar);
-        
+
         public override int GetHashCode()
         {
             return (Value + Token).GetHashCode();
