@@ -210,8 +210,6 @@ public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, T
     /// <response code="503">If the service is unavailable.</response>
     /// <response code="504">If the service times out.</response>
     /// <param name="id" example="69">The unique ID of the item to return</param>
-    //
-    //
     protected virtual async Task<ResponsePayload<TViewDto>> Get(TId id)
     {
         var model = await Db.Set<TModel>().FindAsync(id);
@@ -232,16 +230,12 @@ public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, T
     /// <response code="503">If the service is unavailable.</response>
     /// <response code="504">If the service times out.</response>
     /// <param name="id" example="69">The unique ID of the item to look up</param>
-    //
-    //
     protected virtual async Task<ResponsePayload<TViewDto>> Head(TId id) =>
         (await Db.Set<TModel>().FindAsync(id)) is not null
             ? new ResponsePayload<TViewDto>()
             : ResponsePayload<TViewDto>.NotFound();
 
     /// <summary>Updates an item from a complete DTO</summary>
-    //
-    //
     protected virtual async Task<ResponsePayload<TViewDto>> Put(TId id, TUpdateDto dto)
     {
         var model = await Db.Set<TModel>().FindAsync(id);
@@ -270,9 +264,6 @@ public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, T
     }
 
     /// <summary>Creates a new item from a complete DTO</summary>
-
-    //
-    //
     protected virtual async Task<ResponsePayload<TViewDto>> Post(TInsertDto insertDto)
     {
         Logger.LogInformation("Inserting {Model}...", insertDto);
