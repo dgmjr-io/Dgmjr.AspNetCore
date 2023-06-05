@@ -13,7 +13,7 @@ namespace Dgmjr.AspNetCore.Communication.Sms.Enums;
 /// based on the enumeration value name, and the property value set to the enumeration value.
 /// </remarks>
 [GenerateEnumerationRecordStruct("SmsSendResponseCode", "Dgmjr.AspNetCore.Communication.Sms")]
-public enum SmsSendResponseCode 
+public enum SmsSendResponseCode
 {
     /// <summary>
     /// The request was successful and the message has been queued for delivery.
@@ -43,5 +43,5 @@ public enum SmsSendResponseCode
     /// <summary>
     /// An internal server error occurred.
     /// </summary>
-    InternalServerError = 500 
+    InternalServerError = 500
 }

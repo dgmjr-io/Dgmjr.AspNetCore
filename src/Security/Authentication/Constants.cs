@@ -47,7 +47,7 @@ public static class Constants
             public const string Name = "SharedSecret";
             public const string DisplayName = "Shared Secret";
         }
-        
+
         public static class Cookies
         {
             public const string Name = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
