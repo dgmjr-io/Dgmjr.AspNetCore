@@ -16,7 +16,7 @@ categories:
 slug: payloads
 description: This package contains a set of classes that can be used to create HTTP requests and responses with various types of payloads along wirth a robut content type negotiation feature.
 type: readme
----
+------------
 
 # Payloads
 
