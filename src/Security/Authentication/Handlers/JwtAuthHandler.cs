@@ -9,7 +9,7 @@
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
- */
+*/
 
 
 namespace Dgmjr.AspNetCore.Authentication.Handlers;

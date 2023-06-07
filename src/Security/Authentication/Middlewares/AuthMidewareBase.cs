@@ -82,7 +82,7 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
     protected virtual async Task HandleAuthenticateOnceAsync(HttpContext context, TOptions options)
     {
         var authResult = await _handler.AuthenticateAsync(); // Use the cached handler field.
-        
+
         if (authResult?.Principal != null)
         {
             await context.SignInAsync(authResult.Principal, authResult.Properties);
