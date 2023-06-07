@@ -37,7 +37,7 @@ public static class AddApiAuthenticationExtensions
             .AddAuthentication(Api)
             .AddApiBasicAuthentication();
         return builder;
-    }    
+    }
     /// <summary>Registers the API basic authentication middleware.</summary>
     public static WebApplicationBuilder AddApiAuthentication(
         this WebApplicationBuilder builder,

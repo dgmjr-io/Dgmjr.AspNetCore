@@ -50,7 +50,7 @@ public class ApiAuthenticationOptions : AuthenticationSchemeOptions, IAuthentica
     #endregion
 
     #region ISharedSecretAuthenticationSchemeOptions
-    string ISharedSecretAuthenticationSchemeOptions.Secret { get => this.SharedSecret.Secret; set => SharedSecret.Secret = value; } 
+    string ISharedSecretAuthenticationSchemeOptions.Secret { get => this.SharedSecret.Secret; set => SharedSecret.Secret = value; }
     long ISharedSecretAuthenticationSchemeOptions.UserId { get => SharedSecret.UserId; set => SharedSecret.UserId = value; }
 
     public AuthenticationScheme ToAuthenticationScheme()

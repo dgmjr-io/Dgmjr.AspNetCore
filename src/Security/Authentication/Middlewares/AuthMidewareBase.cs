@@ -81,7 +81,7 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
 
     protected virtual async Task HandleAuthenticateOnceAsync(HttpContext context, TOptions options)
     {
-        var authResult = awasit _handler.AuthenticateAsync(); // Use the cached handler field.
+        var authResult = await _handler.AuthenticateAsync(); // Use the cached handler field.
         
         if (authResult?.Principal != null)
         {
@@ -91,6 +91,6 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         {
             context.Response.StatusCode = 401;
             return; // Return after setting status code to avoid calling _next twice.
-         }
-     }
+        }
+    }
 }

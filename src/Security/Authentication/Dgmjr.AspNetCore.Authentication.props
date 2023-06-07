@@ -1,0 +1,9 @@
+<Project>
+    <PropertyGroup>
+
+    </PropertyGroup>
+    <ItemGroup>
+        <Using Include="Dgmjr.AspNetCore.Authentication" />
+        <Using Include="Dgmjr.AspNetCore.Authentication.Constants" Static="true" />
+    </ItemGroup>
+</Project>

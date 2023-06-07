@@ -1,11 +1,11 @@
-/* 
+/*
  * JwtConfigurationOptions.cs
- * 
+ *
  *   Created: 2023-03-29-04:13:06
  *   Modified: 2023-03-29-04:13:06
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -20,10 +20,11 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Dgmjr.AspNetCore.Authentication.Options;
 
-public class JwtConfigurationOptions : JwtBearerOptions, IJwtConfigurationOptions, IAuthenticationSchemeOptions
+public class JwtConfigurationOptions
+    : JwtBearerOptions,
+        IJwtConfigurationOptions,
+        IAuthenticationSchemeOptions
 {
-    public const string Bearer = nameof(Bearer);
-
     public const int DefaultTokenLifetimeMinutes = 60;
 
     public JwtConfigurationOptions()
@@ -31,7 +32,7 @@ public class JwtConfigurationOptions : JwtBearerOptions, IJwtConfigurationOption
         TokenLifetime = TimeSpan.FromMinutes(DefaultTokenLifetimeMinutes);
         ClaimsIssuer = DgmjrId.ClaimType.BaseUri.Uri;
         Audience = DgmjrId.ClaimType.BaseUri.Uri;
-        AuthenticationSchemeName = JwtBearerDefaults.AuthenticationScheme;
+        AuthenticationSchemeName = Constants.AuthenticationSchemes.JwtBearer.Name;
         AuthenticationSchemeDisplayName = JwtBearerDefaults.AuthenticationScheme;
         RequireHttpsMetadata = true;
         SaveToken = true;
@@ -58,6 +59,10 @@ public class JwtConfigurationOptions : JwtBearerOptions, IJwtConfigurationOption
 
     public AuthenticationScheme ToAuthenticationScheme()
     {
-        return new JwtAuthenticationScheme(AuthenticationSchemeName, AuthenticationSchemeName, typeof(JwtAuthHandler));
+        return new JwtAuthenticationScheme(
+            AuthenticationSchemeName,
+            AuthenticationSchemeName,
+            typeof(JwtAuthHandler)
+        );
     }
 }
