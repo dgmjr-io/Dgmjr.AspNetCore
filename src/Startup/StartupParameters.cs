@@ -14,30 +14,6 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 [BuilderFor(typeof(StartupParameters))]
 public partial class StartupParametersBuilder
 {
-    /// <summary>
-    /// Sets up health check with IHealthChecksBuilder.
-    /// </summary>
-    /// <param name="configure">Action to configure IHealthChecksBuilder</param>
-    /// <returns> The updated StartupParametersBuilder.</returns>
-    public StartupParametersBuilder WithHealthChecks(Action? configure)
-    {
-        this.WithHealthChecksConfigurator(configure);
-        return this;
-    }
-
-    /// <summary>
-    /// Sets up Azure App Configuration with given configurators.
-    /// </summary>
-    /// <param name="AzureAppConfigConfigurator">Action to configure AzureAppConfigurationOptions.</param>
-    /// <param name="AzureKeyVaultConfigurator">Action to configure AzureAppConfigurationKeyVaultOptions.</param>
-    /// <returns>The updated StartupParametersBuilder.</returns>
-    public StartupParametersBuilder WithAzureAppConfiguration(Action<AzureAppConfigurationOptions> AzureAppConfigConfigurator, Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfigurator)
-    {
-        this.WithAzureAppConfigConfigurator(AzureAppConfigConfigurator);
-        this.WithAzureKeyVaultConfigurator(AzureKeyVaultConfigurator);
-        this.WithAddAzureAppConfig(AzureAppConfigConfigurator != null && AzureKeyVaultConfigurator != null);
-        return this;
-    }
 }
 
 
@@ -81,6 +57,11 @@ public record class StartupParameters : IStartupParameters
     public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; internal set; } = Array.Empty<type>();
 
     // ...other properties implemented similarly...
+    public virtual Action<AzureAppConfigurationOptions> AzureAppConfigu { get; set; }
+
+    public virtual Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfig { get; set; }
+
+    public virtual Action<IHealthChecksBuilder> HealthChecks { get; set; }
 
     /// <summary>
     /// Configures Azure App Configuration using Application Settings options and Key Vault options.
@@ -91,7 +72,7 @@ public record class StartupParameters : IStartupParameters
     {
         builder.Configuration.AddAzureAppConfiguration(appConfig =>
         {
-            AzureAppConfigConfigurator?.Invoke(appConfig);
+            AzureAppConfigurator?.Invoke(appConfig);
             appConfig
                 .ConfigureKeyVault(kv =>
                 {
@@ -108,6 +89,42 @@ public record class StartupParameters : IStartupParameters
     /// <returns>The updated WebApplicationBuilder object.</returns>
     public Action<IHealthChecksBuilder>? HealthChecksConfigurator { get; internal set; } = default;
 
+    public bool AppInsights { get; set; }
+
+    public bool Identity { get; set; }
+
+    public bool Swagger { get; set; }
+
+    public IEnumerable<string> AuthenticationSchemes { get; set; }
+
+    public bool XmlSerialization { get; set; }
+
+    public bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; }
+
+    public bool RazorPages { get; set; }
+
+    public bool JsonPatch { get; set; }
+
+    public bool ApiAuthentication { get; set; }
+
+    public bool AddAzureAppConfig { get; set; }
+
+    public bool Hashids { get; set; }
+
+    public bool MediatR { get; set; }
+
+    public bool AutoMapper { get; set; }
+
+    public bool Logging { get; set; }
+
+    public bool HttpLogging { get; set; }
+
+    public bool ConsoleLogger { get; set; }
+
+    public bool DebugLogger { get; set; }
+
+    public bool DefaultIdentityUI { get; set; }
+
     /// <summary>
     /// Adds Health Check middleware to application.
     /// </summary>
@@ -120,4 +137,13 @@ public record class StartupParameters : IStartupParameters
         return builder;
     }
 
+    public WebApplicationBuilder WithAzureAppConfiguration(WebApplicationBuilder builder)
+    {
+        throw new NotImplementedException();
+    }
+
+    WebApplicationBuilder IStartupParameters.WithHealthChecks(Action<IHealthChecksBuilder>? configure)
+    {
+        throw new NotImplementedException();
+    }
 }

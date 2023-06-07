@@ -1,6 +1,6 @@
 ---
 authors:
-  - dgmjr
+  - DGMJR-IO
 title: HTTP metadata
 description: A collection of abstractions for HTTP requests&rsquou; metadata, specifically, the HTTP method and the headers.
 lastmod: 2023-03-31T15:08:26.243Z

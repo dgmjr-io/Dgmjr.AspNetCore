@@ -29,6 +29,7 @@
         <PackageReference Include="System.ComponentModel.Annotations" />
         <PackageReference Include="System.ComponentModel.Usings" />
         <PackageReference Include="System.Text.Json.Usings" />
+        <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
         <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
     </ItemGroup>
     <ItemGroup>

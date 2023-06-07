@@ -10,16 +10,19 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
+using Microsoft.AspNetCore.Builder;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 internal static class DgmjrHealthChecksExtensions
 {
     public static IHealthChecksBuilder AddDgmjrHealthChecks(
-        this WebApplicationBuilder webApplicationBuilder, 
+        this WebApplicationBuilder webApplicationBuilder,
         Action<IHealthChecksBuilder>? configure = default!
     )
     {
-        builder.Services.AddHealthChecks();
-        return builder;
+        var healthChecksBuilder = webApplicationBuilder.Services.AddHealthChecks();
+        configure?.Invoke(healthChecksBuilder);
+        return healthChecksBuilder;
     }
 }

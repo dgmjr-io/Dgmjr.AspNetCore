@@ -15,23 +15,25 @@
 namespace Dgmjr.AspNetCore.Communication.Mail;
 
 using Azure.Communication.Email;
-using Azure.Communication.Email.Models;
+// using Azure.Communication.Email.Models;
 using Azure.Identity;
 
 using Azure.Messaging;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
+/* The EmailSender class is an implementation of the IEmailSender interface that uses an EmailClient to
+send emails asynchronously. */
 public class EmailSender : IEmailSender
 {
-    private readonly IOptions<EmailSenderOptions> _options;
+    private readonly EmailClientOptions _options;
     private readonly EmailClient _client;
 
-    public EmailSender(IOptions<EmailSenderOptions> options)
+    public EmailSender(IOptions<EmailClientOptions> options)
     {
-        _options = options;
+        _options = options?.Value;
         _client = new EmailClient(
-            new Uri(_options.Value.ConnectionString),
+            new Uri(_options.ConnectionString),
             new DefaultAzureCredential()
         );
     }
@@ -45,10 +47,10 @@ public class EmailSender : IEmailSender
         await SendEmailAsync(
             new EmailMessage(
                 _options.Value.DefaultFrom,
-                new EmailContent(subject) { Html = htmlMessage },
+                subject)
+            { Html = htmlMessage },
                 new EmailRecipients(new[] { new EmailAddress(email) })
-            )
-        );
+            );
     }
 
     public async Task SendEmailAsync(EmailMessage message)

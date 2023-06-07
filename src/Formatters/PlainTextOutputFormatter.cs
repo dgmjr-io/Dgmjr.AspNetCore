@@ -41,5 +41,5 @@ public class PlainTextOutputFormatter : OutputFormatter
             .Accept.Any(a => a.MediaType.Value.ToLower().StartsWith("text/"));
 
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context) =>
-        await context?.HttpContext.Response.WriteAsync(context.Object?.ToString() ?? string.Empty);
+        await context?.HttpContext?.Response?.WriteAsync(context?.Object?.ToString() ?? string.Empty);
 }

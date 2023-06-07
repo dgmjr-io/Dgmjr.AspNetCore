@@ -1,0 +1,26 @@
+<!--
+ * Dgmjr.UnRefJsonYaml.csproj
+ * 
+ *   Created: 2023-05-07-03:40:18
+ *   Modified: 2023-05-07-03:40:18
+ * 
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <AssemblyName>UnRef</AssemblyName>
+        <Title>The JSON/YAML Schema Dereferencer</Title>
+        <Description>This program takes either a JSON or YAML schema file and "dereferences" all of the "$ref"s in the file and replaces them with the actual schema definitions.</Description>
+        <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="../Dgmjr.UnRefJsonYaml.csproj" />
+        <PackageReference Include="System.Text.Json.Usings" />
+    </ItemGroup>
+</Project>
