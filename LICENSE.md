@@ -1,4 +1,5 @@
 ---
+
 title: A
 license: MIT
 lastmod: 2023-07-13T06:10:06.080Z
@@ -6,10 +7,11 @@ slug: mit-license
 description: Permission is hereby granted, free of charge, to any person obtaining a copy of this sofrware and associated documentation files yadda, yadda, yadda...
 date: 2023-01-16T11:55:48.194Z
 authors:
-  - dgmjr
+- dgmjr
 type: license
 lastMod: 2023-03-24T11:04:01.289Z
----
+---------------------------------
+
 # MIT License
 
 Copyright (c) 2022-2023 [David G. Moore, Jr,](mailto:david@dgmjr.io "Send David an email") ([@dgmjr](https://github.com/dgmjr-io "Contact David on GitHub")), All Rights Reserved
