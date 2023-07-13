@@ -15,6 +15,7 @@
         <TargetFrameworks>netstandard2.0</TargetFrameworks>
         <Description>
             Provides a set of constants for the most common media types.  Fills in the gaps left by the <see cref="System.Net.Mime.MediaTypeNames" />
+
             class.
         </Description>
         <GenerateNuspec>true</GenerateNuspec>
@@ -30,7 +31,7 @@
         <PackageReference Include="System.ComponentModel.Usings" />
         <PackageReference Include="System.Text.Json.Usings" />
         <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
-        <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
+        <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
     </ItemGroup>
     <ItemGroup>
         <PackageTag Include="mime" />

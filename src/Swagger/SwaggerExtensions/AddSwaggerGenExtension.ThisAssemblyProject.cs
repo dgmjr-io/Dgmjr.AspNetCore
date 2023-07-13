@@ -21,6 +21,12 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
         ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Project));
     public type? Info =>
         ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Info));
+    public type? Git =>
+        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Git));
+    public type? Metadata =>
+        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Metadata));
+    public type? Strings =>
+        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Strings));
     public Assembly Assembly => ThisAssemblyStaticProxy.Assembly;
 
     public string? AssemblyVersion =>

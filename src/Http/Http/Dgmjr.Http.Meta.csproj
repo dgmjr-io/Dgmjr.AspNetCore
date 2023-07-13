@@ -16,7 +16,7 @@
         <SlnGenSolutionFolder>constants</SlnGenSolutionFolder>
     </PropertyGroup>
     <ItemGroup>
-        <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
+        <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
         <PackageReference Include="System.ComponentModel.Usings" />
         <PackageReference Include="System.Net.Http" />
         <PackageReference Include="Dgmjr.Abstractions" />

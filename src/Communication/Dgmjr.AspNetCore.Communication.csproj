@@ -24,7 +24,7 @@
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
         <PackageReference Include="Microsoft.Extensions.Options" />
         <PackageReference Include="Dgmjr.Primitives" />
-        <SourceGenerator  Include="Dgmjr.RegexDtoGenerator" />
-        <SourceGenerator   Include="Dgmjr.Enumerations.CodeGenerator" />
+        <SourceGenerator Include="Dgmjr.RegexDtoGenerator" />
+        <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
     </ItemGroup>
 </Project>

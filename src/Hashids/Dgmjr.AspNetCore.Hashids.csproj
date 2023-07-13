@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.OpenApi" />
     <PackageReference Include="SWashbuckle.AspNetCore.SwaggerGen" />
-    <PackageReference Include="AspNetCore.Hashids"/>
+    <PackageReference Include="AspNetCore.Hashids" />
   </ItemGroup>
   <ItemGroup Condition="!$(TargetFramework.Contains('netstandard'))">
   </ItemGroup>

@@ -68,6 +68,19 @@ public sealed class Produces404ErrorAttribute : SwaggerResponseAttribute
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
+public sealed class Produces418ErrorAttribute : SwaggerResponseAttribute
+{
+    public Produces418ErrorAttribute()
+        : base(
+            Status418ImATeapot,
+            "I'm a fucking teapot, short and stout.  Here's my handle; here's my spout.  If you've reached this error code, you must shout, \"I'm a fuckin' idiot so kick me out!\"",
+            typeof(ImATeapotProblemDetailsExample),
+            ApplicationMediaTypeNames.ProblemJson
+        )
+    { }
+}
+
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
 public sealed class Produces500ErrorAttribute : SwaggerResponseAttribute
 {
     public Produces500ErrorAttribute()

@@ -1,4 +1,5 @@
-﻿/*
+﻿using System.Reflection;
+/*
  * AddSwaggerGenExtension.cs
  *
  *   Created: 2022-12-05-07:35:08
@@ -136,7 +137,7 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static OpenApiInfo DefaultOpenApiInfo(Type tThisAssemblyProject)
+    public static OpenApiInfo DefaultOpenApiInfo(Assembly thisAssembly)
     {
         var thisAssemblyProject = new TThisAssemblyStaticProxy(tThisAssemblyProject);
         var versionString = thisAssemblyProject.ApiVersion;
@@ -184,16 +185,4 @@ public static partial class AddSwaggerMetadataExtension
             }
         };
     }
-
-    //     public static WebApplicationBuilder DescribeAnyOfTypes(this WebApplicationBuilder builder)
-    //     {
-    //         builder.Services.ConfigureSwaggerGen(options =>
-    //             options.MapType(typeof(AnyOfTypes.AnyOf<>), > new OpenApiSchema
-    //             {
-    //                 Type = "object",
-    //                 Schema
-    //                 Description = "A ObjectId is a 24-character hexadecimal string that uniquely identifies a SendPulse entity."
-    //             })
-    //         });
-    //     }
 }

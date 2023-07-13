@@ -18,20 +18,18 @@
 	      <SlnGenFolders>true</SlnGenFolders>
     </PropertyGroup>
     <ItemGroup>
+        <!-- <ProjectReference Include="./src/ErrorHandling/Dgmjr.AspNetCore.ErrorHandling.csproj" /> -->
+        <!-- <ProjectReference Include="./src/Exceptions/Dgmjr.AspNetCore.Exceptions.csproj" /> -->
         <ProjectReference Include="./src/Communication/Dgmjr.AspNetCore.Communication.csproj" />
-        <ProjectReference Include="./src/Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" />
-        <ProjectReference Include="./src/Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" />
+        <ProjectReference Include="./src/Configuration/Dgmjr.Application.Configuration.csproj" />
         <ProjectReference Include="./src/Controllers/Dgmjr.AspNetCore.Controllers.csproj" />
-        <ProjectReference Include="./src/ErrorHandling/Dgmjr.AspNetCore.ErrorHandling.csproj" />
-        <ProjectReference Include="./src/Exceptions/Dgmjr.AspNetCore.Exceptions.csproj" />
-        <ProjectReference Include="./src/Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" />
         <ProjectReference Include="./src/Formatters/Dgmjr.AspNetCore.Formatters.csproj" />
-        <ProjectReference Include="./src/Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-        <ProjectReference Include="./src/Http/Http/Dgmjr.Http.csproj" />
-        <ProjectReference Include="./src/Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
+        <ProjectReference Include="./src/Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" />
+        <ProjectReference Include="./src/Http/Dgmjr.Http.csproj" />
+        <ProjectReference Include="./src/Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
         <ProjectReference Include="./src/Payloads/Dgmjr.Payloads.csproj" />
+        <ProjectReference Include="./src/Security/Dgmjr.AspNetCore.Security.csproj" />
         <ProjectReference Include="./src/Startup/Dgmjr.AspNetCore.Startup.csproj" />
         <ProjectReference Include="./src/Swagger/Dgmjr.AspNetCore.Swagger.csproj" />
-        <ProjectReference Include="./src/Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
     </ItemGroup>
 </Project>

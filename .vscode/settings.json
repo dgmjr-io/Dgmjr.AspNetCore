@@ -1,3 +1,4 @@
 {
-    "azureAutomation.directory.basePath": "Users/david/Azure"
+    "azureAutomation.directory.basePath": "Users/david/Azure",
+    "dotnet.defaultSolution": "Dgmjr.AspNetCore.All.sln"
 }
