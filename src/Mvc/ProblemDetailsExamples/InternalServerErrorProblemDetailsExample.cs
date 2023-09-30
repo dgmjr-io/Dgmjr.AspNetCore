@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Mvc;
+
 using System.Collections.Generic;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 

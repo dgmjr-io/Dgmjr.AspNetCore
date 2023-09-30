@@ -15,13 +15,17 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 using System;
 using System.Linq;
+
 using Dgmjr.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
+
 using static System.String;
 using static ThisAssembly.Project;
 
@@ -41,7 +45,7 @@ public static partial class AddSwaggerMetadataExtension
         OpenApiInfo? openApiInfo = default
     )
     {
-        openApiInfo ??= DefaultOpenApiInfo(tThisAssemblyProject);
+        openApiInfo ??= DefaultOpenApiInfo(tThisAssemblyProject.Assembly);
         openApiInfo.Version ??= version;
         if (!openApiInfo.Version.StartsWith("v"))
             openApiInfo.Version = "v" + openApiInfo.Version;
@@ -49,7 +53,7 @@ public static partial class AddSwaggerMetadataExtension
         builder.Services.ConfigureSwaggerGen(c =>
         {
             c.CustomSchemaIds(type => type.ToString());
-            c.SchemaFilter<EnusAsStringsSchemaFilter>();
+            c.SchemaFilter<EnumsAsStringsSchemaFilter>();
             c.DocumentFilter<Dgmjr.AspNetCore.Swagger.PathLowercaseDocumentFilter>();
             c.SwaggerDoc("v1", openApiInfo);
             c.SwaggerDoc(openApiInfo.Version, openApiInfo);
@@ -121,7 +125,14 @@ public static partial class AddSwaggerMetadataExtension
         this WebApplicationBuilder builder
     )
     {
-        // builder.Services.ConfigureSwaggerGen(c => c.OperationFilter<AddHeaderOperationFilter>("Range", "Requested range of values to return", false));
+        builder.Services.ConfigureSwaggerGen(
+            c =>
+                c.OperationFilter<AddHeaderOperationFilter>(
+                    "Range",
+                    "Requested range of values to return",
+                    false
+                )
+        );
         return builder;
     }
 
@@ -134,17 +145,19 @@ public static partial class AddSwaggerMetadataExtension
         builder.Services.Describe<System.Domain.PhoneNumber>();
         builder.Services.Describe<System.Net.Mail.EmailAddress>();
         builder.Services.DescribeBotApiToken();
+        // builder.Services.Describe<Dgmjr.Payloads.Range>();
         return builder;
     }
 
     public static OpenApiInfo DefaultOpenApiInfo(Assembly thisAssembly)
     {
-        var thisAssemblyProject = new TThisAssemblyStaticProxy(tThisAssemblyProject);
+        var thisAssemblyProject = TThisAssemblyStaticProxy.From(thisAssembly);
         var versionString = thisAssemblyProject.ApiVersion;
 
         var packageTags = new OpenApiArray();
         packageTags.AddRange(
-            thisAssemblyProject.PackageTags?.Split(" ").Select(tag => new OpenApiString(tag)) ?? Array.Empty<OpenApiString>()
+            thisAssemblyProject.PackageTags?.Split(" ").Select(tag => new OpenApiString(tag))
+                ?? Array.Empty<OpenApiString>()
         );
 
         return new()
@@ -155,12 +168,8 @@ public static partial class AddSwaggerMetadataExtension
             TermsOfService = thisAssemblyProject.TermsOfServiceUrl,
             Extensions =
             {
-                ["x-project-url"] = new OpenApiString(
-                    thisAssemblyProject.PackageProjectUrl
-                ),
-                ["x-repositor-url"] = new OpenApiString(
-                    thisAssemblyProject.RepositoryUrl
-                ),
+                ["x-project-url"] = new OpenApiString(thisAssemblyProject.PackageProjectUrl),
+                ["x-repository-url"] = new OpenApiString(thisAssemblyProject.RepositoryUrl),
                 ["x-package-tags"] = packageTags
             },
             Contact = new()
@@ -170,12 +179,8 @@ public static partial class AddSwaggerMetadataExtension
                 Url = thisAssemblyProject.PackageProjectUrl,
                 Extensions =
                 {
-                    ["x-authors"] = new OpenApiString(
-                        thisAssemblyProject.Authors
-                    ),
-                    ["x-owners"] = new OpenApiString(
-                        thisAssemblyProject.Owners
-                    )
+                    ["x-authors"] = new OpenApiString(thisAssemblyProject.Authors),
+                    ["x-owners"] = new OpenApiString(thisAssemblyProject.Owners)
                 }
             },
             License = new()

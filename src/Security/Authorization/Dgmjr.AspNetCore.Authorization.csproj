@@ -11,41 +11,45 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net7.0</TargetFrameworks>
-        <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
-    </PropertyGroup>
-    <ItemGroup>
-        <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
-        <PackageReference Include="Microsoft.OpenApi" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-        <PackageReference Include="System.Usings" />
-        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.Security.Constants" ExcludeAssets="ContentFiles;" />
-        <PackageReference Include="Dgmjr.Identity.Roles" ExcludeAssets="ContentFiles;" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="../../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
-        <ProjectReference Include="../../Http/Http/Dgmjr.Http.Meta.csproj" />
-        <ProjectReference Include="../../Payloads/Dgmjr.Payloads.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
-        <PackageReference Include="Dgmjr.Abstractions" />
-        <PackageReference Include="Dgmjr.Identity.Claims" />
-        <PackageReference Include="Dgmjr.Identity.Models" />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" />
-        <PackageReference Include="Dgmjr.Identity.AspNetCore" />
-        <PackageReference Include="Telegram.Identity" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="System.Usings" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.Security.Constants" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.Identity.Roles" ExcludeAssets="ContentFiles;" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../Http/Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../../Http/Headers/Dgmjr.Http.Headers.csproj" />
+    <ProjectReference Include="../../Payloads/Dgmjr.Payloads.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Security.Constants" />
+    <PackageReference Include="Dgmjr.Identity.Claims" />
+    <PackageReference Include="Dgmjr.Identity.Models" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Dgmjr.Identity.AspNetCore" />
+    <PackageReference Include="Telegram.Identity" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" />
+  </ItemGroup>
 </Project>

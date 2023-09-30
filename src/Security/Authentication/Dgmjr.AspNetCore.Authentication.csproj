@@ -1,57 +1,54 @@
 <!--
- * Dgmjr.AspNetCore.Controllers.csproj
+ * Dgmjr.AspNetCore.Authentication.csproj
  *
- *   Created: 2022-12-10-07:12:05
- *   Modified: 2022-12-10-07:12:06
+ *   Created: 2023-56-18T15:56:43-04:00
+ *   Modified: 2023-29-03T22:29:41-04:00
  *
- *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
  *
- *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
-        <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
-    </PropertyGroup>
-    <ItemGroup>
-        <FrameworkReferenece Include="Microsoft.AspNetCore.App" />
-        <SourceGenerator  Include="Dgmjr.Enumerations.CodeGenerator" />
-        <SourceGenerator  Include="Dgmjr.InterfaceGenerator" />
-        <PackageReference Include="Microsoft.OpenApi" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-        <PackageReference Include="System.Usings" />
-        <PackageReference Include="System.Text.Usings" />
-        <PackageReference Include="Dgmjr.System.Extensions" />
-        <PackageReference Include="Dgmjr.Http.Meta" />
-        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-        <PackageReference Include="System.Runtime" />
-        <PackageReference Include="Telegram.Identity" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    </ItemGroup>
-    <ItemGroup>
-        <!-- <ProjectReference Include="../../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
-        <!-- <ProjectReference Include="../../Http/Http/Dgmjr.Http.Meta.csproj" /> -->
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles"  />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles"  />
-        <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Identity.Claims" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Identity.Models" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Identity.AspNetCore" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles; Build" />
-        <PackageReference Include="Telegram.Identity" ExcludeAssets="ContentFiles" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <!-- <TargetFrameworks></TargetFrameworks> -->
+    <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReferenece Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="System.Runtime" />
+    <PackageReference Include="System.Usings" />
+    <PackageReference Include="Telegram.Identity" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.InterfaceGenerator" />
+    <PackageReference Include="System.Text.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.Claims" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.Models" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.AspNetCore" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles; Build" />
+    <PackageReference Include="Telegram.Identity" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="SendPulse.Identity" ExcludeAssets="ContentFiles" />
+  </ItemGroup>
 </Project>

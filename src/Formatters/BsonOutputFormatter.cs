@@ -1,7 +1,7 @@
 namespace Dgmjr.AspNetCore.Formatters;
 
 using System.Collections.Generic;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Newtonsoft.Json;

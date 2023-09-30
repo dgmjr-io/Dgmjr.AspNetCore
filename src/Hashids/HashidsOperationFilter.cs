@@ -12,6 +12,7 @@
 
 
 namespace Dgmjr.AspNetCore.Hashids;
+
 using System.Linq;
 using global::AspNetCore.Hashids.Mvc;
 using global::AspNetCore.Hashids.Options;

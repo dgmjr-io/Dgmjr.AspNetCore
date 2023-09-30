@@ -11,10 +11,13 @@
  */
 
 namespace Dgmjr.AspNetCore.Authentication;
+
 using Dgmjr.Identity;
 using Microsoft.AspNetCore.Http;
 
-public interface IBasicApiAuthMiddleware : IMiddleware
+public interface IBasicApiAuthMiddleware<TUser, TRole> : IMiddleware
+    where TUser : class, IIdentityUserBase
+    where TRole : class, IIdentityRoleBase
 {
-    UserManager UserManager { get; }
+    UserManager<TUser, TRole> UserManager { get; }
 }

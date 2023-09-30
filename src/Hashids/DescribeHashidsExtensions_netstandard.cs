@@ -12,6 +12,7 @@
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection;
+
 using Dgmjr.AspNetCore.Hashids;
 
 public static partial class DescribeHashidsExtensions

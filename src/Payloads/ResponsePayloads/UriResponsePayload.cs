@@ -1,4 +1,4 @@
-﻿//
+//
 // UriResponsePayload.cs
 //
 //   Created: 2022-10-31-08:33:05
@@ -11,33 +11,33 @@
 //
 
 namespace Dgmjr.Payloads;
+
 using System;
 using System.Xml.Serialization;
 
 /// <summary>Represents a response payload with a <see langword="uri" /> value</summary>.
-public class UriResponsePayload : ResponsePayload<uri?>
+public class UriResponsePayload(uri value, string? message = default!)
+    : ResponsePayload<uri?>(value, message)
 {
-    public UriResponsePayload(uri value, string? message = default!) : base(value, message) { }
-
     /// <inheritdoc />
-    [
-        JProp("stringValue"),
-        JIgnore(Condition = JIgnoreCond.WhenWritingNull),
-        XmlAttribute("stringValue")
-    ]
+    [JProp("stringValue")]
+    [JIgnore(Condition = JIgnore.WhenWritingNull)]
+    [XAttribute("stringValue")]
     public override string? StringValue
     {
-        get => _stringValue ?? Value.ToString();
+        get => base.StringValue ?? Value.ToString();
         set
         {
             if (uri.TryParse(value, out var u))
             {
-                _stringValue = u.ToString();
+                base.StringValue = u.ToString();
                 Value = u;
             }
             else
             {
-                throw new InvalidCastException($"Cannot cast {value} to {nameof(UriResponsePayload)}");
+                throw new InvalidCastException(
+                    $"Cannot cast {value} to {nameof(UriResponsePayload)}"
+                );
             }
         }
     }

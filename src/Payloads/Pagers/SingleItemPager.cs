@@ -15,17 +15,16 @@ namespace Dgmjr.Payloads;
 using System.Diagnostics;
 using System.Net;
 
-/// <summary><inheritdoc cref="ISingleItemPager"/> </summary>
+/// <summary><inheritdoc cref="Dgmjr.Payloads.Abstractions.ISingleItemPager"/> </summary>
 /// <remarks>Items are of type <see langword="object" />.</remarks>
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"
 )]
-public class SingleItemPager : SingleItemPager<object>
+public class SingleItemPager(object? value, int pageNumber, int totalRecords)
+    : SingleItemPager<object>(value, pageNumber, totalRecords)
 {
-    public SingleItemPager() : this(default, 0, 0) { }
-
-    public SingleItemPager(object? value, int pageNumber, int totalRecords)
-        : base(value, pageNumber, totalRecords) { }
+    public SingleItemPager()
+        : this(default, 0, 0) { }
 
     public static new SingleItemPager NotFound() =>
         new() { StatusCode = (int)HttpStatusCode.NotFound };

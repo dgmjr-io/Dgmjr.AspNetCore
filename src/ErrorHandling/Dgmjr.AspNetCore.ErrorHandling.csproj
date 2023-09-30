@@ -1,18 +1,18 @@
 <!--
  * Dgmjr.AspNetCore.ErrorHandling.csproj
- * 
+ *
  *   Created: 2022-12-05-07:08:44
  *   Modified: 2022-12-05-07:08:45
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;</TargetFrameworks>
         <SlnGenSolutionFolder>errors</SlnGenSolutionFolder>
     </PropertyGroup>
     <ItemGroup>

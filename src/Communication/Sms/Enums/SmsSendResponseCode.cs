@@ -1,10 +1,11 @@
 using System.Text.Json.Serialization;
 
 namespace Dgmjr.AspNetCore.Communication.Sms.Enums;
+
 /// <summary>
 /// Specifies the JSON converter to use when serializing and deserializing the enumeration.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JConverter(typeof(JStringEnumConverter))]
 /// <summary>
 /// Generates a record struct for the specified enumeration, in the specified namespace.
 /// </summary>
@@ -19,6 +20,11 @@ public enum SmsSendResponseCode
     /// The request was successful and the message has been queued for delivery.
     /// </summary>
     Success = 200,
+
+    /// <summary>
+    /// The request was successful and the message has been accepted to be queued for delivery.
+    /// </summary>
+    Accepted = 250,
 
     /// <summary>
     /// There was a problem with the request, such as invalid parameters or authentication failure.

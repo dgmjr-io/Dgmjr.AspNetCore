@@ -11,6 +11,7 @@
  */
 #pragma warning disable
 using Dgmjr.AspNetCore.Authentication;
+using Dgmjr.AspNetCore.Authentication.Handlers;
 using Dgmjr.AspNetCore.Authentication.Options;
 using Dgmjr.Identity;
 using Dgmjr.Identity.Models;
@@ -24,49 +25,37 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static class AddApiAuthenticationExtensions
 {
-    /// <summary>Registers the API authentication middleware.</summary>
-    public static WebApplicationBuilder AddApiAuthentication(
-        this WebApplicationBuilder builder,
-        Action<IBasicAuthenticationSchemeOptions>? basicConfig = null,
-        Action<IJwtConfigurationOptions>? jwtConfig = null,
-        Action<ISharedSecretAuthenticationSchemeOptions>? sharedSecretConfig = null
-    )
-    {
-        builder.Services.AddScoped<IBasicApiAuthMiddleware, BasicApiAuthMiddleware>();
-        builder.Services
-            .AddAuthentication(Api)
-            .AddApiBasicAuthentication();
-        return builder;
-    }
-    /// <summary>Registers the API basic authentication middleware.</summary>
-    public static WebApplicationBuilder AddApiAuthentication(
-        this WebApplicationBuilder builder,
-        Action<IBasicAuthenticationSchemeOptions>? basicConfig = null,
-        Action<IJwtConfigurationOptions>? jwtConfig = null,
-        Action<ISharedSecretAuthenticationSchemeOptions>? sharedSecretConfig = null
-    )
-    {
-        builder.Services.AddScoped<IBasicApiAuthMiddleware, BasicApiAuthMiddleware>();
-        builder.Services
-            .AddAuthentication(Api)
-            .AddApiBasicAuthentication();
-        return builder;
-    }
+    // /// <summary>Registers the API authentication middleware.</summary>
+    // public static WebApplicationBuilder AddApiAuthentication<TUser, TRole>(
+    //     this WebApplicationBuilder builder,
+    //     Action<IBasicAuthenticationSchemeOptions>? basicConfig = null,
+    //     Action<IJwtConfigurationOptions>? jwtConfig = null,
+    //     Action<ISharedSecretAuthenticationSchemeOptions>? sharedSecretConfig = null
+    // )
+    // {
+    //     builder.Services.AddScoped<IBasicApiAuthMiddleware, BasicApiAuthMiddleware<TUser, TRole>>();
+    //     builder.Services.AddAuthentication().AddApiBasicAuthentication();
+    //     return builder;
+    // }
 
-    public static AuthenticationBuilder AddApiBasicAuthentication(
+    public static AuthenticationBuilder AddApiBasicAuthentication<TUser, TRole>(
         this AuthenticationBuilder builder
-    ) =>
-        builder.AddScheme<ApiAuthenticationOptions, BasicApiAuthHandler>(
+    )
+        where TUser : class, IIdentityUserBase, IHaveATelegramUsername, IIdentifiable
+        where TRole : class, IIdentityRoleBase, IIdentifiable =>
+        builder.AddScheme<BasicAuthenticationSchemeOptions, BasicApiAuthHandler<TUser, TRole>>(
             ApiAuthenticationOptions.BasicAuthenticationSchemeName,
             ApiAuthenticationOptions.BasicAuthenticationSchemeName,
             _ => { }
         );
 
-    public static WebApplication UseApiBasicAuthentication(this WebApplication app)
+    public static WebApplication UseApiBasicAuthentication<TUser, TRole>(this WebApplication app)
+        where TUser : class, IIdentityUserBase, IHaveATelegramUsername, IIdentifiable
+        where TRole : class, IIdentityRoleBase, IIdentifiable
     {
         // app.UseAuthentication();
         // return app;
-        app.UseMiddleware<IBasicApiAuthMiddleware>();
+        app.UseMiddleware<IBasicApiAuthMiddleware<TUser, TRole>>();
         return app;
     }
 }

@@ -10,12 +10,13 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Dgmjr.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using MultipartMediaTypeNames = Dgmjr.Mime.MultipartMediaTypeNames;
 
 namespace Dgmjr.AspNetCore.Swagger
 {

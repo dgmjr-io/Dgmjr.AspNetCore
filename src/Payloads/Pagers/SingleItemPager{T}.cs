@@ -23,7 +23,8 @@ using Microsoft.OpenApi.Models;
 )]
 public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
 {
-    public SingleItemPager() : this(default, 0, 0) { }
+    public SingleItemPager()
+        : this(default, 0, 0) { }
 
     public SingleItemPager(T value, int pageNumber, int totalRecords)
         : base(new[] { value }, pageNumber, 1, totalRecords)
@@ -34,7 +35,8 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
         StringValue = value.ToString();
     }
 
-    public SingleItemPager(IQueryable<T> items, int itemNumber) : base()
+    public SingleItemPager(IQueryable<T> items, int itemNumber)
+        : base()
     {
         TotalRecords = items.Count();
         Page = itemNumber;
@@ -47,7 +49,7 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
     [JProp("item")]
     public virtual T? Item
     {
-        get => (Items ?? new T?[] { default }).FirstOrDefault();
+        get => (Items ?? new[] { default(T) }).FirstOrDefault();
         set => Items = new[] { value }!;
     }
 
@@ -74,7 +76,7 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
     object[]? IPager.Items
     {
         get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
-        set => Items = (value ?? new[] { default(object) }).OfType<T>().ToArray();
+        set => Items = (value ?? new object[] { default(T) }).OfType<T>().ToArray();
     }
 
     public static new OpenApiSchema GetOpenApiSchema()

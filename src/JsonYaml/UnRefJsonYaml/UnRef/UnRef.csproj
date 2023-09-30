@@ -1,18 +1,18 @@
 <!--
  * Dgmjr.UnRefJsonYaml.csproj
- * 
+ *
  *   Created: 2023-05-07-03:40:18
  *   Modified: 2023-05-07-03:40:18
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework></TargetFramework>
         <OutputType>Exe</OutputType>
         <AssemblyName>UnRef</AssemblyName>
         <Title>The JSON/YAML Schema Dereferencer</Title>

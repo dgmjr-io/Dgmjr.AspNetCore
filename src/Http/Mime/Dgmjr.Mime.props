@@ -1,0 +1,6 @@
+<Project>
+  <ItemGroup>
+    <Using Include="Dgmjr.Mime" />
+    <Using Include="Dgmjr.Mime.Constants" Static="true" />
+  </ItemGroup>
+</Project>

@@ -30,14 +30,16 @@
 //     public UserManager UserManager { get; }
 
 //     public ILogger Logger { get; init; }
+//     private readonly IOptions<BasicAuthenticationSchemeOptions> _options;
 
 //     public BasicApiAuthMiddleware(IOptions<BasicAuthenticationSchemeOptions> options, UserManager userManager, ILogger<BasicApiAuthMiddleware> logger)
 //     {
 //         UserManager = userManager;
 //         Logger = logger;
+//         _options = options;
 //     }
 
-//     protected string? AuthenticationSchemeName => _options?.CurrentValue.AuthenticationSchemeName;
+//     protected string? AuthenticationSchemeName => _options?.Value.;
 
 
 //     public override async Task HandleAuthenticateOnceAsync(HttpContext context, RequestDelegate next)

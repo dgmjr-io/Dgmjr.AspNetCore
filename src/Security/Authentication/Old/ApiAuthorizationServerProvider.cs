@@ -1,4 +1,4 @@
-﻿// /*
+// /*
 //  * ApiAuthorizationServerProvider.cs
 //  *
 //  *   Created: 2022-12-10-07:18:59
@@ -121,7 +121,7 @@
 //         //     await Context.SignInAsync(ApiKeyAuthenticationOptions.AuthenticationSchemeName, principal);
 //         //     return AuthenticateResult.Success(ticket);
 //         // }
-//         // else if(!string.IsNullOrEmpty(apiKey.ToString()) || !string.IsNullOrEmpty(adminApiKey.ToString()))
+//         // else if(!IsNullOrEmpty(apiKey.ToString()) || !IsNullOrEmpty(adminApiKey.ToString()))
 //         // {
 //         //     Response.StatusCode = 401;
 //         //     return AuthenticateResult.Fail("Invalid API Key");

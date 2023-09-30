@@ -11,47 +11,60 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
-    </PropertyGroup>
-    
-    <ItemGroup>
-        <!-- <PackageReference Include="Microsoft.AspNetCore.App.Ref" /> -->
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
-        <PackageReference Include="AutoMapper" />
-        <PackageReference Include="Azure.Identity" />
-        <PackageReference Include="Azure.Core" />
-        <PackageReference Include="Ben.Demystifier" />
-        <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
-        <!-- <PackageReference Include="Dgmjr.Identity.AspNetCore" ExcludeAssets="ContentFiles" /> -->
-        <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-        <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" />
-        <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" VersionOverride="[5.2.0,)" />
-        <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
-        <PackageReference Include="System.All.Usings" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" />
-        <PackageReference Include="System.Text.Json.Usings" />
-        <PackageReference Include="ThisAssembly.Project" />
-        <PackageReference Include="Dgmjr.MediatR" />
-        <PackageReference Include="BuilderGenerator" />
-        <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" />
-        <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
-        <PackageReference Include="SendPulse.Api.HealthCheck" />
-        <PackageReference Include="SendPulse.Api.Models" />
-    </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Http/Http/Dgmjr.Http.Meta.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" ExcludeAssets="ContentFiles" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Azure.Core" />
+    <PackageReference Include="Azure.Identity" />
+    <PackageReference Include="Ben.Demystifier" />
+    <PackageReference Include="BuilderGenerator" />
+    <PackageReference Include="Dgmjr.AspNetCore.Hashids" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.MediatR" />
+    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" />
+    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" VersionOverride="[5.2.0,)" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" />
+    <PackageReference Include="SendPulse.Api.HealthCheck" />
+    <PackageReference Include="SendPulse.Api.Models" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" />
+    <PackageReference Include="ThisAssembly.Project" />
+    <PackageReference Include="Vogen" />
+
+    <PackageReference Include="System.All.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <PackageReference Include="Dgmjr.Http" ExcludeAssets="ContentFiles" />
+    <!-- <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" /> -->
+    <!-- <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" /> -->
+    <PackageReference Include="Dgmjr.Payloads" ExcludeAssets="ContentFiles" />
+    <!-- <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" /> -->
+    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+  </ItemGroup>
+  <Import Project="../Controllers/Dgmjr.AspNetCore.Controllers.props" Condition="Exists('../Controllers/Dgmjr.AspNetCore.Controllers.props')" />
+  <Import Project="../Http/Http/Dgmjr.Http.props" Condition="Exists('../Http/Http/Dgmjr.Http.props')" />
+  <!--<Import Project="../Http/Headers/Dgmjr.Http.Headers.props" Condition="Exists('../Http/Headers/Dgmjr.Http.Headers.props')" />
+  <Import Project="../Http/Mime/Dgmjr.Mime.props" Condition="Exists('../Http/Mime/Dgmjr.Mime.props')" /> -->
+  <Import Project="../Payloads/Dgmjr.Payloads.props" Condition="Exists('../Payloads/Dgmjr.Payloads.props')" />
+  <Import Project="../Security/Authentication/Dgmjr.AspNetCore.Authentication.props" Condition="Exists('../Security/Authentication/Dgmjr.AspNetCore.Authentication.props')" />
+  <Import Project="../Swagger/Dgmjr.AspNetCore.Swagger.props" Condition="Exists('../Swagger/Dgmjr.AspNetCore.Swagger.props')" />
 </Project>

@@ -50,9 +50,20 @@ public static class Constants
 
         public static class Cookies
         {
-            public const string Name = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
-            public const string DisplayName = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
+            public const string Name = Microsoft
+                .AspNetCore
+                .Authentication
+                .Cookies
+                .CookieAuthenticationDefaults
+                .AuthenticationScheme;
+            public const string DisplayName = Microsoft
+                .AspNetCore
+                .Authentication
+                .Cookies
+                .CookieAuthenticationDefaults
+                .AuthenticationScheme;
         }
+
         public static class OAuth
         {
             public const string Name = nameof(OAuth);

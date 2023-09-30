@@ -15,7 +15,6 @@
 namespace Dgmjr.AspNetCore.Communication.Mail;
 
 using Azure.Communication.Email;
-// using Azure.Communication.Email.Models;
 using Azure.Identity;
 
 using Azure.Messaging;
@@ -26,35 +25,28 @@ using Microsoft.Extensions.Options;
 send emails asynchronously. */
 public class EmailSender : IEmailSender
 {
-    private readonly EmailClientOptions _options;
+    private readonly EmailSenderOptions _options;
     private readonly EmailClient _client;
 
-    public EmailSender(IOptions<EmailClientOptions> options)
+    public EmailSender(IOptions<EmailSenderOptions> options)
     {
         _options = options?.Value;
-        _client = new EmailClient(
-            new Uri(_options.ConnectionString),
-            new DefaultAzureCredential()
-        );
+        _client = new EmailClient(new Uri(_options.ConnectionString), new DefaultAzureCredential());
     }
 
-    public async Task SendEmailAsync(
-        string email,
-        string subject,
-        string htmlMessage
-    )
+    public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
         await SendEmailAsync(
             new EmailMessage(
-                _options.Value.DefaultFrom,
-                subject)
-            { Html = htmlMessage },
-                new EmailRecipients(new[] { new EmailAddress(email) })
-            );
+                _options.DefaultFrom,
+                email,
+                new EmailContent(subject) { Html = htmlMessage }
+            )
+        );
     }
 
     public async Task SendEmailAsync(EmailMessage message)
     {
-        await _client.SendAsync(message);
+        await _client.SendAsync(Azure.WaitUntil.Completed, message);
     }
 }

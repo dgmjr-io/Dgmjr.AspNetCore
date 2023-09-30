@@ -1,19 +1,18 @@
-/* 
+/*
  * AuthenticationResult.cs
- * 
+ *
  *   Created: 2023-03-30-08:13:27
  *   Modified: 2023-03-30-08:13:27
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
 namespace Dgmjr.AspNetCore.Authentication.Enums
 {
-
-    [GenerateEnumerationClass(nameof(AuthenticationResult), "Dgmjr.AspNetCore.Authentication")]
+    [GenerateEnumerationRecordStruct(nameof(AuthenticationResult), "Dgmjr.AspNetCore.Authentication")]
     public enum AuthenticationResult
     {
         SuccessTokenIssued,
@@ -28,40 +27,35 @@ namespace Dgmjr.AspNetCore.Authentication.Enums
     }
 }
 
+namespace Dgmjr.AspNetCore.Authentication.Abstractions
+{
+    public partial interface IAuthenticationResult { }
+}
+
 namespace Dgmjr.AspNetCore.Authentication
 {
-    public partial class AuthenticationResult
+    public partial record struct AuthenticationResult
     {
-        public AuthenticationResult(Enums.AuthenticationResult result, string? token = default)
+        public partial record struct SuccessTokenValidated : Abstractions.IAuthenticationResult
         {
-            Value = result;
-            Token = token;
+            public string Token { get; init; }
+
+            public static Abstractions.IAuthenticationResult WithToken(string token) =>
+                new SuccessTokenValidated() with
+                {
+                    Token = token
+                };
         }
 
-        public static AuthenticationResult Success(string token) => new(Enums.AuthenticationResult.SuccessTokenIssued, token);
-
-        public string Token { get; set; }
-
-        public virtual bool Equals(AuthenticationResult? other)
+        public partial record struct SuccessTokenIssued : Abstractions.IAuthenticationResult
         {
-            if (other is null)
-            {
-                return false;
-            }
+            public string Token { get; init; }
 
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return Value == other.Value && Token == other.Token;
-        }
-
-        public override bool Equals(object? other) => other is AuthenticationResult oar && Equals(oar);
-
-        public override int GetHashCode()
-        {
-            return (Value + Token).GetHashCode();
+            public static Abstractions.IAuthenticationResult WithToken(string token) =>
+                new SuccessTokenIssued() with
+                {
+                    Token = token
+                };
         }
     }
 }

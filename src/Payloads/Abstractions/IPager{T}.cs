@@ -1,4 +1,4 @@
-﻿/*
+/*
  * IPager{T}.cs
  *
  *   Created: 2022-11-29-08:40:53
@@ -12,7 +12,7 @@
 
 namespace Dgmjr.Payloads.Abstractions;
 
-/// <summary>Represents a srrongly-typed response payload with a page of items of type <typeparamref name="T"/></summary>
+/// <summary>Represents a strongly-typed response payload with a page of items of type <typeparamref name="T"/></summary>
 public interface IPager<T> : IResponsePayload<T[]>, IPager
 {
     /// <summary>The array of items in the current page</summary>

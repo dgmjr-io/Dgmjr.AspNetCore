@@ -9,10 +9,12 @@
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
-namespace Dgmjr.AspNetCore.Authentication;
-using Enums;
+namespace Dgmjr.AspNetCore.Authorization;
+
+using Abstractions;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
-using JwcSecOps = Security.Operations;
+using DgmjrSecOps = Dgmjr.Security.Operations;
+using Dgmjr.Security.Enums;
 
 public partial class Operations : OperationAuthorizationRequirement
 {
@@ -38,13 +40,9 @@ public partial class Operations : OperationAuthorizationRequirement
     //     return !(left == right);
     // }
 
-    public static implicit operator JwcSecOps(Operations op)
-        => op.Value switch
-        {
-            OperationsEnum.Create => JwcSecOps.Create.Instance,
-            OperationsEnum.Read => JwcSecOps.Read.Instance,
-            OperationsEnum.Update => JwcSecOps.Update.Instance,
-            OperationsEnum.Delete => JwcSecOps.Delete.Instance,
-            _ => throw new InvalidCastException($"Could not cast the value {op} into an object of type {typeof(JwcSecOps)}")
-        };
+    public static implicit operator DgmjrSecOps?(Operations op) =>
+        (DgmjrSecOps)
+            DgmjrSecOps.FromValue(
+                (Dgmjr.Security.Enums.Operations)((IHaveAValue<Enums.OperationsEnum>)op).Value
+            );
 }

@@ -1,8 +1,65 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
+# 
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B283EBC2-E01F-412D-9339-FD56EF114549}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\..\Directory.Build.props = ..\..\..\..\..\Directory.Build.props
+		..\..\..\..\..\Directory.Build.targets = ..\..\..\..\..\Directory.Build.targets
+		..\..\..\..\..\global.json = ..\..\..\..\..\global.json
+		..\..\..\..\..\Packages\Versions.Local.props = ..\..\..\..\..\Packages\Versions.Local.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Mime", "..\Mime\Dgmjr.Mime.csproj", "{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Http.Headers", "..\Headers\Dgmjr.Http.Headers.csproj", "{CBDD0742-12F7-42B2-B04B-A2AF959DA303}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Http.Extensions", "Dgmjr.Http.Extensions.csproj", "{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|Any CPU = Local|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Testing|Any CPU = Testing|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+		Production|Any CPU = Production|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Local|Any CPU.Build.0 = Local|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Production|Any CPU.Build.0 = Local|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03552DA5-25EF-4D84-A34E-DA8A5EF04A50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Local|Any CPU.Build.0 = Local|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Production|Any CPU.Build.0 = Local|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDD0742-12F7-42B2-B04B-A2AF959DA303}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Local|Any CPU.Build.0 = Local|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Production|Any CPU.Build.0 = Local|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52D8A04-CD74-4A5D-900F-9DF28DCCE542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

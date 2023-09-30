@@ -13,7 +13,8 @@
 using System.Net.Mime.MediaTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using static System.Net.Http.Headers.HttpResponseHeaderNames;
+using static Dgmjr.Http.Headers.HttpResponseHeaderNames;
+using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
 
 namespace Dgmjr.Payloads.Formatters;
 
@@ -55,12 +56,12 @@ public class PagedOutputJsonFormatter : OutputFormatter
             {
                 Unit = "items"
             };
-            response.Headers.Add(XPageNumber, pagedPayload.Page.ToString());
-            response.Headers.Add(XPageSize, pagedPayload.PageSize.ToString());
-            response.Headers.Add(XTotalRecords, pagedPayload.TotalRecords.ToString());
-            response.Headers.Add(XTotalPages, pagedPayload.TotalPages.ToString());
-            response.Headers.Add(XStartIndex, pagedPayload.PageStartIndex.ToString());
-            response.Headers.Add(XEndIndex, pagedPayload.PageEndIndex.ToString());
+            response.Headers.Add(XPageNumber.DisplayName, pagedPayload.Page.ToString());
+            response.Headers.Add(XPageSize.DisplayName, pagedPayload.PageSize.ToString());
+            response.Headers.Add(XTotalRecords.DisplayName, pagedPayload.TotalRecords.ToString());
+            response.Headers.Add(XTotalPages.DisplayName, pagedPayload.TotalPages.ToString());
+            response.Headers.Add(XStartIndex.DisplayName, pagedPayload.PageStartIndex.ToString());
+            response.Headers.Add(XEndIndex.DisplayName, pagedPayload.PageEndIndex.ToString());
         }
     }
 

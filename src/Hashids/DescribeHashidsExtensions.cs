@@ -17,7 +17,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class DescribeHashidsExtensions
 {
-#if MET6_0_OR_GREATER
+#if NET6_0_OR_GREATER
     public static WebApplicationBuilder DescribeHashids(
         this WebApplicationBuilder builder,
         params Assembly[]? assemblies

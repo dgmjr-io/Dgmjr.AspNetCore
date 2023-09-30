@@ -12,6 +12,7 @@
 
 namespace Dgmjr.Payloads;
 
+
 // public record ArrayRangePayload<T>(IEnumerable<T>? Values = default)
 //     : Payload<List<T>>(Values is null ? new List<T>() : Values.ToList());
 // // {

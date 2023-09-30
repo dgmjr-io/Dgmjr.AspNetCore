@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Communication.Sms;
+
 using System.Threading.Tasks;
 using System.Domain;
 
@@ -26,6 +27,7 @@ public interface ISmsSender
     /// <param name="message">The message.</param>
     /// <returns><![CDATA[Task<SmsSendResult>]]></returns>
     Task<SmsSendResult> SendSmsAsync(PhoneNumber @to, string message);
+
     /// <summary>
     /// Sends the sms asynchronously.
     /// </summary>
@@ -34,7 +36,8 @@ public interface ISmsSender
     /// <returns><![CDATA[Task<SmsSendResult>]]></returns>
     Task<SmsSendResult> SendSmsAsync(string @to, string message)
 #if NET7_0_OR_GREATER
-        => SendSmsAsync(PhoneNumber.Parse(@to), message)
+        =>
+        SendSmsAsync(PhoneNumber.Parse(@to), message)
 #endif
-        ;
+    ;
 }

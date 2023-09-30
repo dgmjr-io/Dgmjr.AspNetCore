@@ -12,5 +12,10 @@
 
 namespace Microsoft.AspNetCore.Authentication.Abstractions;
 
-[GenerateInterfaceAttribute(typeof(AuthenticationScheme))]
-public interface IAuthenticationScheme { }
+// [GenerateInterfaceAttribute(typeof(AuthenticationScheme))]
+public interface IAuthenticationScheme
+{
+    string Name { get; }
+    string? DisplayName { get; }
+    global::System.Type HandlerType { get; }
+}

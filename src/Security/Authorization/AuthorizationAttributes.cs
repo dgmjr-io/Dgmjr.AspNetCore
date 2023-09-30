@@ -17,11 +17,13 @@ using Microsoft.AspNetCore.Authorization;
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
 public class AdminAttribute : AuthorizeAttribute
 {
-    public AdminAttribute() : base() => Roles = DgmjrR.Admin.Uri;
+    public AdminAttribute()
+        : base() => Roles = DgmjrR.Admin.Uri.ToString();
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
 public class AuthenticatedUserAttribute : AuthorizeAttribute
 {
-    public AuthenticatedUserAttribute() : base() => Roles = DgmjrR.User.Uri;
+    public AuthenticatedUserAttribute()
+        : base() => Roles = DgmjrR.User.Uri.ToString();
 }

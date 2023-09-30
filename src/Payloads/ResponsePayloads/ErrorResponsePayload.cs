@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Payloads;
+
 // public class ErrorResponsePayload : ProblemDetails, IErrorResponsePayload
 // {
 //     public const string DefaultMessage = "An error has occurred.";

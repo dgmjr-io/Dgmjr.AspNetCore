@@ -1,4 +1,4 @@
-﻿/*
+/*
  * IArrayPayload copy.cs
  *
  *   Created: 2022-11-26-04:40:58

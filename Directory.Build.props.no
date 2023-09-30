@@ -1,17 +1,17 @@
 <!--
  * Directory.Build.props
- * 
+ *
  *   Created: 2023-01-11-05:08:45
  *   Modified: 2023-01-11-11:48:02
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
-<Project>	
-  <Import Project="Sdk.props" Sdk="JustinWritesCodeSdk" Condition="'$(JustinWritesCodeSdkProps)' == ''" />
+<Project>
+  <Import Project="Sdk.props" Condition="Exists('Sdk.props')" Sdk="JustinWritesCodeSdk" Condition="'$(JustinWritesCodeSdkProps)' == ''" />
   <PropertyGroup>
     <JustinWritesCodeSdkProps>$(MSBuildThisFileDirectory)Sdk.props</JustinWritesCodeSdkProps>
 		<InheritedDirectoryBuildProps>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))</InheritedDirectoryBuildProps>

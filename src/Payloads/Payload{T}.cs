@@ -1,4 +1,6 @@
-﻿//
+﻿using System.Xml.Linq;
+
+//
 // Payload.cs
 //
 //   Created: 2022-10-31-08:33:05
@@ -18,7 +20,8 @@ using Dgmjr.Payloads.Abstractions;
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
 public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
 {
-    public Payload() : this(default, default) { }
+    public Payload()
+        : this(default, default) { }
 
     public Payload(T value, string? stringValue = default)
     {
@@ -26,10 +29,16 @@ public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
         StringValue = stringValue;
     }
 
-    [JProp("value")]
+    /// <summary>
+    /// The strongly-typed value.
+    /// </summary>
+    [JProp("value"), XAttribute("value")]
     public virtual T? Value { get; set; }
 
-    [JProp("stringValue")]
+    /// <summary>
+    /// The string representation of the value.
+    /// </summary>
+    [JProp("stringValue"), XAttribute("stringValue")]
     public virtual string? StringValue
     {
         get => _stringValue ?? ToString();
@@ -40,12 +49,7 @@ public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
         get => Value;
         set => Value = value is T t ? t : default;
     }
-    private string? _stringValue;
+    protected string? _stringValue;
 
     public override string ToString() => _stringValue ?? Value?.ToString()!;
-    // public static Payload<T> Parse(string s, IFormatProvider? provider)
-    //     => TryParse(s, provider, out var result) ? result : throw new FormatException($"The string '{s}' is not a valid {nameof(Payload<T>)}");
-
-    // public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [MaybeNullWhen(false)] out Payload<T> result)
-    //     => (result = T.TryParse(s, provider, out var value) ? new Payload<T>(value, s) : null) != null;
 }

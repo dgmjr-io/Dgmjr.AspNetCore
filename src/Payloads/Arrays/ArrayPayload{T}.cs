@@ -17,13 +17,15 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
 {
     public const string DefaultItemSeparator = ", ";
 
-    public ArrayPayload() : this(default, default) { }
+    public ArrayPayload()
+        : this(default, default) { }
 
     public ArrayPayload(
         IEnumerable<T>? value,
         string? stringValue = default,
         string itemSeparator = DefaultItemSeparator
-    ) : base(value?.ToArray() ?? Empty<T>(), stringValue)
+    )
+        : base(value?.ToArray() ?? Empty<T>(), stringValue)
     {
         StringValue = stringValue;
         ItemSeparator = itemSeparator ?? DefaultItemSeparator;
@@ -44,7 +46,7 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
     }
 
     [JIgnore]
-    object IPayload.Value
+    object? IPayload.Value
     {
         get => Value;
         set => Value = value is T[] t ? t : default;
@@ -52,8 +54,6 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
     public virtual int Count => Values.Length;
 
     public override string ToString() => _stringValue ?? Join(ItemSeparator, Values);
-
-    private string? _stringValue;
 
     [JProp("stringValue")]
     public override string? StringValue

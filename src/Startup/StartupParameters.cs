@@ -7,28 +7,16 @@ using BuilderGenerator;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
+using System.Collections;
 
-/// <summary>
-/// This class is a builder for StartParameters object.
-/// </summary>
-[BuilderFor(typeof(StartupParameters))]
-public partial class StartupParametersBuilder
+/// <summary>This class stores all parameters used in the application startup.</summary>
+public class StartupParameters : IStartupParameters, IServiceCollection
 {
-}
-
-
-/// <summary>
-/// This record stores all parameters used in the application startup.
-/// </summary>
-public record class StartupParameters : IStartupParameters
-{
-    /// <summary>
-    /// Default constructor.
-    /// </summary> 
-    public StartupParameters()
+    /// <summary>Default constructor.</summary>
+    internal StartupParameters()
     {
-        var entryAssebmly = Assembly.GetEntryAssembly();
-        var thisAssembly = entryAssebmly.GetTypes().FirstOrDefault(t => t.Name == "ThisAssembly");
+        var entryAssembly = Assembly.GetEntryAssembly();
+        var thisAssembly = Find(entryAssembly.GetTypes(), t => t.Name == "ThisAssembly");
 
         if (thisAssembly is null)
         {
@@ -45,105 +33,181 @@ public record class StartupParameters : IStartupParameters
         ThisAssemblyProject = thisAssemblyProject;
     }
 
-    /// <summary>
-    /// The assembly that was executed to start the application.
-    /// </summary>
+    /// <summary>The assembly that was executed to start the application.</summary>
     /// <value>Project type of ThisAssembly</value>
-    public type? ThisAssemblyProject { get; internal set; }
+    public type? ThisAssemblyProject { get; set; }
 
-    /// <summary>
-    /// Types used by AutoMapper and MediatR in the application.
-    /// </summary>
-    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; internal set; } = Array.Empty<type>();
+    /// <summary>Types used by AutoMapper and MediatR in the application.</summary>
+    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; set; } = Array.Empty<type>();
 
     // ...other properties implemented similarly...
-    public virtual Action<AzureAppConfigurationOptions> AzureAppConfigu { get; set; }
+    Action<AzureAppConfigurationOptions> IStartupParameters.AzureAppConfigurator { get; set; }
 
-    public virtual Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfig { get; set; }
+    Action<AzureAppConfigurationKeyVaultOptions> IStartupParameters.AzureKeyVaultConfigurator { get; set; }
 
-    public virtual Action<IHealthChecksBuilder> HealthChecks { get; set; }
+    public required bool AppInsights { get; set; }
+
+    public required bool Identity { get; set; }
+    public required bool HealthChecks { get; set; }
+
+    public required bool Swagger { get; set; }
+
+    public required IEnumerable<string> AuthenticationSchemes { get; set; } = Empty<string>();
+
+    public required bool XmlSerialization { get; set; }
+
+    public required bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; }
+
+    public required bool RazorPages { get; set; }
+
+    public required bool JsonPatch { get; set; }
+
+    public required bool ApiAuthentication { get; set; }
+
+    public required bool AddAzureAppConfig { get; set; }
+
+    public required bool Hashids { get; set; }
+
+    public required bool MediatR { get; set; }
+
+    public required bool AutoMapper { get; set; }
+
+    public required bool Logging { get; set; }
+
+    public required bool HttpLogging { get; set; }
+
+    public required bool ConsoleLogger { get; set; }
+
+    public required bool DebugLogger { get; set; }
+
+    public required bool DefaultIdentityUI { get; set; }
+
+    public required bool AzureAppConfig { get; set; }
+
+    public Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVault { get; set; }
+
+    /// <summary>Configures health checks using provided IHealthChecksBuilder configurator.</summary>
+    /// <returns>The updated <see cref="Action{IHealthChecksBuilder}" /> delegate.</returns>
+    public Action<IHealthChecksBuilder> HealthChecksConfigurator { get; set; } = _ => { };
+
+    WebApplicationBuilder IStartupParameters.ConfigureHealthChecks(WebApplicationBuilder builder)
+    {
+        builder.Services.AddHealthChecks();
+        HealthChecksConfigurator?.Invoke(builder.Services.AddHealthChecks());
+        return builder;
+    }
 
     /// <summary>
     /// Configures Azure App Configuration using Application Settings options and Key Vault options.
     /// </summary>
     /// <param name="builder">WebApplicationBuilder object</param>
     /// <returns>The updated WebApplicationBuilder object.</returns>
-    public WebApplicationBuilder ConfigureAzureAppConfiguration(WebApplicationBuilder builder)
+    WebApplicationBuilder IStartupParameters.ConfigureAzureAppConfiguration(
+        WebApplicationBuilder builder
+    )
     {
         builder.Configuration.AddAzureAppConfiguration(appConfig =>
         {
-            AzureAppConfigurator?.Invoke(appConfig);
-            appConfig
-                .ConfigureKeyVault(kv =>
-                {
-                    AzureKeyVaultConfigurator?.Invoke(kv);
-                });
+            ((IStartupParameters)this).AzureAppConfigurator(appConfig);
+            appConfig.ConfigureKeyVault(
+                kv => ((IStartupParameters)this).AzureKeyVaultConfigurator(kv)
+            );
         });
         return builder;
     }
 
-    /// <summary>
-    /// Configures health checks using provided IHealthChecksBuilder configurator.
-    /// </summary>
-    /// <param name="builder">WebApplicationBuilder object</param>
-    /// <returns>The updated WebApplicationBuilder object.</returns>
-    public Action<IHealthChecksBuilder>? HealthChecksConfigurator { get; internal set; } = default;
+    IServiceCollection IStartupParameters.Services { get; set; } = new ServiceCollection();
 
-    public bool AppInsights { get; set; }
+    public override int GetHashCode() =>
+        HashCode.Combine(
+            HashCode.Combine(
+                HashCode.Combine(
+                    HashCode.Combine(
+                        ThisAssemblyProject,
+                        TypesForAutoMapperAndMediatR,
+                        AppInsights,
+                        Identity,
+                        Swagger,
+                        AuthenticationSchemes,
+                        XmlSerialization,
+                        SearchEntireAppDomainForAutoMapperAndMediatRTypes
+                    ),
+                    RazorPages,
+                    JsonPatch,
+                    ApiAuthentication,
+                    AddAzureAppConfig,
+                    Hashids,
+                    MediatR,
+                    AutoMapper
+                ),
+                Logging,
+                HttpLogging,
+                ConsoleLogger,
+                DebugLogger,
+                DefaultIdentityUI,
+                AzureAppConfig,
+                AzureKeyVault
+            ),
+            ((IStartupParameters)this).AzureAppConfigurator,
+            ((IStartupParameters)this).AzureKeyVaultConfigurator,
+            ((IStartupParameters)this).HealthChecksConfigurator,
+            ((IStartupParameters)this).Services
+        );
 
-    public bool Identity { get; set; }
-
-    public bool Swagger { get; set; }
-
-    public IEnumerable<string> AuthenticationSchemes { get; set; }
-
-    public bool XmlSerialization { get; set; }
-
-    public bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; }
-
-    public bool RazorPages { get; set; }
-
-    public bool JsonPatch { get; set; }
-
-    public bool ApiAuthentication { get; set; }
-
-    public bool AddAzureAppConfig { get; set; }
-
-    public bool Hashids { get; set; }
-
-    public bool MediatR { get; set; }
-
-    public bool AutoMapper { get; set; }
-
-    public bool Logging { get; set; }
-
-    public bool HttpLogging { get; set; }
-
-    public bool ConsoleLogger { get; set; }
-
-    public bool DebugLogger { get; set; }
-
-    public bool DefaultIdentityUI { get; set; }
-
-    /// <summary>
-    /// Adds Health Check middleware to application.
-    /// </summary>
-    /// <param name="configure">Action to configure IHealthChecksBuilder.</param>
-    WebApplicationBuilder WithHealthChecks(Action<IHealthChecksBuilder>? configure);
-
-    public WebApplicationBuilder ConfigureHealthChecks(WebApplicationBuilder builder)
+    WebApplicationBuilder IStartupParameters.ConfigureServices(WebApplicationBuilder builder)
     {
-        HealthChecksConfigurator?.Invoke(builder.Services.AddHealthChecks());
+        ((IStartupParameters)this).Services.ForEach(sd => builder.Services.Add(sd));
         return builder;
     }
 
-    public WebApplicationBuilder WithAzureAppConfiguration(WebApplicationBuilder builder)
+    public virtual IStartupParameters WithService(ServiceDescriptor sd)
     {
-        throw new NotImplementedException();
+        ((IStartupParameters)this).Services.Add(sd);
+        return this;
     }
 
-    WebApplicationBuilder IStartupParameters.WithHealthChecks(Action<IHealthChecksBuilder>? configure)
+    public override bool Equals(object? obj) => GetHashCode() == obj?.GetHashCode();
+
+    public virtual bool Equals(StartupParameters? other) => GetHashCode() == other?.GetHashCode();
+
+    #region IServiceCollection implementation
+    void IList<ServiceDescriptor>.Insert(int index, ServiceDescriptor sd) =>
+        ((IStartupParameters)this).Services.Insert(index, sd);
+
+    int IList<ServiceDescriptor>.IndexOf(ServiceDescriptor sd) =>
+        ((IStartupParameters)this).Services.IndexOf(sd);
+
+    void IList<ServiceDescriptor>.RemoveAt(int index) =>
+        ((IStartupParameters)this).Services.RemoveAt(index);
+
+    void ICollection<ServiceDescriptor>.Add(ServiceDescriptor sd) =>
+        ((IStartupParameters)this).Services.Add(sd);
+
+    bool ICollection<ServiceDescriptor>.Contains(ServiceDescriptor sd) =>
+        ((IStartupParameters)this).Services.Contains(sd);
+
+    void ICollection<ServiceDescriptor>.Clear() => ((IStartupParameters)this).Services.Clear();
+
+    void ICollection<ServiceDescriptor>.CopyTo(ServiceDescriptor[] array, int arrayIndex) =>
+        ((IStartupParameters)this).Services.CopyTo(array, arrayIndex);
+
+    IEnumerator<ServiceDescriptor> IEnumerable<ServiceDescriptor>.GetEnumerator() =>
+        ((IStartupParameters)this).Services.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => ((IStartupParameters)this).Services.GetEnumerator();
+
+    bool ICollection<ServiceDescriptor>.Remove(ServiceDescriptor sd) =>
+        ((IStartupParameters)this).Services.Remove(sd);
+
+    ServiceDescriptor IList<ServiceDescriptor>.this[int i]
     {
-        throw new NotImplementedException();
+        get => ((IStartupParameters)this).Services[i];
+        set => ((IStartupParameters)this).Services[i] = value;
     }
+
+    int ICollection<ServiceDescriptor>.Count => ((IStartupParameters)this).Services.Count;
+
+    bool ICollection<ServiceDescriptor>.IsReadOnly =>
+        ((IStartupParameters)this).Services.IsReadOnly;
+    #endregion
 }

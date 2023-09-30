@@ -1,0 +1,41 @@
+<!--
+ * System.Net.Mime.MediaTypeNames.csproj
+ *
+ *   Created: 2022-11-24-09:06:32
+ *   Modified: 2022-11-29-04:39:07
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <Description>
+      Provides a set of constants for the most common media types.  Fills in the gaps left by the <see cref="System.Net.Mime.MediaTypeNames" /> class.
+    </Description>
+    <GenerateNuspec>true</GenerateNuspec>
+    <SlnGenSolutionFolder>constants</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+    <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.System.Extensions" />
+    <PackageReference Include="System.ComponentModel.Annotations" />
+    <PackageReference Include="System.ComponentModel.Usings" />
+    <PackageReference Include="System.Security.Cryptography.Algorithms" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageTag Include="mime" />
+    <PackageTag Include="patch" />
+    <PackageTag Include="system.net" />
+    <PackageTag Include="system" />
+  </ItemGroup>
+</Project>

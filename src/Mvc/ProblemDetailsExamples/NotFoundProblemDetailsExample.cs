@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Mvc;
+
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 public class NotFoundProblemDetails : IProblemDetails

@@ -35,14 +35,16 @@ using Microsoft.OpenApi.Models;
 // [SwaggerSubType(typeof(ResponsePayload))]
 public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
 {
-    public ResponsePayload() : this(default, default) { }
+    public ResponsePayload()
+        : this(default, default) { }
 
     public ResponsePayload(
         T? value,
         string? stringValue = default,
         string? message = default,
         HttpStatusCode statusCode = HttpStatusCode.OK
-    ) : base(value, stringValue)
+    )
+        : base(value, stringValue)
     {
         Message = message ?? string.Empty;
         StatusCode = (int)statusCode;
@@ -57,7 +59,7 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     [JProp("isSuccess"), XmlAttribute("isSuccess")]
     public virtual bool IsSuccess => StatusCode!.Value >= 200 && StatusCode!.Value <= 299; //IsBetween(200, 299);
 
-    [XmlAttribute("message"), JProp("message"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
+    [XmlAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
     public virtual string Message { get; set; }
 
     /// <inheritdoc />
@@ -80,7 +82,7 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     public ICollection<IOutputFormatter> OutputFormatters { get; } = new List<IOutputFormatter>();
 
     [JIgnore, XmlIgnore]
-    public MediaTypeCollection ContentTypes { get; } = new MediaTypeCollection();
+    public MediaTypeCollection ContentTypes { get; } = new();
 
     [JIgnore, XmlIgnore]
     HttpStatusCode? IResponsePayload.StatusCode =>

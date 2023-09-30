@@ -18,7 +18,8 @@ using Dgmjr.Payloads.Abstractions;
 /// <inheritdoc cref="IResponsePayload"/>
 public class ResponsePayload : ResponsePayload<object>, IResponsePayload
 {
-    public ResponsePayload() : this(default, true, default) { }
+    public ResponsePayload()
+        : this(default, true, default) { }
 
     public ResponsePayload(object? value, bool isSuccess = true, string? message = default)
     {

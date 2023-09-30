@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+
 /*
  * AddHadshids.cs
  *
@@ -11,6 +12,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 namespace Microsoft.Extensions.DependencyInjection;
+
 using global::AspNetCore.Hashids;
 using global::AspNetCore.Hashids.Options;
 using Microsoft.AspNetCore.Builder;
@@ -27,9 +29,15 @@ public static class AddHashidsExtensions
         return builder;
     }
 #endif
-    public static IServiceCollection AddHashids(this IServiceCollection services, IConfigurationRoot config)
+
+    public static IServiceCollection AddHashids(
+        this IServiceCollection services,
+        IConfigurationRoot config
+    )
     {
-        services.Configure<HashidsOptions>(opts => config.GetSection(nameof(HashidsOptions)).Bind(opts));
+        services.Configure<HashidsOptions>(
+            opts => config.GetSection(nameof(HashidsOptions)).Bind(opts)
+        );
         return services;
     }
 }

@@ -1,4 +1,4 @@
-namespace Dgmjr.AspNetCore.Authentication;
+namespace Dgmjr.AspNetCore.Authorization;
 
 using Dgmjr.EntityFrameworkCore.Abstractions;
 using Microsoft.AspNetCore.Authorization;
@@ -16,12 +16,15 @@ public abstract class ResourceBasedAuthorizationHandler<TDbContext, TModel, TId>
         OperationAuthorizationRequirement requirement
     )
     {
-        if (context?.User?.Identity is not null && (context?.User?.Identity?.IsAuthenticated ?? false))
+        if (
+            context?.User?.Identity is not null
+            && (context?.User?.Identity?.IsAuthenticated ?? false)
+        )
         {
             var resource = context.Resource as IAuthorizableEntity;
             if (resource is not null)
             {
-                if (context.User.IsInRole(DgmjrR.Administrator.Uri))
+                if (context.User.IsInRole(DgmjrR.Administrator.Uri.ToString()))
                 {
                     context.Succeed(requirement);
                 }

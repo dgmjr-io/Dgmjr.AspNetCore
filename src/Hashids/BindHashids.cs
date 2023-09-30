@@ -11,9 +11,11 @@
  */
 
 namespace Microsoft.AspNetCore.Mvc;
+
 using global::AspNetCore.Hashids;
 
 public class HashidsAttribute : ModelBinderAttribute
 {
-    public HashidsAttribute() : base(typeof(global::AspNetCore.Hashids.Mvc.HashidsModelBinder)) { }
+    public HashidsAttribute()
+        : base(typeof(global::AspNetCore.Hashids.Mvc.HashidsModelBinder)) { }
 }

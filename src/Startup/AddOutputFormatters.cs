@@ -11,6 +11,7 @@
  */
 
 namespace Microsoft.Extensions.DependencyInjection;
+
 using Dgmjr.AspNetCore.Formatters;
 using MessagePack;
 using MessagePack.AspNetCoreMvcFormatter;

@@ -1,34 +1,27 @@
 ---
-authors:
-  - DGMJR-IO
-title: HTTP metadata
-description: A collection of abstractions for HTTP requests&rsquou; metadata, specifically, the HTTP method and the headers.
-lastmod: 2023-03-31T15:08:26.243Z
-created: 2023-03-18-10:15:12
+title:
+lastmod: 2023-16-05T17:16:48.9502-05:00Z
+date: 2023-16-05T17:16:48.9503-05:00Z
 license: MIT
-project: AspNetCore
+slug: Dgmjr.Http-readme
+version:
+authors:
+  - dgmjr;
+description: Dgmjr.Http Readme #TODO: write description for Dgmjr.Http Readme
 keywords:
-  - abstractions
-  - http
-  - metadata
-  - request
-  - response
-  - httprequest
-  - httpresponse
-  - httprequestmethod
-  - httpmethod
-tags:
-  - abstractions
-  - http
-categories:
-  - abstractions
-  - http
+- Dgmjr.Http
+  - dgmjr
+  - dgmjr-io
 type: readme
-slug: http-metadata
 ---
-
-# HTTP Abstractions
-
-This is a collection of abstractions for HTTP requests' metadata, specifically, the HTTP method and the headers.
-
-It contains both `enum`s and `Enumeration struct`s for each thing.
+# Dgmjr.Http Readme
+<!-- TODO: Write the contents of the Dgmjr.Http Readme file -->
+## Package Description
+## Getting Started
+## Prerequisites
+## Installation
+## Usage
+## Contributing
+## Versioning
+Built from [commit  on branch  at ]
+(/tree/)

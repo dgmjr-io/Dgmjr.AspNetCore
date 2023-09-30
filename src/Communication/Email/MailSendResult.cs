@@ -1,7 +1,18 @@
 namespace Dgmjr.AspNetCore.Communication.Mail;
 
-
-public class MailSendResult
+public class MailSendResult : IMessageSendResult, IMailSendResult
 {
-    MailSendReponseCode StatusCode { get => (MailSendReponseCode)((IMailSendResult)this).StatusCode; set => ((MailSendReponseCode)this).StatusCode = (int)value; }
+    public new MailSendResponseCode StatusCode
+    {
+        get => (MailSendResponseCode)((ISmsSendResult)this).StatusCode;
+        set => StatusCode = value.Id;
+    }
+
+    public bool IsSuccess => StatusCode == MailSendResponseCode.Success;
+
+    int IMessageSendResult.StatusCode
+    {
+        get => throw new NotImplementedException();
+        set => throw new NotImplementedException();
+    }
 }

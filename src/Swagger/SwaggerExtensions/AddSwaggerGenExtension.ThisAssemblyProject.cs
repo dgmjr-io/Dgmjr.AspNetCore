@@ -11,22 +11,27 @@
  */
 
 namespace Microsoft.Extensions.DependencyInjection;
+
 using System;
 using System.Reflection;
 using static System.String;
 
 public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
 {
+    public const string ThisAssembly = nameof(ThisAssembly);
+
+    public static TThisAssemblyStaticProxy From(Assembly asm) =>
+        new TThisAssemblyStaticProxy(Find(asm.GetTypes(), t => t.Name is nameof(ThisAssembly)));
+
     public type? Project =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Project));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Project));
     public type? Info =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Info));
-    public type? Git =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Git));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Info));
+    public type? Git => Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Git));
     public type? Metadata =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Metadata));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Metadata));
     public type? Strings =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Strings));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Strings));
     public Assembly Assembly => ThisAssemblyStaticProxy.Assembly;
 
     public string? AssemblyVersion =>
@@ -55,9 +60,9 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
     public string? InformationalVersion =>
         Project?.GetRuntimeField(nameof(InformationalVersion))?.GetValue(null) as string;
     public string? LicenseExpression =>
-        Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
+        PackageLicenseExpression
         ?? Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
-        ?? PackageLicenseExpression
+        ?? Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
         ?? "None";
     public string? Owners => Project?.GetRuntimeField(nameof(Owners))?.GetValue(null) as string;
     public string? PackageLicenseExpression =>
@@ -75,13 +80,23 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
     public string? Version => Project?.GetRuntimeField(nameof(Version))?.GetValue(null) as string;
     public uri? LicenseUrl => $"https://opensource.org/licenses/{LicenseExpression}";
     public uri? PackageProjectUrl =>
-        Project?.GetRuntimeField(nameof(PackageProjectUrl))?.GetValue(null) as string
-        ?? "https://example.com/contact";
+        IsNullOrWhiteSpace(PackageProjectUrlString)
+            ? "https://example.com/contact"
+            : PackageProjectUrlString;
+
     public uri? RepositoryUrl =>
-        Project?.GetRuntimeField(nameof(RepositoryUrl))?.GetValue(null) as string ?? "about:blank";
+        IsNullOrWhiteSpace(RepositoryUrlString) ? "about:blank" : RepositoryUrlString;
     public uri? TermsOfServiceUrl =>
-        Project?.GetRuntimeField(nameof(TermsOfServiceUrl))?.GetValue(null) as string
-        ?? "https://example.com/terms";
+        IsNullOrWhiteSpace(TermsOfServiceUrlString)
+            ? "https://example.com/terms"
+            : TermsOfServiceUrlString;
+
+    public string? RepositoryUrlString =>
+        Project?.GetRuntimeField(nameof(RepositoryUrl))?.GetValue(null) as string;
+    public string? PackageProjectUrlString =>
+        Project?.GetRuntimeField(nameof(PackageProjectUrl))?.GetValue(null) as string;
+    public string? TermsOfServiceUrlString =>
+        Project?.GetRuntimeField(nameof(TermsOfServiceUrl))?.GetValue(null) as string;
     public string? ApiVersion =>
         "v"
         + (

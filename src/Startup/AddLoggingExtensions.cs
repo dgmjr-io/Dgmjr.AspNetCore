@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Logging.cs
  *
  *   Created: 2022-12-10-11:38:03
@@ -11,7 +11,7 @@
  */
 
 using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Logging;
@@ -36,30 +36,29 @@ internal static class AddLoggingExtensions
             // Add request headers to log
             new[]
             {
-            HttpRequestHeaderNames.Authorization,
-            HttpRequestHeaderNames.ContentType,
-            HttpRequestHeaderNames.UserAgent,
-            HttpRequestHeaderNames.Accept,
-            HttpRequestHeaderNames.Cookie
+                HReqH.Authorization.DisplayName,
+                HReqH.ContentType.DisplayName,
+                HReqH.UserAgent.DisplayName,
+                HReqH.Accept.DisplayName,
+                HReqH.Cookie.DisplayName
             }.Select(x => opts.RequestHeaders.Add(x));
 
             // Add response media types to log
-            opts.MediaTypeOptions.AddText(ApplicationMediaTypeNames.Json);
-            opts.MediaTypeOptions.AddText(TextMediaTypeNames.Plain);
-            opts.MediaTypeOptions.AddText(ApplicationMediaTypeNames.Xml);
+            opts.MediaTypeOptions.AddText(ApplicationMediaType.Json.DisplayName);
+            opts.MediaTypeOptions.AddText(TextMediaType.Plain.DisplayName);
+            opts.MediaTypeOptions.AddText(ApplicationMediaType.Xml.DisplayName);
 
             // Add response headers to log
             new[]
             {
-            HttpResponseHeaderNames.ContentType,
-            HttpResponseHeaderNames.Location,
-            HttpResponseHeaderNames.SetCookie
+                HResH.ContentType.DisplayName,
+                HResH.Location.DisplayName,
+                HResH.SetCookie.DisplayName
             }.Select(x => opts.RequestHeaders.Add(x));
         });
 
         return builder;
     }
-
 
     /// <summary>
     /// Extension method to add logging to the given IServiceCollection.
@@ -79,6 +78,5 @@ internal static class AddLoggingExtensions
         });
 
         return services;
-
     }
 }

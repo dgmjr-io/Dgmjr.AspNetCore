@@ -7,18 +7,19 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
 using Vogen;
-using static System.Net.Http.Headers.HttpRequestHeaderNames;
+using static Dgmjr.Http.Headers.HttpRequestHeaderNames;
 using static System.Net.HttpStatusCode;
 
 namespace Dgmjr.Payloads.ModelBinders
 {
     public class RangeRequestAttribute : ModelBinderAttribute
     {
-        public RangeRequestAttribute() : base(typeof(RangeRequestModelBinder))
+        public RangeRequestAttribute()
+            : base(typeof(RangeRequestModelBinder))
         {
             this.BindingSource = BindingSource.Header;
             this.BinderType = typeof(RangeRequestModelBinder);
-            this.Name = HttpRequestHeaderNames.Range;
+            this.Name = Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName;
         }
     }
 
@@ -45,11 +46,12 @@ namespace Dgmjr.Payloads.ModelBinders
                     // rangeRequest.PageSize = (int)rangeHeader.Ranges.First().To.Value - (int)rangeHeader.Ranges.First().From.Value;
                 }
                 else if (
-                    bindingContext.HttpContext.Request.Headers[HttpRequestHeaderNames.Range]
-                        != default(StringValues)
+                    bindingContext.HttpContext.Request.Headers[
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName
+                    ] != default(StringValues)
                     && Range.TryParse(
                         bindingContext.HttpContext.Request.Headers[
-                            HttpRequestHeaderNames.Range
+                            Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName
                         ].First(),
                         out rangeRequest
                     )
@@ -59,11 +61,11 @@ namespace Dgmjr.Payloads.ModelBinders
                 }
                 else if (
                     bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageSize,
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.XPageSize.DisplayName,
                         out pageSize
                     )
                     && bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageNumber,
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.XPageNumber.DisplayName,
                         out pageNumber
                     )
                 )

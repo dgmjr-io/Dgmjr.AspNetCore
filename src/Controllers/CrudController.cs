@@ -1,4 +1,4 @@
-﻿/*
+/*
  * CrudController.cs
  *
  *   Created: 2022-12-06-10:36:22
@@ -11,17 +11,21 @@
  */
 #pragma warning disable
 using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+
 using AutoMapper;
 using AutoMapper.Extensions.ExpressionMapping;
+
 using Dgmjr.Abstractions;
 using Dgmjr.AspNetCore.Mvc;
 using Dgmjr.Payloads;
 using Dgmjr.Payloads.Abstractions;
 using Dgmjr.Payloads.ModelBinders;
+
 using global::MediatR;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -29,8 +33,10 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Abstractions;
 using Microsoft.Extensions.Logging;
+
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
+
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
 namespace Dgmjr.AspNetCore.Controllers;
@@ -46,7 +52,8 @@ public abstract class CrudController<TModel, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TDto, TDbContext, TId>
@@ -61,7 +68,8 @@ public abstract class CrudController<TModel, TDto, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TInsertDto, TDto, TDbContext, TId>
@@ -76,7 +84,8 @@ public abstract class CrudController<TModel, TInsertDto, TDto, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, TDbContext, TId>
@@ -98,7 +107,8 @@ public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, T
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger)
+    )
+        : base(dbContext, logger)
     {
         Mapper = mapper;
         Mediator = mediator;

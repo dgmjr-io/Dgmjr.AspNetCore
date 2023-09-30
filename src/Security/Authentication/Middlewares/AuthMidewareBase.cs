@@ -1,11 +1,11 @@
-/* 
+/*
  * AuthMidewareBase.cs
- * 
+ *
  *   Created: 2023-04-02-05:53:30
  *   Modified: 2023-04-02-05:53:30
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -37,7 +37,8 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
-        THandler handler)
+        THandler handler
+    )
     {
         _next = next;
         _options = options;
@@ -57,9 +58,9 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
             return;
         }
 
-        if (ShouldHandleScheme(options.AuthenticationSchemeName))
+        if (ShouldHandleScheme(_options.CurrentValue.AuthenticationSchemeName))
         {
-            await HandleAuthenticateOnceAsync(context, options);
+            await HandleAuthenticateOnceAsync(context, _options.CurrentValue);
             return; // Return after authentication to avoid calling _next twice.
         }
 

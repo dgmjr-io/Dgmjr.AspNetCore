@@ -1,9 +1,7 @@
-using System.Collections.Immutable;
-using System.Reflection.Metadata.Ecma335;
 namespace Microsoft.Extensions.DependencyInjection;
 
 using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Dgmjr.AspNetCore.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -30,64 +28,101 @@ public static class AddTheWorksExtensions
     )
     {
         if (@params.Logging)
-            _ = builder.Logging
-                    .AddConfiguration(builder.Configuration.GetSection("Logging"));
+        {
+            _ = builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+        }
 
         if (@params.ConsoleLogger)
+        {
             builder.Logging.AddConsole();
+        }
 
         if (@params.DebugLogger)
+        {
             builder.Logging.AddDebug();
+        }
 
         if (@params.Identity)
-            _ = builder.AddIdentity(@params.DefaultIdentityUI);
+        {
+            _ = builder.AddIdentity<long, AppUser, AppRole>(@params.DefaultIdentityUI);
+        }
 
         @params.TypesForAutoMapperAndMediatR ??= Empty<type>();
 
         if (@params.SearchEntireAppDomainForAutoMapperAndMediatRTypes)
-            @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => { try { return a.GetTypes(); } catch { return Array.Empty<type>(); } }));
+        {
+            @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(
+                CurrentDomain
+                    .GetAssemblies()
+                    .SelectMany(a =>
+                    {
+                        try
+                        {
+                            return a.GetTypes();
+                        }
+                        catch
+                        {
+                            return Array.Empty<type>();
+                        }
+                    })
+            );
+        }
 
         if (@params.AutoMapper)
+        {
             _ = builder.Services.AddAutoMapper(@params.TypesForAutoMapperAndMediatR.ToArray());
+        }
 
         if (@params.Swagger)
-            _ = builder.AddSwaggerGen()
+        {
+            _ = builder
+                .AddSwaggerGen()
                 .AddSwaggerMetadata(@params.ThisAssemblyProject ?? typeof(ThisAssembly.Project))
-            .DescribeDataTypesToSwagger()
-            .DescribeBasicApiAuthentication()
-            .AddXmlCommentsToSwagger()
-            .DescribeCrudController()
-            .AddSwaggerExamples()
-            .AddSwaggerHeaderOperationFilter()
-            .DescribeFileUploads()
-            .AddDescribeTypesForAllOutputFormatters();
+                .DescribeDataTypesToSwagger()
+                .DescribeBasicApiAuthentication()
+                .AddXmlCommentsToSwagger()
+                .DescribeCrudController()
+                .AddSwaggerExamples()
+                .AddSwaggerHeaderOperationFilter()
+                .DescribeFileUploads()
+                .AddDescribeTypesForAllOutputFormatters();
+        }
 
         if (@params.XmlSerialization)
+        {
             _ = builder.Services.AddControllers().AddXmlSerializerFormatters();
+        }
 
         if (@params.RazorPages)
+        {
             _ = builder.Services.AddRazorPages();
+        }
 
         if (@params.JsonPatch)
+        {
             _ = builder.AddJsonPatch();
+        }
 
+        // _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
 
-        _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
+        if (@params.AzureAppConfig)
+        {
+            @params.ConfigureAzureAppConfiguration(builder);
+        }
 
-        if (@params.AddAzureAppConfig)
-            _ = @params.WithAzureAppConfiguration(builder);
-
-        if (@params.ApiAuthentication)
-            _ = builder.AddApiAuthentication();
+        // if (@params.ApiAuthentication)
+        //     _ = builder.AddApiAuthentication();
 
         if (@params.HttpLogging)
+        {
             _ = builder.AddHttpLogging();
+        }
 
         // builder.AddApiAuthentication(_ => { });
 
         _ = builder.AddFormatters();
 
-        @params.WithHealthChecks(builder);
+        @params.ConfigureHealthChecks(builder);
 
         _ = builder.AddPayloadServices();
 
@@ -96,10 +131,19 @@ public static class AddTheWorksExtensions
         _ = builder.DescribeSchemasViaAttributes();
 
         if (@params.Hashids)
+        {
             _ = builder.AddHashids();
+        }
 
         if (@params.MediatR)
-            _ = builder.Services.AddMediatR(@params.TypesForAutoMapperAndMediatR.ToArray());
+        {
+            _ = builder.Services.AddMediatR(
+                config =>
+                    @params.TypesForAutoMapperAndMediatR.ForEach(
+                        t => config.RegisterServicesFromAssemblyContaining(t)
+                    )
+            );
+        }
 
         _ = builder.AddJsonSerializer();
 
@@ -110,30 +154,35 @@ public static class AddTheWorksExtensions
 
         // builder.AddProblemDetailsHandler();
 
-        builder.Services.AddSingleton<IStartupParameters>(@params);
+        builder.Services.AddSingleton(@params);
+
+        @params.ConfigureServices(builder);
 
         configure?.Invoke(builder);
         return builder;
     }
 
-    public static WebApplication UseTheWorks(this WebApplication app, type tThisAssemblyProject = null)
+    public static WebApplication UseTheWorks(this WebApplication app)
     {
-        tThisAssemblyProject ??= Assembly.GetEntryAssembly().GetTypes().FirstOrDefault(t => t.FullName == "ThisAssembly.Project");
         var @params = app.Services.GetRequiredService<IStartupParameters>();
 
-        if (@params.AddJsonPatch)
+        if (@params.JsonPatch)
+        {
             _ = app.Use(
                 (context, next) =>
                 {
                     context.Response.Headers.AcceptRanges = "items";
-                    context.Response.Headers[HttpResponseHeaderNames.AcceptPatch] =
+                    context.Response.Headers[HResH.AcceptPatch.DisplayName] =
                         ApplicationMediaTypeNames.JsonPatch;
                     return next();
                 }
             );
+        }
 
-        if (@params.AddHttpLogging)
+        if (@params.HttpLogging)
+        {
             _ = app.UseHttpLogging();
+        }
 
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment() || app.Environment.IsLocal())
@@ -149,26 +198,35 @@ public static class AddTheWorksExtensions
 
         _ = app.UseStaticFiles();
 
-        if (@params.AddSwagger)
+        if (@params.Swagger)
         {
             _ = app.UseSwagger();
             // app.UseSwaggerUI();
-            _ = app.UseCustomizedSwaggerUI(@params.ThisAssemblyProject ?? typeof(ThisAssembly.Project));
+            _ = app.UseCustomizedSwaggerUI(
+                @params.ThisAssemblyProject ?? typeof(ThisAssembly.Project)
+            );
         }
 
         _ = app.UseRequestDecompression()
             .UseResponseCompression()
             .UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-        if (@params.AddApiAuthentication)
-            _ = app.UseApiBasicAuthentication();
+        if (@params.ApiAuthentication)
+        {
+            _ = app.UseApiBasicAuthentication<AppUser, AppRole>();
+        }
 
         _ = app.UseWelcomePage(new WelcomePageOptions { Path = "/welcum.htm" });
 
-        _ = app.MapPing();
+        if (@params.HealthChecks)
+        {
+            _ = app.MapPing();
+        }
 
-        if (@params.AddRazorPages)
+        if (@params.RazorPages)
+        {
             _ = app.MapRazorPages();
+        }
 
         _ = app.MapControllers();
 
@@ -177,11 +235,10 @@ public static class AddTheWorksExtensions
 
     public static WebApplication UseTheWorks(
         this WebApplication app,
-        type tThisAssemblyProject,
         Action<WebApplication>? configure
     )
     {
-        app.UseTheWorks(tThisAssemblyProject);
+        app.UseTheWorks();
         configure?.Invoke(app);
         return app;
     }

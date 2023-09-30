@@ -19,5 +19,6 @@ public class StringResponsePayload : ResponsePayload<string>
         string value,
         string? message = default!,
         string stringValue = default!
-    ) : base(value, message, stringValue) { }
+    )
+        : base(value, message, stringValue) { }
 }

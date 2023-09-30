@@ -1,16 +1,17 @@
-/* 
+/*
  * GeneratedCustomAuthHandler.cs
- * 
+ *
  *   Created: 2023-04-01-02:38:20
  *   Modified: 2023-04-01-02:38:20
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
 namespace Dgmjr.AspNetCore.Authentication.Generated;
+
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
@@ -25,22 +26,34 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using Dgmjr.AspNetCore.Authentication.Options;
 
-public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenticationSchemeOptions>
+public class JwtBearerBasicAuthHandler<TUser, TRole>
+    : AuthenticationHandler<GeneratedAuthenticationSchemeOptions>
+    where TUser : class, IIdentityUserBase, IHaveATelegramUsername, IIdentifiable
+    where TRole : class, IIdentityRoleBase
 {
-    private const string AuthorizationHeaderName = System.Net.Http.Headers.HttpRequestHeaderName.Authorization.Name;
+    private const string AuthorizationHeaderName = HReqH.Authorization.Name;
     private const string BasicSchemeName = "Basic";
     private const string BearerSchemeName = "Bearer";
-    protected virtual UserManager UserManager { get; init; }
+    protected virtual UserManager<TUser, TRole> UserManager { get; init; }
 
     private readonly SymmetricSecurityKey _jwtKey;
 
-    public JwtBearerBasicAuthHandler(IOptionsMonitor<GeneratedAuthenticationSchemeOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, UserManager userManager)
+    public JwtBearerBasicAuthHandler(
+        IOptionsMonitor<GeneratedAuthenticationSchemeOptions> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder,
+        ISystemClock clock,
+        UserManager<TUser, TRole> userManager
+    )
         : base(options, logger, encoder, clock)
     {
         if (options?.CurrentValue?.Secret.IsNullOrWhitespace() ?? true)
         {
-            throw new ArgumentNullException($"{nameof(options)}.{nameof(options.CurrentValue)}.{nameof(options.CurrentValue.Secret)}");
+            throw new ArgumentNullException(
+                $"{nameof(options)}.{nameof(options.CurrentValue)}.{nameof(options.CurrentValue.Secret)}"
+            );
         }
         var jwtSecret = options?.CurrentValue?.Secret.ToUTF8Bytes();
         _jwtKey = new SymmetricSecurityKey(jwtSecret);
@@ -48,26 +61,34 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        if (Request.Headers.ContainsKey(AuthorizationHeaderName))
+        if (Request.Headers.TryGetValue(AuthorizationHeaderName, out var authHeaderStringValues))
         {
-            var authHeaderStringValue = Request.Headers[AuthorizationHeaderName].FirstOrDefault();
-
-            if (authHeaderStringValue == null)
+            var authHeaderStringValue = authHeaderStringValues.Join(",");
+            if (authHeaderStringValue.IsNullOrWhitespace())
             {
                 return AuthenticateResult.NoResult();
             }
 
-            var authHeader = AuthenticationHeaderValue.Parse(
-                Request.Headers[nameof(System.Net.Http.Headers.HttpRequestHeaders.Authorization)]
-            );
+            var authHeader = AuthenticationHeaderValue.Parse(authHeaderStringValue);
 
             if (authHeader.Scheme.Equals(BasicSchemeName, OrdinalIgnoreCase))
             {
-                var credentials = FromBase64String(authHeader.Parameter[(BasicSchemeName.Length + 1)..]).ToUTF8String().Split(':', 2);
+                var credentials = authHeader.Parameter[(BasicSchemeName.Length + 1)..]
+                    .FromBase64String()
+                    .ToUTF8String()
+                    .Split(':', 2);
                 var username = credentials[0];
                 var password = credentials[1];
 
-                if (await IsAuthenticated(username, password, out var user, out var ticket, out var identity))
+                if (
+                    await IsAuthenticated(
+                        username,
+                        password,
+                        out var user,
+                        out var ticket,
+                        out var identity
+                    )
+                )
                 {
                     return AuthenticateResult.Success(ticket);
                 }
@@ -85,16 +106,23 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
                     IssuerSigningKey = _jwtKey,
                     ValidateIssuer = true,
                     ValidateAudience = true,
-                    ValidIssuers = new[] { DgmjrCt.BaseUri },
-                    ValidAudiences = new[] { DgmjrCt.BaseUri },
+                    ValidIssuers = new[] { DgmjrCt.DgmjrClaims.BaseUri },
+                    ValidAudiences = new[] { DgmjrCt.DgmjrClaims.BaseUri },
                     ClockSkew = TimeSpan.Zero
                 };
 
                 try
                 {
                     var handler = new JwtSecurityTokenHandler();
-                    var claimsPrincipal = handler.ValidateToken(token, validationParameters, out var securityToken);
-                    var authenticationTicket = new AuthenticationTicket(claimsPrincipal, Scheme.Name);
+                    var claimsPrincipal = handler.ValidateToken(
+                        token,
+                        validationParameters,
+                        out var securityToken
+                    );
+                    var authenticationTicket = new AuthenticationTicket(
+                        claimsPrincipal,
+                        Scheme.Name
+                    );
                     return AuthenticateResult.Success(authenticationTicket);
                 }
                 catch (Exception ex)
@@ -107,45 +135,105 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
         return AuthenticateResult.NoResult();
     }
 
-    private Task<bool> IsAuthenticated(string username, string password, out User? user, out AuthenticationTicket? ticket, out ClaimsIdentity? identity)
+    private Task<bool> IsAuthenticated(
+        string username,
+        string password,
+        out TUser? user,
+        out AuthenticationTicket? ticket,
+        out ClaimsIdentity? identity
+    )
     {
         user = UserManager.FindByNameAsync(username).Result;
         if (user is not null && UserManager.CheckPasswordAsync(user, password).Result)
         {
-            identity = new ClaimsIdentity(
-                ApiAuthenticationOptions.BasicAuthenticationSchemeName
-            );
+            identity = new ClaimsIdentity(ApiAuthenticationOptions.BasicAuthenticationSchemeName);
             var userClaims = UserManager.GetClaimsAsync(user).Result;
 
-            userClaims.Add(new(TelegramID.ClaimType.UserId.Uri, user.Id.ToString()));
-            userClaims.Add(new(DgmjrCt.NameIdentifier, user.Id.ToString()));
-            userClaims.Add(new(DgmjrCt.AuthenticationInstant, DateTimeOffset.UtcNow.ToString()));
+            userClaims.Add(new(TelegramID.ClaimTypes.UserId.UriString, user.Id.ToString()));
+            userClaims.Add(new(DgmjrCt.NameIdentifier.UriString, user.Id.ToString()));
+            userClaims.Add(
+                new(DgmjrCt.AuthenticationInstant.UriString, DateTimeOffset.UtcNow.ToString())
+            );
             userClaims.Add(
                 new(
-                    DgmjrCt.AuthenticationMethod,
+                    DgmjrCt.AuthenticationMethod.UriString,
                     ApiAuthenticationOptions.BasicAuthenticationSchemeName
                 )
             );
-            userClaims.Add(new(DgmjrCt.CommonName, user.GoByName, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
-            userClaims.Add(new(DgmjrCt.GivenName, user.GivenName, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
-            userClaims.Add(new(DgmjrCt.Surname, user.Surname, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
+            userClaims.Add(
+                new(
+                    DgmjrCt.CommonName.UriString,
+                    user.GoByName,
+                    Options.Issuer,
+                    Options.Audience,
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
+                )
+            );
+            userClaims.Add(
+                new(
+                    DgmjrCt.GivenName.UriString,
+                    user.GivenName,
+                    Options.Issuer,
+                    Options.Audience,
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
+                )
+            );
+            userClaims.Add(
+                new(
+                    DgmjrCt.Surname.UriString,
+                    user.Surname,
+                    Options.Issuer,
+                    Options.Audience,
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
+                )
+            );
 
             if (
                 !IsNullOrEmpty(user.TelegramUsername)
-                && !userClaims.Any(c => c.Type == TelegramID.ClaimType.Username.Uri)
+                && !userClaims.Any(c => c.Type == TelegramID.ClaimTypes.Username.UriString)
             )
             {
-                userClaims.Add(new(TelegramID.ClaimType.Username.Uri, user.TelegramUsername, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
+                userClaims.Add(
+                    new(
+                        TelegramID.ClaimTypes.Username.UriString,
+                        user.TelegramUsername,
+                        Options.Issuer,
+                        Options.Audience,
+                        TelegramID.ClaimTypes.TelegramClaimType.UriString
+                    )
+                );
             }
 
-            if (user.Phone.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone))
+            if (
+                !user.PhoneNumber.IsEmpty
+                && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone.UriString)
+            )
             {
-                userClaims.Add(new(DgmjrCt.HomePhone, user.PhoneNumber, Options.Issuer, Options.Audience, TelegramID.ClaimType.BaseUri.Uri));
+                userClaims.Add(
+                    new(
+                        DgmjrCt.HomePhone.UriString,
+                        user.PhoneNumber,
+                        Options.Issuer,
+                        Options.Audience,
+                        TelegramID.ClaimTypes.TelegramClaimType.UriString
+                    )
+                );
             }
 
-            if (user.EmailAddress.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.Email))
+            if (
+                !user.EmailAddress.IsEmpty
+                && !userClaims.Any(c => c.Type == DgmjrCt.Email.UriString)
+            )
             {
-                userClaims.Add(new(DgmjrCt.Email, user.EmailAddress, Options.Issuer, Options.Audience, Options.Issuer));
+                userClaims.Add(
+                    new(
+                        DgmjrCt.Email.UriString,
+                        user.EmailAddress,
+                        Options.Issuer,
+                        Options.Audience,
+                        Options.Issuer
+                    )
+                );
             }
 
             identity.AddClaims(userClaims);
@@ -153,7 +241,7 @@ public class JwtBearerBasicAuthHandler : AuthenticationHandler<GeneratedAuthenti
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = UtcNow + Options.TokenLifetime,
+                Expires = datetime.UtcNow + Options.TokenLifetime,
             };
             ticket = new AuthenticationTicket(
                 principal,

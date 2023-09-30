@@ -1,7 +1,7 @@
 namespace Dgmjr.AspNetCore.Formatters;
 
-using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Http.Headers;
+using Dgmjr.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -28,9 +28,8 @@ public class PlainTextOutputFormatter : OutputFormatter
     public override void WriteResponseHeaders(OutputFormatterWriteContext context)
     {
         base.WriteResponseHeaders(context);
-        context.HttpContext.Response.Headers[HttpResponseHeaderNames.ContentType] = GetContentType(
-            context
-        );
+        context.HttpContext.Response.Headers[HttpResponseHeaderNames.ContentType.DisplayName] =
+            GetContentType(context);
         context.HttpContext.Response.ContentType = TextMediaTypeNames.Plain;
     }
 
@@ -38,8 +37,10 @@ public class PlainTextOutputFormatter : OutputFormatter
         context.Object is string
         && context.HttpContext.Request
             .GetTypedHeaders()
-            .Accept.Any(a => a.MediaType.Value.ToLower().StartsWith("text/"));
+            .Accept.Any(a => a.MediaType.Value.ToLower().StartsWith("text/", OrdinalIgnoreCase));
 
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context) =>
-        await context?.HttpContext?.Response?.WriteAsync(context?.Object?.ToString() ?? string.Empty);
+        await context?.HttpContext?.Response?.WriteAsync(
+            context?.Object?.ToString() ?? string.Empty
+        );
 }

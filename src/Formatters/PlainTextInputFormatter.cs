@@ -13,7 +13,7 @@
 namespace Dgmjr.AspNetCore.Formatters;
 
 using System.Collections.Generic;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
 public class PlainTextInputFormatter : InputFormatter
@@ -46,15 +46,12 @@ public class PlainTextInputFormatter : InputFormatter
     /// <inheritdoc />
     public override IReadOnlyList<string> GetSupportedContentTypes(
         string contentType,
-        Type objectType
+        type objectType
     ) => new[] { ContentType };
 
     public override bool CanRead(InputFormatterContext context)
     {
         return (context.ModelType.IsPrimitive || context.ModelType == typeof(string)) //& || context.ModelType.GetInterfaces().Any(i => i.IsGenericType && i.GetGenericTypeDefinition == typeof(IPayload<>) && i.GetGenericArguments()[0].IsPrimitive)
-            && context.HttpContext.Request.ContentType.Contains(
-                ContentType,
-                StringComparison.OrdinalIgnoreCase
-            );
+            && context.HttpContext.Request.ContentType.Contains(ContentType, OrdinalIgnoreCase);
     }
 }

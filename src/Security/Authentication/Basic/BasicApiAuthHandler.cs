@@ -26,13 +26,15 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-public class BasicApiAuthHandler
+public class BasicApiAuthHandler<TUser, TRole>
     : AuthenticationHandler<BasicAuthenticationSchemeOptions>,
         IHttpContextAccessor,
         ILog
+    where TUser : class, IIdentityUserBase
+    where TRole : class, IIdentityRoleBase
 {
-    public ILogger Logger { get; }
-    private readonly UserManager _userManager;
+    public new virtual ILogger Logger { get; }
+    private readonly UserManager<TUser, TRole> _userManager;
     private readonly BasicAuthenticationSchemeOptions _options;
     public HttpContext? HttpContext
     {
@@ -45,15 +47,16 @@ public class BasicApiAuthHandler
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
-        UserManager userManager
-    ) : base(options, logger, encoder, clock)
+        UserManager<TUser, TRole> userManager
+    )
+        : base(options, logger, encoder, clock)
     {
         _userManager = userManager;
         _options = options.CurrentValue;
-        Logger = loger.CreateLogger<BasicApiAuthHandler>();
+        Logger = logger.CreateLogger<BasicApiAuthHandler<TUser, TRole>>();
     }
 
-    protected virtual string? AuthenticationSchemeName => _options?.AuthenticationSchemeName;
+    protected virtual string? AuthenticationSchemeName => (_options as IBasicAuthenticationSchemeOptions)?.AuthenticationSchemeName;
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {
@@ -66,46 +69,54 @@ public class BasicApiAuthHandler
             var credentials = credentialBytes.ToUTF8String().Split(':', 2);
             var authUsername = credentials[0];
             var authPassword = credentials[1];
-            Logger.LogAuthenticatingUser(authUsername, BasicAuthenticationSchemeOptions.SchemeName);
+            Logger.LogAuthenticatingUser(
+                authUsername,
+                BasicAuthenticationSchemeOptions.DefaultAuthenticationSchemeName
+            );
 
             // authenticate credentials with user service and attach user to http context
             var user = await _userManager.FindByNameAsync(authUsername);
             if (user is not null && await _userManager.CheckPasswordAsync(user, authPassword))
             {
-                var identity = new ClaimsIdentity(
-                    AuthenticationSchemeName
-                );
+                var identity = new ClaimsIdentity(AuthenticationSchemeName);
                 var userClaims = await _userManager.GetClaimsAsync(user);
 
-                userClaims.Add(new(TelegramID.ClaimType.UserId.Uri, user.Id.ToString()));
-                userClaims.Add(new(DgmjrCt.NameIdentifier, user.Id.ToString()));
-                userClaims.Add(new(DgmjrCt.AuthenticationInstant, DateTimeOffset.UtcNow.ToString()));
+                // userClaims.Add(new(TelegramID.ClaimTypes.UserId.UriString, user.Id.ToString()));
+                // userClaims.Add(new(DgmjrCt.NameIdentifier.UriString, user.Id.ToString()));
                 userClaims.Add(
-                    new(
-                        DgmjrCt.AuthenticationMethod,
-                        AuthenticationSchemeName
-                    )
+                    new(DgmjrCt.AuthenticationInstant.UriString, DateTimeOffset.UtcNow.ToString())
                 );
-                userClaims.Add(new(DgmjrCt.CommonName, user.GoByName));
-                userClaims.Add(new(DgmjrCt.GivenName, user.GivenName));
-                userClaims.Add(new(DgmjrCt.Surname, user.Surname));
+                userClaims.Add(
+                    new(DgmjrCt.AuthenticationMethod.UriString, AuthenticationSchemeName)
+                );
+                userClaims.Add(new(DgmjrCt.CommonName.UriString, user.GoByName));
+                userClaims.Add(new(DgmjrCt.GivenName.UriString, user.GivenName));
+                userClaims.Add(new(DgmjrCt.Surname.UriString, user.Surname));
+
+                // if (
+                //     !IsNullOrEmpty(user.TelegramUsername)
+                //     && !userClaims.Any(c => c.Type == TelegramID.ClaimTypes.Username.UriString)
+                // )
+                // {
+                //     userClaims.Add(
+                //         new(TelegramID.ClaimType.Username.UriString, user.TelegramUsername)
+                //     );
+                // }
 
                 if (
-                    !IsNullOrEmpty(user.TelegramUsername)
-                    && !userClaims.Any(c => c.Type == TelegramID.ClaimType.Username.Uri)
+                    !user.PhoneNumber.IsEmpty
+                    && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone.UriString)
                 )
                 {
-                    userClaims.Add(new(TelegramID.ClaimType.Username.Uri, user.TelegramUsername));
+                    userClaims.Add(new(DgmjrCt.HomePhone.UriString, user.PhoneNumber));
                 }
 
-                if (user.Phone.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone))
+                if (
+                    !user.EmailAddress.IsEmpty
+                    && !userClaims.Any(c => c.Type == DgmjrCt.Email.UriString)
+                )
                 {
-                    userClaims.Add(new(DgmjrCt.HomePhone, user.PhoneNumber));
-                }
-
-                if (user.EmailAddress.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.Email))
-                {
-                    userClaims.Add(new(DgmjrCt.Email, user.EmailAddress));
+                    userClaims.Add(new(DgmjrCt.Email.UriString, user.EmailAddress));
                 }
 
                 identity.AddClaims(userClaims);
@@ -115,10 +126,7 @@ public class BasicApiAuthHandler
                 //     Subject = identity,
                 //     Expires = UtcNow + _options.TokenLifetime,
                 // };
-                var ticket = new AuthenticationTicket(
-                    principal,
-                    AuthenticationSchemeName
-                );
+                var ticket = new AuthenticationTicket(principal, AuthenticationSchemeName);
                 Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }

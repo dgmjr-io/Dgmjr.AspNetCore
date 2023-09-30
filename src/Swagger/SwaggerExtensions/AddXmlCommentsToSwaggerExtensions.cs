@@ -36,13 +36,14 @@ public static class AddXmlCommentsToSwaggerExtensions
     public static WebApplicationBuilder AddXmlCommentsToSwagger(this WebApplicationBuilder builder)
     {
         var binRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-        var xmlDocs = Directory.GetFiles(binRoot, "*.xml").Where(IsParsable).OfType<string>().ToArray();
+        var xmlDocs = Directory
+            .GetFiles(binRoot, "*.xml")
+            .Where(IsParsable)
+            .OfType<string>()
+            .ToArray();
         builder.Services.ConfigureSwaggerGen(options =>
         {
-            ForEach(
-                xmlDocs,
-                xmlDoc => options.IncludeXmlCommentsWithRemarks(xmlDoc)
-            );
+            ForEach(xmlDocs, xmlDoc => options.IncludeXmlCommentsWithRemarks(xmlDoc));
             options.IncludeXmlCommentsFromInheritDocs(true);
 
             options.AddEnumsWithValuesFixFilters(o =>

@@ -1,13 +1,13 @@
 using System;
 using System;
-/* 
+/*
  * ApiAuthenticationExtensions.cs
- * 
+ *
  *   Created: 2023-03-29-11:16:18
  *   Modified: 2023-03-29-11:16:19
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -25,16 +25,23 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Dgmjr.AspNetCore.Authentication;
 
-public class ApiAuthenticationExtensions : ILog
+public class ApiAuthenticationExtensions<TKey, TUser, TRole> : ILog
+    where TKey : IEquatable<TKey>, IComparable
+    where TUser : class, IIdentityUser<TKey, TUser, TRole>, IIdentityUserBase
+    where TRole : class, IIdentityRole<TKey, TUser, TRole>, IIdentityRoleBase
 {
     public const string Basic = nameof(Basic);
     public const string Bearer = nameof(Bearer);
 
     public ILogger Logger { get; }
     public IConfiguration Configuration { get; }
-    public UserManager UserManager { get; }
+    public UserManager<TUser, TRole> UserManager { get; }
 
-    public ApiAuthenticationExtensions(ILogger<ApiAuthenticationExtensions> logger, IConfiguration config, UserManager userManager)
+    public ApiAuthenticationExtensions(
+        ILogger<ApiAuthenticationExtensions<TKey, TUser, TRole>> logger,
+        IConfiguration config,
+        UserManager<TUser, TRole> userManager
+    )
     {
         Logger = logger;
         Configuration = config;
@@ -65,7 +72,7 @@ public class ApiAuthenticationExtensions : ILog
         };
     }
 
-    public async Task<AuthenticationResult> AuthenticateAsync(HttpContext context)
+    public async Task<Abstractions.IAuthenticationResult> AuthenticateAsync(HttpContext context)
     {
         var jwtConfig = GetJwtConfigurationOptions();
         var tokenHandler = new JwtSecurityTokenHandler();
@@ -86,46 +93,65 @@ public class ApiAuthenticationExtensions : ILog
                     var credentials = credentialBytes.ToUTF8String().Split(':', 2);
                     var authUsername = credentials[0];
                     var authPassword = credentials[1];
-                    Logger.LogAuthenticatingUser(authUsername);
+                    Logger.LogAuthenticatingUser(authUsername, Basic);
 
                     // authenticate credentials with user service and attach user to http context
                     var user = await UserManager.FindByNameAsync(authUsername);
-                    if (user is not null && await UserManager.CheckPasswordAsync(user, authPassword))
+                    if (
+                        user is not null && await UserManager.CheckPasswordAsync(user, authPassword)
+                    )
                     {
                         var identity = new ClaimsIdentity(
-                        ApiAuthenticationOptions.BasicAuthenticationSchemeName
-                    );
+                            ApiAuthenticationOptions.BasicAuthenticationSchemeName
+                        );
                         var userClaims = await UserManager.GetClaimsAsync(user);
 
-                        userClaims.Add(new(TelegramID.ClaimType.UserId.Uri, user.Id.ToString()));
-                        userClaims.Add(new(DgmjrCt.NameIdentifier, user.Id.ToString()));
-                        userClaims.Add(new(DgmjrCt.AuthenticationInstant, DateTimeOffset.UtcNow.ToString()));
+                        userClaims.Add(
+                            new(TelegramID.ClaimTypes.UserId.UriString, user.Id.ToString())
+                        );
+                        userClaims.Add(new(DgmjrCt.NameIdentifier.UriString, user.Id.ToString()));
                         userClaims.Add(
                             new(
-                                DgmjrCt.AuthenticationMethod,
+                                DgmjrCt.AuthenticationInstant.UriString,
+                                DateTimeOffset.UtcNow.ToString()
+                            )
+                        );
+                        userClaims.Add(
+                            new(
+                                DgmjrCt.AuthenticationMethod.UriString,
                                 ApiAuthenticationOptions.BasicAuthenticationSchemeName
                             )
                         );
-                        userClaims.Add(new(DgmjrCt.CommonName, user.GoByName));
-                        userClaims.Add(new(DgmjrCt.GivenName, user.GivenName));
-                        userClaims.Add(new(DgmjrCt.Surname, user.Surname));
+                        userClaims.Add(new(DgmjrCt.CommonName.UriString, user.GoByName));
+                        userClaims.Add(new(DgmjrCt.GivenName.UriString, user.GivenName));
+                        userClaims.Add(new(DgmjrCt.Surname.UriString, user.Surname));
 
                         if (
                             !IsNullOrEmpty(user.TelegramUsername)
-                            && !userClaims.Any(c => c.Type == TelegramID.ClaimType.Username.Uri)
+                            && !userClaims.Any(
+                                c => c.Type == TelegramID.ClaimTypes.Username.UriString
+                            )
                         )
                         {
-                            userClaims.Add(new(TelegramID.ClaimType.Username.Uri, user.TelegramUsername));
+                            userClaims.Add(
+                                new(TelegramID.ClaimTypes.Username.UriString, user.TelegramUsername)
+                            );
                         }
 
-                        if (user.Phone.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone))
+                        if (
+                            !user.PhoneNumber.IsEmpty
+                            && !userClaims.Any(c => c.Type == DgmjrCt.HomePhone.UriString)
+                        )
                         {
-                            userClaims.Add(new(DgmjrCt.HomePhone, user.PhoneNumber));
+                            userClaims.Add(new(DgmjrCt.HomePhone.UriString, user.PhoneNumber));
                         }
 
-                        if (user.EmailAddress.HasValue && !userClaims.Any(c => c.Type == DgmjrCt.Email))
+                        if (
+                            !user.EmailAddress.IsEmpty
+                            && !userClaims.Any(c => c.Type == DgmjrCt.Email.UriString)
+                        )
                         {
-                            userClaims.Add(new(DgmjrCt.Email, user.EmailAddress));
+                            userClaims.Add(new(DgmjrCt.Email.UriString, user.EmailAddress));
                         }
 
                         identity.AddClaims(userClaims);
@@ -135,13 +161,13 @@ public class ApiAuthenticationExtensions : ILog
                             Subject = identity,
                             Audience = jwtConfig.Audience,
                             Issuer = jwtConfig.Issuer,
-                            IssuedAt = UtcNow,
-                            NotBefore = UtcNow,
-                            Expires = UtcNow + jwtConfig.TokenLifetime,
+                            IssuedAt = datetime.UtcNow,
+                            NotBefore = datetime.UtcNow,
+                            Expires = datetime.UtcNow + jwtConfig.TokenLifetime,
                         };
                         var token = tokenHandler.CreateToken(tokenDescriptor);
                         var tokenString = tokenHandler.WriteToken(token);
-                        return AuthenticationResult.Success(tokenString);
+                        return AuthenticationResult.SuccessTokenIssued.WithToken(tokenString);
                     }
                     else
                     {
@@ -158,25 +184,31 @@ public class ApiAuthenticationExtensions : ILog
                             out var validatedToken
                         );
                         var jwtToken = (JwtSecurityToken)validatedToken;
-                        var username = jwtToken.Claims.First(
-                            x => x.Type == Telegram.Identity.ClaimType.Username.Uri
-                        )?.Value;
-                        if (jwtToken.IssuedAt + jwtConfig.TokenLifetime > UtcNow)
+                        var username = jwtToken.Claims
+                            .First(x => x.Type == Telegram.Identity.ClaimTypes.Username.UriString)
+                            ?.Value;
+                        if (jwtToken.IssuedAt + jwtConfig.TokenLifetime > datetime.UtcNow)
                         {
-                            Logger.LogExpiredToken(context.TraceIdentifier, username, jwtToken.IssuedAt, jwtToken.IssuedAt + jwtConfig.TokenLifetime, UtcNow);
+                            Logger.LogExpiredToken(
+                                context.TraceIdentifier,
+                                username,
+                                jwtToken.IssuedAt,
+                                jwtToken.IssuedAt + jwtConfig.TokenLifetime,
+                                datetime.UtcNow
+                            );
                             // context.Response.Headers["WWW-Authenticate"] = "Bearer";
                             // context.Response.StatusCode = (int)Unauthorized;
                             return AuthenticationResult.FailExpiredToken.Instance;
                         }
                         Logger.LogUserAuthenticated(username, jwtToken.Claims.Count());
                         context.User = principal;
-
                     }
                     else
                     {
                         Logger.LogInvalidAuthHeader(context.TraceIdentifier);
                         return AuthenticationResult.FailInvalidAuthHeader.Instance;
-                    };
+                    }
+                    ;
                     break;
                 default:
                     return AuthenticationResult.FailInvalidAuthHeader.Instance;

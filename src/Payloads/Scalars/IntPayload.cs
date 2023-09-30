@@ -10,17 +10,12 @@
 //      License: MIT (https://opensource.org/licenses/MIT)
 //
 
+using System.Globalization;
+
 namespace Dgmjr.Payloads;
 
-public class IntPayload : Payload<int>
+public class IntPayload(int value) : Payload<int>(value, value.ToString(CultureInfo.CurrentCulture))
 {
-    public IntPayload() : this(0) { }
-
-    public IntPayload(int value = 0) => Value = value;
-
-    public override string? StringValue
-    {
-        get => Value.ToString();
-        set => Value = int.Parse(value);
-    }
+    public IntPayload()
+        : this(0) { }
 }
