@@ -15,13 +15,17 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 using System;
 using System.Linq;
+
 using Dgmjr.AspNetCore.Authentication;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
+
 using static System.String;
 using static ThisAssembly.Project;
 

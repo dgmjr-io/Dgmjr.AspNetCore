@@ -10,13 +10,15 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
+using System.Linq;
+
 using Microsoft.OpenApi.Any;
 
 namespace Microsoft.OpenApi.Attributes;
 
 public class OpenApiAnyOfAttribute : OpenApiSchemaAttribute
 {
-    public OpenApiAnyOfAttribute(params object[] anyOf) : this(anyOf as IEnumerable<object>) { }
+    public OpenApiAnyOfAttribute(params object[] anyOf) : this(anyOf.AsEnumerable()) { }
 
     public OpenApiAnyOfAttribute(IEnumerable<object> anyOf)
     {
