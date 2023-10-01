@@ -34,7 +34,8 @@ public class ProducesOKResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        ) { }
+        )
+    { }
 }
 
 public class ProducesNoContentResponseAttribute : SwaggerResponseAttribute
@@ -51,7 +52,8 @@ public class ProducesNoContentResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        ) { }
+        )
+    { }
 }
 
 public class ProducesCreatedResponseAttribute : SwaggerResponseAttribute
@@ -69,7 +71,8 @@ public class ProducesCreatedResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        ) { }
+        )
+    { }
 }
 
 public class ProducesPartialContentResponseAttribute : SwaggerResponseAttribute
@@ -87,7 +90,8 @@ public class ProducesPartialContentResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        ) { }
+        )
+    { }
 }
 
 public class CreateOperationAttribute : JwcOperationAttribute
