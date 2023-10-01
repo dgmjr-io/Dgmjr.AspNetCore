@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Authentication;
+
 using Microsoft.Extensions.Logging;
 using static Microsoft.Extensions.Logging.LogLevel;
 

@@ -17,10 +17,11 @@ using System.Diagnostics;
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
 public class NumericPayload : Payload<decimal>
 {
-    public NumericPayload() : this(default) { }
+    public NumericPayload()
+        : this(default) { }
 
-    public NumericPayload(decimal value, string? stringValue = default) : base(value, stringValue)
-    { }
+    public NumericPayload(decimal value, string? stringValue = default)
+        : base(value, stringValue) { }
 
     [JProp("stringValue")]
     public override string? StringValue

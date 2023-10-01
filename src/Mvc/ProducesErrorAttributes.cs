@@ -24,8 +24,7 @@ public sealed class Produces400ErrorAttribute : SwaggerResponseAttribute
             "You done fucked up!",
             typeof(BadRequestProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
@@ -37,8 +36,7 @@ public sealed class Produces401ErrorAttribute : SwaggerResponseAttribute
             "You're not allowed to fucking do that!",
             typeof(UnauthorizedProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
@@ -50,8 +48,7 @@ public sealed class Produces403ErrorAttribute : SwaggerResponseAttribute
             "You're not allowed to fucking do that!",
             typeof(ForbiddenProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
@@ -63,8 +60,7 @@ public sealed class Produces404ErrorAttribute : SwaggerResponseAttribute
             "The shit you're looking for doesn't fucking exist!",
             typeof(NotFoundProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
@@ -76,8 +72,7 @@ public sealed class Produces418ErrorAttribute : SwaggerResponseAttribute
             "I'm a fucking teapot, short and stout.  Here's my handle; here's my spout.  If you've reached this error code, you must shout, \"I'm a fuckin' idiot so kick me out!\"",
             typeof(ImATeapotProblemDetailsExample),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
@@ -89,6 +84,5 @@ public sealed class Produces500ErrorAttribute : SwaggerResponseAttribute
             "Shit hit the fucking fan!",
             typeof(InternalServerErrorProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        )
-    { }
+        ) { }
 }

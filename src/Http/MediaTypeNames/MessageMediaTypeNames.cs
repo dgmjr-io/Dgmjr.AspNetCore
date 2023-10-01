@@ -1,11 +1,11 @@
-/* 
+/*
  * MessageMediaTypeNames.cs
- * 
+ *
  *   Created: 2023-03-18-07:11:59
  *   Modified: 2023-03-18-07:11:59
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
@@ -62,10 +62,12 @@ public static class MessageMediaTypeNames
     /// <value>message/global-delivery-status</value>
     /// <summary> The message/global-delivery-status MIME type</summary>
     public const string global_delivery_status = Base + "/" + "+ global_delivery_status";
+
     /// <see href="https://www.iana.org/assignments/media-types/message/global-disposition-notification">[RFC6533]</see>
     /// <value>message/global-disposition-notification</value>
     /// <summary> The message/global-disposition-notification MIME type</summary>
-    public const string global_disposition_notification = Base + "/" + "+ global_disposition_notification";
+    public const string global_disposition_notification =
+        Base + "/" + "+ global_disposition_notification";
 
     /// <see href="https://www.iana.org/assignments/media-types/message/global-headers">[RFC6533]</see>
     /// <value>message/global-headers</value>
@@ -107,10 +109,8 @@ public static class MessageMediaTypeNames
     /// <summary> The message/tracking-status MIME type</summary>
     public const string tracking_status = Base + "/" + "+ tracking_status";
 
-
     /// <see href="https://www.iana.org/assignments/media-types/message/vnd.wfa.wsc">[Mick_Conley]</see>
     /// <value>message/vnd.wfa.wsc</value>
     /// <summary> The message/vnd.wfa.wsc MIME type</summary>
     public const string vnd_wfa_wsc = Base + "/" + "+ vnd_wfa_wsc";
-
 }

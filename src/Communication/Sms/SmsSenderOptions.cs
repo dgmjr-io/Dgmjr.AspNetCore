@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Communication.Sms;
+
 using Dgmjr.AspNetCore.Communication;
 using System.Domain;
 
@@ -20,6 +21,7 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     /// The default phone number string.
     /// </summary>
     public const string DefaultFromPhoneNumberString = "+12025550108";
+
     /// <summary>
     /// The default from phone number.
     /// </summary>
@@ -28,27 +30,34 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     );
 
     private PhoneNumber? _defaultFrom;
-    public override PhoneNumber DefaultFrom { get => _defaultFrom ??= DefaultFromPhoneNumber; set => _defaultFrom ??= value; }
+    public override PhoneNumber DefaultFrom
+    {
+        get => _defaultFrom ??= DefaultFromPhoneNumber;
+        set => _defaultFrom ??= value;
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     /// <param name="connectionString">The connection string.</param>
-    public SmsSenderOptions(string connectionString) : this(connectionString) { }
+    public SmsSenderOptions(string connectionString)
+        : this(connectionString) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     /// <param name="connectionString">The connection string.</param>
     /// <param name="fromPhoneNumber">The from phone number.</param>
-    public SmsSenderOptions() : this(string.Empty) { }
+    public SmsSenderOptions()
+        : this(string.Empty) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     /// <param name="connectionString">The connection string.</param>
     /// <param name="fromPhoneNumber">The from phone number.</param>
-    public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber = null) : base(connectionString)
+    public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber = null)
+        : base(connectionString)
     {
         DefaultFrom = fromPhoneNumber.asValue ? fromPhoneNumber.Value : PhoneNumber.Default;
     }

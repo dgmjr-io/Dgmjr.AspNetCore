@@ -23,7 +23,8 @@ using Microsoft.OpenApi.Models;
 )]
 public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
 {
-    public SingleItemPager() : this(default, 0, 0) { }
+    public SingleItemPager()
+        : this(default, 0, 0) { }
 
     public SingleItemPager(T value, int pageNumber, int totalRecords)
         : base(new[] { value }, pageNumber, 1, totalRecords)
@@ -34,7 +35,8 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
         StringValue = value.ToString();
     }
 
-    public SingleItemPager(IQueryable<T> items, int itemNumber) : base()
+    public SingleItemPager(IQueryable<T> items, int itemNumber)
+        : base()
     {
         TotalRecords = items.Count();
         Page = itemNumber;

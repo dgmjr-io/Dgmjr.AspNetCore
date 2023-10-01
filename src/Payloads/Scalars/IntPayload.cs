@@ -14,7 +14,8 @@ namespace Dgmjr.Payloads;
 
 public class IntPayload : Payload<int>
 {
-    public IntPayload() : this(0) { }
+    public IntPayload()
+        : this(0) { }
 
     public IntPayload(int value = 0) => Value = value;
 

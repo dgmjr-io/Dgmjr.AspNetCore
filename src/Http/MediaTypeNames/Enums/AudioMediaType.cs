@@ -11,6 +11,7 @@
  */
 
 namespace System.Net.Mime.MediaTypes.Enums;
+
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("AudioMediaType", "System.Net.Mime.MediaTypes")]

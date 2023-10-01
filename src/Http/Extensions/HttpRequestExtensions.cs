@@ -11,6 +11,7 @@
  */
 
 namespace Microsoft.AspNetCore.Http;
+
 using static System.Net.Http.Headers.HttpRequestHeaderNames;
 
 public static partial class HttpRequestExtensions2

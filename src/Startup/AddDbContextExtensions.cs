@@ -28,7 +28,9 @@ internal static class AddDbContextExtensions
     /// </summary>
     /// <param name="builder">The WebApplicationBuilder object.</param>
     /// <returns>An IEnumerable of IDbContext objects.</returns>
-    public static IEnumerable<IDbContext> GetAllRegisteredDbContexts(this WebAppplicationBuilder builder)
+    public static IEnumerable<IDbContext> GetAllRegisteredDbContexts(
+        this WebAppplicationBuilder builder
+    )
     {
         var dbContexts = builder.Services
             .Where(s => typeof(IDbContext).IsAssignableFrom(s.ServiceType))
@@ -36,7 +38,6 @@ internal static class AddDbContextExtensions
             .Cast<IDbContext>();
         return dbContexts;
     }
-
 
     /// <summary>
     /// Adds a DbContext of type TContext to the WebApplicationBuilder services.
@@ -48,15 +49,16 @@ internal static class AddDbContextExtensions
     public static WebApplicationBuilder AddDbContext<TContext>(
         this WebApplicationBuilder builder,
         string? connectionStringKey = default
-    ) where TContext : DbContext
+    )
+        where TContext : DbContext
     {
         var dbContextName = typeof(TContext).Name;
         var connectionStringKeyNames = new[]
         {
-        dbContextName,
-        dbContextName.Replace(nameof(DbContext), string.Empty),
-        dbContextName.Replace(nameof(DbContext), string.Empty) + "Db"
-    };
+            dbContextName,
+            dbContextName.Replace(nameof(DbContext), string.Empty),
+            dbContextName.Replace(nameof(DbContext), string.Empty) + "Db"
+        };
         connectionStringKeyNames = connectionStringKeyNames
             .Concat(
                 connectionStringKeyNames.Select(

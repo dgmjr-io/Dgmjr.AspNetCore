@@ -18,7 +18,8 @@ namespace Microsoft.OpenApi.Attributes;
 
 public class OpenApiAnyOfAttribute : OpenApiSchemaAttribute
 {
-    public OpenApiAnyOfAttribute(params object[] anyOf) : this(anyOf.AsEnumerable()) { }
+    public OpenApiAnyOfAttribute(params object[] anyOf)
+        : this(anyOf.AsEnumerable()) { }
 
     public OpenApiAnyOfAttribute(IEnumerable<object> anyOf)
     {

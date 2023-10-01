@@ -14,7 +14,8 @@ namespace Dgmjr.Payloads.ModelBinders
 {
     public class RangeRequestAttribute : ModelBinderAttribute
     {
-        public RangeRequestAttribute() : base(typeof(RangeRequestModelBinder))
+        public RangeRequestAttribute()
+            : base(typeof(RangeRequestModelBinder))
         {
             this.BindingSource = BindingSource.Header;
             this.BinderType = typeof(RangeRequestModelBinder);

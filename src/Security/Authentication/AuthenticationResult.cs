@@ -1,18 +1,17 @@
-/* 
+/*
  * AuthenticationResult.cs
- * 
+ *
  *   Created: 2023-03-30-08:13:27
  *   Modified: 2023-03-30-08:13:27
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
 namespace Dgmjr.AspNetCore.Authentication.Enums
 {
-
     [GenerateEnumerationClass(nameof(AuthenticationResult), "Dgmjr.AspNetCore.Authentication")]
     public enum AuthenticationResult
     {
@@ -38,7 +37,8 @@ namespace Dgmjr.AspNetCore.Authentication
             Token = token;
         }
 
-        public static AuthenticationResult Success(string token) => new(Enums.AuthenticationResult.SuccessTokenIssued, token);
+        public static AuthenticationResult Success(string token) =>
+            new(Enums.AuthenticationResult.SuccessTokenIssued, token);
 
         public string Token { get; set; }
 
@@ -57,7 +57,8 @@ namespace Dgmjr.AspNetCore.Authentication
             return Value == other.Value && Token == other.Token;
         }
 
-        public override bool Equals(object? other) => other is AuthenticationResult oar && Equals(oar);
+        public override bool Equals(object? other) =>
+            other is AuthenticationResult oar && Equals(oar);
 
         public override int GetHashCode()
         {

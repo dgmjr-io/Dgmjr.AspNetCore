@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Reflection.Metadata.Ecma335;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 using System.Net.Http.Headers;
@@ -30,8 +31,7 @@ public static class AddTheWorksExtensions
     )
     {
         if (@params.Logging)
-            _ = builder.Logging
-                    .AddConfiguration(builder.Configuration.GetSection("Logging"));
+            _ = builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
 
         if (@params.ConsoleLogger)
             builder.Logging.AddConsole();
@@ -45,22 +45,37 @@ public static class AddTheWorksExtensions
         @params.TypesForAutoMapperAndMediatR ??= Empty<type>();
 
         if (@params.SearchEntireAppDomainForAutoMapperAndMediatRTypes)
-            @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => { try { return a.GetTypes(); } catch { return Array.Empty<type>(); } }));
+            @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(
+                AppDomain.CurrentDomain
+                    .GetAssemblies()
+                    .SelectMany(a =>
+                    {
+                        try
+                        {
+                            return a.GetTypes();
+                        }
+                        catch
+                        {
+                            return Array.Empty<type>();
+                        }
+                    })
+            );
 
         if (@params.AutoMapper)
             _ = builder.Services.AddAutoMapper(@params.TypesForAutoMapperAndMediatR.ToArray());
 
         if (@params.Swagger)
-            _ = builder.AddSwaggerGen()
+            _ = builder
+                .AddSwaggerGen()
                 .AddSwaggerMetadata(@params.ThisAssemblyProject ?? typeof(ThisAssembly.Project))
-            .DescribeDataTypesToSwagger()
-            .DescribeBasicApiAuthentication()
-            .AddXmlCommentsToSwagger()
-            .DescribeCrudController()
-            .AddSwaggerExamples()
-            .AddSwaggerHeaderOperationFilter()
-            .DescribeFileUploads()
-            .AddDescribeTypesForAllOutputFormatters();
+                .DescribeDataTypesToSwagger()
+                .DescribeBasicApiAuthentication()
+                .AddXmlCommentsToSwagger()
+                .DescribeCrudController()
+                .AddSwaggerExamples()
+                .AddSwaggerHeaderOperationFilter()
+                .DescribeFileUploads()
+                .AddDescribeTypesForAllOutputFormatters();
 
         if (@params.XmlSerialization)
             _ = builder.Services.AddControllers().AddXmlSerializerFormatters();
@@ -70,7 +85,6 @@ public static class AddTheWorksExtensions
 
         if (@params.JsonPatch)
             _ = builder.AddJsonPatch();
-
 
         _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
 
@@ -116,9 +130,15 @@ public static class AddTheWorksExtensions
         return builder;
     }
 
-    public static WebApplication UseTheWorks(this WebApplication app, type tThisAssemblyProject = null)
+    public static WebApplication UseTheWorks(
+        this WebApplication app,
+        type tThisAssemblyProject = null
+    )
     {
-        tThisAssemblyProject ??= Assembly.GetEntryAssembly().GetTypes().FirstOrDefault(t => t.FullName == "ThisAssembly.Project");
+        tThisAssemblyProject ??= Assembly
+            .GetEntryAssembly()
+            .GetTypes()
+            .FirstOrDefault(t => t.FullName == "ThisAssembly.Project");
         var @params = app.Services.GetRequiredService<IStartupParameters>();
 
         if (@params.AddJsonPatch)
@@ -153,7 +173,9 @@ public static class AddTheWorksExtensions
         {
             _ = app.UseSwagger();
             // app.UseSwaggerUI();
-            _ = app.UseCustomizedSwaggerUI(@params.ThisAssemblyProject ?? typeof(ThisAssembly.Project));
+            _ = app.UseCustomizedSwaggerUI(
+                @params.ThisAssemblyProject ?? typeof(ThisAssembly.Project)
+            );
         }
 
         _ = app.UseRequestDecompression()

@@ -15,6 +15,4 @@ namespace System.Net.Mime.MediaTypes;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-
-
 public partial record struct TextMediaType : IMediaType { }

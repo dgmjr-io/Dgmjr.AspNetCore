@@ -17,11 +17,13 @@ namespace Dgmjr.Payloads;
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
 public class ArrayPayload : ArrayPayload<object>
 {
-    public ArrayPayload() : this(Empty<object>()) { }
+    public ArrayPayload()
+        : this(Empty<object>()) { }
 
     public ArrayPayload(
         IEnumerable values,
         string? stringValue = default,
         string itemSeparator = DefaultItemSeparator
-    ) : base(values.OfType<object>().ToArray(), stringValue, itemSeparator) { }
+    )
+        : base(values.OfType<object>().ToArray(), stringValue, itemSeparator) { }
 }

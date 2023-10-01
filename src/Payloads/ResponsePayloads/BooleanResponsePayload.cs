@@ -18,7 +18,8 @@ using System.Xml.Serialization;
 /// <summary>Represents a response payload with a <see langword="bool" /> value</summary>
 public class BooleanResponsePayload : ResponsePayload<bool>
 {
-    public BooleanResponsePayload(bool value, string? message = default!) : base(value, message) { }
+    public BooleanResponsePayload(bool value, string? message = default!)
+        : base(value, message) { }
 
     /// <inheritdoc />
     [

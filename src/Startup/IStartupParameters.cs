@@ -1,4 +1,5 @@
 namespace Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Configuration.AzureAppConfiguration;
@@ -12,6 +13,7 @@ public interface IStartupParameters
     /// Gets or sets the project type of the assembly that was executed to start the application.
     /// </summary>
     type? ThisAssemblyProject { get; }
+
     /// <summary>
     /// Gets or sets the types used by AutoMapper and MediatR in the application.
     /// </summary>

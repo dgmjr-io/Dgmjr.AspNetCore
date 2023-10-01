@@ -21,12 +21,14 @@ using Dgmjr.Payloads.Abstractions;
 [DebuggerDisplay($"{{{nameof(StringValue)}}}; Count = {{{nameof(Count)}}}")]
 public class ArrayResponsePayload : ArrayResponsePayload<object>, IArrayResponsePayload
 {
-    public ArrayResponsePayload() : this(Empty<object>()) { }
+    public ArrayResponsePayload()
+        : this(Empty<object>()) { }
 
     public ArrayResponsePayload(
         IEnumerable value,
         string? message = default,
         string? stringValue = default,
         string itemSeparator = ArrayPayload<object>.DefaultItemSeparator
-    ) : base(value.OfType<object>().ToArray(), message, stringValue) { }
+    )
+        : base(value.OfType<object>().ToArray(), message, stringValue) { }
 }

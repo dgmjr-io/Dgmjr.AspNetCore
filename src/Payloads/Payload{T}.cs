@@ -18,7 +18,8 @@ using Dgmjr.Payloads.Abstractions;
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
 public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
 {
-    public Payload() : this(default, default) { }
+    public Payload()
+        : this(default, default) { }
 
     public Payload(T value, string? stringValue = default)
     {

@@ -17,13 +17,15 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
 {
     public const string DefaultItemSeparator = ", ";
 
-    public ArrayPayload() : this(default, default) { }
+    public ArrayPayload()
+        : this(default, default) { }
 
     public ArrayPayload(
         IEnumerable<T>? value,
         string? stringValue = default,
         string itemSeparator = DefaultItemSeparator
-    ) : base(value?.ToArray() ?? Empty<T>(), stringValue)
+    )
+        : base(value?.ToArray() ?? Empty<T>(), stringValue)
     {
         StringValue = stringValue;
         ItemSeparator = itemSeparator ?? DefaultItemSeparator;

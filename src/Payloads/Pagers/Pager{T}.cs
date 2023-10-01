@@ -23,7 +23,8 @@ namespace Dgmjr.Payloads;
 )]
 public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayload, IPager
 {
-    public Pager() : this(default, 0, 0, 0) { }
+    public Pager()
+        : this(default, 0, 0, 0) { }
 
     public Pager(
         T[]? items,
@@ -32,7 +33,8 @@ public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayl
         int totalRecords,
         string? message = default,
         string itemSeparator = ArrayPayload<T>.DefaultItemSeparator
-    ) : base(items, message: message, itemSeparator: itemSeparator)
+    )
+        : base(items, message: message, itemSeparator: itemSeparator)
     {
         Page = page;
         PageSize = pageSize;
@@ -46,7 +48,8 @@ public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayl
         string? message = default,
         string itemSeparator = ArrayPayload<T>.DefaultItemSeparator,
         int? statusCode = default
-    ) : base()
+    )
+        : base()
     {
         TotalRecords = items.Count();
         Page = ramge.PageNumber;

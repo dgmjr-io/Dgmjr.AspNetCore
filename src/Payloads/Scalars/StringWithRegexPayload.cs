@@ -14,7 +14,8 @@ namespace Dgmjr.Payloads;
 
 public class StringWithRegexPayload : Payload<string>
 {
-    public StringWithRegexPayload() : this(default, default) { }
+    public StringWithRegexPayload()
+        : this(default, default) { }
 
     public StringWithRegexPayload(string? value, string? regex = default)
     {

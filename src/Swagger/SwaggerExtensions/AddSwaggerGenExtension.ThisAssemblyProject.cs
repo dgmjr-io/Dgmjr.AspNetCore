@@ -11,6 +11,7 @@
  */
 
 namespace Microsoft.Extensions.DependencyInjection;
+
 using System;
 using System.Reflection;
 using static System.String;

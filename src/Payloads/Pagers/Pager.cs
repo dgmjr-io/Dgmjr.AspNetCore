@@ -22,7 +22,8 @@ namespace Dgmjr.Payloads;
 )]
 public class Pager : Pager<object>
 {
-    public Pager() : this(default, 0, 0, 0) { }
+    public Pager()
+        : this(default, 0, 0, 0) { }
 
     public Pager(IEnumerable? items, int page, int pageSize, int totalRecords)
         : base((items ?? Empty<object>()).Cast<object>().ToArray(), page, pageSize, totalRecords)

@@ -16,7 +16,10 @@ public abstract class ResourceBasedAuthorizationHandler<TDbContext, TModel, TId>
         OperationAuthorizationRequirement requirement
     )
     {
-        if (context?.User?.Identity is not null && (context?.User?.Identity?.IsAuthenticated ?? false))
+        if (
+            context?.User?.Identity is not null
+            && (context?.User?.Identity?.IsAuthenticated ?? false)
+        )
         {
             var resource = context.Resource as IAuthorizableEntity;
             if (resource is not null)

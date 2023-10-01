@@ -22,7 +22,8 @@ using System.Net;
 )]
 public class SingleItemPager : SingleItemPager<object>
 {
-    public SingleItemPager() : this(default, 0, 0) { }
+    public SingleItemPager()
+        : this(default, 0, 0) { }
 
     public SingleItemPager(object? value, int pageNumber, int totalRecords)
         : base(value, pageNumber, totalRecords) { }

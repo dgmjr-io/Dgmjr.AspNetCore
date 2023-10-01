@@ -35,7 +35,8 @@ public class SmsSender
     /// Initializes a new instance of the <see cref="SmsSender"/> class.
     /// </summary>
     /// <param name="options">The options.</param>
-    public SmsSender(IOptions<SmsSenderOptions> options) : this(options?.Value) { }
+    public SmsSender(IOptions<SmsSenderOptions> options)
+        : this(options?.Value) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSender"/> class.
@@ -50,6 +51,7 @@ public class SmsSender
     protected SmsClient CreateClient() => new(_options.ConnectionString);
 
     private SmsClient _client;
+
     /// <summary>
     /// Gets the client.
     /// </summary>
@@ -63,6 +65,8 @@ public class SmsSender
     /// <returns>A <![CDATA[Task<SmsSendResult>]]></returns>
     public async Task<SmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
     {
-        return (await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)).Value;
+        return (
+            await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)
+        ).Value;
     }
 }

@@ -43,7 +43,8 @@ public static partial class HttpRequestExtensions2
         this HttpRequest req,
         string name,
         T defaultValue = default
-    ) where T : struct, Enum =>
+    )
+        where T : struct, Enum =>
         req.Query.ContainsKey(name)
             ? Enum.TryParse<T>(req.Query[name].First(), out var result)
                 ? result

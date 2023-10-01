@@ -14,7 +14,9 @@ namespace Dgmjr.Payloads;
 
 public class UriPayload : Payload<uri>
 {
-    public UriPayload() : this(uri.From("about:blank")) { }
+    public UriPayload()
+        : this(uri.From("about:blank")) { }
 
-    public UriPayload(uri value) : base(value) { }
+    public UriPayload(uri value)
+        : base(value) { }
 }

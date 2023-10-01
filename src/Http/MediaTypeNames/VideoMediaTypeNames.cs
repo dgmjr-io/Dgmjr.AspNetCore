@@ -14,7 +14,6 @@ namespace System.Net.Mime.MediaTypes;
 
 using System.Runtime.Serialization;
 
-
 public static class VideoMediaTypeNames
 {
     public const string Base = "video";

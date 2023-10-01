@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.Payloads.Abstractions;
+
 using System.Net;
 
 /// <summary>Represents a strongly-typed response payload of type <typeparamref name="T" />.</summary>

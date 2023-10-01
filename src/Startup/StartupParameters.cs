@@ -12,10 +12,7 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 /// This class is a builder for StartParameters object.
 /// </summary>
 [BuilderFor(typeof(StartupParameters))]
-public partial class StartupParametersBuilder
-{
-}
-
+public partial class StartupParametersBuilder { }
 
 /// <summary>
 /// This record stores all parameters used in the application startup.
@@ -24,7 +21,7 @@ public record class StartupParameters : IStartupParameters
 {
     /// <summary>
     /// Default constructor.
-    /// </summary> 
+    /// </summary>
     public StartupParameters()
     {
         var entryAssebmly = Assembly.GetEntryAssembly();
@@ -54,7 +51,8 @@ public record class StartupParameters : IStartupParameters
     /// <summary>
     /// Types used by AutoMapper and MediatR in the application.
     /// </summary>
-    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; internal set; } = Array.Empty<type>();
+    public IEnumerable<type>? TypesForAutoMapperAndMediatR { get; internal set; } =
+        Array.Empty<type>();
 
     // ...other properties implemented similarly...
     public virtual Action<AzureAppConfigurationOptions> AzureAppConfigu { get; set; }
@@ -73,11 +71,10 @@ public record class StartupParameters : IStartupParameters
         builder.Configuration.AddAzureAppConfiguration(appConfig =>
         {
             AzureAppConfigurator?.Invoke(appConfig);
-            appConfig
-                .ConfigureKeyVault(kv =>
-                {
-                    AzureKeyVaultConfigurator?.Invoke(kv);
-                });
+            appConfig.ConfigureKeyVault(kv =>
+            {
+                AzureKeyVaultConfigurator?.Invoke(kv);
+            });
         });
         return builder;
     }
@@ -142,7 +139,9 @@ public record class StartupParameters : IStartupParameters
         throw new NotImplementedException();
     }
 
-    WebApplicationBuilder IStartupParameters.WithHealthChecks(Action<IHealthChecksBuilder>? configure)
+    WebApplicationBuilder IStartupParameters.WithHealthChecks(
+        Action<IHealthChecksBuilder>? configure
+    )
     {
         throw new NotImplementedException();
     }

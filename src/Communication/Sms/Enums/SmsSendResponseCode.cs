@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 
 namespace Dgmjr.AspNetCore.Communication.Sms.Enums;
+
 /// <summary>
 /// Specifies the JSON converter to use when serializing and deserializing the enumeration.
 /// </summary>

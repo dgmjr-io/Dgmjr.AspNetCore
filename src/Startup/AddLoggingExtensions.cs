@@ -36,11 +36,11 @@ internal static class AddLoggingExtensions
             // Add request headers to log
             new[]
             {
-            HttpRequestHeaderNames.Authorization,
-            HttpRequestHeaderNames.ContentType,
-            HttpRequestHeaderNames.UserAgent,
-            HttpRequestHeaderNames.Accept,
-            HttpRequestHeaderNames.Cookie
+                HttpRequestHeaderNames.Authorization,
+                HttpRequestHeaderNames.ContentType,
+                HttpRequestHeaderNames.UserAgent,
+                HttpRequestHeaderNames.Accept,
+                HttpRequestHeaderNames.Cookie
             }.Select(x => opts.RequestHeaders.Add(x));
 
             // Add response media types to log
@@ -51,15 +51,14 @@ internal static class AddLoggingExtensions
             // Add response headers to log
             new[]
             {
-            HttpResponseHeaderNames.ContentType,
-            HttpResponseHeaderNames.Location,
-            HttpResponseHeaderNames.SetCookie
+                HttpResponseHeaderNames.ContentType,
+                HttpResponseHeaderNames.Location,
+                HttpResponseHeaderNames.SetCookie
             }.Select(x => opts.RequestHeaders.Add(x));
         });
 
         return builder;
     }
-
 
     /// <summary>
     /// Extension method to add logging to the given IServiceCollection.
@@ -79,6 +78,5 @@ internal static class AddLoggingExtensions
         });
 
         return services;
-
     }
 }

@@ -26,13 +26,27 @@ using Microsoft.Extensions.Options;
 using static System.Text.TextEncodingExtensions;
 using ClaimTypes = DgmjrCt;
 
-public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthenticationOptions>, IHttpContextAccessor, ILog
+public class SharedSecretAuthHandler
+    : AuthenticationHandler<SharedSecretAuthenticationOptions>,
+        IHttpContextAccessor,
+        ILog
 {
     private readonly UserManager _userManager;
     private readonly SharedSecretAuthenticationOptions _options;
-    public HttpContext? HttpContext { get => Request.HttpContext; set { } }
+    public HttpContext? HttpContext
+    {
+        get => Request.HttpContext;
+        set { }
+    }
 
-    public SharedSecretAuthHandler(IOptionsMonitor<SharedSecretAuthenticationOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock, UserManager userManager) : base(options, logger, encoder, clock)
+    public SharedSecretAuthHandler(
+        IOptionsMonitor<SharedSecretAuthenticationOptions> options,
+        ILoggerFactory logger,
+        UrlEncoder encoder,
+        ISystemClock clock,
+        UserManager userManager
+    )
+        : base(options, logger, encoder, clock)
     {
         _userManager = userManager;
         _options = options.CurrentValue;
@@ -42,7 +56,9 @@ public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthent
     {
         try
         {
-            var authHeader = AuthenticationHeaderValue.Parse(Request.Headers[HttpRequestHeaderNames.Authorization]);
+            var authHeader = AuthenticationHeaderValue.Parse(
+                Request.Headers[HttpRequestHeaderNames.Authorization]
+            );
             var credentialBytes = FromBase64String(authHeader.Parameter);
             var credentials = GetUTF8String(credentialBytes).Split(':', 2);
             var authUsername = credentials[0];
@@ -51,9 +67,17 @@ public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthent
 
             // authenticate credentials with user service and attach user to http context
             var user = await _userManager.FindByNameAsync(authUsername);
-            if (user is not null && authSecret == _options.Secret && (await _userManager.GetClaimsAsync(user)).Any(c => c.Type == DgmjrCt.Role && DgmjrR.AnonymousUser).Count > 0)
+            if (
+                user is not null
+                && authSecret == _options.Secret
+                && (await _userManager.GetClaimsAsync(user))
+                    .Any(c => c.Type == DgmjrCt.Role && DgmjrR.AnonymousUser)
+                    .Count > 0
+            )
             {
-                var identity = new ClaimsIdentity(SharedSecretAuthenticationOptions.AuthenticationSchemeName);
+                var identity = new ClaimsIdentity(
+                    SharedSecretAuthenticationOptions.AuthenticationSchemeName
+                );
                 var userClaims = await _userManager.GetClaimsAsync(user);
 
                 userClaims.Add(new(TelegramID.Username, user.TelegramUsername));
@@ -65,7 +89,10 @@ public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthent
 
                 identity.AddClaims(userClaims);
                 var principal = new ClaimsPrincipal(identity);
-                var ticket = new AuthenticationTicket(principal, SharedSecretAuthenticationOptions.AuthenticationSchemeName);
+                var ticket = new AuthenticationTicket(
+                    principal,
+                    SharedSecretAuthenticationOptions.AuthenticationSchemeName
+                );
                 Logger.UserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }
@@ -75,7 +102,9 @@ public class SharedSecretAuthHandler : AuthenticationHandler<SharedSecretAuthent
                 return AuthenticateResult.Fail("Invalid username or password.");
             }
             Logger.UserAuthenticationFailed(authUsername);
-            return AuthenticateResult.Fail("An unknown error occurred while authenticating the user.");
+            return AuthenticateResult.Fail(
+                "An unknown error occurred while authenticating the user."
+            );
         }
         catch (Exception ex)
         {

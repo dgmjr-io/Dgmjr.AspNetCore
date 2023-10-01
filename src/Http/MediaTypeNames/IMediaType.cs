@@ -28,6 +28,7 @@ public interface IMediaType
     int Order { get; }
     string Uri { get; }
     string Prompt { get; }
+
     /// <summary>
     /// Returns a that represents this instance. The format of the returned string is the same as that used by ToString ().
     /// </summary>
@@ -44,12 +45,17 @@ public static class IMediaTypeExtensions
     /// </summary>
     /// <param name="IMediaType"></param>
     /// <returns>true if the media type is a wildcard ; otherwise false. For example if the media type is text / plain ; charset = utf - 8</returns>
-    public static bool IsWildcard(this IMediaType @this) => @this.Name.EndsWith("*") || @this.Name.StartsWith("*");
+    public static bool IsWildcard(this IMediaType @this) =>
+        @this.Name.EndsWith("*") || @this.Name.StartsWith("*");
 
     public static bool PrimaryIsWilcard(this IMediaType @this) => @this.Name.StartsWith("*");
+
     public static string GetPrimaryType(this IMediaType @this) => @this.Name.Split('/').First();
+
     public static string GetSecondaryType(this IMediaType @this) => @this.Name.Split('/').Last();
-    public static bool SecondaryIsWildcard(this IMediaType @this) => @this.Name.Split('/').Last().Contains("*");
+
+    public static bool SecondaryIsWildcard(this IMediaType @this) =>
+        @this.Name.Split('/').Last().Contains("*");
 
     /// <summary>
     /// Determines whether the media type matches. This method is case sensitive. The name of the media type is compared with the name of the media type to determine whether it matches.
@@ -63,8 +69,10 @@ public static class IMediaTypeExtensions
         || @this.PrimaryIsWilcard() && @this.GetSecondaryType().EndsWith(other.GetSecondaryType())
         || @other.PrimaryIsWilcard() && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType())
         || @this.PrimaryIsWilcard() && @this.GetSecondaryType().EndsWith(other.GetSecondaryType())
-        || @other.SecondaryIsWildcard() && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType())
-        || @this.SecondaryIsWildcard() && @this.GetSecondaryType().EndsWith(other.GetSecondaryType())
+        || @other.SecondaryIsWildcard()
+            && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType())
+        || @this.SecondaryIsWildcard()
+            && @this.GetSecondaryType().EndsWith(other.GetSecondaryType())
         || @this.Name.Equals(other.Name);
 
     /// <summary>
@@ -141,5 +149,8 @@ public class TempMediaType : IMediaType
 public static class MediTypeExtensions
 {
     public static bool IsText(this IMediaType mediaType) =>
-        mediaType.Matches("text/*") || mediaType.Matches("application/*+xml") || mediaType.Matches("application/*+json") || mediaType.Matches("application/*+xml");
+        mediaType.Matches("text/*")
+        || mediaType.Matches("application/*+xml")
+        || mediaType.Matches("application/*+json")
+        || mediaType.Matches("application/*+xml");
 }

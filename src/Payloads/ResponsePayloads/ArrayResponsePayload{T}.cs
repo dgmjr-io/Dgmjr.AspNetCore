@@ -18,14 +18,16 @@ using Dgmjr.Payloads.Abstractions;
 /// <inheritdoc cref="IArrayResponsePayload{T}"/>
 public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePayload<T>
 {
-    public ArrayResponsePayload() : this(Empty<T>()) { }
+    public ArrayResponsePayload()
+        : this(Empty<T>()) { }
 
     public ArrayResponsePayload(
         T[] values,
         string? stringValue = default,
         string? message = default,
         string itemSeparator = ArrayPayload<T>.DefaultItemSeparator
-    ) : base(values, stringValue, message)
+    )
+        : base(values, stringValue, message)
     {
         ItemSeparator = itemSeparator;
         Message = message ?? string.Empty;

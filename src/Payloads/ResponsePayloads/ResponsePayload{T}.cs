@@ -35,14 +35,16 @@ using Microsoft.OpenApi.Models;
 // [SwaggerSubType(typeof(ResponsePayload))]
 public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
 {
-    public ResponsePayload() : this(default, default) { }
+    public ResponsePayload()
+        : this(default, default) { }
 
     public ResponsePayload(
         T? value,
         string? stringValue = default,
         string? message = default,
         HttpStatusCode statusCode = HttpStatusCode.OK
-    ) : base(value, stringValue)
+    )
+        : base(value, stringValue)
     {
         Message = message ?? string.Empty;
         StatusCode = (int)statusCode;

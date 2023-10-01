@@ -148,7 +148,8 @@ public static partial class AddSwaggerMetadataExtension
 
         var packageTags = new OpenApiArray();
         packageTags.AddRange(
-            thisAssemblyProject.PackageTags?.Split(" ").Select(tag => new OpenApiString(tag)) ?? Array.Empty<OpenApiString>()
+            thisAssemblyProject.PackageTags?.Split(" ").Select(tag => new OpenApiString(tag))
+                ?? Array.Empty<OpenApiString>()
         );
 
         return new()
@@ -159,12 +160,8 @@ public static partial class AddSwaggerMetadataExtension
             TermsOfService = thisAssemblyProject.TermsOfServiceUrl,
             Extensions =
             {
-                ["x-project-url"] = new OpenApiString(
-                    thisAssemblyProject.PackageProjectUrl
-                ),
-                ["x-repositor-url"] = new OpenApiString(
-                    thisAssemblyProject.RepositoryUrl
-                ),
+                ["x-project-url"] = new OpenApiString(thisAssemblyProject.PackageProjectUrl),
+                ["x-repositor-url"] = new OpenApiString(thisAssemblyProject.RepositoryUrl),
                 ["x-package-tags"] = packageTags
             },
             Contact = new()
@@ -174,12 +171,8 @@ public static partial class AddSwaggerMetadataExtension
                 Url = thisAssemblyProject.PackageProjectUrl,
                 Extensions =
                 {
-                    ["x-authors"] = new OpenApiString(
-                        thisAssemblyProject.Authors
-                    ),
-                    ["x-owners"] = new OpenApiString(
-                        thisAssemblyProject.Owners
-                    )
+                    ["x-authors"] = new OpenApiString(thisAssemblyProject.Authors),
+                    ["x-owners"] = new OpenApiString(thisAssemblyProject.Owners)
                 }
             },
             License = new()

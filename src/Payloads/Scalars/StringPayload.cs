@@ -15,7 +15,8 @@ namespace Dgmjr.Payloads;
 
 public class StringPayload : Payload<string>
 {
-    public StringPayload() : this(default) { }
+    public StringPayload()
+        : this(default) { }
 
     public StringPayload(string? value) => Value = value ?? string.Empty;
 

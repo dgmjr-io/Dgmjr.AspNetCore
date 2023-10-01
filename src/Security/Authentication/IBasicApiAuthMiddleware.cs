@@ -11,6 +11,7 @@
  */
 
 namespace Dgmjr.AspNetCore.Authentication;
+
 using Dgmjr.Identity;
 using Microsoft.AspNetCore.Http;
 

@@ -34,8 +34,7 @@ public class ProducesOKResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        )
-    { }
+        ) { }
 }
 
 public class ProducesNoContentResponseAttribute : SwaggerResponseAttribute
@@ -52,8 +51,7 @@ public class ProducesNoContentResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        )
-    { }
+        ) { }
 }
 
 public class ProducesCreatedResponseAttribute : SwaggerResponseAttribute
@@ -71,8 +69,7 @@ public class ProducesCreatedResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        )
-    { }
+        ) { }
 }
 
 public class ProducesPartialContentResponseAttribute : SwaggerResponseAttribute
@@ -90,8 +87,7 @@ public class ProducesPartialContentResponseAttribute : SwaggerResponseAttribute
             ApplicationMediaTypeNames.MessagePack,
             ApplicationMediaTypeNames.Bson,
             TextMediaTypeNames.Plain
-        )
-    { }
+        ) { }
 }
 
 public class CreateOperationAttribute : JwcOperationAttribute
@@ -101,7 +97,8 @@ public class CreateOperationAttribute : JwcOperationAttribute
         string? summary = "Create a new resource",
         string? description = "Create a new resource",
         string[]? tags = null
-    ) : base(operationId, summary, description, tags)
+    )
+        : base(operationId, summary, description, tags)
     {
         OperationId = operationId;
         Summary = summary ?? operationId;
@@ -117,7 +114,8 @@ public class UpdateOperationAttribute : JwcOperationAttribute
         string? summary = "Update an existing resource from a complete model object",
         string? description = "Update an existing resource from a complete model object",
         string[]? tags = null
-    ) : base(operationId, summary, description, tags)
+    )
+        : base(operationId, summary, description, tags)
     {
         OperationId = operationId;
         Summary = summary ?? operationId;
@@ -133,7 +131,8 @@ public class DeleteOperationAttribute : JwcOperationAttribute
         string? summary = "Delete an existing resource",
         string? description = "Delete an existing resource",
         string[]? tags = null
-    ) : base(operationId, summary, description, tags)
+    )
+        : base(operationId, summary, description, tags)
     {
         OperationId = operationId;
         Summary = summary ?? operationId;
@@ -149,7 +148,8 @@ public class PatchOperationAttribute : JwcOperationAttribute
         string? summary = "Update an existing resource from a partial model object",
         string? description = "Update an existing resource from a partial model object",
         string[]? tags = null
-    ) : base(operationId, summary, description, tags)
+    )
+        : base(operationId, summary, description, tags)
     {
         OperationId = operationId;
         Summary = summary ?? operationId;
@@ -173,5 +173,9 @@ public class JwcOperationAttribute : SwaggerOperationAttribute
         Tags = tags ?? new[] { operationId };
     }
 
-    public new virtual string OperationId { get => base.OperationId; set => base.OperationId = value; }
+    public new virtual string OperationId
+    {
+        get => base.OperationId;
+        set => base.OperationId = value;
+    }
 }

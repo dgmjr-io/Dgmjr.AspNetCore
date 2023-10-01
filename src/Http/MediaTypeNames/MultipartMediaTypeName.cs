@@ -1,11 +1,11 @@
-/* 
+/*
  * MultipartMediaTypeName.cs
- * 
+ *
  *   Created: 2023-03-18-06:53:16
  *   Modified: 2023-03-18-06:53:16
- * 
+ *
  *   Author: David G. Moore, Jr. <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */

@@ -35,5 +35,6 @@ public abstract class ApiControllerBase<TDbContext> : ApiControllerBase, IHaveAD
     IDbContext IHaveADbContext.Db => Db;
     public TDbContext Db { get; }
 
-    protected ApiControllerBase(TDbContext dbContext, ILogger logger) : base(logger) => Db = dbContext;
+    protected ApiControllerBase(TDbContext dbContext, ILogger logger)
+        : base(logger) => Db = dbContext;
 }

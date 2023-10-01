@@ -11,6 +11,7 @@
  */
 
 namespace System.Net.Http.Enums;
+
 using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 
@@ -47,7 +48,10 @@ public enum HttpRequestMethod
 
     /// <summary>Describes the communication options for the target resource.</summary>
     /// <value>OPTIONS</value>
-    [Display(Name = "OPTIONS", Description = "Describes the communication options for the target resource.")]
+    [Display(
+        Name = "OPTIONS",
+        Description = "Describes the communication options for the target resource."
+    )]
     [EnumMember(Value = "OPTIONS")]
     [EnumValue("OPTIONS")]
     Options,
@@ -75,7 +79,10 @@ public enum HttpRequestMethod
 
     /// <summary>Performs a message loop-back test along the path to the target resource.</summary>
     /// <value>TRACE</value>
-    [Display(Name = "TRACE", Description = "Performs a message loop-back test along the path to the target resource.")]
+    [Display(
+        Name = "TRACE",
+        Description = "Performs a message loop-back test along the path to the target resource."
+    )]
     [EnumMember(Value = "TRACE")]
     [EnumValue("TRACE")]
     Trace,

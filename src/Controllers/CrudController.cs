@@ -46,7 +46,8 @@ public abstract class CrudController<TModel, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TDto, TDbContext, TId>
@@ -61,7 +62,8 @@ public abstract class CrudController<TModel, TDto, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TInsertDto, TDto, TDbContext, TId>
@@ -76,7 +78,8 @@ public abstract class CrudController<TModel, TInsertDto, TDto, TDbContext, TId>
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger, mapper, mediator) { }
+    )
+        : base(dbContext, logger, mapper, mediator) { }
 }
 
 public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, TDbContext, TId>
@@ -98,7 +101,8 @@ public abstract class CrudController<TModel, TInsertDto, TUpdateDto, TViewDto, T
         ILogger logger,
         IMapper mapper,
         IMediator mediator
-    ) : base(dbContext, logger)
+    )
+        : base(dbContext, logger)
     {
         Mapper = mapper;
         Mediator = mediator;

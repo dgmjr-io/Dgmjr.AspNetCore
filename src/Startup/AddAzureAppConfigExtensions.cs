@@ -11,13 +11,20 @@ internal static class AddAzureAppConfigExtensions
 {
     public const string DefaultConnectionStringKey = "ConnectionStrings:AzureAppConfig";
 
-    public static readonly Func<IConfiguration, global::Azure.Core.TokenCredential> DefaultKeyVaultCredentialsFactory = configuration =>
+    public static readonly Func<
+        IConfiguration,
+        global::Azure.Core.TokenCredential
+    > DefaultKeyVaultCredentialsFactory = configuration =>
     {
         var clientId = configuration["AzureKeyVault:ClientId"];
         var tenantId = configuration["AzureKeyVault:TenantId"];
         var clientSecret = configuration["AzureKeyVault:ClientSecret"];
 
-        if (!string.IsNullOrEmpty(clientId) && !string.IsNullOrEmpty(tenantId) && !string.IsNullOrEmpty(clientSecret))
+        if (
+            !string.IsNullOrEmpty(clientId)
+            && !string.IsNullOrEmpty(tenantId)
+            && !string.IsNullOrEmpty(clientSecret)
+        )
         {
             return new ClientSecretCredential(tenantId, clientId, clientSecret);
         }

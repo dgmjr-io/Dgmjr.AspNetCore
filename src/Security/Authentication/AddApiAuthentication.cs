@@ -33,11 +33,10 @@ public static class AddApiAuthenticationExtensions
     )
     {
         builder.Services.AddScoped<IBasicApiAuthMiddleware, BasicApiAuthMiddleware>();
-        builder.Services
-            .AddAuthentication(Api)
-            .AddApiBasicAuthentication();
+        builder.Services.AddAuthentication(Api).AddApiBasicAuthentication();
         return builder;
     }
+
     /// <summary>Registers the API basic authentication middleware.</summary>
     public static WebApplicationBuilder AddApiAuthentication(
         this WebApplicationBuilder builder,
@@ -47,9 +46,7 @@ public static class AddApiAuthenticationExtensions
     )
     {
         builder.Services.AddScoped<IBasicApiAuthMiddleware, BasicApiAuthMiddleware>();
-        builder.Services
-            .AddAuthentication(Api)
-            .AddApiBasicAuthentication();
+        builder.Services.AddAuthentication(Api).AddApiBasicAuthentication();
         return builder;
     }
 

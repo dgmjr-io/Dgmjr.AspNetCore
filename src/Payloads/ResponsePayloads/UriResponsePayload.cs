@@ -11,13 +11,15 @@
 //
 
 namespace Dgmjr.Payloads;
+
 using System;
 using System.Xml.Serialization;
 
 /// <summary>Represents a response payload with a <see langword="uri" /> value</summary>.
 public class UriResponsePayload : ResponsePayload<uri?>
 {
-    public UriResponsePayload(uri value, string? message = default!) : base(value, message) { }
+    public UriResponsePayload(uri value, string? message = default!)
+        : base(value, message) { }
 
     /// <inheritdoc />
     [
@@ -37,7 +39,9 @@ public class UriResponsePayload : ResponsePayload<uri?>
             }
             else
             {
-                throw new InvalidCastException($"Cannot cast {value} to {nameof(UriResponsePayload)}");
+                throw new InvalidCastException(
+                    $"Cannot cast {value} to {nameof(UriResponsePayload)}"
+                );
             }
         }
     }

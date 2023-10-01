@@ -23,5 +23,6 @@ public class JwtAuthenticationScheme : AuthenticationScheme, IAuthenticationSche
         string? displayName = Constants.AuthenticationSchemes.JwtBearer.DisplayName,
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
             type? handlerType = default
-    ) : base(name, displayName, handlerType ?? typeof(JwtAuthHandler)) { }
+    )
+        : base(name, displayName, handlerType ?? typeof(JwtAuthHandler)) { }
 }
