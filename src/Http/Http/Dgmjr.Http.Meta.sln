@@ -11,13 +11,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\Packages\Packages\Azure.pkgs = ..\..\..\..\..\Packages\Packages\Azure.pkgs
 		..\..\..\..\..\Packages\Packages\AzureFunctions.pkgs = ..\..\..\..\..\Packages\Packages\AzureFunctions.pkgs
 		..\..\..\..\..\Packages\Packages\DDD.pkgs = ..\..\..\..\..\Packages\Packages\DDD.pkgs
-		..\..\..\..\..\Packages\Packages\EFCore.pkgs = ..\..\..\..\..\Packages\Packages\EFCore.pkgs
 		..\..\..\..\..\Packages\Packages\GlobalBuild.pkgs = ..\..\..\..\..\Packages\Packages\GlobalBuild.pkgs
-		..\..\..\..\..\Packages\Packages\GlobalCodeGenerators.pkgs = ..\..\..\..\..\Packages\Packages\GlobalCodeGenerators.pkgs
 		..\..\..\..\..\Packages\Packages\Images.pkgs = ..\..\..\..\..\Packages\Packages\Images.pkgs
 		..\..\..\..\..\Packages\Packages\McMaster.CommandLineUtils.pkgs = ..\..\..\..\..\Packages\Packages\McMaster.CommandLineUtils.pkgs
 		..\..\..\..\..\Packages\Packages\MediatR.pkgs = ..\..\..\..\..\Packages\Packages\MediatR.pkgs
 		..\..\..\..\..\Packages\Packages\Microsoft.AspNetCore.pkgs = ..\..\..\..\..\Packages\Packages\Microsoft.AspNetCore.pkgs
+		..\..\..\..\..\Packages\Packages\Microsoft.EntityFrameworkCore.pkgs = ..\..\..\..\..\Packages\Packages\Microsoft.EntityFrameworkCore.pkgs
 		..\..\..\..\..\Packages\Packages\Microsoft.Extensions.pkgs = ..\..\..\..\..\Packages\Packages\Microsoft.Extensions.pkgs
 		..\..\..\..\..\Packages\Packages\Microsoft.Identity.pkgs = ..\..\..\..\..\Packages\Packages\Microsoft.Identity.pkgs
 		..\..\..\..\..\Packages\Packages\Microsoft.VisualStudio.Shell.Interop.pkgs = ..\..\..\..\..\Packages\Packages\Microsoft.VisualStudio.Shell.Interop.pkgs
@@ -36,20 +35,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\Packages\Packages\Telegram.pkgs = ..\..\..\..\..\Packages\Packages\Telegram.pkgs
 		..\..\..\..\..\Packages\Packages\Testing.EfCore.pkgs = ..\..\..\..\..\Packages\Packages\Testing.EfCore.pkgs
 		..\..\..\..\..\Packages\Packages\Testing.pkgs = ..\..\..\..\..\Packages\Packages\Testing.pkgs
+		..\..\..\..\..\Packages\Packages\ThisAssembly.pkgs = ..\..\..\..\..\Packages\Packages\ThisAssembly.pkgs
 		..\..\..\..\..\Packages\Packages\Validation.pkgs = ..\..\..\..\..\Packages\Packages\Validation.pkgs
 		..\..\..\..\..\Packages\Packages\XmlDocMd.pkgs = ..\..\..\..\..\Packages\Packages\XmlDocMd.pkgs
 		..\..\..\..\..\Packages\Versions\AspNetCoreIdentity.props = ..\..\..\..\..\Packages\Versions\AspNetCoreIdentity.props
 		..\..\..\..\..\Packages\Versions\AutoMapper.props = ..\..\..\..\..\Packages\Versions\AutoMapper.props
+		..\..\..\..\..\Packages\Versions\CoreIntegratedLibs.props = ..\..\..\..\..\Packages\Versions\CoreIntegratedLibs.props
 		..\..\..\..\..\Packages\Versions\EFCore.props = ..\..\..\..\..\Packages\Versions\EFCore.props
 		..\..\..\..\..\Packages\Versions\JsonPatch.props = ..\..\..\..\..\Packages\Versions\JsonPatch.props
 		..\..\..\..\..\Packages\Versions\MediatR.props = ..\..\..\..\..\Packages\Versions\MediatR.props
+		..\..\..\..\..\Packages\Versions\Microsoft.Build.props = ..\..\..\..\..\Packages\Versions\Microsoft.Build.props
+		..\..\..\..\..\Packages\Versions\Microsoft.CodeAnalysis.props = ..\..\..\..\..\Packages\Versions\Microsoft.CodeAnalysis.props
 		..\..\..\..\..\Packages\Versions\Microsoft.Extensions.Logging.props = ..\..\..\..\..\Packages\Versions\Microsoft.Extensions.Logging.props
-		..\..\..\..\..\Packages\Versions\MSBuild.props = ..\..\..\..\..\Packages\Versions\MSBuild.props
 		..\..\..\..\..\Packages\Versions\PowerShell.props = ..\..\..\..\..\Packages\Versions\PowerShell.props
 	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Local|Any CPU = Local|Any CPU
+		Debug|Any CPU = Debug|Any CPU
+		Testing|Any CPU = Testing|Any CPU
+		Staging|Any CPU = Staging|Any CPU
+		Production|Any CPU = Production|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 	EndGlobalSection

@@ -10,9 +10,9 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace System.Net.Mime.MediaTypes;
+namespace System.Net.Mime.MediaTypes.Abstractions;
 
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-public partial record struct TextMediaType : IMediaType { }
+public partial interface ITextMediaType : IMediaType { }

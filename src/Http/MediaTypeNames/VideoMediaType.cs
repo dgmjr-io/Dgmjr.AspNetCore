@@ -10,6 +10,6 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace System.Net.Mime.MediaTypes;
+namespace System.Net.Mime.MediaTypes.Abstractions;
 
-public partial record struct VideoMediaType : IMediaType { }
+public partial interface IVideoMediaType : IMediaType { }

@@ -36,12 +36,12 @@ public static class ModelMediaTypeNames
     /// <see href="https://www.iana.org/assignments/media-types/model/gltf-binary">[Khronos][Saurabh_Bhatia]</see>
     /// <value>model/gltf-binary</value>
     /// <summary> The model/gltf-binary MIME type</summary>
-    public const string gltf_binary = Base + "/" + "gltf_binary";
+    public const string gltf_binary = Base + "/" + "gltf-binary";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/gltf+json">[Khronos][Uli_Klumpp]</see>
     /// <value>model/gltf+json</value>
     /// <summary> The model/gltf+json MIME type</summary>
-    public const string gltf_json = Base + "/" + "gltf_json";
+    public const string gltf_json = Base + "/" + "gltf+json";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/JT">[ISO-TC_184-SC_4][Michael_Zink]</see>
     /// <value>model/JT</value>
@@ -81,17 +81,17 @@ public static class ModelMediaTypeNames
     /// <see href="https://www.iana.org/assignments/media-types/model/step+xml">[ISO-TC_184-SC_4][Dana_Tripp]</see>
     /// <value>model/step+xml</value>
     /// <summary> The model/step+xml MIME type</summary>
-    public const string step_xml = Base + "/" + "step_xml";
+    public const string step_xml = Base + "/" + "step+xml";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/step+zip">[ISO-TC_184-SC_4][Dana_Tripp]</see>
     /// <value>model/step+zip</value>
     /// <summary> The model/step+zip MIME type</summary>
-    public const string step_zip = Base + "/" + "step_zip";
+    public const string step_zip = Base + "/" + "step+zip";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/step-xml+zip">[ISO-TC_184-SC_4][Dana_Tripp]</see>
     /// <value>model/step-xml+zip</value>
     /// <summary> The model/step-xml+zip MIME type</summary>
-    public const string step_xml_zip = Base + "/" + "step_xml_zip";
+    public const string step_xml_zip = Base + "/" + "step-xml+zip";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/stl">[DICOM_Standard_Committee][DICOM_WG_17][Carolyn_Hull]</see>
     /// <value>model/stl</value>
@@ -106,100 +106,100 @@ public static class ModelMediaTypeNames
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.cld">[Robert_Monaghan]</see>
     /// <value>model/vnd.cld</value>
     /// <summary> The model/vnd.cld MIME type</summary>
-    public const string vnd_cld = Base + "/" + "vnd_cld";
+    public const string vnd_cld = Base + "/" + "vnd.cld";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.collada+xml">[James_Riordon]</see>
     /// <value>model/vnd.collada+xml</value>
     /// <summary> The model/vnd.collada+xml MIME type</summary>
-    public const string vnd_collada_xml = Base + "/" + "vnd_collada_xml";
+    public const string vnd_collada_xml = Base + "/" + "vnd.collada+xml";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.dwf">[Jason_Pratt]</see>
     /// <value>model/vnd.dwf</value>
     /// <summary> The model/vnd.dwf MIME type</summary>
-    public const string vnd_dwf = Base + "/" + "vnd_dwf";
+    public const string vnd_dwf = Base + "/" + "vnd.dwf";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.flatland.3dml">[Michael_Powers]</see>
     /// <value>model/vnd.flatland.3dml</value>
     /// <summary> The model/vnd.flatland.3dml MIME type</summary>
-    public const string vnd_flatland_3dml = Base + "/" + "vnd_flatland_3dml";
+    public const string vnd_flatland_3dml = Base + "/" + "vnd.flatland.3dml";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.gdl">[Attila_Babits]</see>
     /// <value>model/vnd.gdl</value>
     /// <summary> The model/vnd.gdl MIME type</summary>
-    public const string vnd_gdl = Base + "/" + "vnd_gdl";
+    public const string vnd_gdl = Base + "/" + "vnd.gdl";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.gs-gdl">[Attila_Babits]</see>
     /// <value>model/vnd.gs-gdl</value>
     /// <summary> The model/vnd.gs-gdl MIME type</summary>
-    public const string vnd_gs_gdl = Base + "/" + "vnd_gs_gdl";
+    public const string vnd_gs_gdl = Base + "/" + "vnd.gs-gdl";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.gtw">[Yutaka_Ozaki]</see>
     /// <value>model/vnd.gtw</value>
     /// <summary> The model/vnd.gtw MIME type</summary>
-    public const string vnd_gtw = Base + "/" + "vnd_gtw";
+    public const string vnd_gtw = Base + "/" + "vnd.gtw";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.moml+xml">[Christopher_Brooks]</see>
     /// <value>model/vnd.moml+xml</value>
     /// <summary> The model/vnd.moml+xml MIME type</summary>
-    public const string vnd_moml_xml = Base + "/" + "vnd_moml_xml";
+    public const string vnd_moml_xml = Base + "/" + "vnd.moml+xml";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.mts">[Boris_Rabinovitch]</see>
     /// <value>model/vnd.mts</value>
     /// <summary> The model/vnd.mts MIME type</summary>
-    public const string vnd_mts = Base + "/" + "vnd_mts";
+    public const string vnd_mts = Base + "/" + "vnd.mts";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.opengex">[Eric_Lengyel]</see>
     /// <value>model/vnd.opengex</value>
     /// <summary> The model/vnd.opengex MIME type</summary>
-    public const string vnd_opengex = Base + "/" + "vnd_opengex";
+    public const string vnd_opengex = Base + "/" + "vnd.opengex";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.parasolid.transmit.binary">[Parasolid]</see>
     /// <value>model/vnd.parasolid.transmit.binary</value>
     /// <summary> The model/vnd.parasolid.transmit.binary MIME type</summary>
     public const string vnd_parasolid_transmit_binary =
-        Base + "/" + "vnd_parasolid_transmit_binary";
+        Base + "/" + "vnd.parasolid.transmit.binary";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.parasolid.transmit.text">[Parasolid]</see>
     /// <value>model/vnd.parasolid.transmit.text</value>
     /// <summary> The model/vnd.parasolid.transmit.text MIME type</summary>
-    public const string vnd_parasolid_transmit_text = Base + "/" + "vnd_parasolid_transmit_text";
+    public const string vnd_parasolid_transmit_text = Base + "/" + "vnd.parasolid.transmit.text";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.pytha.pyox">[Daniel_Flassig]</see>
     /// <value>model/vnd.pytha.pyox</value>
     /// <summary> The model/vnd.pytha.pyox MIME type</summary>
-    public const string vnd_pytha_pyox = Base + "/" + "vnd_pytha_pyox";
+    public const string vnd_pytha_pyox = Base + "/" + "vnd.pytha.pyox";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.rosette.annotated-data-model">[Benson_Margulies]</see>
     /// <value>model/vnd.rosette.annotated-data-model</value>
     /// <summary> The model/vnd.rosette.annotated-data-model MIME type</summary>
     public const string vnd_rosette_annotated_data_model =
-        Base + "/" + "vnd_rosette_annotated_data_model";
+        Base + "/" + "vnd.rosette.annotated-data-model";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.sap.vds">[SAP_SE][Igor_Afanasyev]</see>
     /// <value>model/vnd.sap.vds</value>
     /// <summary> The model/vnd.sap.vds MIME type</summary>
-    public const string vnd_sap_vds = Base + "/" + "vnd_sap_vds";
+    public const string vnd_sap_vds = Base + "/" + "vnd.sap.vds";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.usda">[Sebastian_Grassia]</see>
     /// <value>model/vnd.usda</value>
     /// <summary> The model/vnd.usda MIME type</summary>
-    public const string vnd_usda = Base + "/" + "vnd_usda";
+    public const string vnd_usda = Base + "/" + "vnd.usda";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.usdz+zip">[Sebastian_Grassia]</see>
     /// <value>model/vnd.usdz+zip</value>
     /// <summary> The model/vnd.usdz+zip MIME type</summary>
-    public const string vnd_usdz_zip = Base + "/" + "vnd_usdz_zip";
+    public const string vnd_usdz_zip = Base + "/" + "vnd.usdz+zip";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.valve.source.compiled-map">[Henrik_Andersson]</see>
     /// <value>model/vnd.valve.source.compiled-map</value>
     /// <summary> The model/vnd.valve.source.compiled-map MIME type</summary>
     public const string vnd_valve_source_compiled_map =
-        Base + "/" + "vnd_valve_source_compiled_map";
+        Base + "/" + "vnd.valve.source.compiled-map";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.vtu">[Boris_Rabinovitch]</see>
     /// <value>model/vnd.vtu</value>
     /// <summary> The model/vnd.vtu MIME type</summary>
-    public const string vnd_vtu = Base + "/" + "vnd_vtu";
+    public const string vnd_vtu = Base + "/" + "vnd.vtu";
 
     /// <see href=">[RFC2077]</see>
     /// <value></value>

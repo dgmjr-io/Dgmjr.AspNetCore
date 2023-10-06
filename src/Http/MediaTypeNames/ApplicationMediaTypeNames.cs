@@ -58,5 +58,3 @@ public static class ApplicationMediaTypeNames
     /// <inheritdoc cref="ApplicationMediaTypesEnum.Example" />
     public const string Example = Base + "/" + "example";
 }
-
-public partial record struct ApplicationMediaType : IMediaType { }

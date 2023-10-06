@@ -168,5 +168,6 @@ public enum HttpResponseHeaderName
     Warning,
 
     ///<summary>Indicates the authentication scheme that should be used to access the requested entity.</summary>
+    [Display(Name = "WWW-Authenticate")]
     WWWAuthenticate,
 }
