@@ -25,16 +25,16 @@ public class UriResponsePayload : ResponsePayload<uri?>
     [
         JProp("stringValue"),
         JIgnore(Condition = JIgnoreCond.WhenWritingNull),
-        XmlAttribute("stringValue")
+        XAttribute("stringValue")
     ]
     public override string? StringValue
     {
-        get => _stringValue ?? Value.ToString();
+        get => base.StringValue ?? Value.ToString();
         set
         {
             if (uri.TryParse(value, out var u))
             {
-                _stringValue = u.ToString();
+                base.StringValue = u.ToString();
                 Value = u;
             }
             else

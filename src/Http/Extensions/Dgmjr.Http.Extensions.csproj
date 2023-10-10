@@ -1,18 +1,18 @@
 <!--
  Extensions.csproj
- 
+
    Created: 2022-10-31-08:16:34
    Modified: 2022-10-31-08:16:35
- 
+
    Author: David G. Moore, Jr, <david@dgmjr.io>
-   
+
    Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
       License: MIT (https://opensource.org/licenses/MIT)
 -->
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
         <PackageId>Dgmjr.Http.Extensions</PackageId>
         <AssemblyName>$(PackageId)</AssemblyName>
         <RootNamespace>$(PackageId)</RootNamespace>

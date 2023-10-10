@@ -14,8 +14,15 @@ namespace Dgmjr.Payloads
         public const string Items = "items";
         public const string RegexString = @"items\s(?<Start>[0-9]+)\-(?:(?<End>[0-9]+)?|[\*])";
 
+#if NET7_0_OR_GREATER
         [GeneratedRegex(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase)]
         public static partial REx Regex();
+#else
+        private static readonly REx _regex =
+            new(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+        public static REx Regex() => _regex;
+#endif
 
         private const string MaxIntString = "2147483647";
 

@@ -13,7 +13,7 @@ namespace Dgmjr.AspNetCore.Authentication;
 
 using Enums;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
-using JwcSecOps = Security.Operations;
+using DgmjrSecOps = Dgmjr.Security.Operations;
 
 public partial class Operations : OperationAuthorizationRequirement
 {
@@ -39,13 +39,13 @@ public partial class Operations : OperationAuthorizationRequirement
     //     return !(left == right);
     // }
 
-    public static implicit operator JwcSecOps(Operations op) =>
+    public static implicit operator DgmjrSecOps(Operations op) =>
         op.Value switch
         {
-            OperationsEnum.Create => JwcSecOps.Create.Instance,
-            OperationsEnum.Read => JwcSecOps.Read.Instance,
-            OperationsEnum.Update => JwcSecOps.Update.Instance,
-            OperationsEnum.Delete => JwcSecOps.Delete.Instance,
+            OperationsEnum.Create => DgmjrSecOps.Create.Instance,
+            OperationsEnum.Read => DgmjrSecOps.Read.Instance,
+            OperationsEnum.Update => DgmjrSecOps.Update.Instance,
+            OperationsEnum.Delete => DgmjrSecOps.Delete.Instance,
             _
                 => throw new InvalidCastException(
                     $"Could not cast the value {op} into an object of type {typeof(JwcSecOps)}"

@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Payloads.props
- * 
+ *
  *   Created: 2022-11-18-03:50:30
  *   Modified: 2022-11-18-03:50:30
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -27,6 +27,7 @@
     <ItemGroup>
         <Using Include="Dgmjr.Payloads" />
         <Using Include="Dgmjr.Payloads.Abstractions" />
+        <Using Include="System.Text.Json.Serialization.JsonPropertyNameAttribute" Alias="JPropAttribute" />
         <!-- <Using Include="Dgmjr.Enumerations.Abstractions" /> -->
     </ItemGroup>
 </Project>

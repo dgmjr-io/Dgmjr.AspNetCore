@@ -34,7 +34,7 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     }
 
     /// <summary>The arrray of values</summary>
-    [JProp("values"), XAttr("values"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
+    [JProp("values"), XAttribute("values"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
     public virtual T[]? Values
     {
         get => Value;
@@ -49,7 +49,7 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     }
 
     /// <summary>The number of items in the array</summary>
-    [JProp("count"), XAttr("count")]
+    [JProp("count"), XAttribute("count")]
     public virtual int Count => Values.Length;
 
     public override string ToString() => _stringValue ?? Join(ItemSeparator, Values);
