@@ -17,25 +17,25 @@ using Abstractions;
 public readonly record struct TempMediaType(string Name) : IMediaType
 {
     public string DisplayName { get; } = Name;
-    private static readonly MD5 MD5 = MD5.Create();
-    public string[] Synonyms
+private static readonly MD5 MD5 = MD5.Create();
+public string[] Synonyms
+{
+    get => Empty<string>();
+    init
     {
-        get => Empty<string>();
-        init
-        {
-            /* do nothing */
-        }
+        /* do nothing */
     }
-    Uri IHaveAUri.Uri => new(UriString);
-    object IIdentifiable.Id => Id;
-    public int Id => 0;
-    public string UriString => "urn:temp:media-type:" + DisplayName.ToKebabCase();
-    public string GuidString => MD5.ComputeHash(UriString.ToUTF8Bytes()).ToHexString();
-    public guid Guid => new(GuidString);
-    public string Description => Name;
-    public string GroupName => Name;
-    public string ShortName => Name;
-    public string Name => DisplayName;
-    public int Order => 0;
-    public string Prompt => "";
+}
+Uri IHaveAUri.Uri => new(UriString);
+object IIdentifiable.Id => Id;
+public int Id => 0;
+public string UriString => "urn:temp:media-type:" + DisplayName.ToKebabCase();
+public string GuidString => MD5.ComputeHash(UriString.ToUTF8Bytes()).ToHexString();
+public guid Guid => new(GuidString);
+public string Description => Name;
+public string GroupName => Name;
+public string ShortName => Name;
+public string Name => DisplayName;
+public int Order => 0;
+public string Prompt => "";
 }
