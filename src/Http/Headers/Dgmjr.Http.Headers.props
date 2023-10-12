@@ -1,0 +1,19 @@
+<!--
+ * Dgmjr.Http.csproj
+ *
+ *   Created: 2022-11-19-09:27:38
+ *   Modified: 2022-11-19-09:27:39
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+    <ItemGroup>
+        <Using Include="Dgmjr.Http.Headers.HttpRequestHeaderNames" Alias="HReqH" />
+        <Using Include="Dgmjr.Http.Headers.HttpResponseHeaderNames" Alias="HResH" />
+        <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+    </ItemGroup>
+</Project>

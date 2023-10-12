@@ -100,6 +100,8 @@ public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayl
     [JProp("hasNext")]
     public virtual bool HasNextPage => Page < TotalPages;
 
+    HttpStatusCode? IResponsePayload.StatusCode => (HttpStatusCode?)StatusCode;
+
     private int? _statusCode;
     public override int? StatusCode
     {

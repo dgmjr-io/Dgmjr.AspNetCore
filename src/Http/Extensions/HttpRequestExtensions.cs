@@ -18,6 +18,6 @@ public static partial class HttpRequestExtensions2
 {
     public static string GetContentType(this HttpRequest req) =>
         req.ContentType
-        ?? req.GetHeaderParam<string>(ContentType)
+        ?? req.GetHeaderParam<string>(ContentType.DisplayName)
         ?? ApplicationMediaTypeNames.Json;
 }

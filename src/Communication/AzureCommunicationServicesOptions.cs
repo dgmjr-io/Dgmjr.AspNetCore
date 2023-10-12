@@ -1,10 +1,18 @@
+using Microsoft.VisualBasic;
+
 namespace Dgmjr.AspNetCore.Communication;
+
+using SS = System.Diagnostics.CodeAnalysis.StringSyntaxAttribute;
 
 using System;
 
-[RegexDto("^endpoint=(?<Endpoint:uri>https://.*);accessKey=(?<AccessKey:string>.*)$")]
+[RegexDto(_RegexString)]
 public partial record class AzureCommunicationServicesOptionsBase
 {
+    [StringSyntax(SS.Regex)]
+    public const string _RegexString =
+        "^endpoint=(?<Endpoint:uri>https://.*);accessKey=(?<AccessKey:string>.*)$";
+
     public AzureCommunicationServicesOptionsBase(uri endpoint, string accessKey)
     {
         Endpoint = endpoint;

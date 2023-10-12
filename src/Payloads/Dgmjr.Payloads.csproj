@@ -30,13 +30,14 @@
         <PackageReference Include="Dgmjr.Primitives" />
         <PackageReference Include="Dgmjr.Abstractions" />
         <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+        <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
 
-        <PackageReference Include="System.Text.Json.Usings" />
-        <PackageReference Include="System.Text.RegularExpressions.Usings" />
+        <UsingsPackageReference Include="System.Text.Json.Usings" />
+        <UsingsPackageReference Include="System.Text.RegularExpressions.Usings" />
 
         <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-        <ProjectReference Include="../Http/Http/Dgmjr.Http.Meta.csproj" />
-        <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
+        <ProjectReference Include="../Http/Headers/Dgmjr.Http.csproj" />
+        <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
         <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
         <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
     </ItemGroup>

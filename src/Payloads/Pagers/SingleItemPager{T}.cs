@@ -21,7 +21,7 @@ using Microsoft.OpenApi.Models;
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"
 )]
-public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
+public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager, IPayload<T>
 {
     public SingleItemPager()
         : this(default, 0, 0) { }

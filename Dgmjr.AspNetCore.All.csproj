@@ -26,7 +26,7 @@
     <ProjectReference Include="./src/Formatters/Dgmjr.AspNetCore.Formatters.csproj" />
     <ProjectReference Include="./src/Http/Extensions/Dgmjr.Http.Extensions.csproj" />
     <ProjectReference Include="./src/Http/Http/Dgmjr.Http.Meta.csproj" />
-    <ProjectReference Include="./src/Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
+    <ProjectReference Include="./src/Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="./src/Payloads/Dgmjr.Payloads.csproj" />
     <ProjectReference Include="./src/Startup/Dgmjr.AspNetCore.Startup.csproj" />
     <ProjectReference Include="./src/Swagger/Dgmjr.AspNetCore.Swagger.csproj" />

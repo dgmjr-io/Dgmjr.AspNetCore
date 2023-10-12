@@ -1,4 +1,4 @@
-﻿/*
+/*
  * PingController.cs
  *
  *   Created: 2022-12-06-10:35:09
@@ -12,7 +12,8 @@
 
 namespace Dgmjr.AspNetCore.Controllers;
 
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -65,7 +66,7 @@ public static class PingExtensions
                     Description = "Pong",
                     Content =
                     {
-                        [ApplicationMediaTypeNames.Json] = new()
+                        [ApplicationMediaType.Json.DisplayName] = new()
                         {
                             Schema = new()
                             {

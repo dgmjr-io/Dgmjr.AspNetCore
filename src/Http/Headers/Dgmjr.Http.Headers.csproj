@@ -1,0 +1,32 @@
+<!--
+ * Dgmjr.Http.Meta.csproj
+ *
+ *   Created: 2023-03-18-03:56:39
+ *   Modified: 2023-03-31-10:46:56
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <SlnGenSolutionFolder>constants</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.ComponentModel" />
+    <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
+    <UsingsPackageReference Include="System.ComponentModel.Usings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Enumerations.Abstractions" />
+    <Using Include="Dgmjr.Enumerations" />
+    <Using Include="System.Reflection" />
+    <Using Include="System.Runtime.CompilerServices" />
+  </ItemGroup>
+</Project>

@@ -28,9 +28,8 @@ public class PlainTextOutputFormatter : OutputFormatter
     public override void WriteResponseHeaders(OutputFormatterWriteContext context)
     {
         base.WriteResponseHeaders(context);
-        context.HttpContext.Response.Headers[HttpResponseHeaderNames.ContentType] = GetContentType(
-            context
-        );
+        context.HttpContext.Response.Headers[HttpResponseHeaderNames.ContentType.DisplayName] =
+            GetContentType(context);
         context.HttpContext.Response.ContentType = TextMediaTypeNames.Plain;
     }
 
@@ -38,7 +37,7 @@ public class PlainTextOutputFormatter : OutputFormatter
         context.Object is string
         && context.HttpContext.Request
             .GetTypedHeaders()
-            .Accept.Any(a => a.MediaType.Value.ToLower().StartsWith("text/"));
+            .Accept.Any(a => a.MediaType.Value.ToLower().StartsWith("text/", OrdinalIgnoreCase));
 
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context) =>
         await context?.HttpContext?.Response?.WriteAsync(

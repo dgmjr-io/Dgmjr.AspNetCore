@@ -12,10 +12,10 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
     </PropertyGroup>
-    
+
     <ItemGroup>
         <!-- <PackageReference Include="Microsoft.AspNetCore.App.Ref" /> -->
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" />
@@ -47,11 +47,11 @@
         <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" ExcludeAssets="ContentFiles" />
+        <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" ExcludeAssets="ContentFiles" />
-        <ProjectReference Include="../Http/Http/Dgmjr.Http.Meta.csproj" ExcludeAssets="ContentFiles" />
+        <ProjectReference Include="../Http/Headers/Dgmjr.Http.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" ExcludeAssets="ContentFiles" />
     </ItemGroup>
 </Project>

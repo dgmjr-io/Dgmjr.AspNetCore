@@ -35,8 +35,8 @@
     <PackageReference Include="Dgmjr.Identity.Roles" ExcludeAssets="ContentFiles;" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" />
-    <ProjectReference Include="../../Http/Http/Dgmjr.Http.Meta.csproj" />
+    <ProjectReference Include="../../Http/Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../../Http/Headers/Dgmjr.Http.csproj" />
     <ProjectReference Include="../../Payloads/Dgmjr.Payloads.csproj" />
   </ItemGroup>
   <ItemGroup>

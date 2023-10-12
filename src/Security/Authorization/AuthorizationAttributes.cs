@@ -18,12 +18,12 @@ using Microsoft.AspNetCore.Authorization;
 public class AdminAttribute : AuthorizeAttribute
 {
     public AdminAttribute()
-        : base() => Roles = DgmjrR.Admin.Uri;
+        : base() => Roles = DgmjrR.Admin.Uri.ToString();
 }
 
 [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, AllowMultiple = true)]
 public class AuthenticatedUserAttribute : AuthorizeAttribute
 {
     public AuthenticatedUserAttribute()
-        : base() => Roles = DgmjrR.User.Uri;
+        : base() => Roles = DgmjrR.User.Uri.ToString();
 }

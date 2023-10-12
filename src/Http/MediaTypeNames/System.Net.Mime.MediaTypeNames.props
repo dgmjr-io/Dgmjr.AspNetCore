@@ -1,7 +1,0 @@
-<Project>
-  <ItemGroup>
-    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
-    <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
-    <Using Include="System.Net.Mime.MediaTypes" />
-  </ItemGroup>
-</Project>

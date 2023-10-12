@@ -15,7 +15,6 @@
 namespace Dgmjr.AspNetCore.Communication.Mail;
 
 using Azure.Communication.Email;
-// using Azure.Communication.Email.Models;
 using Azure.Identity;
 
 using Azure.Messaging;
@@ -38,8 +37,11 @@ public class EmailSender : IEmailSender
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)
     {
         await SendEmailAsync(
-            new EmailMessage(_options.Value.DefaultFrom, subject) { Html = htmlMessage },
-            new EmailRecipients(new[] { new EmailAddress(email) })
+            new EmailMessage(
+                _options.DefaultFrom,
+                email,
+                new EmailContent(subject) { Html = htmlMessage }
+            )
         );
     }
 

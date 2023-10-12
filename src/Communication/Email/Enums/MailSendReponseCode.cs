@@ -9,7 +9,7 @@ namespace Dgmjr.AspNetCore.Communication.Mail.Enums;
 /// <summary>
 /// This is a C# enum representing various SMTP response codes that can be returned by a mail server.
 /// </summary>
-[JsonConverter(typeof(JsonStringEnumConverter))]
+[JConverter(typeof(JStringEnumConverter))]
 [GenerateEnumerationRecordStruct("MailSendReponseCode", "Dgmjr.AspNetCore.Communication.Mail")]
 public enum MailSendReponseCode
 {

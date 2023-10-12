@@ -1,4 +1,4 @@
-﻿/*
+/*
 * DescribeCrudControllerExtension.cs
 *
 *   Created: 2022-12-17-03:32:11
@@ -12,14 +12,17 @@
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-using System.Net.Mime.MediaTypes;
-using Dgmjr.AspNetCore.Controllers;
-using Dgmjr.Payloads;
+using Dgmjr.Mime;
+
 using Microsoft.AspNetCore.Builder;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.OpenApi.Models;
+
+using Dgmjr.AspNetCore.Controllers;
+using Dgmjr.Payloads;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
-using static Microsoft.AspNetCore.Http.StatusCodes;
 
 public static class DescribeCrudControllerExtension
 {

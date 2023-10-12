@@ -32,10 +32,13 @@ public class PlainTextProblemDetailsOutputFormatter : OutputFormatter
         response.ContentType = TextMediaTypeNames.PlainWithProblem;
         var problemDetails = (ProblemDetails)context.Object!;
         response.StatusCode = problemDetails.Status ?? StatusCodes.Status500InternalServerError;
-        response.Headers.Add(XFailed, problemDetails.Title ?? "Unknown Error");
-        response.Headers.Add(XProblemDetail, problemDetails.Detail ?? "Unknown Error");
-        response.Headers.Add(XProblemInstance, problemDetails.Instance ?? "Unknown Error");
-        response.Headers.Add(XProblemType, problemDetails.Type ?? "Unknown Error");
+        response.Headers.Add(XFailed.DisplayName, problemDetails.Title ?? "Unknown Error");
+        response.Headers.Add(XProblemDetail.DisplayName, problemDetails.Detail ?? "Unknown Error");
+        response.Headers.Add(
+            XProblemInstance.DisplayName,
+            problemDetails.Instance ?? "Unknown Error"
+        );
+        response.Headers.Add(XProblemType.DisplayName, problemDetails.Type ?? "Unknown Error");
         await response.WriteAsync(problemDetails.Detail);
     }
 }

@@ -19,7 +19,7 @@ namespace Dgmjr.Payloads.ModelBinders
         {
             this.BindingSource = BindingSource.Header;
             this.BinderType = typeof(RangeRequestModelBinder);
-            this.Name = HttpRequestHeaderNames.Range;
+            this.Name = HttpRequestHeaderNames.Range.DisplayName;
         }
     }
 
@@ -46,11 +46,12 @@ namespace Dgmjr.Payloads.ModelBinders
                     // rangeRequest.PageSize = (int)rangeHeader.Ranges.First().To.Value - (int)rangeHeader.Ranges.First().From.Value;
                 }
                 else if (
-                    bindingContext.HttpContext.Request.Headers[HttpRequestHeaderNames.Range]
-                        != default(StringValues)
+                    bindingContext.HttpContext.Request.Headers[
+                        HttpRequestHeaderNames.Range.DisplayName
+                    ] != default(StringValues)
                     && Range.TryParse(
                         bindingContext.HttpContext.Request.Headers[
-                            HttpRequestHeaderNames.Range
+                            HttpRequestHeaderNames.Range.DisplayName
                         ].First(),
                         out rangeRequest
                     )
@@ -60,11 +61,11 @@ namespace Dgmjr.Payloads.ModelBinders
                 }
                 else if (
                     bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageSize,
+                        XPageSize.DisplayName,
                         out pageSize
                     )
                     && bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageNumber,
+                        XPageNumber.DisplayName,
                         out pageNumber
                     )
                 )

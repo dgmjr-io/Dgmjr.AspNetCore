@@ -10,13 +10,23 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.AspNetCore.Authentication.Enums;
+namespace Dgmjr.AspNetCore.Authorization.Enums;
 
-[GenerateEnumerationClass(nameof(Operations), "Dgmjr.AspNetCore.Authentication")]
+[GenerateEnumerationClass(nameof(Operations), "Dgmjr.AspNetCore.Authorization")]
 public enum OperationsEnum
 {
-    Create,
-    Read,
-    Update,
-    Delete
+    [Uri(Dgmjr.Security.Operations.Create.UriString)]
+    Create = Dgmjr.Security.Operations.Create.Value,
+
+    [Uri(Dgmjr.Security.Operations.Create.UriString)]
+    Read = Dgmjr.Security.Operations.Read.Value,
+
+    [Uri(Dgmjr.Security.Operations.Create.UriString)]
+    Update = Dgmjr.Security.Operations.Update.Value,
+
+    [Uri(Dgmjr.Security.Operations.Create.UriString)]
+    Delete = Dgmjr.Security.Operations.Delete.Value,
+
+    [Uri(Dgmjr.Security.Operations.Create.UriString)]
+    All = Dgmjr.Security.Operations.All.Value
 }

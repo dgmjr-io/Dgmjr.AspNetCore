@@ -1,18 +1,18 @@
 <!--
  * Dgmjr.AspNetCore.slnproj
- * 
+ *
  *   Created: 2022-12-10-06:11:32
  *   Modified: 2022-12-10-06:11:32
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.Build.Traversal">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Description>This is a metapackage of all of the ASP.NET Core JustinWritesCode packages</Description>
         <SlnGenSolutionFolder>all</SlnGenSolutionFolder>
 	      <SlnGenFolders>true</SlnGenFolders>

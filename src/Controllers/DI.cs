@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Options;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -34,13 +35,7 @@ public static class DI
 
     public static WebApplicationBuilder AddJsonPatch(this WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers(options =>
-        {
-            options.InputFormatters.Insert(
-                0,
-                MyJsonPatchInputFormatter.GetJsonPatchInputFormatter()
-            );
-        });
+        builder.Services.AddJsonPatch();
         return builder;
     }
 }

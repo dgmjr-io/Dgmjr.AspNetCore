@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
     </PropertyGroup>
@@ -43,7 +43,7 @@
         <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" />
         <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" />
-        <!-- <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
+        <!-- <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" /> -->
     </ItemGroup>
     <ItemGroup>
         <EmbeddedResource Include="./swaggerui/themes/*.css" LogicalName="%(Filename)%(Extension)" Type="text" />

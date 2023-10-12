@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net7.0</TargetFrameworks>
+        <TargetFrameworks>net8.0</TargetFrameworks>
         <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
         <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
     </PropertyGroup>
@@ -37,7 +37,7 @@
         <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="ContentFiles;Lib;Runtime;Compile" />
     </ItemGroup>
     <ItemGroup>
-        <!-- <ProjectReference Include="../Http/MediaTypeNames/System.Net.Mime.MediaTypeNames.csproj" /> -->
+        <!-- <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" /> -->
         <!-- <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" /> -->
         <!-- <ProjectReference Include="../../../MediatR/src/MediatR/Dgmjr.MediatR.csproj" /> -->
         <!-- <ProjectReference Include="../../../MediatR/src/Abstractions/Dgmjr.MediatR.Abstractions.csproj" /> -->

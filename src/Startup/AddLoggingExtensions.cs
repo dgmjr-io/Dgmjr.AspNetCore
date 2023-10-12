@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Logging.cs
  *
  *   Created: 2022-12-10-11:38:03
@@ -11,7 +11,7 @@
  */
 
 using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.Extensions.Logging;
