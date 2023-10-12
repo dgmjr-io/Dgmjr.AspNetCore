@@ -16,12 +16,12 @@ namespace Dgmjr.Payloads
 
 #if NET7_0_OR_GREATER
         [GeneratedRegex(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase)]
-        public static partial REx Regex();
+        public static partial Regex Regex();
 #else
-        private static readonly REx _regex =
+        private static readonly Regex _regex =
             new(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase);
 
-        public static REx Regex() => _regex;
+        public static Regex Regex() => _regex;
 #endif
 
         private const string MaxIntString = "2147483647";

@@ -1,4 +1,4 @@
-﻿using System.Net.NetworkInformation;
+using System.Net.NetworkInformation;
 /*
  * DbContextExtensions.cs
  *
@@ -71,7 +71,7 @@ internal static class AddDbContextExtensions
             var config = builder.Configuration;
             var connectionString = connectionStringKeyNames
                 .Select(config.GetConnectionString)
-                .FirstOrDefault(c => !string.IsNullOrEmpty(c));
+                .FirstOrDefault(c => !IsNullOrEmpty(c));
             if (!IsNullOrEmpty(connectionString))
             {
                 builder.Services.AddDbContext<TContext>(

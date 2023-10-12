@@ -20,11 +20,7 @@ internal static class AddAzureAppConfigExtensions
         var tenantId = configuration["AzureKeyVault:TenantId"];
         var clientSecret = configuration["AzureKeyVault:ClientSecret"];
 
-        if (
-            !string.IsNullOrEmpty(clientId)
-            && !string.IsNullOrEmpty(tenantId)
-            && !string.IsNullOrEmpty(clientSecret)
-        )
+        if (!IsNullOrEmpty(clientId) && !IsNullOrEmpty(tenantId) && !IsNullOrEmpty(clientSecret))
         {
             return new ClientSecretCredential(tenantId, clientId, clientSecret);
         }
@@ -58,7 +54,7 @@ internal static class AddAzureAppConfigExtensions
 
     // var configuration = builder.Configuration;
     // var connectionString = configuration[connectionStringKey];
-    // if (string.IsNullOrEmpty(connectionString))
+    // if (IsNullOrEmpty(connectionString))
     // {
     //     throw new ArgumentException($"The connection string was not found in the configuration using the key '{connectionStringKey}'.");
     // }
