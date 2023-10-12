@@ -1,6 +1,7 @@
 ---
+
 authors:
-  - DGMJR-IO
+- DGMJR-IO
 title: HTTP metadata
 description: A collection of abstractions for HTTP requests&rsquou; metadata, specifically, the HTTP method and the headers.
 lastmod: 2023-03-31T15:08:26.243Z
@@ -8,24 +9,24 @@ created: 2023-03-18-10:15:12
 license: MIT
 project: AspNetCore
 keywords:
-  - abstractions
-  - http
-  - metadata
-  - request
-  - response
-  - httprequest
-  - httpresponse
-  - httprequestmethod
-  - httpmethod
+- abstractions
+- http
+- metadata
+- request
+- response
+- httprequest
+- httpresponse
+- httprequestmethod
+- httpmethod
 tags:
-  - abstractions
-  - http
+- abstractions
+- http
 categories:
-  - abstractions
-  - http
+- abstractions
+- http
 type: readme
 slug: http-metadata
----
+-------------------
 
 # HTTP Abstractions
 

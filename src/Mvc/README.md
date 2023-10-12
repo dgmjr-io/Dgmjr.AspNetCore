@@ -1,4 +1,5 @@
 ---
+
 title: Dgmjr.AspNetCore.Mvc
 lastmod: 2023-10-10T16:51:10.ppppZ
 date: 2023-10-10T16:51:10.ppppZ
@@ -13,19 +14,30 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
----
+------------
+
 # Dgmjr.AspNetCore.Mvc Readme
+
 <!-- TODO: Write the contents of the Dgmjr.AspNetCore.Mvc Readme file -->
+
 ## Package Description
+
 Package Description
-      
-Built from [commit  on branch  at ]
+
+Built from [commit  on branch  at]
 (/tree/)
+
 ## Getting Started
+
 ## Prerequisites
+
 ## Installation
+
 ## Usage
+
 ## Contributing
+
 ## Versioning
-Built from [commit  on branch  at ]
+
+Built from [commit  on branch  at]
 (/tree/)
