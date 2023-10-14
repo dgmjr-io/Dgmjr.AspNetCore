@@ -1,4 +1,5 @@
 ---
+
 title: Dgmjr.Http
 lastmod: 2023-10-10T13:42:08.ppppZ
 date: 2023-10-10T13:42:08.ppppZ
@@ -13,19 +14,30 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
----
+------------
+
 # Dgmjr.Http Readme
+
 <!-- TODO: Write the contents of the Dgmjr.Http Readme file -->
+
 ## Package Description
+
 Package Description
-      
-Built from [commit  on branch  at ]
+
+Built from [commit  on branch  at]
 (/tree/)
+
 ## Getting Started
+
 ## Prerequisites
+
 ## Installation
+
 ## Usage
+
 ## Contributing
+
 ## Versioning
-Built from [commit  on branch  at ]
+
+Built from [commit  on branch  at]
 (/tree/)
