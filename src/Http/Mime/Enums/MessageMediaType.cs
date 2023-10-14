@@ -15,11 +15,12 @@ namespace Dgmjr.Mime.Enums;
 [GenerateEnumerationRecordStruct("MessageMediaType", "Dgmjr.Mime")]
 public enum MessageMediaType
 {
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#message")]
-    Base,
 
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#message-*")]
-    Any,
+    Any = int.MaxValue,
+
+    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#message")]
+    Base = 0,
 
     [Uri(IanaMediaTypeUrlBase + "message/bhttp")]
     [Display(
@@ -61,7 +62,7 @@ public enum MessageMediaType
     )]
     Example,
 
-    [Uri("urn:ietf:rfc:2046:5.2.3")]
+    [Uri(RfcUrlBase + "2046#section-5.2.3")]
     [Display(Name = "", ShortName = "external_body", Description = " The  MIME type")]
     ExternalBody,
 
@@ -121,11 +122,11 @@ public enum MessageMediaType
     )]
     ImdnXml,
 
-    [Uri("urn:ietf:rfc:2046:5.2.2")]
+    [Uri(RfcUrlBase + "2046#section-5.2.2")]
     [Display(Name = "", ShortName = "partial", Description = " The  MIME type")]
     Partial,
 
-    [Uri("urn:ietf:rfc:822")]
+    [Uri(RfcUrlBase + "822")]
     [Display(Name = "", ShortName = "rfc822", Description = " The  MIME type")]
     Rfc822,
 

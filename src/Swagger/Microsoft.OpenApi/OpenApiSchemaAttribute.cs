@@ -39,7 +39,7 @@ public class OpenApiSchemaAttribute : Attribute, IOpenApiElement, IOpenApiExtens
             MinLength = MinLength,
             MinItems = MinItems,
             MultipleOf = MultipleOf,
-            Nullaable = Nullable,
+            Nullable = Nullable,
             Pattern = Pattern,
             ReadOnly = ReadOnly,
             Title = Title,

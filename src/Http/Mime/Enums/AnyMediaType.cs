@@ -13,8 +13,8 @@
 namespace Dgmjr.Mime.Enums;
 
 [GenerateEnumerationRecordStruct("AnyMediaType", "Dgmjr.Mime")]
-public enum AnyMediaType
+public enum AnyMediaType : byte
 {
     [Display(Name = "*/*")]
-    Any
+    Any = byte.MaxValue
 }

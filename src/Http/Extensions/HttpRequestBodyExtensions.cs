@@ -28,7 +28,7 @@ public static partial class HttpRequestExtensions2
         T? defaultValue = default
     ) =>
         req.Query.ContainsKey(name)
-            ? (T)Convert.ChangeType(req.Query[name].First(), typeof(T))
+            ? (T)Convert.ChangeType(req.Query[name][0], typeof(T))
             : defaultValue;
 
     public static bool TryGetQueryStringParam<T>(this HttpRequest req, string name, out T? value) =>
@@ -46,9 +46,9 @@ public static partial class HttpRequestExtensions2
     )
         where T : struct, Enum =>
         req.Query.ContainsKey(name)
-            ? Enum.TryParse<T>(req.Query[name].First(), out var result)
+            ? Enum.TryParse<T>(req.Query[name][0], out var result)
                 ? result
-                : int.TryParse(req.Query[name].First(), out var intResult)
+                : int.TryParse(req.Query[name][0], out var intResult)
                     ? (T)Enum.ToObject(typeof(T), intResult)
                     : defaultValue
             : defaultValue;
@@ -59,7 +59,7 @@ public static partial class HttpRequestExtensions2
         T? defaultValue = default
     ) =>
         req.Headers.ContainsKey(name)
-            ? (T)Convert.ChangeType(req.Headers[name].First(), typeof(T))
+            ? (T)Convert.ChangeType(req.Headers[name][0], typeof(T))
             : defaultValue;
 
     public static bool TryGetHeaderParam<T>(this HttpRequest req, string name, out T? value) =>

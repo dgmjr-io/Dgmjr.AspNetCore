@@ -14,7 +14,17 @@ namespace Dgmjr.Mime;
 
 public static class Constants
 {
+    /// <value>https://www.iana.org/assignments/media-types/</value>
     public const string IanaMediaTypeUrlBase = "https://www.iana.org/assignments/media-types/";
+
+    /// <value>https://www.rfc-editor.org/rfc/</value>
+    public const string RfcUrlBase = "https://www.rfc-editor.org/rfc/";
+
+    /// <value>urn:ietf:rfc</value>
     public const string IetfRfcUrnBase = "urn:ietf:rfc";
+    /// <value>urn:iana:mime</value>
+    public const string MimeUrnBase = "urn:iana:mime";
+
+    /// <value>media-types.xhtml</value>
     public const string MediaTypes_xhtml = "media-types.xhtml";
 }

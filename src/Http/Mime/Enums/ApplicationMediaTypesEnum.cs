@@ -30,7 +30,7 @@ public enum ApplicationMediaType
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Any)]
-    Any,
+    Any = int.MaxValue,
 
     /// <summary>The base name for all application media types.</summary>
     /// <remarks>See <see href="https://www.iana.org/assignments/media-types/media-types.xhtml#application">IANA Media Types</see> for more information.</remarks>
@@ -41,7 +41,7 @@ public enum ApplicationMediaType
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Base)]
-    Base,
+    Base = 0,
 
     /// <summary>A media type for a stream of bytes.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.OctetStream"/></value>

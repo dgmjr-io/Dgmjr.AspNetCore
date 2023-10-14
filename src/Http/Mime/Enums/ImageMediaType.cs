@@ -26,7 +26,7 @@ public enum ImageMediaType
     [Display(Name = ImageMediaTypeNames.Base, Description = nameof(Base))]
     [EnumMember(Value = ImageMediaTypeNames.Base)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Base)]
-    Base,
+    Base = 0,
 
     /// <summary>GIF image</summary>
     [Display(Name = ImageMediaTypeNames.Gif, Description = nameof(Gif))]

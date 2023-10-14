@@ -13,15 +13,18 @@
 namespace Dgmjr.Mime.Enums;
 
 [GenerateEnumerationRecordStruct("MediaType", "System.Net.Mime")]
-public enum MediaType
+public enum MediaType : sbyte
 {
     [Display(Description = "The '*' media type")]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml)]
-    All,
+    All = sbyte.MaxValue,
+    [Display(Description = "The '*' media type")]
+    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml)]
+    Any = All,
 
     [Display(Description = "The '" + nameof(Text) + "' media type")]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#text")]
-    Text,
+    Text = 0,
 
     [Display(Description = "The '" + nameof(Image) + "' media type")]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#image")]

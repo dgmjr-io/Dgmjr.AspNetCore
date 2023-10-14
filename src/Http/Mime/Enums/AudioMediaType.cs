@@ -19,11 +19,11 @@ public enum AudioMediaType
 {
     [Display(Name = AudioMediaTypeNames.Any, Description = nameof(Any))]
     [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Any)]
-    Any,
+    Any = int.MaxValue,
 
     [Display(Name = AudioMediaTypeNames.Base, Description = nameof(Base))]
     [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Base)]
-    Base,
+    Base = 0,
 
     [Display(Name = AudioMediaTypeNames.Vorbis, Description = nameof(Vorbis))]
     [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Vorbis)]

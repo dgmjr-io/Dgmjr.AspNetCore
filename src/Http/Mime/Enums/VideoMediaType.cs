@@ -20,11 +20,11 @@ public enum VideoMediaType
 {
     [Display(Name = VideoMediaTypeNames.Any, Description = nameof(Any))]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#video")]
-    Any,
+    Any = int.MaxValue,
 
     [Display(Name = VideoMediaTypeNames.Base, Description = nameof(Base))]
     [Uri(IanaMediaTypeUrlBase + "#video-*")]
-    Base,
+    Base = 0,
 
     [Display(Name = VideoMediaTypeNames.Mpeg, Description = nameof(Mpeg))]
     [Uri(IanaMediaTypeUrlBase + VideoMediaTypeNames.Mpeg)]

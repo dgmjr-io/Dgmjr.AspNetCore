@@ -23,13 +23,13 @@ public enum MultipartMediaType
         Description = nameof(MultipartMediaTypeNames.Base)
     )]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#multipart")]
-    Base,
+    Base = 0,
 
     /// <inheritdoc cref="MultipartMediaTypeNames.Any"/>
     [Display(Name = MultipartMediaTypeNames.Any, Description = nameof(MultipartMediaTypeNames.Any))]
     [EnumMember(Value = MultipartMediaTypeNames.Any)]
     [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#multipart-*")]
-    Any,
+    Any = int.MaxValue,
 
     /// <inheritdoc cref="MultipartMediaTypeNames.Alternative"/>
     [Display(
