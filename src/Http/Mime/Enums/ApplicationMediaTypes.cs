@@ -15,8 +15,8 @@ namespace Dgmjr.Mime.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("ApplicationMediaType", "Dgmjr.Mime")]
-public enum ApplicationMediaType
+[GenerateEnumerationRecordStruct("Application", "Dgmjr.Mime")]
+public enum ApplicationMediaTypes : int
 {
     /// <summary> Any application media type. </summary>
     /// <remarks> This is the default value. </remarks>
@@ -42,6 +42,17 @@ public enum ApplicationMediaType
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Base)]
     Base = 0,
+
+    /// <summary>An example media type.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.Example"/></value>
+    /// <seealso cref="ApplicationMediaTypeNames.Example"/>
+    [Display(
+        Name = ApplicationMediaTypeNames.Example,
+        Description = nameof(Example),
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.Example)]
+    Example,
 
     /// <summary>A media type for a stream of bytes.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.OctetStream"/></value>
@@ -144,7 +155,7 @@ public enum ApplicationMediaType
     [EnumMember(Value = ApplicationMediaTypeNames.FormUrlEncoded)]
     FormUrlEncoded,
 
-    /// <summary>A binary-encoded Javascript Oject Notation (BSON) document.</summary>
+    /// <summary>A binary-encoded Javascript Object Notation (BSON) document.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.Bson"/></value>
     /// <seealso cref="ApplicationMediaTypeNames.Bson"/>
     [Display(
@@ -177,6 +188,17 @@ public enum ApplicationMediaType
     [EnumMember(Value = ApplicationMediaTypeNames.ProblemJson)]
     ProblemJson,
 
+    /// <summary>A Problem JSON document.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.ProblemXml"/></value>
+    /// <seealso cref="ApplicationMediaTypeNames.ProblemXml"/>
+    [Display(
+        Name = ApplicationMediaTypeNames.ProblemXml,
+        Description = nameof(ProblemJson),
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.ProblemXml)]
+    ProblemXml,
+
     /// <summary>A JSON Patch document.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.JsonPatch"/></value>
     /// <seealso cref="ApplicationMediaTypeNames.JsonPatch"/>
@@ -188,14 +210,14 @@ public enum ApplicationMediaType
     [EnumMember(Value = ApplicationMediaTypeNames.JsonPatch)]
     JsonPatch,
 
-    /// <summary>An example media type.</summary>
-    /// <value><inheritdoc cref="ApplicationMediaTypeNames.Example"/></value>
-    /// <seealso cref="ApplicationMediaTypeNames.Example"/>
+    /// <summary>A Personal Information Exchange file.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.Pkcs12"/></value>
+    /// <seealso cref="ApplicationMediaTypeNames.Pkcs12"/>
     [Display(
-        Name = ApplicationMediaTypeNames.Example,
-        Description = nameof(Example),
+        Name = ApplicationMediaTypeNames.JsonPatch,
+        Description = nameof(JsonPatch),
         GroupName = ApplicationMediaTypeNames.Base
     )]
-    [EnumMember(Value = ApplicationMediaTypeNames.Example)]
-    Example
+    [EnumMember(Value = ApplicationMediaTypeNames.Pkcs12)]
+    Pkcs12
 }

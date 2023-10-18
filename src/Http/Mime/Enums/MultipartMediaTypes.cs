@@ -14,28 +14,29 @@ namespace Dgmjr.Mime.Enums;
 
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("MultipartMediaType", "Dgmjr.Mime")]
-public enum MultipartMediaType
+[GenerateEnumerationRecordStruct("Multipart", "Dgmjr.Mime")]
+public enum MultipartMediaTypes : int
 {
+    /// <inheritdoc cref="MultipartMediaTypeNames.Any"/>
+    [Display(Name = MultipartMediaTypeNames.Any, Description = nameof(MultipartMediaTypeNames.Any))]
+    [EnumMember(Value = MultipartMediaTypeNames.Any)]
+    [Uri(IanaMediaTypeUrlBase + "#multipart-*")]
+    Any = int.MaxValue,
+
     /// <inheritdoc cref="MultipartMediaTypeNames.Base"/>
     [Display(
         Name = MultipartMediaTypeNames.Base,
         Description = nameof(MultipartMediaTypeNames.Base)
     )]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#multipart")]
+    [Uri(IanaMediaTypeUrlBase + "#multipart")]
     Base = 0,
-
-    /// <inheritdoc cref="MultipartMediaTypeNames.Any"/>
-    [Display(Name = MultipartMediaTypeNames.Any, Description = nameof(MultipartMediaTypeNames.Any))]
-    [EnumMember(Value = MultipartMediaTypeNames.Any)]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#multipart-*")]
-    Any = int.MaxValue,
 
     /// <inheritdoc cref="MultipartMediaTypeNames.Alternative"/>
     [Display(
         Name = MultipartMediaTypeNames.Alternative,
         Description = nameof(MultipartMediaTypeNames.Alternative)
     )]
+    [Uri(RfcUrlBase + "#section-5.1.4")]
     [EnumMember(Value = MultipartMediaTypeNames.Alternative)]
     Alternative,
 
@@ -44,6 +45,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Appledouble,
         Description = nameof(MultipartMediaTypeNames.Appledouble)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.Appledouble)]
     [EnumMember(Value = MultipartMediaTypeNames.Appledouble)]
     Appledouble,
 
@@ -52,6 +54,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Digest,
         Description = nameof(MultipartMediaTypeNames.Digest)
     )]
+    [Uri(RfcUrlBase + "#section-5.1.5")]
     [EnumMember(Value = MultipartMediaTypeNames.Digest)]
     Digest,
 
@@ -60,6 +63,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Encrypted,
         Description = nameof(MultipartMediaTypeNames.Encrypted)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.Encrypted)]
     [EnumMember(Value = MultipartMediaTypeNames.Encrypted)]
     Encrypted,
 
@@ -68,6 +72,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.FormData,
         Description = nameof(MultipartMediaTypeNames.FormData)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.FormData)]
     [EnumMember(Value = MultipartMediaTypeNames.FormData)]
     FormData,
 
@@ -76,6 +81,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.HeaderSet,
         Description = nameof(MultipartMediaTypeNames.HeaderSet)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.HeaderSet)]
     [EnumMember(Value = MultipartMediaTypeNames.HeaderSet)]
     HeaderSet,
 
@@ -84,6 +90,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Mixed,
         Description = nameof(MultipartMediaTypeNames.Mixed)
     )]
+    [Uri(RfcUrlBase + "#section-5.1.3")]
     [EnumMember(Value = MultipartMediaTypeNames.Mixed)]
     Mixed,
 
@@ -92,6 +99,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Parallel,
         Description = nameof(MultipartMediaTypeNames.Parallel)
     )]
+    [Uri(RfcUrlBase + "#section-5.1.6")]
     [EnumMember(Value = MultipartMediaTypeNames.Parallel)]
     Parallel,
 
@@ -100,6 +108,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Related,
         Description = nameof(MultipartMediaTypeNames.Related)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.Related)]
     [EnumMember(Value = MultipartMediaTypeNames.Related)]
     Related,
 
@@ -108,6 +117,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Report,
         Description = nameof(MultipartMediaTypeNames.Report)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.Report)]
     [EnumMember(Value = MultipartMediaTypeNames.Report)]
     Report,
 
@@ -116,6 +126,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.Signed,
         Description = nameof(MultipartMediaTypeNames.Signed)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.Signed)]
     [EnumMember(Value = MultipartMediaTypeNames.Signed)]
     Signed,
 
@@ -124,6 +135,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.VoiceMessage,
         Description = nameof(MultipartMediaTypeNames.VoiceMessage)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.VoiceMessage)]
     [EnumMember(Value = MultipartMediaTypeNames.VoiceMessage)]
     VoiceMessage,
 
@@ -132,6 +144,7 @@ public enum MultipartMediaType
         Name = MultipartMediaTypeNames.XMixedReplace,
         Description = nameof(MultipartMediaTypeNames.XMixedReplace)
     )]
+    [Uri(IanaMediaTypeUrlBase + MultipartMediaTypeNames.XMixedReplace)]
     [EnumMember(Value = MultipartMediaTypeNames.XMixedReplace)]
     XMixedReplace
 }

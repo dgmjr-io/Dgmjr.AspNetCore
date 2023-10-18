@@ -44,7 +44,10 @@ public static class ApplicationMediaTypeNames
     public const string FormUrlEncoded = Base + "/" + "x-www-formurlencoded";
 
     /// <inheritdoc  cref="Enums.ApplicationMediaType.ProblemJson" />
-    public const string ProblemJson = Base + "/" + "json+problem";
+    public const string ProblemJson = Base + "/" + "problem+json";
+
+    /// <inheritdoc  cref="Enums.ApplicationMediaType.ProblemXml" />
+    public const string ProblemXml = Base + "/" + "problem+xml";
 
     /// <inheritdoc  cref="Enums.ApplicationMediaType.JsonPatch" />
     public const string JsonPatch = Base + "/" + "json-patch+json";
@@ -57,4 +60,7 @@ public static class ApplicationMediaTypeNames
 
     /// <inheritdoc cref="Enums.ApplicationMediaType.Example" />
     public const string Example = Base + "/" + "example";
+
+    /// <inheritdoc cref="Enums.ApplicationMediaType.Pkcs12" />
+    public const string Pkcs12 = Base + "/" + "pkcs12";
 }

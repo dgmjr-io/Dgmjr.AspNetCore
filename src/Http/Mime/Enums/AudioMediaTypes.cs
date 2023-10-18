@@ -14,8 +14,8 @@ namespace Dgmjr.Mime.Enums;
 
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("AudioMediaType", "Dgmjr.Mime")]
-public enum AudioMediaType
+[GenerateEnumerationRecordStruct("Audio", "Dgmjr.Mime")]
+public enum AudioMediaTypes : int
 {
     [Display(Name = AudioMediaTypeNames.Any, Description = nameof(Any))]
     [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Any)]

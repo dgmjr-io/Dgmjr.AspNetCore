@@ -15,8 +15,8 @@ namespace Dgmjr.Mime.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("ImageMediaType", "Dgmjr.Mime")]
-public enum ImageMediaType
+[GenerateEnumerationRecordStruct("Image", "Dgmjr.Mime")]
+public enum ImageMediaTypes : int
 {
     [Display(Name = ImageMediaTypeNames.Any, Description = nameof(Any))]
     [EnumMember(Value = ImageMediaTypeNames.Any)]

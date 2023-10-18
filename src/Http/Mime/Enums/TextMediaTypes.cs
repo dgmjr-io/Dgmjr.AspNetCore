@@ -14,22 +14,22 @@ namespace Dgmjr.Mime.Enums;
 
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("TextMediaType", "Dgmjr.Mime")]
-public enum TextMediaType
+[GenerateEnumerationRecordStruct("Text", "Dgmjr.Mime")]
+public enum TextMediaTypes : int
 {
     [Display(Name = TextMediaTypeNames.Any, Description = "Any text media type")]
     [EnumMember(Value = TextMediaTypeNames.Any)]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#text/*")]
+    [Uri(IanaMediaTypeUrlBase + "#text/*")]
     Any = int.MaxValue,
 
     [Display(Name = TextMediaTypeNames.Base, Description = "The base text media type")]
     [EnumMember(Value = TextMediaTypeNames.Base)]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#text")]
+    [Uri(IanaMediaTypeUrlBase + "#text")]
     Base = 0,
 
     [Display(Name = TextMediaTypeNames.Html, Description = nameof(Html))]
     [EnumMember(Value = TextMediaTypeNames.Html)]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + TextMediaTypeNames.Html)]
+    [Uri(IanaMediaTypeUrlBase + TextMediaTypeNames.Html)]
     Html,
 
     [Display(Name = TextMediaTypeNames.Plain, Description = nameof(Plain))]

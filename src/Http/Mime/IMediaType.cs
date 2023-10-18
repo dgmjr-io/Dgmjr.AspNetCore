@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
 [System.Text.Json.Serialization.JsonConverter(typeof(IMediaTypeJsonConverter))]
-public interface IMediaType
+public partial interface IMediaType
     : IHaveAName,
         IHaveADescription,
         IHaveAUri,

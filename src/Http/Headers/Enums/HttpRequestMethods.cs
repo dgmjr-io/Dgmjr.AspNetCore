@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 using System.ComponentModel.DataAnnotations;
 
 [GenerateEnumerationRecordStruct("HttpRequestMethod", "Dgmjr.Http")]
-public enum HttpRequestMethod
+public enum HttpRequestMethods
 {
     /// <summary>Establishes a network connection to a resource.</summary>
     /// /// <value>CONNECT</value>

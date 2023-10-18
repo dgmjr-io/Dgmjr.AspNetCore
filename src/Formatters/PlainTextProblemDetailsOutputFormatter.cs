@@ -12,11 +12,11 @@
 
 namespace Dgmjr.AspNetCore.Formatters;
 
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Mime;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using static System.Net.Http.Headers.HttpResponseHeaderNames;
+using static Dgmjr.Http.Headers.HttpResponseHeaderNames;
 
 public class PlainTextProblemDetailsOutputFormatter : OutputFormatter
 {

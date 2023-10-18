@@ -9,7 +9,7 @@
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
-namespace Dgmjr.Headers.Enums;
+namespace Dgmjr.Http.Headers.Enums;
 
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;

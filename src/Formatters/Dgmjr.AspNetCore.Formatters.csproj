@@ -11,19 +11,21 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-        <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc" />
-        <PackageReference Include="System.Text.Json.Usings" />
-        <PackageReference Include="Newtonsoft.Json.Bson" />
-        <ProjectReference Include="../Http/Headers/Dgmjr.Http.csproj" />
-        <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Using Remove="System.Text.Encoding" />
-    </ItemGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+    <PackageReference Include="System.Text.Json.Usings" />
+    <PackageReference Include="Newtonsoft.Json.Bson" />
+    <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Remove="System.Text.Encoding" />
+  </ItemGroup>
+  <Import Project="../Http/Headers/Dgmjr.Http.Headers.props" />
+  <Import Project="../Http/Mime/Dgmjr.Mime.props" />
 </Project>

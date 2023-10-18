@@ -14,6 +14,14 @@ namespace Dgmjr.Mime;
 
 using System.Runtime.Serialization;
 
+public class Foo
+{
+    public static void Go()
+    {
+        var mp4 = Mime.Image.Jpeg.Instance;
+    }
+}
+
 public static class VideoMediaTypeNames
 {
     public const string Base = "video";

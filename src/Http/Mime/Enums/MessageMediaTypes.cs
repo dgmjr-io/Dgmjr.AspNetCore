@@ -12,14 +12,13 @@
 
 namespace Dgmjr.Mime.Enums;
 
-[GenerateEnumerationRecordStruct("MessageMediaType", "Dgmjr.Mime")]
-public enum MessageMediaType
+[GenerateEnumerationRecordStruct("Message", "Dgmjr.Mime")]
+public enum MessageMediaTypes : int
 {
-
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#message-*")]
+    [Uri(IanaMediaTypeUrlBase + "#message-*")]
     Any = int.MaxValue,
 
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#message")]
+    [Uri(IanaMediaTypeUrlBase + "#message")]
     Base = 0,
 
     [Uri(IanaMediaTypeUrlBase + "message/bhttp")]

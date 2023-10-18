@@ -22,6 +22,11 @@ public enum SmsSendResponseCode
     Success = 200,
 
     /// <summary>
+    /// The request was successful and the message has been accepted to be queued for delivery.
+    /// </summary>
+    Accepted = 250,
+
+    /// <summary>
     /// There was a problem with the request, such as invalid parameters or authentication failure.
     /// </summary>
     BadRequest = 400,

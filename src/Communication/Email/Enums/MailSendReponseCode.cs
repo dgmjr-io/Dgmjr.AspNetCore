@@ -10,8 +10,8 @@ namespace Dgmjr.AspNetCore.Communication.Mail.Enums;
 /// This is a C# enum representing various SMTP response codes that can be returned by a mail server.
 /// </summary>
 [JConverter(typeof(JStringEnumConverter))]
-[GenerateEnumerationRecordStruct("MailSendReponseCode", "Dgmjr.AspNetCore.Communication.Mail")]
-public enum MailSendReponseCode
+[GenerateEnumerationRecordStruct("MailSendResponseCode", "Dgmjr.AspNetCore.Communication.Mail")]
+public enum MailSendResponseCode
 {
     /** <summary> `SmtpServiceReady = 220` is defining an enum member with a value of 220, which represents the SMTP
     response code for "Service ready". This enum is used to represent various SMTP response codes that

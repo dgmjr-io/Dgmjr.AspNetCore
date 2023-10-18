@@ -46,8 +46,6 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
-    /// <param name="connectionString">The connection string.</param>
-    /// <param name="fromPhoneNumber">The from phone number.</param>
     public SmsSenderOptions()
         : this(string.Empty) { }
 
@@ -59,6 +57,6 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber)
         : base(connectionString)
     {
-        DefaultFrom = fromPhoneNumber.asValue ? fromPhoneNumber.Value : PhoneNumber.Default;
+        DefaultFrom = fromPhoneNumber.HasValue ? fromPhoneNumber?.Value : PhoneNumber.Empty;
     }
 }

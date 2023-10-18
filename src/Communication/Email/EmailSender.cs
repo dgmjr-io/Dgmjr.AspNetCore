@@ -25,10 +25,10 @@ using Microsoft.Extensions.Options;
 send emails asynchronously. */
 public class EmailSender : IEmailSender
 {
-    private readonly EmailClientOptions _options;
+    private readonly EmailSenderOptions _options;
     private readonly EmailClient _client;
 
-    public EmailSender(IOptions<EmailClientOptions> options)
+    public EmailSender(IOptions<EmailSenderOptions> options)
     {
         _options = options?.Value;
         _client = new EmailClient(new Uri(_options.ConnectionString), new DefaultAzureCredential());
@@ -47,6 +47,6 @@ public class EmailSender : IEmailSender
 
     public async Task SendEmailAsync(EmailMessage message)
     {
-        await _client.SendAsync(message);
+        await _client.SendAsync(Azure.WaitUntil.Completed, message);
     }
 }

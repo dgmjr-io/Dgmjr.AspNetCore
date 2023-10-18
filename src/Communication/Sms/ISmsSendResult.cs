@@ -12,6 +12,6 @@ public record struct SmsSendResult : IMessageSendResult
     public SmsSendResponseCode ResponseCode
     {
         get => SmsSendResponseCode.FromId(((IMessageSendResult)this).StatusCode);
-        set => ((IMessageSendResult)this).StatusCode = (int)value;
+        readonly set => ((IMessageSendResult)this).StatusCode = (int)value;
     }
 }

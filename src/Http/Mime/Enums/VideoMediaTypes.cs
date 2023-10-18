@@ -15,11 +15,11 @@ namespace Dgmjr.Mime.Enums;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
-[GenerateEnumerationRecordStruct("VideoMediaType", "Dgmjr.Mime")]
-public enum VideoMediaType
+[GenerateEnumerationRecordStruct("Video", "Dgmjr.Mime")]
+public enum VideoMediaTypes : int
 {
     [Display(Name = VideoMediaTypeNames.Any, Description = nameof(Any))]
-    [Uri(IanaMediaTypeUrlBase + MediaTypes_xhtml + "#video")]
+    [Uri(IanaMediaTypeUrlBase + "#video")]
     Any = int.MaxValue,
 
     [Display(Name = VideoMediaTypeNames.Base, Description = nameof(Base))]
