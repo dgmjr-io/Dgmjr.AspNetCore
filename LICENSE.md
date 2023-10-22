@@ -9,8 +9,7 @@ date: 2023-01-16T11:55:48.194Z
 authors:
 - dgmjr
 type: license
-lastMod: 2023-03-24T11:04:01.289Z
----------------------------------
+---
 
 # MIT License
 

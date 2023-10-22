@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.AspNetCore.Hashids.csproj
- * 
+ *
  *   Created: 2022-12-20-05:18:06
  *   Modified: 2022-12-20-05:18:06
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -16,7 +16,6 @@
     <PackageReference Include="SWashbuckle.AspNetCore.SwaggerGen" />
   </ItemGroup>
   <ItemGroup Condition="!$(TargetFramework.Contains('netstandard'))">
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="AspNetCore.Hashids"/>
   </ItemGroup>
 </Project>

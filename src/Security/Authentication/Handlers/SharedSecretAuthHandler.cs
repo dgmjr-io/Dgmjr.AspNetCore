@@ -22,6 +22,7 @@ using Dgmjr.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using static System.Text.TextEncodingExtensions;
 using ClaimTypes = DgmjrCt;
@@ -31,6 +32,7 @@ public class SharedSecretAuthHandler
         IHttpContextAccessor,
         ILog
 {
+    public new virtual ILogger Logger { get; } = new NullLogger<SharedSecretAuthHandler>();
     private readonly UserManager _userManager;
     private readonly SharedSecretAuthenticationOptions _options;
     public HttpContext? HttpContext

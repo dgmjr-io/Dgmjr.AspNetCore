@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Dgmjr.AspNetCore.Authentication.Options;
 
-[GenerateInterface(typeof(JwtBearerOptions))]
+// [GenerateInterface(typeof(JwtBearerOptions))]
 public interface IJwtConfigurationOptions
 {
     string? ClaimsIssuer { get; set; }

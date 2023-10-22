@@ -12,7 +12,12 @@
 
 namespace System.Text.Json;
 
-public partial class HashidsAttribute : System.Text.Json.Serialization.JsonConverterAttribute
+[AttributeUsage(
+    AttributeTargets.Property | AttributeTargets.Field,
+    AllowMultiple = false,
+    Inherited = true
+)]
+public sealed partial class HashidsAttribute : System.Text.Json.Serialization.JsonConverterAttribute
 {
     public HashidsAttribute()
         : base(typeof(global::AspNetCore.Hashids.Json.HashidsJsonConverter)) { }

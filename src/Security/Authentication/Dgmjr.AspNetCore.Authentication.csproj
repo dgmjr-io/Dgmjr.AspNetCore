@@ -12,8 +12,8 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
-        <!-- <TargetFrameworks>net7.0</TargetFrameworks> -->
+        <TargetFramework>net8.0</TargetFramework>
+        <!-- <TargetFrameworks></TargetFrameworks> -->
         <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
     </PropertyGroup>
     <ItemGroup>
@@ -31,7 +31,7 @@
         <PackageReference Include="System.Usings" />
         <PackageReference Include="System.Text.Usings" />
         <PackageReference Include="Dgmjr.System.Extensions" />
-        <PackageReference Include="Dgmjr.Http.Meta" />
+        <!-- <PackageReference Include="Dgmjr.Http.Meta" /> -->
         <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
         <PackageReference Include="System.Runtime" />
         <PackageReference Include="Telegram.Identity" />

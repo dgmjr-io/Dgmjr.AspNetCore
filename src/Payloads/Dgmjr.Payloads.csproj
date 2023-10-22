@@ -36,7 +36,7 @@
         <UsingsPackageReference Include="System.Text.RegularExpressions.Usings" />
 
         <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-        <ProjectReference Include="../Http/Headers/Dgmjr.Http.csproj" />
+        <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
         <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
         <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
         <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->

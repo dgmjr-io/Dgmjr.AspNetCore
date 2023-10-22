@@ -16,8 +16,9 @@
     <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.OpenApi" />
-    <PackageReference Include="SWashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="AspNetCore.Hashids" />
   </ItemGroup>
   <ItemGroup Condition="!$(TargetFramework.Contains('netstandard'))">

@@ -1,5 +1,4 @@
 ---
-
 title: DGMJR - ASP.NET Core
 description: Classes, libraries, etc. for use with ASP.NET Core
 slug: dgmjr-asp-net-core
@@ -14,7 +13,6 @@ authors:
 - dgmjr
 project: aspnetcore
 version: 0.0.1
-created: 2023-03-09-07:20:44
-----------------------------
+---
 
 We're not ready for all that just yet.
