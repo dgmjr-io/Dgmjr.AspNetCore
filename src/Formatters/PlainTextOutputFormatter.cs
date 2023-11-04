@@ -1,7 +1,7 @@
 namespace Dgmjr.AspNetCore.Formatters;
 
-using System.Net.Http.Headers;
-using System.Net.Mime.MediaTypes;
+using Dgmjr.Http.Headers;
+using Dgmjr.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;

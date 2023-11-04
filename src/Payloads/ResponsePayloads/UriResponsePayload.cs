@@ -16,17 +16,13 @@ using System;
 using System.Xml.Serialization;
 
 /// <summary>Represents a response payload with a <see langword="uri" /> value</summary>.
-public class UriResponsePayload : ResponsePayload<uri?>
+public class UriResponsePayload(uri value, string? message = default!)
+    : ResponsePayload<uri?>(value, message)
 {
-    public UriResponsePayload(uri value, string? message = default!)
-        : base(value, message) { }
-
     /// <inheritdoc />
-    [
-        JProp("stringValue"),
-        JIgnore(Condition = JIgnoreCond.WhenWritingNull),
-        XAttribute("stringValue")
-    ]
+    [JProp("stringValue")]
+    [JIgnore(Condition = JIgnore.WhenWritingNull)]
+    [XAttribute("stringValue")]
     public override string? StringValue
     {
         get => base.StringValue ?? Value.ToString();

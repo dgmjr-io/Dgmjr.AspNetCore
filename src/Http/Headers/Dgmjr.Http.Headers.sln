@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\Packages\Versions.Local.props = ..\..\..\..\..\Packages\Versions.Local.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Http.Headers", "Dgmjr.Http.Headers.csproj", "{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.Http.Headers", "Dgmjr.Http.Headers.csproj", "{F46AD64D-19C9-4319-9A82-235DE86A7BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +20,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Local|Any CPU.ActiveCfg = Local|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Local|Any CPU.Build.0 = Local|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Testing|Any CPU.Build.0 = Testing|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Production|Any CPU.ActiveCfg = Local|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Production|Any CPU.Build.0 = Local|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF5BDEB4-053F-4FE9-8C14-EB81F8CD21FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Local|Any CPU.Build.0 = Local|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Production|Any CPU.Build.0 = Local|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F46AD64D-19C9-4319-9A82-235DE86A7BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

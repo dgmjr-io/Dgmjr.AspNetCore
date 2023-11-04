@@ -13,7 +13,7 @@
 using System.Net.Mime.MediaTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using static System.Net.Http.Headers.HttpResponseHeaderNames;
+using static Dgmjr.Http.Headers.HttpResponseHeaderNames;
 
 namespace Dgmjr.Payloads.Formatters;
 

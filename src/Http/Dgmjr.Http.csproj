@@ -10,7 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
-<Project Sdk="Microsoft.Build.Traversal">
+<Project Sdk="Microsoft.NET.Sdk">
   <Sdk Name="MetapackageSdk" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
@@ -18,7 +18,6 @@
     <NoWarn>$(NoWarn);CS8769</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <PackageReference Include="Dgmjr.Http.Meta" /> -->
     <ProjectReference Include="./Extensions/Dgmjr.Http.Extensions.csproj" />
     <ProjectReference Include="./Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="./Mime/Dgmjr.Mime.csproj" />

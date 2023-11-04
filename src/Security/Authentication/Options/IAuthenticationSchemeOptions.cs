@@ -14,10 +14,24 @@ namespace Microsoft.AspNetCore.Authentication.Options;
 
 using Microsoft.AspNetCore.Authentication;
 
-[GenerateInterface(typeof(AuthenticationSchemeOptions))]
+// [GenerateInterface(typeof(AuthenticationSchemeOptions))]
 public partial interface IAuthenticationSchemeOptions
 {
     string AuthenticationSchemeName { get; set; }
     string AuthenticationSchemeDisplayName { get; set; }
     AuthenticationScheme ToAuthenticationScheme();
+
+    string? ClaimsIssuer { get; set; }
+    object? Events { get; set; }
+    type? EventsType { get; set; }
+    string? ForwardDefault { get; set; }
+    string? ForwardAuthenticate { get; set; }
+    string? ForwardChallenge { get; set; }
+    string? ForwardForbid { get; set; }
+    string? ForwardSignIn { get; set; }
+    string? ForwardSignOut { get; set; }
+    Func<HttpContext, string?>? ForwardDefaultSelector { get; set; }
+    TimeProvider? TimeProvider { get; set; }
+    void Validate();
+    void Validate(string scheme);
 }

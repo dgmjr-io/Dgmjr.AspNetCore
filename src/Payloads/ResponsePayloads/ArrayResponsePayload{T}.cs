@@ -34,7 +34,7 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     }
 
     /// <summary>The arrray of values</summary>
-    [JProp("values"), XAttribute("values"), JIgnore(Condition = JIgnoreCond.WhenWritingNull)]
+    [JProp("values"), XAttribute("values"), JIgnore(Condition = JIgnore.WhenWritingNull)]
     public virtual T[]? Values
     {
         get => Value;
@@ -61,7 +61,7 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     [
         JProp("stringValue"),
         XmlAttribute("stringValue"),
-        JIgnore(Condition = JIgnoreCond.WhenWritingNull)
+        JIgnore(Condition = JIgnore.WhenWritingNull)
     ]
     public override string? StringValue
     {

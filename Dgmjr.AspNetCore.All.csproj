@@ -25,7 +25,7 @@
     <ProjectReference Include="./src/Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" />
     <ProjectReference Include="./src/Formatters/Dgmjr.AspNetCore.Formatters.csproj" />
     <ProjectReference Include="./src/Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-    <ProjectReference Include="./src/Http/Http/Dgmjr.Http.Meta.csproj" />
+    <ProjectReference Include="./src/Http/Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="./src/Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="./src/Payloads/Dgmjr.Payloads.csproj" />
     <ProjectReference Include="./src/Startup/Dgmjr.AspNetCore.Startup.csproj" />

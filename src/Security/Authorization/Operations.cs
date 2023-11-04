@@ -11,7 +11,6 @@
  */
 namespace Dgmjr.AspNetCore.Authorization;
 
-using Enums;
 using Abstractions;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using DgmjrSecOps = Dgmjr.Security.Operations;
@@ -43,7 +42,7 @@ public partial class Operations : OperationAuthorizationRequirement
 
     public static implicit operator DgmjrSecOps?(Operations op) =>
         (DgmjrSecOps)
-            DgmjrSecOps.FromEnum(
-                (Dgmjr.Security.Enums.Operations)((IHaveAValue<OperationsEnum>)op).Value
+            DgmjrSecOps.FromValue(
+                (Dgmjr.Security.Enums.Operations)((IHaveAValue<Enums.OperationsEnum>)op).Value
             );
 }

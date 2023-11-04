@@ -15,152 +15,123 @@ namespace Dgmjr.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-public class ProducesOKResponseAttribute : SwaggerResponseAttribute
-{
-    /// <param name="modelType">The type of the model to be returned.</param>
-    /// <param name="description" example="Yay! You didn't fuck up!">
-    /// A short description of the response indicating success.
-    /// </param>
-    public ProducesOKResponseAttribute(
-        type modelType,
-        string description = "Yay! You didn't fuck up!"
-    )
-        : base(
-            Status200OK,
-            description ?? "Yay! You didn't fuck up!",
-            modelType,
-            ApplicationMediaTypeNames.Json,
-            ApplicationMediaTypeNames.Xml,
-            ApplicationMediaTypeNames.MessagePack,
-            ApplicationMediaTypeNames.Bson,
-            TextMediaTypeNames.Plain
-        ) { }
-}
+/// <summary>Notes that the method can produce a 200 OK response</summary>
+/// <param name="modelType">The type of the model to be returned.</param>
+/// <param name="description" example="Yay! You didn't fuck up!">A short description of the response indicating success.</param>
+public class ProducesOKResponseAttribute(
+    type modelType,
+    string description = "Yay! You didn't fuck up!"
+)
+    : SwaggerResponseAttribute(
+        Status200OK,
+        description ?? "Yay! You didn't fuck up!",
+        modelType,
+        ApplicationMediaTypeNames.Json,
+        ApplicationMediaTypeNames.Xml,
+        ApplicationMediaTypeNames.MessagePack,
+        ApplicationMediaTypeNames.Bson,
+        TextMediaTypeNames.Plain
+    ) { }
 
-public class ProducesNoContentResponseAttribute : SwaggerResponseAttribute
-{
-    public ProducesNoContentResponseAttribute(
-        string description = "You didn't fuck up and the request produced no content."
-    )
-        : base(
-            Status204NoContent,
-            description ?? "You didn't fuck up and the request produced no content.",
-            null,
-            ApplicationMediaTypeNames.Json,
-            ApplicationMediaTypeNames.Xml,
-            ApplicationMediaTypeNames.MessagePack,
-            ApplicationMediaTypeNames.Bson,
-            TextMediaTypeNames.Plain
-        ) { }
-}
+public class ProducesNoContentResponseAttribute(
+    string description = "You didn't fuck up and the request produced no content."
+)
+    : SwaggerResponseAttribute(
+        Status204NoContent,
+        description ?? "You didn't fuck up and the request produced no content.",
+        null,
+        ApplicationMediaTypeNames.Json,
+        ApplicationMediaTypeNames.Xml,
+        ApplicationMediaTypeNames.MessagePack,
+        ApplicationMediaTypeNames.Bson,
+        TextMediaTypeNames.Plain
+    ) { }
 
-public class ProducesCreatedResponseAttribute : SwaggerResponseAttribute
-{
-    public ProducesCreatedResponseAttribute(
-        type modelType,
-        string description = "The shit you were try'n'a create was created successfully."
-    )
-        : base(
-            Status201Created,
-            description ?? "The shit you were try'n'a create was created successfully.",
-            modelType,
-            ApplicationMediaTypeNames.Json,
-            ApplicationMediaTypeNames.Xml,
-            ApplicationMediaTypeNames.MessagePack,
-            ApplicationMediaTypeNames.Bson,
-            TextMediaTypeNames.Plain
-        ) { }
-}
+public class ProducesCreatedResponseAttribute(
+    type modelType,
+    string description = "The shit you were try'n'a create was created successfully."
+)
+    : SwaggerResponseAttribute(
+        Status201Created,
+        description ?? "The shit you were try'n'a create was created successfully.",
+        modelType,
+        ApplicationMediaTypeNames.Json,
+        ApplicationMediaTypeNames.Xml,
+        ApplicationMediaTypeNames.MessagePack,
+        ApplicationMediaTypeNames.Bson,
+        TextMediaTypeNames.Plain
+    ) { }
 
-public class ProducesPartialContentResponseAttribute : SwaggerResponseAttribute
-{
-    public ProducesPartialContentResponseAttribute(
-        type modelType,
-        string description = "Here's some of the shit you requested."
-    )
-        : base(
-            Status206PartialContent,
-            description ?? "Here's some of the shit you requested.",
-            modelType,
-            ApplicationMediaTypeNames.Json,
-            ApplicationMediaTypeNames.Xml,
-            ApplicationMediaTypeNames.MessagePack,
-            ApplicationMediaTypeNames.Bson,
-            TextMediaTypeNames.Plain
-        ) { }
-}
+public class ProducesPartialContentResponseAttribute(
+    type modelType,
+    string description = "Here's some of the shit you requested."
+)
+    : SwaggerResponseAttribute(
+        Status206PartialContent,
+        description ?? "Here's some of the shit you requested.",
+        modelType,
+        ApplicationMediaTypeNames.Json,
+        ApplicationMediaTypeNames.Xml,
+        ApplicationMediaTypeNames.MessagePack,
+        ApplicationMediaTypeNames.Bson,
+        TextMediaTypeNames.Plain
+    ) { }
 
-public class CreateOperationAttribute : JwcOperationAttribute
-{
-    public CreateOperationAttribute(
-        string? operationId,
-        string? summary = "Create a new resource",
-        string? description = "Create a new resource",
-        string[]? tags = null
-    )
-        : base(operationId, summary, description, tags)
-    {
-        OperationId = operationId;
-        Summary = summary ?? operationId;
-        Description = description ?? summary;
-        Tags = tags ?? new[] { operationId, "Create/Insert" };
-    }
-}
+public class CreateOperationAttribute(
+    string? operationId,
+    string? summary = "Create a new resource",
+    string? description = "Create a new resource",
+    string[]? tags = null
+)
+    : DgmjrOperationAttribute(
+        operationId,
+        summary ?? operationId,
+        description ?? summary ?? operationId,
+        tags ?? new string[] { operationId, "Create/Insert" }
+    ) { }
 
-public class UpdateOperationAttribute : JwcOperationAttribute
-{
-    public UpdateOperationAttribute(
-        string? operationId,
-        string? summary = "Update an existing resource from a complete model object",
-        string? description = "Update an existing resource from a complete model object",
-        string[]? tags = null
-    )
-        : base(operationId, summary, description, tags)
-    {
-        OperationId = operationId;
-        Summary = summary ?? operationId;
-        Description = description ?? summary;
-        Tags = tags ?? new[] { operationId, "Update" };
-    }
-}
+public class UpdateOperationAttribute(
+    string? operationId,
+    string? summary = "Update an existing resource from a complete model object",
+    string? description = "Update an existing resource from a complete model object",
+    string[]? tags = null
+)
+    : DgmjrOperationAttribute(
+        operationId,
+        summary ?? operationId,
+        description ?? summary ?? operationId,
+        tags ?? new string[] { operationId, "Update" }
+    ) { }
 
-public class DeleteOperationAttribute : JwcOperationAttribute
-{
-    public DeleteOperationAttribute(
-        string? operationId,
-        string? summary = "Delete an existing resource",
-        string? description = "Delete an existing resource",
-        string[]? tags = null
-    )
-        : base(operationId, summary, description, tags)
-    {
-        OperationId = operationId;
-        Summary = summary ?? operationId;
-        Description = description ?? summary;
-        Tags = tags ?? new[] { operationId, "Delete" };
-    }
-}
+public class DeleteOperationAttribute(
+    string? operationId,
+    string? summary = "Delete an existing resource",
+    string? description = "Delete an existing resource",
+    string[]? tags = null
+)
+    : DgmjrOperationAttribute(
+        operationId,
+        summary ?? operationId,
+        description ?? summary ?? operationId,
+        tags ?? new string[] { operationId, "Delete" }
+    ) { }
 
-public class PatchOperationAttribute : JwcOperationAttribute
-{
-    public PatchOperationAttribute(
-        string? operationId,
-        string? summary = "Update an existing resource from a partial model object",
-        string? description = "Update an existing resource from a partial model object",
-        string[]? tags = null
-    )
-        : base(operationId, summary, description, tags)
-    {
-        OperationId = operationId;
-        Summary = summary ?? operationId;
-        Description = description ?? summary;
-        Tags = tags ?? new[] { operationId, "Update" };
-    }
-}
+public class PatchOperationAttribute(
+    string? operationId,
+    string? summary = "Update an existing resource from a partial model object",
+    string? description = "Update an existing resource from a partial model object",
+    string[]? tags = null
+)
+    : DgmjrOperationAttribute(
+        operationId,
+        summary ?? operationId,
+        description ?? summary ?? operationId,
+        tags ?? new string[] { operationId, "Update", "Patch" }
+    ) { }
 
-public class JwcOperationAttribute : SwaggerOperationAttribute
+public class DgmjrOperationAttribute : SwaggerOperationAttribute
 {
-    public JwcOperationAttribute(
+    public DgmjrOperationAttribute(
         string? operationId,
         string? summary = null,
         string? description = null,

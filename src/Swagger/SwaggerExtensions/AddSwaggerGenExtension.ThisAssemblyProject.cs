@@ -18,6 +18,11 @@ using static System.String;
 
 public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
 {
+    public const string ThisAssembly = nameof(ThisAssembly);
+
+    public static TThisAssemblyStaticProxy From(Assembly asm)
+        => new TThisAssemblyStaticProxy(asm.GetExportedTypes().FirstOrDefault(t => t.Name == ThisAssembly));
+
     public type? Project =>
         ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Project));
     public type? Info =>

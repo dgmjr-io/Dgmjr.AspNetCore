@@ -1,25 +1,25 @@
 <!--
  * Dgmjr.AspNetCore.Controllers copy.csproj
- * 
+ *
  *   Created: 2022-12-10-06:05:34
  *   Modified: 2022-12-10-06:05:35
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project>
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" /> 
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" /> 
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" /> 
-    <PackageReference Include="Dgmjr.Abstractions" /> 
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" />
+    <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
     <PackageReference Include="AutoMapper" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+    <PackageReference Include="Dgmjr.Mime" />
   </ItemGroup>
 </Project>

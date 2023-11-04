@@ -42,7 +42,7 @@ public static class JwtExtensions
             .AddJwtBearer(opts =>
             {
                 configureOptions(opts);
-                opts.SaveToken = truez;
+                opts.SaveToken = true;
                 opts.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidIssuer = builder.Configuration[
@@ -84,7 +84,7 @@ public static class JwtExtensions
                         $"{nameof(JwtConfigurationOptions)}:{nameof(JwtConfigurationOptions.Audience)}"
                     ],
                     claims: claims,
-                    expires: Now.AddMinutes(value: 5252600),
+                    expires: datetime.UtcNow.AddMinutes(value: 5252600),
                     signingCredentials: creds
                 );
                 await context.Response.WriteAsync(new JwtSecurityTokenHandler().WriteToken(token));

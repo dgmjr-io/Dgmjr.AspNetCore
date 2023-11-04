@@ -24,5 +24,6 @@ public class SharedSecretAuthenticationScheme : AuthenticationScheme, IAuthentic
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
             type? handlerType = default
     )
-        : base(name, displayName, handlerType ?? typeof(SharedSecretAuthHandler)) { }
+        : base(name, displayName, handlerType ?? typeof(SharedSecretAuthHandler<AppUser, AppRole>))
+    { }
 }

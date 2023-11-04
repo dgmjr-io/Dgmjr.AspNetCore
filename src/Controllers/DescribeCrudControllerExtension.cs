@@ -21,6 +21,7 @@ using Microsoft.OpenApi.Models;
 
 using Dgmjr.AspNetCore.Controllers;
 using Dgmjr.Payloads;
+using static Dgmjr.Http.HttpRequestMethod;
 
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -68,7 +69,7 @@ public class CrudControllerOperationFilter : IOperationFilter
 
             switch (context.MethodInfo.Name)
             {
-                case Post:
+                case Post.ShortName:
                     operation.RequestBody = new OpenApiRequestBody
                     {
                         Content =
@@ -102,7 +103,7 @@ public class CrudControllerOperationFilter : IOperationFilter
                         }
                     };
                     break;
-                case Put:
+                case Put.ShortName:
                     operation.RequestBody = new OpenApiRequestBody
                     {
                         Content =
@@ -136,10 +137,10 @@ public class CrudControllerOperationFilter : IOperationFilter
                         }
                     };
                     break;
-                case Delete:
+                case Delete.ShortName:
                     operation.RequestBody = null;
                     break;
-                case Patch:
+                case Patch.ShortName:
                     operation.RequestBody = new OpenApiRequestBody
                     {
                         Content =
@@ -173,7 +174,7 @@ public class CrudControllerOperationFilter : IOperationFilter
                         }
                     };
                     break;
-                case Get:
+                case Get.ShortName:
                     operation.RequestBody = null;
                     operation.Responses.Add(
                         Status200OK.ToString(),
@@ -212,7 +213,7 @@ public class CrudControllerOperationFilter : IOperationFilter
                         }
                     );
                     break;
-                case Get + "All":
+                case Get.ShortName + "All":
                     operation.RequestBody = null;
                     operation.Responses.Add(
                         Status200OK.ToString(),

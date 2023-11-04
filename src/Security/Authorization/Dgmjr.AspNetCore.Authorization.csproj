@@ -36,7 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../../Http/Mime/Dgmjr.Mime.csproj" />
-    <ProjectReference Include="../../Http/Headers/Dgmjr.Http.csproj" />
+    <ProjectReference Include="../../Http/Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="../../Payloads/Dgmjr.Payloads.csproj" />
   </ItemGroup>
   <ItemGroup>

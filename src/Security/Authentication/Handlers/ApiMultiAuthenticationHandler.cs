@@ -28,5 +28,8 @@ public class ApiMultiAuthenticationHandler : AuthenticationHandler<ApiAuthentica
     )
         : base(options, logger, encoder, clock) { }
 
-    protected override Task<AuthenticateResult> HandleAuthenticateAsync() { }
+    protected override Task<AuthenticateResult> HandleAuthenticateAsync()
+    {
+        throw new NotImplementedException();
+    }
 }

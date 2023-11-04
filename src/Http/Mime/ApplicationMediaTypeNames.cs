@@ -13,54 +13,54 @@ namespace Dgmjr.Mime;
 
 public static class ApplicationMediaTypeNames
 {
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Base" />
+    /// <value>application</value>
     public const string Base = "application";
 
-    ///  <inheritdoc cref="Enums.ApplicationMediaType.Any" />
+    /// <value><inheritdoc cref="Base" />/*</value>
     public const string Any = Base + "/" + "*";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.OctetStream" />
+    /// <value><inheritdoc cref="Base" />/octet-stream</value>
     public const string OctetStream = Base + "/" + "octet-stream";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Pdf" />
+    /// <value><inheritdoc cref="Base" />/pdf</value>
     public const string Pdf = Base + "/" + "pdf";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Rtf" />
+    /// <value><inheritdoc cref="Base" />/rtf</value>
     public const string Rtf = Base + "/" + "rtf";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Soap" />
+    /// <value><inheritdoc cref="Base" />/soap+xml</value>
     public const string Soap = Base + "/" + "soap+xml";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Xml" />
+    /// <value><inheritdoc cref="Base" />/xml</value>
     public const string Xml = Base + "/" + "xml";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Zip" />
+    /// <value><inheritdoc cref="Base" />/zip</value>
     public const string Zip = Base + "/" + "zip";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Json" />
+    /// <value><inheritdoc cref="Base" />/json</value>
     public const string Json = Base + "/" + "json";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.FormUrlEncoded" />
+    /// <value><inheritdoc cref="Base" />/x-www-formurlencoded</value>
     public const string FormUrlEncoded = Base + "/" + "x-www-formurlencoded";
 
-    /// <inheritdoc  cref="Enums.ApplicationMediaType.ProblemJson" />
+    /// <value><inheritdoc cref="Base" />/problem+json</value>
     public const string ProblemJson = Base + "/" + "problem+json";
 
-    /// <inheritdoc  cref="Enums.ApplicationMediaType.ProblemXml" />
+    /// <value><inheritdoc cref="Base" />/problem+xml</value>
     public const string ProblemXml = Base + "/" + "problem+xml";
 
-    /// <inheritdoc  cref="Enums.ApplicationMediaType.JsonPatch" />
+    /// <value><inheritdoc cref="Base" />/json-patch+json</value>
     public const string JsonPatch = Base + "/" + "json-patch+json";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Bson" />
+    /// <value><inheritdoc cref="Base" />/bson</value>
     public const string Bson = Base + "/" + "bson";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.MessagePack" />
+    /// <value><inheritdoc cref="Base" />/x-msgpack</value>
     public const string MessagePack = Base + "/" + "x-msgpack";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Example" />
+    /// <value><inheritdoc cref="Base" />/example</value>
     public const string Example = Base + "/" + "example";
 
-    /// <inheritdoc cref="Enums.ApplicationMediaType.Pkcs12" />
+    /// <value><inheritdoc cref="Base" />/pkcs12</value>
     public const string Pkcs12 = Base + "/" + "pkcs12";
 }

@@ -41,5 +41,5 @@ public interface IResponsePayload : IPayload, IStatusCodeActionResult
     [JIgnore]
     MediaTypeCollection ContentTypes { get; }
     void OnFormatting(OutputFormatterWriteContext context);
-    HttpStatusCode? StatusCode { get; }
+    new HttpStatusCode? StatusCode { get; }
 }

@@ -26,6 +26,6 @@
   <ItemGroup>
     <Using Remove="System.Text.Encoding" />
   </ItemGroup>
-  <Import Project="../Http/Headers/Dgmjr.Http.Headers.props" />
-  <Import Project="../Http/Mime/Dgmjr.Mime.props" />
+  <Import Project="../Http/Headers/Dgmjr.Http.Headers.props" Condition="Exists('../Http/Headers/Dgmjr.Http.Headers.props')" />
+  <Import Project="../Http/Mime/Dgmjr.Mime.props" Condition="Exists('../Http/Mime/Dgmjr.Mime.props')" />
 </Project>

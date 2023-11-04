@@ -16,7 +16,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Example", "Dgmjr.Mime")]
-public enum ExampleMediaTypes : int
+public enum ExampleMediaTypes
 {
     /// <inheritdoc cref="ExampleMediaTypeNames.Any"/>
     [Display(Name = ExampleMediaTypeNames.Any, Description = nameof(Any))]

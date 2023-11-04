@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\Packages\Versions.Local.props = ..\..\..\..\..\Packages\Versions.Local.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Authentication", "Dgmjr.AspNetCore.Authentication.csproj", "{A902AF85-8C02-47F9-931F-4138F1CE6D59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Authentication", "Dgmjr.AspNetCore.Authentication.csproj", "{02FC8042-F7A9-4015-B6D8-BDA3946AA842}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +20,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Local|Any CPU.ActiveCfg = Local|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Local|Any CPU.Build.0 = Local|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Testing|Any CPU.Build.0 = Testing|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Production|Any CPU.ActiveCfg = Local|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Production|Any CPU.Build.0 = Local|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A902AF85-8C02-47F9-931F-4138F1CE6D59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Local|Any CPU.Build.0 = Local|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Production|Any CPU.Build.0 = Local|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FC8042-F7A9-4015-B6D8-BDA3946AA842}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

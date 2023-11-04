@@ -1,17 +1,18 @@
 <!--
  * Dgmjr.AspNetCore.Startup.props
- * 
+ *
  *   Created: 2022-12-05-07:29:55
  *   Modified: 2022-12-05-07:29:55
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project>
   <ItemGroup>
+    <Using Include="Microsoft.Extensions.DependencyInjection" />
     <!-- <Compile Include="$(MSBuildThisFileDirectory)AddSwaggerMetadataExtension.cs" Condition="'$(ProjectId)' != 'Dgmjr.AspNetCore.Startup'" /> -->
     <!-- This file will be compiled into the target project's code -->
     <!-- <Compile Include="$(MSBuildThisFileDirectory)AddSwaggerGenExtension.cs" PackagePath="build/AddSwaggerGenExtensions.cs" /> -->

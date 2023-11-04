@@ -13,20 +13,8 @@
 
 namespace Dgmjr.Payloads;
 
-public class StringPayload : Payload<string>
+public class StringPayload(string? value) : Payload<string>(value, value)
 {
     public StringPayload()
         : this(default) { }
-
-    public StringPayload(string? value) => Value = value ?? string.Empty;
-
-    [JProp("value")]
-    public override string? Value { get; set; }
-
-    [JIgnore]
-    public override string? StringValue
-    {
-        get => Value;
-        set => Value = value;
-    }
 }

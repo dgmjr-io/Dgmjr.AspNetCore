@@ -232,4 +232,13 @@ public enum HttpRequestHeaderNames
     )]
     [EnumMember(Value = "Range")]
     Range,
+
+    /// <summary>The User-Agent request header is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.</summary>
+    /// <value>User-Agent</value>
+    [Display(
+        Name = "User-Agent",
+        Description = "The User-Agent request header is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent."
+    )]
+    [EnumMember(Value = "User-Agent")]
+    UserAgent,
 }

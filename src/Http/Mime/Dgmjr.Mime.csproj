@@ -31,7 +31,7 @@
     <PackageReference Include="System.Security.Cryptography.Algorithms" />
     <UsingsPackageReference Include="System.Text.Json.Usings" />
     <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
-    <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
+    <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
   </ItemGroup>
   <ItemGroup>
     <PackageTag Include="mime" />

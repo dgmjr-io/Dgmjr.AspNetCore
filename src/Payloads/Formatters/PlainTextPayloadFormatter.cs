@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 namespace Dgmjr.Payloads.Formatters;
 
-using static System.Net.Http.Headers.HttpResponseHeaderNames;
+using static Dgmjr.Http.Headers.HttpResponseHeaderNames;
 
 public class PlainTextPayloadFormatter : OutputFormatter
 {

@@ -26,8 +26,8 @@ public class SharedSecretAuthenticationOptions
 {
     public SharedSecretAuthenticationOptions()
     {
-        ClaimsIssuer = DgmjrId.ClaimType.BaseUri.Uri;
-        Secret = guid.NewGuid().ToString();
+        ClaimsIssuer = DgmjrCt.DgmjrClaims.UriString;
+        Secret = guid.NewGuid().ToByteArray().ToHexString();
         UserId = DefaultUserIdForSharedSecret;
         ForwardAuthenticate = SharedSecretAuthenticationSchemeName;
         ForwardChallenge = SharedSecretAuthenticationSchemeName;
@@ -40,6 +40,8 @@ public class SharedSecretAuthenticationOptions
         ((ISharedSecretAuthenticationSchemeOptions)this).AuthenticationSchemeDisplayName =
             AuthenticationSchemeDisplayName;
     }
+
+    public string Audience { get; set; } = string.Empty;
 
     public long UserId { get; set; }
 
@@ -58,5 +60,37 @@ public class SharedSecretAuthenticationOptions
     public AuthenticationScheme ToAuthenticationScheme()
     {
         throw new NotImplementedException();
+    }
+
+    public override void Validate()
+    {
+        if (IsNullOrWhiteSpace(Secret))
+        {
+            throw new ArgumentNullException(
+                nameof(Secret),
+                "The JWT Secret cannot be null or empty."
+            );
+        }
+
+        if (IsNullOrWhiteSpace(ClaimsIssuer))
+        {
+            throw new ArgumentNullException(
+                nameof(ClaimsIssuer),
+                "The JWT Claims Issuer cannot be null or empty."
+            );
+        }
+
+        if (IsNullOrWhiteSpace(Audience))
+        {
+            throw new ArgumentNullException(
+                nameof(Audience),
+                "The JWT Audience cannot be null or empty."
+            );
+        }
+    }
+
+    public override void Validate(string scheme)
+    {
+        Validate();
     }
 }

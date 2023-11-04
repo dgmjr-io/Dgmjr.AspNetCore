@@ -13,20 +13,21 @@
 namespace Dgmjr.Payloads;
 
 using System.Diagnostics;
+using System.Globalization;
+
+using PhoneNumbers;
 
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
-public class NumericPayload : Payload<decimal>
+public class NumericPayload(decimal value, string? stringValue = default)
+    : Payload<decimal>(value, stringValue ?? value.ToString(CultureInfo.CurrentCulture))
 {
     public NumericPayload()
         : this(default) { }
 
-    public NumericPayload(decimal value, string? stringValue = default)
-        : base(value, stringValue) { }
-
     [JProp("stringValue")]
     public override string? StringValue
     {
-        get => Value.ToString();
-        set => Value = decimal.Parse(value);
+        get => Value.ToString(CultureInfo.CurrentCulture);
+        set => Value = decimal.Parse(value, CultureInfo.CurrentCulture);
     }
 }

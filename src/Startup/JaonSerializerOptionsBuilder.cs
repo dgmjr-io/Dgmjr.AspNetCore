@@ -12,5 +12,7 @@
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-[BuilderFor(typeof(JaonSerializerOptions))]
-public class JaonSerializerOptionsBuilder { }
+using BuilderGenerator;
+
+[BuilderFor(typeof(JsonSerializerOptions))]
+public partial class JsonSerializerOptionsBuilder { }

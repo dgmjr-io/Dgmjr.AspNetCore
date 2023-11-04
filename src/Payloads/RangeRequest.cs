@@ -3,27 +3,54 @@ using Vogen;
 
 namespace Dgmjr.Payloads
 {
+    /// <summary>Indicates the part of a resultset that the server should return.  It's a zero-based index from the start to the end if the desired resultset.  The format is \"items {start}-{end}\".  If the end is omitted, the server will return all items from the start to the end of the resultset.  If the start is omitted, the server will return all items from the beginning to the end of the resultset.  If both are omitted, the server will return all items in the resultset.  The server will return a 416 (Range Not Satisfiable) if the requested range is not satisfiable.</summary>
+    /// <default>items 0-<inheritdoc cref="MaxIntString" path="/value/text()" /></default>
     [ValueObject(
         typeof(System.Range),
         conversions: Conversions.SystemTextJson | Conversions.TypeConverter
     )]
-    public partial record struct Range
+    public readonly partial record struct Range
     {
+        /// <value><inheritdoc cref="Items" path="/value" /> 0-*</value>
         public const string AllString = $"{Items} 0-*";
+
+        /// <inheritdoc cref="AllString" path="/value" />
         public static readonly Range All = Parse(AllString);
+
+        /// <value>items</value>
         public const string Items = "items";
-        public const string RegexString = @"items\s(?<Start>[0-9]+)\-(?:(?<End>[0-9]+)?|[\*])";
+
+        /// <value>bytes</value>
+        public const string Bytes = "bytes";
+
+        /// <value>records</value>
+        public const string Records = "records";
+
+        /// <value>^(?&x3c;Units&x3e;(?:item)|(?:byte)s)\s*(?&x3c;Start&x3e;[0-9]+)\-(?:(?&x3c;End&x3e;[0-9]+)?|[\*])$</value>
+        public const string RegexString =
+            @"^(?<Units>(?:item)|(?:byte)s)\s*(?<Start>[0-9]+)\-(?:(?<End>[0-9]+)?|[\*])$";
+
+        public Units Units =>
+            Regex().Match(Value.ToString()).Groups[nameof(Units)].Value switch
+            {
+                Items => Units.Items,
+                Records => Units.Records,
+                Bytes => Units.Bytes,
+                _ => Units.Bytes
+            };
 
 #if NET7_0_OR_GREATER
-        [GeneratedRegex(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase)]
+        /// <inheritdoc cref="RegexString" />
+        [GeneratedRegex(RegexString, Rxo.Compiled | Rxo.IgnoreCase)]
         public static partial Regex Regex();
 #else
-        private static readonly Regex _regex =
-            new(RegexString, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+        private static readonly Regex _regex = new(RegexString, Rxo.Compiled | Rxo.IgnoreCase);
 
+        /// <inheritdoc cref="RegexString" />
         public static Regex Regex() => _regex;
 #endif
 
+        /// <value>2147483647</value>
         private const string MaxIntString = "2147483647";
 
         public int PageNumber
@@ -147,5 +174,13 @@ namespace Dgmjr.Payloads
                 return false;
             }
         }
+    }
+
+    public enum Units
+    {
+        None = 0,
+        Bytes = 1,
+        Items = 2,
+        Records = 4
     }
 }

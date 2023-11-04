@@ -52,6 +52,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Example)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Example)]
     Example,
 
     /// <summary>A media type for a stream of bytes.</summary>
@@ -63,10 +64,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.OctetStream)]
-    [Uri(
-        "https://www.iana.org/assignments/media-types/application"
-            + ApplicationMediaTypeNames.OctetStream
-    )]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.OctetStream)]
     OctetStream,
 
     /// <summary>A PDF document.</summary>
@@ -78,9 +76,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Pdf)]
-    [Uri(
-        "https://www.iana.org/assignments/media-types/application" + ApplicationMediaTypeNames.Pdf
-    )]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Pdf)]
     Pdf,
 
     /// <summary>A ZIP archive.</summary>
@@ -92,9 +88,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Zip)]
-    [Uri(
-        "https://www.iana.org/assignments/media-types/application" + ApplicationMediaTypeNames.Zip
-    )]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Zip)]
     Zip,
 
     /// <summary>Rich Text Format (RTF).</summary>
@@ -106,9 +100,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Rtf)]
-    [Uri(
-        "https://www.iana.org/assignments/media-types/application" + ApplicationMediaTypeNames.Rtf
-    )]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Rtf)]
     Rtf,
 
     /// <summary>A SOAP envelope.</summary>
@@ -120,6 +112,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Soap)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Soap)]
     Soap,
 
     /// <summary>An XML document.</summary>
@@ -131,6 +124,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Xml)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Xml)]
     Xml,
 
     /// <summary>A JSON document.</summary>
@@ -142,10 +136,11 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Json)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Json)]
     Json,
 
     /// <summary>A form URL-encoded document.</summary>
-    /// <value><inheritdoc cref="ApplicationMediaTypeNames.FormUrlEncoded"/></value>
+    /// <value>application/x-www-formurlencoded</value>
     /// <seealso cref="ApplicationMediaTypeNames.FormUrlEncoded"/>
     [Display(
         Name = ApplicationMediaTypeNames.FormUrlEncoded,
@@ -153,6 +148,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.FormUrlEncoded)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.FormUrlEncoded)]
     FormUrlEncoded,
 
     /// <summary>A binary-encoded Javascript Object Notation (BSON) document.</summary>
@@ -164,6 +160,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Bson)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Bson)]
     Bson,
 
     /// <summary>A MessagePack document.</summary>
@@ -186,9 +183,10 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.ProblemJson)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.ProblemJson)]
     ProblemJson,
 
-    /// <summary>A Problem JSON document.</summary>
+    /// <summary>A Problem XML document.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.ProblemXml"/></value>
     /// <seealso cref="ApplicationMediaTypeNames.ProblemXml"/>
     [Display(
@@ -197,6 +195,7 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.ProblemXml)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.ProblemXml)]
     ProblemXml,
 
     /// <summary>A JSON Patch document.</summary>
@@ -208,16 +207,18 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.JsonPatch)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.JsonPatch)]
     JsonPatch,
 
     /// <summary>A Personal Information Exchange file.</summary>
     /// <value><inheritdoc cref="ApplicationMediaTypeNames.Pkcs12"/></value>
     /// <seealso cref="ApplicationMediaTypeNames.Pkcs12"/>
     [Display(
-        Name = ApplicationMediaTypeNames.JsonPatch,
-        Description = nameof(JsonPatch),
+        Name = ApplicationMediaTypeNames.Pkcs12,
+        Description = nameof(Pkcs12),
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Pkcs12)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Pkcs12)]
     Pkcs12
 }

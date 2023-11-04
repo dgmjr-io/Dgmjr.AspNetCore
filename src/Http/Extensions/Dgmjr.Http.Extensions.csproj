@@ -24,8 +24,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
-    <PackageReference Include="Dgmjr.Http.Meta" />
-    <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+    <!-- <PackageReference Include="Dgmjr.Mime" /> -->
     <UsingsPackageReference Include="System.ComponentModel.Usings" />
     <UsingsPackageReference Include="System.Text.Json.Usings" />
     <!-- <ProjectReference Include="../Meta/Dgmjr.Meta.csproj" />
@@ -33,6 +32,9 @@
     <!-- <PackageReference Include="Dgmjr.Payloads" /> -->
     <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
     <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
+    <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../Headers/Dgmjr.Http.Headers.csproj" />
   </ItemGroup>
-  <!-- <Import Project="./Dgmjr.Http.Extensions.props" /> -->
+  <Import Project="../Mime/Dgmjr.Mime.props" Condition="Exists('../Mime/Dgmjr.Mime.props')" />
+  <Import Project="../Headers/Dgmjr.Http.Headers.props" Condition="Exists('../Headers/Dgmjr.Http.Headers.props')" />
 </Project>

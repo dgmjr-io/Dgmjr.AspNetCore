@@ -17,7 +17,8 @@ using System.Runtime.InteropServices;
 
 using Microsoft.AspNetCore.Mvc.Formatters;
 
-[System.Text.Json.Serialization.JsonConverter(typeof(IMediaTypeJsonConverter))]
+/// <summary>A generic interface for MIME types</summary>
+[System.Text.Json.Serialization.JsonConverter(typeof(MediaTypeJsonConverter))]
 public partial interface IMediaType
     : IHaveAName,
         IHaveADescription,

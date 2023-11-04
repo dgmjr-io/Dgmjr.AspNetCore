@@ -20,6 +20,7 @@
     <PackageReference Include="Dgmjr.ComponentModel" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
     <SourceGeneratorPackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
     <UsingsPackageReference Include="System.ComponentModel.Usings" />
   </ItemGroup>

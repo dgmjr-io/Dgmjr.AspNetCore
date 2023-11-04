@@ -18,23 +18,24 @@ using Abstractions;
 
 using Dgmjr.Mime.Enums;
 
-public readonly record struct TempMediaType(string Name) : IMediaType
+public readonly record struct TempMediaType(string Name)
+    : IMediaType,
+        IHaveAuri,
+        IConvertible,
+        IHaveAValue<MediaTypes>,
+        IHaveAValue<int>,
+        IEquatable<int>,
+        IEquatable<IMediaType>,
+        IHaveAValue
 {
     public string DisplayName { get; } = Name;
     private static readonly MD5 MD5 = MD5.Create();
-    public string[] Synonyms
-    {
-        get => Empty<string>();
-        init
-        {
-            /* do nothing */
-        }
-    }
+    public string[] Synonyms { get; init; } = Empty<string>();
     Uri IHaveAUri.Uri => new(UriString);
     object IIdentifiable.Id => Id;
     public int Id => 0;
     public int Value => Id;
-    public string UriString => "urn:temp:media-type:" + DisplayName.ToKebabCase();
+    public string UriString => "urn:publicid:temp:media-type:" + DisplayName.ToKebabCase();
     public string GuidString => MD5.ComputeHash(UriString.ToUTF8Bytes()).ToHexString();
     public guid Guid => new(GuidString);
     public string Description => Name;
@@ -45,6 +46,7 @@ public readonly record struct TempMediaType(string Name) : IMediaType
     public string Prompt => "";
 
     uri IMediaType.Uri => UriString;
+    uri IHaveAuri.Uri => UriString;
 
     object IHaveAValue.Value => Value;
 

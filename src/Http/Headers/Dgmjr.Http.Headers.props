@@ -11,9 +11,8 @@
 -->
 
 <Project>
-    <ItemGroup>
-        <Using Include="Dgmjr.Http.Headers.HttpRequestHeaderNames" Alias="HReqH" />
-        <Using Include="Dgmjr.Http.Headers.HttpResponseHeaderNames" Alias="HResH" />
-        <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
-    </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Http.Headers.HttpRequestHeaderNames" Alias="HReqH" />
+    <Using Include="Dgmjr.Http.Headers.HttpResponseHeaderNames" Alias="HResH" />
+  </ItemGroup>
 </Project>

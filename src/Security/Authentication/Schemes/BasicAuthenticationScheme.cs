@@ -25,5 +25,5 @@ public class BasicAuthenticationScheme : AuthenticationScheme, IAuthenticationSc
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicConstructors)]
             type? handlerType = default
     )
-        : base(name, displayName, handlerType ?? typeof(BasicApiAuthHandler)) { }
+        : base(name, displayName, handlerType ?? typeof(BasicApiAuthHandler<AppUser, AppRole>)) { }
 }

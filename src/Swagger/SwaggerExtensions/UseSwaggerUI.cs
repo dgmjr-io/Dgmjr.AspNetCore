@@ -112,9 +112,9 @@ public static partial class UseSwaggerUIExtensions
             // }
 
             options.SwaggerEndpoint(
-        swaggerPath,
-        $"{thisAssemblyProject.Title} {thisAssemblyProject.ApiVersion}"
-    );
+                swaggerPath,
+                $"{thisAssemblyProject.Title} {thisAssemblyProject.ApiVersion}"
+            );
         });
 
         _ = app.MapGet(
@@ -200,7 +200,7 @@ public static partial class UseSwaggerUIExtensions
                     };
                     return op;
                 })
-                .WithTags(new[] { "style", "ui" })
+                .WithTags("style", "ui")
                 .Produces<string>(Status200OK, TextMediaTypeNames.Css);
         }
 
@@ -225,22 +225,18 @@ public static partial class UseSwaggerUIExtensions
             opts.DocumentTitle = thisAssemblyProject.Title;
             opts.SpecUrl = $"/swagger/{thisAssemblyProject.ApiVersion}/swagger.json";
             opts.OnlyRequiredInSamples();
-            opts.HeadContent +=
-                """<script type="application / javascript" src="https://cdn.jsdelivr.net/npm/redoc-try-it-out/dist/try-it-out.min.js"></script>""";
-            opts.HeadContent += $$""""
-        < script >
-            var redoc_container = document.createElement("div");
-    document.body.appendChild(redoc_container);
-    RedocTryItOut.init(
-            "s{{opts.SpecUrl}}",
-
-
-                            { title: ""{ { thisAssemblyProject.Title} } "" },
-                                redoc_container
-
-                );
-                </ script >
-                """";
+            opts.HeadContent += $$$""""
+            <script type="application/javascript" src="https://cdn.jsdelivr.net/npm/redoc-try-it-out/dist/try-it-out.min.js"></script>
+            {{{opts.HeadContent}}}
+            <script>
+                var redoc_container = document.createElement("div");
+                document.body.appendChild(redoc_container);
+                RedocTryItOut.init(
+                        "{{{opts.SpecUrl}}}",
+                        { title: ""{{{thisAssemblyProject.Title}}}"" },
+                        redoc_container
+            </script>
+            """";
         });
 
         return app;

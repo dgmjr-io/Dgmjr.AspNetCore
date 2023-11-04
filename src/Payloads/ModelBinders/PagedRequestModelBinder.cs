@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Primitives;
 using Vogen;
-using static System.Net.Http.Headers.HttpRequestHeaderNames;
+using static Dgmjr.Http.Headers.HttpRequestHeaderNames;
 using static System.Net.HttpStatusCode;
 
 namespace Dgmjr.Payloads.ModelBinders
@@ -19,7 +19,7 @@ namespace Dgmjr.Payloads.ModelBinders
         {
             this.BindingSource = BindingSource.Header;
             this.BinderType = typeof(RangeRequestModelBinder);
-            this.Name = HttpRequestHeaderNames.Range.DisplayName;
+            this.Name = Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName;
         }
     }
 
@@ -47,11 +47,11 @@ namespace Dgmjr.Payloads.ModelBinders
                 }
                 else if (
                     bindingContext.HttpContext.Request.Headers[
-                        HttpRequestHeaderNames.Range.DisplayName
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName
                     ] != default(StringValues)
                     && Range.TryParse(
                         bindingContext.HttpContext.Request.Headers[
-                            HttpRequestHeaderNames.Range.DisplayName
+                            Dgmjr.Http.Headers.HttpRequestHeaderNames.Range.DisplayName
                         ].First(),
                         out rangeRequest
                     )
@@ -61,11 +61,11 @@ namespace Dgmjr.Payloads.ModelBinders
                 }
                 else if (
                     bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageSize.DisplayName,
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.XPageSize.DisplayName,
                         out pageSize
                     )
                     && bindingContext.HttpContext.Request.TryGetHeaderParam<int>(
-                        XPageNumber.DisplayName,
+                        Dgmjr.Http.Headers.HttpRequestHeaderNames.XPageNumber.DisplayName,
                         out pageNumber
                     )
                 )

@@ -19,6 +19,7 @@ using Dgmjr.Abstractions;
 using Dgmjr.AspNetCore.Authentication;
 using Dgmjr.AspNetCore.Authentication.Options;
 using Dgmjr.Identity;
+using Dgmjr.Identity.Abstractions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -27,13 +28,16 @@ using Microsoft.Extensions.Options;
 using static System.Text.TextEncodingExtensions;
 using ClaimTypes = DgmjrCt;
 
-public class SharedSecretAuthHandler
+public class SharedSecretAuthHandler<TUser, TRole>
     : AuthenticationHandler<SharedSecretAuthenticationOptions>,
         IHttpContextAccessor,
         ILog
+    where TUser : class, IIdentityUserBase, IHaveATelegramUsername, IIdentifiable
+    where TRole : class, IIdentityRoleBase
 {
-    public new virtual ILogger Logger { get; } = new NullLogger<SharedSecretAuthHandler>();
-    private readonly UserManager _userManager;
+    public new virtual ILogger Logger { get; } =
+        new NullLogger<SharedSecretAuthHandler<TUser, TRole>>();
+    private readonly UserManager<TUser, TRole> _userManager;
     private readonly SharedSecretAuthenticationOptions _options;
     public HttpContext? HttpContext
     {
@@ -46,7 +50,7 @@ public class SharedSecretAuthHandler
         ILoggerFactory logger,
         UrlEncoder encoder,
         ISystemClock clock,
-        UserManager userManager
+        UserManager<TUser, TRole> userManager
     )
         : base(options, logger, encoder, clock)
     {
@@ -59,43 +63,48 @@ public class SharedSecretAuthHandler
         try
         {
             var authHeader = AuthenticationHeaderValue.Parse(
-                Request.Headers[HttpRequestHeaderNames.Authorization]
+                Request.Headers[HReqH.Authorization.DisplayName]
             );
-            var credentialBytes = FromBase64String(authHeader.Parameter);
+            var credentialBytes = authHeader.Parameter.FromBase64String();
             var credentials = GetUTF8String(credentialBytes).Split(':', 2);
             var authUsername = credentials[0];
             var authSecret = credentials[1];
-            Logger.LogAuthenticatingUser(authUsername);
+            Logger.LogAuthenticatingUser(
+                authUsername,
+                SharedSecretAuthenticationOptions.SharedSecretAuthenticationSchemeName
+            );
 
             // authenticate credentials with user service and attach user to http context
             var user = await _userManager.FindByNameAsync(authUsername);
             if (
                 user is not null
                 && authSecret == _options.Secret
-                && (await _userManager.GetClaimsAsync(user))
-                    .Any(c => c.Type == DgmjrCt.Role && DgmjrR.AnonymousUser)
-                    .Count > 0
+                && (await _userManager.GetClaimsAsync(user)).Any(
+                    c => c.Type is DgmjrCt.Role.UriString or DgmjrR.AnonymousUser.UriString
+                )
             )
             {
                 var identity = new ClaimsIdentity(
-                    SharedSecretAuthenticationOptions.AuthenticationSchemeName
+                    SharedSecretAuthenticationOptions.SharedSecretAuthenticationSchemeName
                 );
                 var userClaims = await _userManager.GetClaimsAsync(user);
 
-                userClaims.Add(new(TelegramID.Username, user.TelegramUsername));
-                userClaims.Add(new(TelegramID.UserId, user.Id.ToString()));
-                if (!IsNullOrEmpty(user.Email))
+                userClaims.Add(
+                    new(TelegramID.ClaimTypes.Username.UriString, user.TelegramUsername)
+                );
+                userClaims.Add(new(TelegramID.ClaimTypes.UserId.UriString, user.Id.ToString()));
+                if (!user.EmailAddress.IsEmpty)
                 {
-                    userClaims.Add(new(ClaimTypes.Email, user.Email));
+                    userClaims.Add(new(ClaimTypes.Email.UriString, user.EmailAddress.ToString()));
                 }
 
                 identity.AddClaims(userClaims);
                 var principal = new ClaimsPrincipal(identity);
                 var ticket = new AuthenticationTicket(
                     principal,
-                    SharedSecretAuthenticationOptions.AuthenticationSchemeName
+                    SharedSecretAuthenticationOptions.SharedSecretAuthenticationSchemeName
                 );
-                Logger.UserAuthenticated(authUsername, userClaims.Count);
+                Logger.LogUserAuthenticated(authUsername, userClaims.Count);
                 return AuthenticateResult.Success(ticket);
             }
             else if (user is null)

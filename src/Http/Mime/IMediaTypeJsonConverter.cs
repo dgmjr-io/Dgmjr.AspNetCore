@@ -14,7 +14,8 @@ namespace Dgmjr.Mime;
 
 using Abstractions;
 
-public class IMediaTypeJsonConverter : JsonConverter<IMediaType>
+/// <summary>Converts an <see cref="IMediaType" /> to and from JSON</summary>
+public class MediaTypeJsonConverter : JsonConverter<IMediaType>
 {
     /// <summary>
     /// Reads the media type from the <paramref name="reader" />. This is used to determine the type of the object being read.
@@ -22,11 +23,10 @@ public class IMediaTypeJsonConverter : JsonConverter<IMediaType>
     /// <param name="reader">The reader</param>
     /// <param name="typeToConvert">The type to convert to.</param>z
     /// <param name="options">The used to deserialize the object. This can be</param>
-    public override IMediaType Read(ref Utf8JsonReader reader, Type typeToConvert, Jso options)
+    public override IMediaType Read(ref Utf8JsonReader reader, type typeToConvert, Jso options)
     {
         var mediaType = reader.GetString();
-        /// If media type is null throw an exception
-        /// If media type is null throw an exception
+        // If media type is null throw an exception
         if (mediaType is null)
             throw new JsonException("Media type cannot be null");
 

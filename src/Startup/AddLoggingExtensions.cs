@@ -36,24 +36,24 @@ internal static class AddLoggingExtensions
             // Add request headers to log
             new[]
             {
-                HttpRequestHeaderNames.Authorization,
-                HttpRequestHeaderNames.ContentType,
-                HttpRequestHeaderNames.UserAgent,
-                HttpRequestHeaderNames.Accept,
-                HttpRequestHeaderNames.Cookie
+                HReqH.Authorization.DisplayName,
+                HReqH.ContentType.DisplayName,
+                HReqH.UserAgent.DisplayName,
+                HReqH.Accept.DisplayName,
+                HReqH.Cookie.DisplayName
             }.Select(x => opts.RequestHeaders.Add(x));
 
             // Add response media types to log
-            opts.MediaTypeOptions.AddText(ApplicationMediaTypeNames.Json);
-            opts.MediaTypeOptions.AddText(TextMediaTypeNames.Plain);
-            opts.MediaTypeOptions.AddText(ApplicationMediaTypeNames.Xml);
+            opts.MediaTypeOptions.AddText(ApplicationMediaType.Json.DisplayName);
+            opts.MediaTypeOptions.AddText(TextMediaType.Plain.DisplayName);
+            opts.MediaTypeOptions.AddText(ApplicationMediaType.Xml.DisplayName);
 
             // Add response headers to log
             new[]
             {
-                HttpResponseHeaderNames.ContentType,
-                HttpResponseHeaderNames.Location,
-                HttpResponseHeaderNames.SetCookie
+                HResH.ContentType.DisplayName,
+                HResH.Location.DisplayName,
+                HResH.SetCookie.DisplayName
             }.Select(x => opts.RequestHeaders.Add(x));
         });
 

@@ -23,8 +23,6 @@
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
         <PackageReference Include="MediatR" />
         <PackageReference Include="System.All.Usings" />
-        <!-- <PackageReference Include="Dgmjr.Http.Meta" ExcludeAssets="ContentFiles" /> -->
-        <!-- <PackageReference Include="Dgmjr.AspNetCore.Mvc" ExcludeAssets="ContentFiles" /> -->
         <PackageReference Include="Dgmjr.Payloads" ExcludeAssets="ContentFiles" />
         <PackageReference Include="Dgmjr.MediatR" ExcludeAssets="ContentFiles" />
         <PackageReference Include="Dgmjr.MediatR.Abstractions" ExcludeAssets="ContentFiles" />
@@ -37,6 +35,7 @@
         <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="ContentFiles;Lib;Runtime;Compile" />
         <ProjectReference Include="../Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
         <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
+        <PackageReference Include="Dgmjr.Http.Headers" />
     </ItemGroup>
     <ItemGroup>
         <!-- <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" /> -->

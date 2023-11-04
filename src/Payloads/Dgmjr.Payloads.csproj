@@ -11,34 +11,34 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
-        <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-        <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
-        <PackageId>Dgmjr.Payloads</PackageId>
-        <AssemblyName>$(PackageId)</AssemblyName>
-        <RootNamespace>$(PackageId)</RootNamespace>
-        <ExcludeRestorePackageImports>false</ExcludeRestorePackageImports>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
-    </PropertyGroup>
-    <ItemGroup>
-        <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
-        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-        <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-        <PackageReference Include="Vogen" />
-        <PackageReference Include="Dgmjr.Primitives" />
-        <PackageReference Include="Dgmjr.Abstractions" />
-        <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
-        <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
+  <PropertyGroup>
+    <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
+    <PackageId>Dgmjr.Payloads</PackageId>
+    <AssemblyName>$(PackageId)</AssemblyName>
+    <RootNamespace>$(PackageId)</RootNamespace>
+    <ExcludeRestorePackageImports>false</ExcludeRestorePackageImports>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="Vogen" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
+    <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
 
-        <UsingsPackageReference Include="System.Text.Json.Usings" />
-        <UsingsPackageReference Include="System.Text.RegularExpressions.Usings" />
+    <UsingsPackageReference Include="System.Text.Json.Usings" />
+    <UsingsPackageReference Include="System.Text.RegularExpressions.Usings" />
 
-        <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-        <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
-        <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
-        <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-        <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
-    </ItemGroup>
+    <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
+    <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
+    <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
+  </ItemGroup>
 </Project>

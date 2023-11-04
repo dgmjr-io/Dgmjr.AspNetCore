@@ -22,30 +22,28 @@ public class BasicAuthenticationSchemeOptions
         IBasicAuthenticationSchemeOptions
 {
     public const string Basic = nameof(Basic);
-    public const string DefaultAithenticationSchemeName = Basic;
+    public const string DefaultAuthenticationSchemeName = Basic;
     public const string DefaultAuthenticationSchemeDisplayName =
         $"{Basic} Authentication (Client ID + Client Secret)";
 
     public BasicAuthenticationSchemeOptions()
     {
         ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName = Basic;
-        this.ClaimsIssuer = DgmjrId.ClaimType.BaseUri.Uri;
-        this.ForwardAuthenticate = (
-            (IBasicAuthenticationSchemeOptions)this
-        ).AuthenticationSchemeName;
-        this.ForwardChallenge = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardDefault = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardSignIn = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
-        this.ForwardSignOut = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ClaimsIssuer = DgmjrCt.DgmjrClaims.UriString;
+        ForwardAuthenticate = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardChallenge = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardDefault = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardForbid = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardSignIn = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
+        ForwardSignOut = ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName;
     }
 
     public AuthenticationScheme ToAuthenticationScheme() =>
         new(
             ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeName,
             ((IBasicAuthenticationSchemeOptions)this).AuthenticationSchemeDisplayName,
-            typeof(BasicApiAuthHandler)
+            typeof(BasicApiAuthHandler<AppUser, AppRole>)
         );
 
     AuthenticationScheme IAuthenticationSchemeOptions.ToAuthenticationScheme()
@@ -55,4 +53,11 @@ public class BasicAuthenticationSchemeOptions
 
     string IAuthenticationSchemeOptions.AuthenticationSchemeName { get; set; }
     string IAuthenticationSchemeOptions.AuthenticationSchemeDisplayName { get; set; }
+
+    public override void Validate() { }
+
+    public override void Validate(string scheme)
+    {
+        Validate();
+    }
 }

@@ -58,9 +58,9 @@ public abstract class AuthMiddlewareBase<THandler, TOptions> : ILog, IMiddleware
             return;
         }
 
-        if (ShouldHandleScheme(options.AuthenticationSchemeName))
+        if (ShouldHandleScheme(_options.CurrentValue.AuthenticationSchemeName))
         {
-            await HandleAuthenticateOnceAsync(context, options);
+            await HandleAuthenticateOnceAsync(context, _options.CurrentValue);
             return; // Return after authentication to avoid calling _next twice.
         }
 

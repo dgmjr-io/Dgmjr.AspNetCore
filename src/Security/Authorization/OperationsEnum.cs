@@ -12,7 +12,10 @@
 
 namespace Dgmjr.AspNetCore.Authorization.Enums;
 
-[GenerateEnumerationClass(nameof(Operations), "Dgmjr.AspNetCore.Authorization")]
+[GenerateEnumerationClass(
+    nameof(Dgmjr.AspNetCore.Authorization.Operations),
+    "Dgmjr.AspNetCore.Authorization"
+)]
 public enum OperationsEnum
 {
     [Uri(Dgmjr.Security.Operations.Create.UriString)]

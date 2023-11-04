@@ -22,11 +22,9 @@ public class BooleanResponsePayload : ResponsePayload<bool>
         : base(value, message) { }
 
     /// <inheritdoc />
-    [
-        JProp("stringValue"),
-        JIgnore(Condition = JIgnoreCond.WhenWritingNull),
-        XmlAttribute("stringValue")
-    ]
+    [JProp("stringValue")]
+    [JIgnore(Condition = JIgnore.WhenWritingNull)]
+    [XmlAttribute("stringValue")]
     public override string? StringValue
     {
         get => Value.ToString();

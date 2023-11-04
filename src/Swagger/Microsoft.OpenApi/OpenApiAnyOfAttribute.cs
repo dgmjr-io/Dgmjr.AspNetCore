@@ -1,5 +1,5 @@
 ﻿/*
- * OpenApiAnyOfAttribute.cs
+ * OpenApiEnumAttribute.cs
  *
  *   Created: 2022-12-21-08:46:55
  *   Modified: 2022-12-21-08:46:57
@@ -16,12 +16,12 @@ using Microsoft.OpenApi.Any;
 
 namespace Microsoft.OpenApi.Attributes;
 
-public class OpenApiAnyOfAttribute : OpenApiSchemaAttribute
+public class OpenApiEnumAttribute : OpenApiSchemaAttribute
 {
-    public OpenApiAnyOfAttribute(params object[] anyOf)
+    public OpenApiEnumAttribute(params object[] anyOf)
         : this(anyOf.AsEnumerable()) { }
 
-    public OpenApiAnyOfAttribute(IEnumerable<object> anyOf)
+    public OpenApiEnumAttribute(IEnumerable<object> anyOf)
     {
         Enum = anyOf
             .Select(anyOfItem => new OpenApiString(anyOfItem?.ToString()))

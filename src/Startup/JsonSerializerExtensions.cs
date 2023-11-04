@@ -25,7 +25,7 @@ internal static class JsonSerializerExtensions
             {
                 x.AllowInputFormatterExceptionMessages = true;
                 x.JsonSerializerOptions.AllowTrailingCommas = true;
-                x.JsonSerializerOptions.DefaultIgnoreCondition = JIgnoreCond.WhenWritingNull;
+                x.JsonSerializerOptions.DefaultIgnoreCondition = JIgnore.WhenWritingNull;
                 x.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
                 x.JsonSerializerOptions.IgnoreReadOnlyFields = false;
                 x.JsonSerializerOptions.IgnoreReadOnlyProperties = false;
@@ -45,7 +45,7 @@ internal static class JsonSerializerExtensions
             var jso = new Jso(JsonSerializerDefaults.Web)
             {
                 AllowTrailingCommas = true,
-                DefaultIgnoreCondition = JIgnoreCond.WhenWritingNull,
+                DefaultIgnoreCondition = JIgnore.WhenWritingNull,
                 DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
                 IgnoreReadOnlyFields = false,
                 IgnoreReadOnlyProperties = false,

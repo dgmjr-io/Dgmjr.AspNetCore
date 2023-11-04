@@ -45,7 +45,7 @@ public static partial class AddSwaggerMetadataExtension
         OpenApiInfo? openApiInfo = default
     )
     {
-        openApiInfo ??= DefaultOpenApiInfo(tThisAssemblyProject);
+        openApiInfo ??= DefaultOpenApiInfo(tThisAssemblyProject.Assembly);
         openApiInfo.Version ??= version;
         if (!openApiInfo.Version.StartsWith("v"))
             openApiInfo.Version = "v" + openApiInfo.Version;
@@ -125,7 +125,14 @@ public static partial class AddSwaggerMetadataExtension
         this WebApplicationBuilder builder
     )
     {
-        // builder.Services.ConfigureSwaggerGen(c => c.OperationFilter<AddHeaderOperationFilter>("Range", "Requested range of values to return", false));
+        builder.Services.ConfigureSwaggerGen(
+            c =>
+                c.OperationFilter<AddHeaderOperationFilter>(
+                    "Range",
+                    "Requested range of values to return",
+                    false
+                )
+        );
         return builder;
     }
 
@@ -143,7 +150,7 @@ public static partial class AddSwaggerMetadataExtension
 
     public static OpenApiInfo DefaultOpenApiInfo(Assembly thisAssembly)
     {
-        var thisAssemblyProject = new TThisAssemblyStaticProxy(tThisAssemblyProject);
+        var thisAssemblyProject = TThisAssemblyStaticProxy.From(thisAssembly);
         var versionString = thisAssemblyProject.ApiVersion;
 
         var packageTags = new OpenApiArray();
@@ -161,7 +168,7 @@ public static partial class AddSwaggerMetadataExtension
             Extensions =
             {
                 ["x-project-url"] = new OpenApiString(thisAssemblyProject.PackageProjectUrl),
-                ["x-repositor-url"] = new OpenApiString(thisAssemblyProject.RepositoryUrl),
+                ["x-repository-url"] = new OpenApiString(thisAssemblyProject.RepositoryUrl),
                 ["x-package-tags"] = packageTags
             },
             Contact = new()

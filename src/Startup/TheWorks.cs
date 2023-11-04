@@ -37,13 +37,13 @@ public static class AddTheWorksExtensions
             builder.Logging.AddDebug();
 
         if (@params.Identity)
-            _ = builder.AddIdentity(@params.DefaultIdentityUI);
+            _ = builder.AddIdentity<long, AppUser, AppRole>(@params.DefaultIdentityUI);
 
         @params.TypesForAutoMapperAndMediatR ??= Empty<type>();
 
         if (@params.SearchEntireAppDomainForAutoMapperAndMediatRTypes)
             @params.TypesForAutoMapperAndMediatR = @params.TypesForAutoMapperAndMediatR.Concat(
-                AppDomain.CurrentDomain
+                CurrentDomain
                     .GetAssemblies()
                     .SelectMany(a =>
                     {
@@ -85,11 +85,11 @@ public static class AddTheWorksExtensions
 
         _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
 
-        if (@params.AddAzureAppConfig)
-            _ = @params.WithAzureAppConfiguration(builder);
+        if (@params.AzureAppConfig)
+            @params.ConfigureAzureAppConfiguration(builder);
 
-        if (@params.ApiAuthentication)
-            _ = builder.AddApiAuthentication();
+        // if (@params.ApiAuthentication)
+        //     _ = builder.AddApiAuthentication();
 
         if (@params.HttpLogging)
             _ = builder.AddHttpLogging();
@@ -98,7 +98,7 @@ public static class AddTheWorksExtensions
 
         _ = builder.AddFormatters();
 
-        @params.WithHealthChecks(builder);
+        @params.ConfigureHealthChecks(builder);
 
         _ = builder.AddPayloadServices();
 
@@ -110,7 +110,12 @@ public static class AddTheWorksExtensions
             _ = builder.AddHashids();
 
         if (@params.MediatR)
-            _ = builder.Services.AddMediatR(@params.TypesForAutoMapperAndMediatR.ToArray());
+            _ = builder.Services.AddMediatR(
+                config =>
+                    @params.TypesForAutoMapperAndMediatR.ForEach(
+                        t => config.RegisterServicesFromAssemblyContaining(t)
+                    )
+            );
 
         _ = builder.AddJsonSerializer();
 
@@ -122,6 +127,8 @@ public static class AddTheWorksExtensions
         // builder.AddProblemDetailsHandler();
 
         builder.Services.AddSingleton<IStartupParameters>(@params);
+
+        @params.ConfigureServices(builder);
 
         configure?.Invoke(builder);
         return builder;
@@ -138,18 +145,18 @@ public static class AddTheWorksExtensions
             .FirstOrDefault(t => t.FullName == "ThisAssembly.Project");
         var @params = app.Services.GetRequiredService<IStartupParameters>();
 
-        if (@params.AddJsonPatch)
+        if (@params.JsonPatch)
             _ = app.Use(
                 (context, next) =>
                 {
                     context.Response.Headers.AcceptRanges = "items";
-                    context.Response.Headers[HttpResponseHeaderNames.AcceptPatch] =
+                    context.Response.Headers[HResH.AcceptPatch.DisplayName] =
                         ApplicationMediaTypeNames.JsonPatch;
                     return next();
                 }
             );
 
-        if (@params.AddHttpLogging)
+        if (@params.HttpLogging)
             _ = app.UseHttpLogging();
 
         // Configure the HTTP request pipeline.
@@ -166,7 +173,7 @@ public static class AddTheWorksExtensions
 
         _ = app.UseStaticFiles();
 
-        if (@params.AddSwagger)
+        if (@params.Swagger)
         {
             _ = app.UseSwagger();
             // app.UseSwaggerUI();
@@ -179,14 +186,14 @@ public static class AddTheWorksExtensions
             .UseResponseCompression()
             .UseCors(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
-        if (@params.AddApiAuthentication)
-            _ = app.UseApiBasicAuthentication();
+        if (@params.ApiAuthentication)
+            _ = app.UseApiBasicAuthentication<AppUser, AppRole>();
 
         _ = app.UseWelcomePage(new WelcomePageOptions { Path = "/welcum.htm" });
 
         _ = app.MapPing();
 
-        if (@params.AddRazorPages)
+        if (@params.RazorPages)
             _ = app.MapRazorPages();
 
         _ = app.MapControllers();

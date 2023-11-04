@@ -10,7 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-using Dgmjr.Mime.;
+using Dgmjr.Mime;
 using Dgmjr.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
