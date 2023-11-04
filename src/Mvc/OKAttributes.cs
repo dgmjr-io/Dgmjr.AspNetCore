@@ -31,7 +31,8 @@ public class ProducesOKResponseAttribute(
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public class ProducesNoContentResponseAttribute(
     string description = "You didn't fuck up and the request produced no content."
@@ -45,7 +46,8 @@ public class ProducesNoContentResponseAttribute(
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public class ProducesCreatedResponseAttribute(
     type modelType,
@@ -60,7 +62,8 @@ public class ProducesCreatedResponseAttribute(
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public class ProducesPartialContentResponseAttribute(
     type modelType,
@@ -75,7 +78,8 @@ public class ProducesPartialContentResponseAttribute(
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public class CreateOperationAttribute(
     string? operationId,
@@ -92,9 +96,9 @@ public class CreateOperationAttribute(
 
 public class UpdateOperationAttribute(
     string? operationId,
-    string? summary = "Update an existing resource from a complete model object",
-    string? description = "Update an existing resource from a complete model object",
-    string[]? tags = null
+    string ? summary = "Update an existing resource from a complete model object",
+    string ? description = "Update an existing resource from a complete model object",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
@@ -105,9 +109,9 @@ public class UpdateOperationAttribute(
 
 public class DeleteOperationAttribute(
     string? operationId,
-    string? summary = "Delete an existing resource",
-    string? description = "Delete an existing resource",
-    string[]? tags = null
+    string ? summary = "Delete an existing resource",
+    string ? description = "Delete an existing resource",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
@@ -118,9 +122,9 @@ public class DeleteOperationAttribute(
 
 public class PatchOperationAttribute(
     string? operationId,
-    string? summary = "Update an existing resource from a partial model object",
-    string? description = "Update an existing resource from a partial model object",
-    string[]? tags = null
+    string ? summary = "Update an existing resource from a partial model object",
+    string ? description = "Update an existing resource from a partial model object",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
