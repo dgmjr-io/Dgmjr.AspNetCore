@@ -19,9 +19,9 @@ public class IntPayload(int value) : Payload<int>(value, value.ToString(CultureI
     public IntPayload()
         : this(0) { }
 
-    public override string? StringValue
-    {
-        get => Value.ToString();
-        set => Value = int.Parse(value);
-    }
+public override string? StringValue
+{
+    get => Value.ToString();
+    set => Value = int.Parse(value);
+}
 }

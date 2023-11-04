@@ -24,10 +24,10 @@ public class NumericPayload(decimal value, string? stringValue = default)
     public NumericPayload()
         : this(default) { }
 
-    [JProp("stringValue")]
-    public override string? StringValue
-    {
-        get => Value.ToString(CultureInfo.CurrentCulture);
-        set => Value = decimal.Parse(value, CultureInfo.CurrentCulture);
-    }
+[JProp("stringValue")]
+public override string? StringValue
+{
+    get => Value.ToString(CultureInfo.CurrentCulture);
+    set => Value = decimal.Parse(value, CultureInfo.CurrentCulture);
+}
 }
