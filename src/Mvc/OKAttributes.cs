@@ -12,8 +12,13 @@
 
 namespace Dgmjr.AspNetCore.Mvc;
 
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Formatters;
+
 using Swashbuckle.AspNetCore.Annotations;
 using static Microsoft.AspNetCore.Http.StatusCodes;
+using ApplicationMediaTypeNames = Dgmjr.Mime.ApplicationMediaTypeNames;
 
 /// <summary>Notes that the method can produce a 200 OK response</summary>
 /// <param name="modelType">The type of the model to be returned.</param>
@@ -59,7 +64,9 @@ public class ProducesCreatedResponseAttribute(
         ApplicationMediaTypeNames.Xml,
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
-        TextMediaTypeNames.Plain
+        TextMediaTypeNames.Plain,
+        ApplicationMediaTypeNames.ProblemJson,
+        ApplicationMediaTypeNames.ProblemXml
     ) { }
 
 public class ProducesPartialContentResponseAttribute(
@@ -148,5 +155,23 @@ public class DgmjrOperationAttribute : SwaggerOperationAttribute
     {
         get => base.OperationId;
         set => base.OperationId = value;
+    }
+}
+
+[AttributeUsage(AttributeTargets.Method)]
+public class ProducesStandardResponsesAttribute : Attribute, IApiResponseMetadataProvider
+{
+    public type Type { get; set; }
+
+    public int StatusCode => throw new NotImplementedException();
+    public string[] ContentTypes
+    {
+        get => Constants.StandardResponseMediaTypes;
+        set { }
+    }
+
+    public void SetContentTypes(MediaTypeCollection contentTypes)
+    {
+        throw new NotImplementedException();
     }
 }

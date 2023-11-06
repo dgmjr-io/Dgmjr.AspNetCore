@@ -21,13 +21,13 @@ using Microsoft.OpenApi.Models;
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"
 )]
-public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager, IPayload<T>
+public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
 {
     public SingleItemPager()
         : this(default, 0, 0) { }
 
     public SingleItemPager(T value, int pageNumber, int totalRecords)
-        : base(new[] { value }, pageNumber, 1, totalRecords)
+        : base([value], pageNumber, 1, totalRecords)
     {
         Page = pageNumber;
         TotalRecords = totalRecords;
@@ -49,34 +49,34 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager, IPayloa
     [JProp("item")]
     public virtual T? Item
     {
-        get => (Items ?? new T?[] { default }).FirstOrDefault();
-        set => Items = new[] { value }!;
+        get => (Items ?? [default]).FirstOrDefault();
+        init => Items = [value]!;
     }
 
     [JIgnore]
     public override T[]? Items
     {
         get => base.Items;
-        set => base.Items = value;
+        init => base.Items = value;
     }
 
     [JIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        set => base.Value = value;
+        init => base.Value = value;
     }
 
     [JIgnore]
     T? IPayload<T>.Value
     {
         get => Item;
-        set => Item = value;
+        init => Item = value;
     }
     object[]? IPager.Items
     {
         get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
-        set => Items = (value ?? new[] { default(object) }).OfType<T>().ToArray();
+        init => Items = (value ?? [default]).OfType<T>().ToArray();
     }
 
     public static new OpenApiSchema GetOpenApiSchema()

@@ -29,21 +29,27 @@ public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
         StringValue = stringValue;
     }
 
+    /// <summary>
+    /// The strongly-typed value.
+    /// </summary>
     [JProp("value"), XAttribute("value")]
-    public virtual T? Value { get; set; }
+    public virtual T? Value { get; init; }
 
+    /// <summary>
+    /// The string representation of the value.
+    /// </summary>
     [JProp("stringValue"), XAttribute("stringValue")]
     public virtual string? StringValue
     {
         get => _stringValue ?? ToString();
-        set => _stringValue = value;
+        init => _stringValue = value;
     }
     object? IPayload.Value
     {
         get => Value;
-        set => Value = value is T t ? t : default;
+        init => Value = value is T t ? t : default;
     }
-    private string? _stringValue;
+    protected string? _stringValue;
 
     public override string ToString() => _stringValue ?? Value?.ToString()!;
 }

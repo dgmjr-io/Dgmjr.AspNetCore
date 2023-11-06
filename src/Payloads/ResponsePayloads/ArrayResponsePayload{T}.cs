@@ -33,19 +33,19 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
         Message = message ?? string.Empty;
     }
 
-    /// <summary>The arrray of values</summary>
+    /// <summary>The array of values</summary>
     [JProp("values"), XAttribute("values"), JIgnore(Condition = JIgnore.WhenWritingNull)]
     public virtual T[]? Values
     {
         get => Value;
-        set => Value = value;
+        init => Value = value;
     }
 
     [JIgnore, XIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        set => base.Value = value ?? Empty<T>();
+        init => base.Value = value ?? Empty<T>();
     }
 
     /// <summary>The number of items in the array</summary>
@@ -53,8 +53,6 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     public virtual int Count => Values.Length;
 
     public override string ToString() => _stringValue ?? Join(ItemSeparator, Values);
-
-    private string? _stringValue;
 
     /// <summary>The string representation of the array, which defaults to the string values of each of the elements separared by the <see cref="ItemSeparator" /></summary>
     /// <example>Foo, Bar, Baz</example>
@@ -66,9 +64,9 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     public override string? StringValue
     {
         get => _stringValue ?? ToString();
-        set => _stringValue = value;
+        init => _stringValue = value;
     }
 
     [JIgnore, XIgnore]
-    public virtual string ItemSeparator { get; set; }
+    public virtual string ItemSeparator { get; init; }
 }

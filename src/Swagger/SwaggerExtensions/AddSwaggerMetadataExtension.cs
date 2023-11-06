@@ -145,7 +145,7 @@ public static partial class AddSwaggerMetadataExtension
         builder.Services.Describe<System.Domain.PhoneNumber>();
         builder.Services.Describe<System.Net.Mail.EmailAddress>();
         builder.Services.DescribeBotApiToken();
-        builder.Services.Describe<Dgmjr.Payloads.Range>();
+        // builder.Services.Describe<Dgmjr.Payloads.Range>();
         return builder;
     }
 

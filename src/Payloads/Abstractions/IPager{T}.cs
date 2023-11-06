@@ -12,7 +12,7 @@
 
 namespace Dgmjr.Payloads.Abstractions;
 
-/// <summary>Represents a srrongly-typed response payload with a page of items of type <typeparamref name="T"/></summary>
+/// <summary>Represents a strongly-typed response payload with a page of items of type <typeparamref name="T"/></summary>
 public interface IPager<T> : IResponsePayload<T[]>, IPager
 {
     /// <summary>The array of items in the current page</summary>
@@ -20,7 +20,7 @@ public interface IPager<T> : IResponsePayload<T[]>, IPager
     /// <example>[1, 2, 3]</example>
     /// <default>null</default>
     [JProp("items")]
-    new T[]? Items { get; set; }
+    new T[]? Items { get; init; }
     // int TotalRecords { get; set; }
     // int PageSize { get; set; }
 

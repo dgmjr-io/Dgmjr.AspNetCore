@@ -16,10 +16,8 @@ namespace Dgmjr.Payloads;
 using System.Xml.Serialization;
 
 /// <summary>Represents a response payload with a <see langword="bool" /> value</summary>
-public class BooleanResponsePayload : ResponsePayload<bool>
+public class BooleanResponsePayload(bool value, string? message = default!) : ResponsePayload<bool>(value, message)
 {
-    public BooleanResponsePayload(bool value, string? message = default!)
-        : base(value, message) { }
 
     /// <inheritdoc />
     [JProp("stringValue")]
@@ -28,6 +26,6 @@ public class BooleanResponsePayload : ResponsePayload<bool>
     public override string? StringValue
     {
         get => Value.ToString();
-        set => Value = bool.Parse(value);
+        init => Value = bool.Parse(value);
     }
 }

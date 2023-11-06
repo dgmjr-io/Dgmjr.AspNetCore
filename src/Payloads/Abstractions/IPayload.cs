@@ -20,7 +20,7 @@ public interface IPayload
     /// <example>5</example>
     /// <example>0</example>
     /// <example>Hello, world!</example>
-    object? Value { get; set; }
+    object? Value { get; init; }
 
     /// <summary>The value of the payload as a string</summary>
     /// <remarks>Defaults to <see langword="null"/></remarks>
@@ -28,5 +28,5 @@ public interface IPayload
     /// <example>"5"</example>
     /// <example>"0"</example>
     /// <example>"Hello, world!"</example>
-    string? StringValue { get; set; }
+    string? StringValue { get; init; }
 }

@@ -1,0 +1,17 @@
+<!--
+ * Dgmjr.AspNetCore.Mvs.props
+ *
+ *   Created: 2023-01-05-04:15:03
+ *   Modified: 2023-01-05-04:15:04
+ *
+ *   Author: David G. Moore, Jr, <david@dgmjr.io>
+ *
+ *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project>
+    <ItemGroup>
+      <Using Include="Dgmjr.AspNetCore.Mvc" />
+    </ItemGroup>
+</Project>

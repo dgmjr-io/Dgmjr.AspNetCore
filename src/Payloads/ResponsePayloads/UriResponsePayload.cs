@@ -26,7 +26,7 @@ public class UriResponsePayload(uri value, string? message = default!)
     public override string? StringValue
     {
         get => base.StringValue ?? Value.ToString();
-        set
+        init
         {
             if (uri.TryParse(value, out var u))
             {

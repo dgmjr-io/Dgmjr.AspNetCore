@@ -23,8 +23,7 @@
         <PackageReference Include="System.Compat" IncludeAssets="ContentFiles" ExlcudeAssets="Runtime;Compile;Lib;Native;Analyzers" />
         <PackageReference Include="System.Text.Json" />
         <PackageReference Include="System.Net.Http.Json" />
-        <PackageReference Include="System.Net.Mime.MediaTypeNames" />
-        <PackageReference Include="System.Net.Mime.MediaTypeNames" />
+        <PackageReference Include="Dgmjr.Mime" />
         <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     </ItemGroup>
 </Project>

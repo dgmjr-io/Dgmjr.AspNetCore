@@ -94,9 +94,7 @@ namespace Dgmjr.AspNetCore.Swagger
                         )
                     );
 
-                    openApiMediaType.Example = new OpenApiString(
-                        System.Text.Encoding.UTF8.GetString(ms.ToArray())
-                    );
+                    openApiMediaType.Example = new OpenApiString(UTF8.GetString(ms.ToArray()));
                     openApiResponse.Content[mediaType] = openApiMediaType;
                 }
             }

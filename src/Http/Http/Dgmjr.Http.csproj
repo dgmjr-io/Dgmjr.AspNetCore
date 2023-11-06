@@ -20,5 +20,6 @@
     <ProjectReference Include="../Extensions/Dgmjr.Http.Extensions.csproj" />
     <ProjectReference Include="../Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../ResponseCodes/Dgmjr.Http.ResponseCodes.csproj" />
   </ItemGroup>
 </Project>

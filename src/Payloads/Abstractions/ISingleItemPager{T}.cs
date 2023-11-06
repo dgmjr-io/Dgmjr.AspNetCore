@@ -16,12 +16,12 @@ namespace Dgmjr.Payloads.Abstractions;
 public interface ISingleItemPager<T> : IResponsePayload<T>
 {
     [JProp("item")]
-    T? Item { get; set; }
+    T? Item { get; init; }
 
     [JProp("totalRecords")]
-    int TotalRecords { get; set; }
-    int PageSize { get; set; }
-    int Page { get; set; }
+    int TotalRecords { get; init; }
+    int PageSize { get; init; }
+    int Page { get; init; }
     int PageStartIndex { get; }
     int PageEndIndex { get; }
     int TotalPages { get; }

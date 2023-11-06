@@ -14,23 +14,16 @@ namespace Dgmjr.Payloads;
 
 /// <summary>Represents a response payload with a <see langword="decimal" /> value</summary>
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
-public class NumericResponsePayload : ResponsePayload<decimal>
-{
-    public NumericResponsePayload(
+public class NumericResponsePayload(
         decimal value,
         string? message = default!,
         string stringValue = default!
-    )
-    {
-        Value = value;
-        Message = message ?? string.Empty;
-        StringValue = stringValue ?? value.ToString();
-    }
-
+    ) : ResponsePayload<decimal>(value, message)
+{
     /// <inheritdoc />
     public override string? StringValue
     {
         get => Value.ToString();
-        set => Value = decimal.Parse(value);
+        init => base.StringValue = stringValue ?? value;
     }
 }

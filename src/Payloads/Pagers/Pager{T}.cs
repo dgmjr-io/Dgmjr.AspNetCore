@@ -21,7 +21,7 @@ namespace Dgmjr.Payloads;
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"
 )]
-public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayload, IPager
+public class Pager<T> : ArrayResponsePayload<T>, IPager<T>
 {
     public Pager()
         : this(default, 0, 0, 0) { }
@@ -63,24 +63,24 @@ public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayl
     public virtual T[]? Items
     {
         get => Values;
-        set => Value = value;
+        init => Value = value;
     }
 
     [JIgnore]
     public override T[]? Values
     {
         get => base.Values;
-        set => base.Values = value;
+        init => base.Values = value;
     }
 
     [JProp("totalRecords")]
-    public virtual int TotalRecords { get; set; }
+    public virtual int TotalRecords { get; init; }
 
     [JProp("pageSize")]
-    public virtual int PageSize { get; set; }
+    public virtual int PageSize { get; init; }
 
     [JProp("page")]
-    public virtual int Page { get; set; }
+    public virtual int Page { get; init; }
 
     [JProp("startIndex")]
     public virtual int PageStartIndex => (Page - 1) * PageSize;
@@ -111,18 +111,18 @@ public class Pager<T> : ArrayResponsePayload<T>, IPayload<T[]>, IPager<T>, IPayl
                 : HasNextPage || Page > 1
                     ? (int)PartialContent
                     : (int)OK;
-        set => _statusCode = value;
+        init => _statusCode = value;
     }
 
     object? IPayload.Value
     {
         get => Value;
-        set => Items = (value as IEnumerable ?? Empty<object>())?.OfType<T>().ToArray();
+        init => Items = (value as IEnumerable ?? Empty<object>())?.OfType<T>().ToArray();
     }
     object[]? IPager.Items
     {
         get => Items.OfType<object>().ToArray();
-        set => Items = value.OfType<T>().ToArray();
+        init => Items = value.OfType<T>().ToArray();
     }
 
     public static implicit operator Pager<T>(T[]? items) =>

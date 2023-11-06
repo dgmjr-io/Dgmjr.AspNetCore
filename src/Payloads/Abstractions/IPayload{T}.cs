@@ -20,5 +20,5 @@ public interface IPayload<T> : IPayload
     /// <example>5</example>
     /// <example>0</example>
     /// <example>Hello, world!</example>
-    new T? Value { get; set; }
+    new T? Value { get; init; }
 }

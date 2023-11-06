@@ -35,35 +35,33 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
     public virtual T[]? Values
     {
         get => Value;
-        set => Value = value;
+        init => Value = value;
     }
 
     [JIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        set => base.Value = value ?? Empty<T>();
+        init => base.Value = value ?? Empty<T>();
     }
 
     [JIgnore]
-    object IPayload.Value
+    object? IPayload.Value
     {
         get => Value;
-        set => Value = value is T[] t ? t : default;
+        init => Value = value is T[] t ? t : default;
     }
     public virtual int Count => Values.Length;
 
     public override string ToString() => _stringValue ?? Join(ItemSeparator, Values);
 
-    private string? _stringValue;
-
     [JProp("stringValue")]
     public override string? StringValue
     {
         get => _stringValue ?? ToString();
-        set => _stringValue = value;
+        init => _stringValue = value;
     }
 
     [JIgnore]
-    public virtual string ItemSeparator { get; set; }
+    public virtual string ItemSeparator { get; init; }
 }

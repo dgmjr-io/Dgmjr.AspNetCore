@@ -13,19 +13,12 @@
 namespace Dgmjr.Payloads;
 
 /// <summary>Represents a response payload with an <see langword="int" /> value</summary>
-public class IntResponsePayload : ResponsePayload<int>
+public class IntResponsePayload(int value, string? message = default!) : ResponsePayload<int>(value, message ?? string.Empty)
 {
-    public IntResponsePayload(int value, string? message = default!)
-        : base(value, message)
-    {
-        Value = value;
-        Message = message ?? string.Empty;
-    }
-
     /// <inheritdoc />
     public override string? StringValue
     {
         get => Value.ToString();
-        set => Value = int.Parse(value);
+        init => Value = int.Parse(value);
     }
 }

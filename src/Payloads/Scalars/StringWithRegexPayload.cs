@@ -12,27 +12,14 @@
 
 namespace Dgmjr.Payloads;
 
-public class StringWithRegexPayload : Payload<string>
+public class StringWithRegexPayload(string? value, string? regex = default) : Payload<string>(value)
 {
     public StringWithRegexPayload()
         : this(default, default) { }
 
-    public StringWithRegexPayload(string? value, string? regex = default)
-    {
-        Value = value ?? string.Empty;
-        Regex = regex ?? string.Empty;
-    }
-
     [JProp("value")]
-    public override string? Value { get; set; }
+    public override string? Value { get; init; }
 
     [JProp("regex")]
-    public virtual string Regex { get; set; }
-
-    [JProp("stringValue")]
-    public override string? StringValue
-    {
-        get => Value;
-        set => Value = value;
-    }
+    public virtual string Regex { get; init; } = regex ?? string.Empty;
 }

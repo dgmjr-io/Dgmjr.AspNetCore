@@ -30,7 +30,7 @@ public interface IArrayPayload<T> : IPayload<T[]>
     /// <remarks>Defaults to <see langword="null"/></remarks>
     /// <default>null</default>
     /// <example>[1, 2, 3]</example>
-    T[]? Values { get; set; }
+    T[]? Values { get; init; }
 
     /// <summary>The number of values in the array</summary>
     /// <example>3</example>

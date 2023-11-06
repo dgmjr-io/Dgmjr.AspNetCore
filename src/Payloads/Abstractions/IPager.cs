@@ -20,16 +20,16 @@ public interface IPager : IResponsePayload
     /// <example>[1, 2, 3]</example>
     /// <default>null</default>
     [JProp("items")]
-    object[]? Items { get; set; }
+    object[]? Items { get; init; }
 
     /// <summary>The total number of records in the entire resultset</summary>
-    int TotalRecords { get; set; }
+    int TotalRecords { get; init; }
 
     /// <summary>The size of the page, i.e., the maximum number of records in the page</summary>
-    int PageSize { get; set; }
+    int PageSize { get; init; }
 
     /// <summary>The 1-based index of the current page</summary>
-    int Page { get; set; }
+    int Page { get; init; }
 
     /// <summary>The 0-based index of the first record in the current page</summary>
     int PageStartIndex { get; }

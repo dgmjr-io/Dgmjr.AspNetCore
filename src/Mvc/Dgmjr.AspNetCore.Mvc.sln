@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\Packages\Versions.Local.props = ..\..\..\..\Packages\Versions.Local.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Mvc", "Dgmjr.AspNetCore.Mvc.csproj", "{5933F717-67C3-4143-8D35-01DE76D7C613}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Mvc", "Dgmjr.AspNetCore.Mvc.csproj", "{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +20,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Local|Any CPU.ActiveCfg = Local|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Local|Any CPU.Build.0 = Local|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Testing|Any CPU.Build.0 = Testing|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Production|Any CPU.ActiveCfg = Local|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Production|Any CPU.Build.0 = Local|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5933F717-67C3-4143-8D35-01DE76D7C613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Local|Any CPU.Build.0 = Local|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Production|Any CPU.Build.0 = Local|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEE083C4-2ACE-4F84-B99D-ABB6A00ABC36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

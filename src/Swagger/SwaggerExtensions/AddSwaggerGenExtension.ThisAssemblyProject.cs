@@ -21,18 +21,17 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
     public const string ThisAssembly = nameof(ThisAssembly);
 
     public static TThisAssemblyStaticProxy From(Assembly asm) =>
-        new TThisAssemblyStaticProxy(asm.GetTypes().FirstOrDefault(t => t.Name == ThisAssembly));
+        new TThisAssemblyStaticProxy(Find(asm.GetTypes(), t => t.Name is nameof(ThisAssembly)));
 
     public type? Project =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Project));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Project));
     public type? Info =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Info));
-    public type? Git =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Git));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Info));
+    public type? Git => Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Git));
     public type? Metadata =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Metadata));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Metadata));
     public type? Strings =>
-        ThisAssemblyStaticProxy.GetNestedTypes().FirstOrDefault(t => t.Name == nameof(Strings));
+        Find(ThisAssemblyStaticProxy.GetNestedTypes(), t => t.Name == nameof(Strings));
     public Assembly Assembly => ThisAssemblyStaticProxy.Assembly;
 
     public string? AssemblyVersion =>
@@ -61,9 +60,9 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
     public string? InformationalVersion =>
         Project?.GetRuntimeField(nameof(InformationalVersion))?.GetValue(null) as string;
     public string? LicenseExpression =>
-        Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
+        PackageLicenseExpression
         ?? Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
-        ?? PackageLicenseExpression
+        ?? Project?.GetRuntimeField(nameof(LicenseExpression))?.GetValue(null)?.ToString()
         ?? "None";
     public string? Owners => Project?.GetRuntimeField(nameof(Owners))?.GetValue(null) as string;
     public string? PackageLicenseExpression =>

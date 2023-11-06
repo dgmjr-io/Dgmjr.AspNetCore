@@ -12,17 +12,10 @@
 
 namespace Dgmjr.Payloads;
 
-public class BooleanPayload : Payload<bool>
+public class BooleanPayload(bool value) : Payload<bool>(value, value.ToString())
 {
     public BooleanPayload()
         : this(true) { }
 
-    public BooleanPayload(bool value = true) => Value = value;
-
-    /// <inheritdoc />
-    public override string? StringValue
-    {
-        get => Value.ToString();
-        set => Value = bool.Parse(value);
-    }
+    public override string ToString() => Value.ToString();
 }
