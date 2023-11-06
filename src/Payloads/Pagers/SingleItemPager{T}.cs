@@ -35,77 +35,77 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
         StringValue = value.ToString();
     }
 
-    public SingleItemPager(IQueryable<T> items, int itemNumber)
-        : base()
-    {
-        TotalRecords = items.Count();
-        Page = itemNumber;
-        PageSize = 1;
-        Message = string.Empty;
-        Item = items.Skip(itemNumber - 1).FirstOrDefault();
-        StringValue = Item.ToString();
-    }
+public SingleItemPager(IQueryable<T> items, int itemNumber)
+    : base()
+{
+    TotalRecords = items.Count();
+    Page = itemNumber;
+    PageSize = 1;
+    Message = string.Empty;
+    Item = items.Skip(itemNumber - 1).FirstOrDefault();
+    StringValue = Item.ToString();
+}
 
-    [JProp("item")]
-    public virtual T? Item
-    {
-        get => (Items ?? [default]).FirstOrDefault();
-        set => Items = [value]!;
-    }
+[JProp("item")]
+public virtual T? Item
+{
+    get => (Items ?? [default]).FirstOrDefault();
+    set => Items = [value]!;
+}
 
-    [JIgnore]
-    public override T[]? Items
-    {
-        get => base.Items;
-        set => base.Items = value;
-    }
+[JIgnore]
+public override T[]? Items
+{
+    get => base.Items;
+    set => base.Items = value;
+}
 
-    [JIgnore]
-    public override T[]? Value
-    {
-        get => base.Value;
-        set => base.Value = value;
-    }
+[JIgnore]
+public override T[]? Value
+{
+    get => base.Value;
+    set => base.Value = value;
+}
 
-    [JIgnore]
-    T? IPayload<T>.Value
-    {
-        get => Item;
-        set => Item = value;
-    }
-    object[]? IPager.Items
-    {
-        get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
-        set => Items = (value ?? [default]).OfType<T>().ToArray();
-    }
+[JIgnore]
+T? IPayload<T>.Value
+{
+    get => Item;
+    set => Item = value;
+}
+object[]? IPager.Items
+{
+    get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
+    set => Items = (value ?? [default]).OfType<T>().ToArray();
+}
 
-    public static new OpenApiSchema GetOpenApiSchema()
-    {
-        var schema = Pager<T>.GetOpenApiSchema();
-        schema.Properties.Remove("items");
-        // schema.Properties.Add("page", new OpenApiSchema { Type = "integer", Format = "int32" });
-        // schema.Properties.Add("pageSize", new OpenApiSchema { Type = "integer", Format = "int32" });
-        // schema.Properties.Add("totalRecords", new OpenApiSchema { Type = "integer", Format = "int32" });
-        schema.Properties.Add(
-            "item",
-            new OpenApiSchema
+public static new OpenApiSchema GetOpenApiSchema()
+{
+    var schema = Pager<T>.GetOpenApiSchema();
+    schema.Properties.Remove("items");
+    // schema.Properties.Add("page", new OpenApiSchema { Type = "integer", Format = "int32" });
+    // schema.Properties.Add("pageSize", new OpenApiSchema { Type = "integer", Format = "int32" });
+    // schema.Properties.Add("totalRecords", new OpenApiSchema { Type = "integer", Format = "int32" });
+    schema.Properties.Add(
+        "item",
+        new OpenApiSchema
+        {
+            Reference = new OpenApiReference
             {
-                Reference = new OpenApiReference
-                {
-                    Id = typeof(T).Name,
-                    Type = ReferenceType.Schema
-                }
+                Id = typeof(T).Name,
+                Type = ReferenceType.Schema
             }
-        );
-        return schema;
-    }
+        }
+    );
+    return schema;
+}
 
-    public static new SingleItemPager<T> NotFound() =>
-        new() { StatusCode = (int)HttpStatusCode.NotFound };
+public static new SingleItemPager<T> NotFound() =>
+    new() { StatusCode = (int)HttpStatusCode.NotFound };
 
-    public static new SingleItemPager<T> BadRequest() =>
-        new() { StatusCode = (int)HttpStatusCode.BadRequest };
+public static new SingleItemPager<T> BadRequest() =>
+    new() { StatusCode = (int)HttpStatusCode.BadRequest };
 
-    public static new SingleItemPager<T> NoContent() =>
-        new() { StatusCode = (int)HttpStatusCode.NoContent };
+public static new SingleItemPager<T> NoContent() =>
+    new() { StatusCode = (int)HttpStatusCode.NoContent };
 }
