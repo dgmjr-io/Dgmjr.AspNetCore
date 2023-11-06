@@ -17,9 +17,9 @@ public class StringWithRegexPayload(string? value, string? regex = default) : Pa
     public StringWithRegexPayload()
         : this(default, default) { }
 
-    [JProp("value")]
-    public override string? Value { get; set; }
+[JProp("value")]
+public override string? Value { get; set; }
 
-    [JProp("regex")]
-    public virtual string Regex { get; set; } = regex ?? string.Empty;
+[JProp("regex")]
+public virtual string Regex { get; set; } = regex ?? string.Empty;
 }
