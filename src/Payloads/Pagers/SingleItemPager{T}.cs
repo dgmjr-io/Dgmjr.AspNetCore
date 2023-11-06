@@ -50,33 +50,33 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
     public virtual T? Item
     {
         get => (Items ?? [default]).FirstOrDefault();
-        init => Items = [value]!;
+        set => Items = [value]!;
     }
 
     [JIgnore]
     public override T[]? Items
     {
         get => base.Items;
-        init => base.Items = value;
+        set => base.Items = value;
     }
 
     [JIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        init => base.Value = value;
+        set => base.Value = value;
     }
 
     [JIgnore]
     T? IPayload<T>.Value
     {
         get => Item;
-        init => Item = value;
+        set => Item = value;
     }
     object[]? IPager.Items
     {
         get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
-        init => Items = (value ?? [default]).OfType<T>().ToArray();
+        set => Items = (value ?? [default]).OfType<T>().ToArray();
     }
 
     public static new OpenApiSchema GetOpenApiSchema()

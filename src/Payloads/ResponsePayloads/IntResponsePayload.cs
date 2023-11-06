@@ -1,4 +1,4 @@
-﻿//
+//
 // IntResponsePayload.cs
 //
 //   Created: 2022-10-31-08:33:05
@@ -13,12 +13,13 @@
 namespace Dgmjr.Payloads;
 
 /// <summary>Represents a response payload with an <see langword="int" /> value</summary>
-public class IntResponsePayload(int value, string? message = default!) : ResponsePayload<int>(value, message ?? string.Empty)
+public class IntResponsePayload(int value, string? message = default!)
+    : ResponsePayload<int>(value, message ?? string.Empty)
 {
     /// <inheritdoc />
     public override string? StringValue
     {
         get => Value.ToString();
-        init => Value = int.Parse(value);
+        set => Value = int.Parse(value);
     }
 }

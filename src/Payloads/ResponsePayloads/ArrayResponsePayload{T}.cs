@@ -38,14 +38,14 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     public virtual T[]? Values
     {
         get => Value;
-        init => Value = value;
+        set => Value = value;
     }
 
     [JIgnore, XIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        init => base.Value = value ?? Empty<T>();
+        set => base.Value = value ?? Empty<T>();
     }
 
     /// <summary>The number of items in the array</summary>
@@ -64,9 +64,9 @@ public class ArrayResponsePayload<T> : ResponsePayload<T[]>, IArrayResponsePaylo
     public override string? StringValue
     {
         get => _stringValue ?? ToString();
-        init => _stringValue = value;
+        set => _stringValue = value;
     }
 
     [JIgnore, XIgnore]
-    public virtual string ItemSeparator { get; init; }
+    public virtual string ItemSeparator { get; set; }
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // BooleanResponsePayload.cs
 //
 //   Created: 2022-10-31-08:33:05
@@ -16,9 +16,9 @@ namespace Dgmjr.Payloads;
 using System.Xml.Serialization;
 
 /// <summary>Represents a response payload with a <see langword="bool" /> value</summary>
-public class BooleanResponsePayload(bool value, string? message = default!) : ResponsePayload<bool>(value, message)
+public class BooleanResponsePayload(bool value, string? message = default!)
+    : ResponsePayload<bool>(value, message)
 {
-
     /// <inheritdoc />
     [JProp("stringValue")]
     [JIgnore(Condition = JIgnore.WhenWritingNull)]
@@ -26,6 +26,6 @@ public class BooleanResponsePayload(bool value, string? message = default!) : Re
     public override string? StringValue
     {
         get => Value.ToString();
-        init => Value = bool.Parse(value);
+        set => Value = bool.Parse(value);
     }
 }

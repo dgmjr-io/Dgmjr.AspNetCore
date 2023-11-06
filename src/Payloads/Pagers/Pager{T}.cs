@@ -63,24 +63,24 @@ public class Pager<T> : ArrayResponsePayload<T>, IPager<T>
     public virtual T[]? Items
     {
         get => Values;
-        init => Value = value;
+        set => Value = value;
     }
 
     [JIgnore]
     public override T[]? Values
     {
         get => base.Values;
-        init => base.Values = value;
+        set => base.Values = value;
     }
 
     [JProp("totalRecords")]
-    public virtual int TotalRecords { get; init; }
+    public virtual int TotalRecords { get; set; }
 
     [JProp("pageSize")]
-    public virtual int PageSize { get; init; }
+    public virtual int PageSize { get; set; }
 
     [JProp("page")]
-    public virtual int Page { get; init; }
+    public virtual int Page { get; set; }
 
     [JProp("startIndex")]
     public virtual int PageStartIndex => (Page - 1) * PageSize;
@@ -111,18 +111,18 @@ public class Pager<T> : ArrayResponsePayload<T>, IPager<T>
                 : HasNextPage || Page > 1
                     ? (int)PartialContent
                     : (int)OK;
-        init => _statusCode = value;
+        set => _statusCode = value;
     }
 
     object? IPayload.Value
     {
         get => Value;
-        init => Items = (value as IEnumerable ?? Empty<object>())?.OfType<T>().ToArray();
+        set => Items = (value as IEnumerable ?? Empty<object>())?.OfType<T>().ToArray();
     }
     object[]? IPager.Items
     {
         get => Items.OfType<object>().ToArray();
-        init => Items = value.OfType<T>().ToArray();
+        set => Items = value.OfType<T>().ToArray();
     }
 
     public static implicit operator Pager<T>(T[]? items) =>

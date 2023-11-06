@@ -60,22 +60,22 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     public virtual bool IsSuccess => StatusCode!.Value >= 200 && StatusCode!.Value <= 299; //IsBetween(200, 299);
 
     [XmlAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
-    public virtual string Message { get; init; }
+    public virtual string Message { get; set; }
 
     /// <inheritdoc />
     [JIgnore, XmlIgnore]
-    public virtual int? StatusCode { get; init; }
+    public virtual int? StatusCode { get; set; }
 
     /// <inheritdoc />
     [JIgnore, XmlIgnore]
-    T? IPayload<T>.Value { get; init; }
+    T? IPayload<T>.Value { get; set; }
 
     /// <inheritdoc />
     [JIgnore, XmlIgnore]
     object? IPayload.Value
     {
         get => Value;
-        init => Value = value is T t ? t : default;
+        set => Value = value is T t ? t : default;
     }
 
     [JIgnore, XmlIgnore]

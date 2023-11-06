@@ -35,21 +35,21 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
     public virtual T[]? Values
     {
         get => Value;
-        init => Value = value;
+        set => Value = value;
     }
 
     [JIgnore]
     public override T[]? Value
     {
         get => base.Value;
-        init => base.Value = value ?? Empty<T>();
+        set => base.Value = value ?? Empty<T>();
     }
 
     [JIgnore]
     object? IPayload.Value
     {
         get => Value;
-        init => Value = value is T[] t ? t : default;
+        set => Value = value is T[] t ? t : default;
     }
     public virtual int Count => Values.Length;
 
@@ -59,9 +59,9 @@ public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
     public override string? StringValue
     {
         get => _stringValue ?? ToString();
-        init => _stringValue = value;
+        set => _stringValue = value;
     }
 
     [JIgnore]
-    public virtual string ItemSeparator { get; init; }
+    public virtual string ItemSeparator { get; set; }
 }

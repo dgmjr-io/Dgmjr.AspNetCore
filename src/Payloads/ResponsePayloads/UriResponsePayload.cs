@@ -1,4 +1,4 @@
-﻿//
+//
 // UriResponsePayload.cs
 //
 //   Created: 2022-10-31-08:33:05
@@ -26,7 +26,7 @@ public class UriResponsePayload(uri value, string? message = default!)
     public override string? StringValue
     {
         get => base.StringValue ?? Value.ToString();
-        init
+        set
         {
             if (uri.TryParse(value, out var u))
             {

@@ -15,5 +15,5 @@ namespace Dgmjr.Payloads.Abstractions;
 public interface IErrorResponsePayload<T> : IResponsePayload<T>
 {
     [JProp("stackTrace")]
-    string StackTrace { get; init; }
+    string StackTrace { get; set; }
 }

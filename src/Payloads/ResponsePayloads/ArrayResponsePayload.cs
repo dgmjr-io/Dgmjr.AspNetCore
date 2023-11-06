@@ -19,16 +19,13 @@ using Dgmjr.Payloads.Abstractions;
 
 /// <inheritdoc cref="IArrayResponsePayload"/>
 [DebuggerDisplay($"{{{nameof(StringValue)}}}; Count = {{{nameof(Count)}}}")]
-public class ArrayResponsePayload : ArrayResponsePayload<object>, IArrayResponsePayload
+public class ArrayResponsePayload(
+    IEnumerable value,
+    string? message = default,
+    string? stringValue = default,
+    string itemSeparator = ArrayPayload<object>.DefaultItemSeparator
+    ) : ArrayResponsePayload<object>(value.OfType<object>().ToArray(), message, stringValue), IArrayResponsePayload
 {
     public ArrayResponsePayload()
         : this(Empty<object>()) { }
-
-    public ArrayResponsePayload(
-        IEnumerable value,
-        string? message = default,
-        string? stringValue = default,
-        string itemSeparator = ArrayPayload<object>.DefaultItemSeparator
-    )
-        : base(value.OfType<object>().ToArray(), message, stringValue) { }
 }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * IPager{T}.cs
  *
  *   Created: 2022-11-29-08:40:53
@@ -20,7 +20,7 @@ public interface IPager<T> : IResponsePayload<T[]>, IPager
     /// <example>[1, 2, 3]</example>
     /// <default>null</default>
     [JProp("items")]
-    new T[]? Items { get; init; }
+    new T[]? Items { get; set; }
     // int TotalRecords { get; set; }
     // int PageSize { get; set; }
 

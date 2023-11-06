@@ -33,7 +33,7 @@ public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
     /// The strongly-typed value.
     /// </summary>
     [JProp("value"), XAttribute("value")]
-    public virtual T? Value { get; init; }
+    public virtual T? Value { get; set; }
 
     /// <summary>
     /// The string representation of the value.
@@ -42,12 +42,12 @@ public class Payload<T> : IPayload<T> //, IParsable<Payload<T>>
     public virtual string? StringValue
     {
         get => _stringValue ?? ToString();
-        init => _stringValue = value;
+        set => _stringValue = value;
     }
     object? IPayload.Value
     {
         get => Value;
-        init => Value = value is T t ? t : default;
+        set => Value = value is T t ? t : default;
     }
     protected string? _stringValue;
 
