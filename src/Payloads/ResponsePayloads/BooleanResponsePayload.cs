@@ -21,11 +21,11 @@ public class BooleanResponsePayload(bool value, string? message = default!) : Re
 
     /// <inheritdoc />
     [JProp("stringValue")]
-    [JIgnore(Condition = JIgnore.WhenWritingNull)]
-    [XmlAttribute("stringValue")]
-    public override string? StringValue
-    {
-        get => Value.ToString();
-        init => Value = bool.Parse(value);
-    }
+[JIgnore(Condition = JIgnore.WhenWritingNull)]
+[XmlAttribute("stringValue")]
+public override string? StringValue
+{
+    get => Value.ToString();
+    init => Value = bool.Parse(value);
+}
 }

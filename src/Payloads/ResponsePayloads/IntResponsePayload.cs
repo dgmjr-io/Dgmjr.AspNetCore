@@ -17,8 +17,8 @@ public class IntResponsePayload(int value, string? message = default!) : Respons
 {
     /// <inheritdoc />
     public override string? StringValue
-    {
-        get => Value.ToString();
-        init => Value = int.Parse(value);
-    }
+{
+    get => Value.ToString();
+    init => Value = int.Parse(value);
+}
 }

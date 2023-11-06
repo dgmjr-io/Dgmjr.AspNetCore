@@ -21,24 +21,24 @@ public class UriResponsePayload(uri value, string? message = default!)
 {
     /// <inheritdoc />
     [JProp("stringValue")]
-    [JIgnore(Condition = JIgnore.WhenWritingNull)]
-    [XAttribute("stringValue")]
-    public override string? StringValue
+[JIgnore(Condition = JIgnore.WhenWritingNull)]
+[XAttribute("stringValue")]
+public override string? StringValue
+{
+    get => base.StringValue ?? Value.ToString();
+    init
     {
-        get => base.StringValue ?? Value.ToString();
-        init
+        if (uri.TryParse(value, out var u))
         {
-            if (uri.TryParse(value, out var u))
-            {
-                base.StringValue = u.ToString();
-                Value = u;
-            }
-            else
-            {
-                throw new InvalidCastException(
-                    $"Cannot cast {value} to {nameof(UriResponsePayload)}"
-                );
-            }
+            base.StringValue = u.ToString();
+            Value = u;
+        }
+        else
+        {
+            throw new InvalidCastException(
+                $"Cannot cast {value} to {nameof(UriResponsePayload)}"
+            );
         }
     }
+}
 }

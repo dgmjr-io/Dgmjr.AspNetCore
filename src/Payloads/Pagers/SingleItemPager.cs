@@ -26,12 +26,12 @@ public class SingleItemPager(object? value, int pageNumber, int totalRecords)
     public SingleItemPager()
         : this(default, 0, 0) { }
 
-    public static new SingleItemPager NotFound() =>
-        new() { StatusCode = (int)HttpStatusCode.NotFound };
+public static new SingleItemPager NotFound() =>
+    new() { StatusCode = (int)HttpStatusCode.NotFound };
 
-    public static new SingleItemPager BadRequest() =>
-        new() { StatusCode = (int)HttpStatusCode.BadRequest };
+public static new SingleItemPager BadRequest() =>
+    new() { StatusCode = (int)HttpStatusCode.BadRequest };
 
-    public static new SingleItemPager NoContent() =>
-        new() { StatusCode = (int)HttpStatusCode.NoContent };
+public static new SingleItemPager NoContent() =>
+    new() { StatusCode = (int)HttpStatusCode.NoContent };
 }
