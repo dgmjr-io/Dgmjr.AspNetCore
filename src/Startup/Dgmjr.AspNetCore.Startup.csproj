@@ -14,6 +14,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
   <ItemGroup>
@@ -40,20 +41,21 @@
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
     <PackageReference Include="System.Configuration.ConfigurationManager" />
     <PackageReference Include="ThisAssembly.Project" />
+    <PackageReference Include="Vogen" />
 
-    <UsingsPackageReference Include="System.All.Usings" />
-    <UsingsPackageReference Include="System.Text.Json.Usings" />
+    <PackageReference Include="System.All.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" />
-    <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" ExcludeAssets="ContentFiles" />
+    <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
   </ItemGroup>
   <Import Project="../Controllers/Dgmjr.AspNetCore.Controllers.props" Condition="Exists('../Controllers/Dgmjr.AspNetCore.Controllers.props')" />
   <Import Project="../Http/Headers/Dgmjr.Http.Headers.props" Condition="Exists('../Http/Headers/Dgmjr.Http.Headers.props')" />

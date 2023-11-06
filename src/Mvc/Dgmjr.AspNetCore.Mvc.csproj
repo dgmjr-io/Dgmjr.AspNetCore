@@ -25,6 +25,6 @@
         <PackageReference Include="System.Net.Http.Json" />
         <PackageReference Include="System.Net.Mime.MediaTypeNames" />
         <PackageReference Include="System.Net.Mime.MediaTypeNames" />
-        <SourceGeneratorPackageReference  Include="Dgmjr.InterfaceGenerator" />
+        <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     </ItemGroup>
 </Project>

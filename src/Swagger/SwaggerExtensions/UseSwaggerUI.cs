@@ -10,18 +10,18 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-using System.Net.Mime.MediaTypes;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using static Microsoft.AspNetCore.Http.StatusCodes;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 
-using Swashbuckle.AspNetCore.SwaggerUI;
+using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
+using MultipartMediaTypeNames = Dgmjr.Mime.MultipartMediaTypeNames;
 
-using static Microsoft.AspNetCore.Http.StatusCodes;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -144,7 +144,7 @@ public static partial class UseSwaggerUIExtensions
             .WithName("SwaggerUI.custom.css")
             .WithGroupName("Style")
             .WithSummary("Custom CSS for Swagger UI")
-            .WithTags(new[] { "Style" })
+            .WithTags([ "Style" ])
             .Produces<string>(Status200OK, TextMediaTypeNames.Css);
 
         // _ = app.MapGet(

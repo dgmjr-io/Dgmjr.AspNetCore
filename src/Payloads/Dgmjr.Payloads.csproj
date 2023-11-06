@@ -32,8 +32,8 @@
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
     <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
 
-    <UsingsPackageReference Include="System.Text.Json.Usings" />
-    <UsingsPackageReference Include="System.Text.RegularExpressions.Usings" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
 
     <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
     <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />

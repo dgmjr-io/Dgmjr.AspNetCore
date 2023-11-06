@@ -16,7 +16,7 @@
     <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
-    <SourceGenerator Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Microsoft.OpenApi" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
@@ -27,7 +27,7 @@
     <PackageReference Include="System.Usings" />
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles;" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles;" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles;" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles;" />
     <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />
     <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles;" />

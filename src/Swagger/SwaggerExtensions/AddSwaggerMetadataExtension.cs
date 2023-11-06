@@ -53,7 +53,7 @@ public static partial class AddSwaggerMetadataExtension
         builder.Services.ConfigureSwaggerGen(c =>
         {
             c.CustomSchemaIds(type => type.ToString());
-            c.SchemaFilter<EnusAsStringsSchemaFilter>();
+            c.SchemaFilter<EnumsAsStringsSchemaFilter>();
             c.DocumentFilter<Dgmjr.AspNetCore.Swagger.PathLowercaseDocumentFilter>();
             c.SwaggerDoc("v1", openApiInfo);
             c.SwaggerDoc(openApiInfo.Version, openApiInfo);
@@ -145,6 +145,7 @@ public static partial class AddSwaggerMetadataExtension
         builder.Services.Describe<System.Domain.PhoneNumber>();
         builder.Services.Describe<System.Net.Mail.EmailAddress>();
         builder.Services.DescribeBotApiToken();
+        builder.Services.Describe<Dgmjr.Payloads.Range>();
         return builder;
     }
 

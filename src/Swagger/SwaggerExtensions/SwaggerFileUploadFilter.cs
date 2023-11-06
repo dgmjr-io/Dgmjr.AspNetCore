@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using MultipartMediaTypeNames = Dgmjr.Mime.MultipartMediaTypeNames;
 
 namespace Dgmjr.AspNetCore.Swagger
 {

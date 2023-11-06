@@ -11,15 +11,14 @@
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
-  <Sdk Name="MetapackageSdk" />
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <SlnGenSolutionFolder>net-http</SlnGenSolutionFolder>
     <NoWarn>$(NoWarn);CS8769</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="./Extensions/Dgmjr.Http.Extensions.csproj" />
-    <ProjectReference Include="./Headers/Dgmjr.Http.Headers.csproj" />
-    <ProjectReference Include="./Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../Extensions/Dgmjr.Http.Extensions.csproj" />
+    <ProjectReference Include="../Headers/Dgmjr.Http.Headers.csproj" />
+    <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" />
   </ItemGroup>
 </Project>

@@ -26,17 +26,17 @@ internal static class JsonSerializerExtensions
                 x.AllowInputFormatterExceptionMessages = true;
                 x.JsonSerializerOptions.AllowTrailingCommas = true;
                 x.JsonSerializerOptions.DefaultIgnoreCondition = JIgnore.WhenWritingNull;
-                x.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+                x.JsonSerializerOptions.DictionaryKeyPolicy = JNaming.CamelCase;
                 x.JsonSerializerOptions.IgnoreReadOnlyFields = false;
                 x.JsonSerializerOptions.IgnoreReadOnlyProperties = false;
                 x.JsonSerializerOptions.IncludeFields = true;
                 x.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 x.JsonSerializerOptions.NumberHandling =
-                    JNumberHandling.AllowReadingFromString
-                    | JNumberHandling.AllowNamedFloatingPointLiterals;
-                x.JsonSerializerOptions.ReadCommentHandling = JCommentHandling.Skip;
+                    JNumbers.AllowReadingFromString
+                    | JNumbers.AllowNamedFloatingPointLiterals;
+                x.JsonSerializerOptions.ReadCommentHandling = JComments.Skip;
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                x.JsonSerializerOptions.UnknownTypeHandling = JsonUnknownTypeHandling.JsonElement;
+                x.JsonSerializerOptions.UnknownTypeHandling = JUnknownTypes.JsonElement;
                 x.JsonSerializerOptions.WriteIndented = true;
                 x.JsonSerializerOptions.Converters.Add(new JStringEnumConverter());
             });
@@ -46,17 +46,17 @@ internal static class JsonSerializerExtensions
             {
                 AllowTrailingCommas = true,
                 DefaultIgnoreCondition = JIgnore.WhenWritingNull,
-                DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+                DictionaryKeyPolicy = JNaming.CamelCase,
                 IgnoreReadOnlyFields = false,
                 IgnoreReadOnlyProperties = false,
                 IncludeFields = true,
                 PropertyNameCaseInsensitive = true,
                 NumberHandling =
-                    JNumberHandling.AllowReadingFromString
-                    | JNumberHandling.AllowNamedFloatingPointLiterals,
-                ReadCommentHandling = JCommentHandling.Allow,
+                    JNumbers.AllowReadingFromString
+                    | JNumbers.AllowNamedFloatingPointLiterals,
+                ReadCommentHandling = JComments.Allow,
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
-                UnknownTypeHandling = JsonUnknownTypeHandling.JsonElement,
+                UnknownTypeHandling = JUnknownTypes.JsonElement,
                 WriteIndented = true
             };
             jso.Converters.Add(new JStringEnumConverter());

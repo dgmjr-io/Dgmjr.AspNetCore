@@ -28,7 +28,7 @@ public abstract class ResourceBasedAuthorizationHandler<TDbContext, TModel, TId>
                 {
                     context.Succeed(requirement);
                 }
-                else if (resource.IsAuthorized(context.User, requirement?.Name))
+                else if (resource.CanDo(context.User, requirement?.Name))
                 {
                     context.Succeed(requirement);
                 }

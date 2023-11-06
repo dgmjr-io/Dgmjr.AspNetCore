@@ -1,4 +1,7 @@
-﻿using Microsoft.Net.Http.Headers;
+﻿using System.Runtime.InteropServices;
+
+using Microsoft.Extensions.Configuration;
+using Microsoft.Net.Http.Headers;
 using Vogen;
 
 namespace Dgmjr.Payloads
@@ -9,7 +12,8 @@ namespace Dgmjr.Payloads
         typeof(System.Range),
         conversions: Conversions.SystemTextJson | Conversions.TypeConverter
     )]
-    public readonly partial record struct Range
+    [StructLayout(LayoutKind.Auto)]
+    public readonly partial record struct Range : IRegexValueObject<Range>
     {
         /// <value><inheritdoc cref="Items" path="/value" /> 0-*</value>
         public const string AllString = $"{Items} 0-*";
@@ -25,6 +29,11 @@ namespace Dgmjr.Payloads
 
         /// <value>records</value>
         public const string Records = "records";
+
+        public const string ExampleString = "items 0-10";
+        public const string EmptyString = "items 0-0";
+        public const string UriPrefix = "https://dgmjr.io/range";
+        public const string UriFormatString = "https://dgmjr.io/range/{0}/{1}-{2}";
 
         /// <value>^(?&x3c;Units&x3e;(?:item)|(?:byte)s)\s*(?&x3c;Start&x3e;[0-9]+)\-(?:(?&x3c;End&x3e;[0-9]+)?|[\*])$</value>
         public const string RegexString =
@@ -114,6 +123,18 @@ namespace Dgmjr.Payloads
             }
         }
 
+        public static Range From(RangeItemHeaderValue rangeHeader)
+        {
+            return From(
+                new System.Range(
+                    new Index((int)rangeHeader.From!.Value),
+                    new Index((int)rangeHeader.To!.Value, false)
+                )
+            );
+        }
+
+        public static Range From(string value) => Parse(value);
+
         public static Range From(int pageNumber, int pageSize = int.MaxValue)
         {
             return From(
@@ -121,14 +142,36 @@ namespace Dgmjr.Payloads
                     new((pageNumber - 1) * pageSize),
                     new Index(pageSize + (pageNumber - 1) * pageSize, false)
                 )
-            );
+            ) with
+            {
+                OriginalString = $"{Items} {pageNumber}-{pageSize}"
+            };
         }
 
-        public static Range Parse(string input)
+        public readonly string OriginalString { get; init; } = string.Empty;
+        readonly string IRegexValueObject<Range>.Value => $"{Units} {Start}-{End}";
+        readonly bool IRegexValueObject<Range>.IsEmpty =>
+            Value.Start.Value == 0 && Value.End.Value == 0;
+
+#if NET6_0_OR_GREATER
+        static string IRegexValueObject<Range>.RegexString => RegexString;
+        static string IRegexValueObject<Range>.Description => "Requested range of values to return";
+        static Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);
+        static Range IRegexValueObject<Range>.Empty => From(EmptyString);
+        Uri IHaveAUri.Uri => Uri;
+#endif
+
+        public int CompareTo(Range other) => Value.Start.Value.CompareTo(other.Value.Start.Value);
+
+        public int CompareTo(object? obj) => obj is Range other ? CompareTo(other) : -1;
+
+        public uri Uri => new(string.Format(UriFormatString, Units, Start, End));
+
+        public static Range Parse(string value)
         {
-            var match = Regex().Match(input);
+            var match = Regex().Match(value);
             if (!match.Success)
-                throw new ArgumentException("Invalid range request.", nameof(input));
+                throw new ArgumentException("Invalid range request.", nameof(value));
             return From(
                 new System.Range(
                     new Index(int.Parse(match.Groups[nameof(Start)].Value)),
@@ -144,16 +187,6 @@ namespace Dgmjr.Payloads
             );
         }
 
-        public static Range From(RangeItemHeaderValue rangeHeader)
-        {
-            return From(
-                new System.Range(
-                    new Index((int)rangeHeader.From!.Value),
-                    new Index((int)rangeHeader.To!.Value, false)
-                )
-            );
-        }
-
         public static Validation Validate(System.Range input)
         {
             return input.Start.Value >= 0 && input.End.Value > input.Start.Value
@@ -161,7 +194,15 @@ namespace Dgmjr.Payloads
                 : Validation.Invalid("Range must be positive and start must be less than end.");
         }
 
-        internal static bool TryParse(string? range, out Range rangeRequest)
+        public static Range Parse(string? range, IFormatProvider? provider) => Parse(range);
+
+        public static bool TryParse(
+            string? range,
+            IFormatProvider? provider,
+            out Range rangeRequest
+        ) => TryParse(range, out rangeRequest);
+
+        public static bool TryParse(string? range, out Range rangeRequest)
         {
             try
             {

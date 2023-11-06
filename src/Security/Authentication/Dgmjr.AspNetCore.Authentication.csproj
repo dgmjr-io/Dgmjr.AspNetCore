@@ -33,12 +33,12 @@
     <PackageReference Include="Telegram.Identity" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
     <PackageReference Include="Dgmjr.InterfaceGenerator" />
-    <UsingsPackageReference Include="System.Text.Usings" />
+    <PackageReference Include="System.Text.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />

@@ -25,8 +25,8 @@
   <ItemGroup>
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
     <!-- <PackageReference Include="Dgmjr.Mime" /> -->
-    <UsingsPackageReference Include="System.ComponentModel.Usings" />
-    <UsingsPackageReference Include="System.Text.Json.Usings" />
+    <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <!-- <ProjectReference Include="../Meta/Dgmjr.Meta.csproj" />
     <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" /> -->
     <!-- <PackageReference Include="Dgmjr.Payloads" /> -->

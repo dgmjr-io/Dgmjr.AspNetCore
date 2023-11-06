@@ -29,9 +29,9 @@
     <PackageReference Include="System.ComponentModel.Annotations" />
     <PackageReference Include="System.ComponentModel.Usings" />
     <PackageReference Include="System.Security.Cryptography.Algorithms" />
-    <UsingsPackageReference Include="System.Text.Json.Usings" />
+    <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
-    <SourceGeneratorPackageReference  Include="Dgmjr.Enumerations.CodeGenerator" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
   </ItemGroup>
   <ItemGroup>
     <PackageTag Include="mime" />
