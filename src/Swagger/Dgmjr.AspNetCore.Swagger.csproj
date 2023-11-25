@@ -23,8 +23,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
     <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
-    <PackageReference Include="ThisAssembly" />
-    <PackageReference Include="ThisAssembly.Resources" />
+    <PackageReference Include="ThisAssembly.Project" />
+    <!-- <PackageReference Include="ThisAssembly.Resources" /> -->
     <!-- <PackageReference Include="ThisAssembly.Project" /> -->
     <!-- <PackageReference Include="ThisAssembly.AssemblyInfo" /> -->
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
@@ -36,7 +36,6 @@
     <PackageReference Include="System.Usings" />
     <PackageReference Include="System.Text.Usings" />
     <PackageReference Include="System.Xml.XPath" />
-    <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
     <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
   </ItemGroup>
   <!-- <ItemGroup>

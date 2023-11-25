@@ -38,7 +38,15 @@ public class ProducesOKResponseAttribute(
         TextMediaTypeNames.Plain
     ) { }
 
-public class ProducesNoContentResponseAttribute(
+/// <summary>Notes that the method can produce a 200 OK response</summary>
+/// <typeparam name="TModel">The type of the model to be returned.</param>
+/// <param name="description" example="Yay! You didn't fuck up!">A short description of the response indicating success.</param>
+public sealed class ProducesOKResponseAttribute<TModel>(
+    string description = "Yay! You didn't fuck up!"
+)
+    : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
+
+public sealed class ProducesNoContentResponseAttribute(
     string description = "You didn't fuck up and the request produced no content."
 )
     : SwaggerResponseAttribute(
@@ -69,6 +77,11 @@ public class ProducesCreatedResponseAttribute(
         ApplicationMediaTypeNames.ProblemXml
     ) { }
 
+public class ProducesCreatedResponseAttribute<TModel>(
+    string description = "The shit you were try'n'a create was created successfully."
+)
+    : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
+
 public class ProducesPartialContentResponseAttribute(
     type modelType,
     string description = "Here's some of the shit you requested."
@@ -83,8 +96,12 @@ public class ProducesPartialContentResponseAttribute(
         ApplicationMediaTypeNames.Bson,
         TextMediaTypeNames.Plain
     ) { }
+public sealed class ProducesPartialContentResponseAttribute<TModel>(
+    string description = "Here's some of the shit you requested."
+)
+    : ProducesPartialContentResponseAttribute(typeof(TModel), description) { }
 
-public class CreateOperationAttribute(
+public sealed class CreateOperationAttribute(
     string? operationId,
     string? summary = "Create a new resource",
     string? description = "Create a new resource",
@@ -97,7 +114,7 @@ public class CreateOperationAttribute(
         tags ?? new string[] { operationId, "Create/Insert" }
     ) { }
 
-public class UpdateOperationAttribute(
+public sealed class UpdateOperationAttribute(
     string? operationId,
     string? summary = "Update an existing resource from a complete model object",
     string? description = "Update an existing resource from a complete model object",
@@ -110,7 +127,7 @@ public class UpdateOperationAttribute(
         tags ?? new string[] { operationId, "Update" }
     ) { }
 
-public class DeleteOperationAttribute(
+public sealed class DeleteOperationAttribute(
     string? operationId,
     string? summary = "Delete an existing resource",
     string? description = "Delete an existing resource",
@@ -123,7 +140,7 @@ public class DeleteOperationAttribute(
         tags ?? new string[] { operationId, "Delete" }
     ) { }
 
-public class PatchOperationAttribute(
+public sealed class PatchOperationAttribute(
     string? operationId,
     string? summary = "Update an existing resource from a partial model object",
     string? description = "Update an existing resource from a partial model object",

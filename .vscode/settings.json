@@ -1,4 +1,8 @@
 {
   "azureAutomation.directory.basePath": "Users/david/Azure",
-  "dotnet.defaultSolution": "Dgmjr.AspNetCore.All.sln"
+  "dotnet.defaultSolution": "Dgmjr.AspNetCore.All.sln",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "dgmjr-io",
+    "projectKey": "dgmjr-io_Dgmjr.AspNetCore"
+  }
 }

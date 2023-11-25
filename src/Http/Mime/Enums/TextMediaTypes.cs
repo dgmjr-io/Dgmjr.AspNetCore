@@ -56,8 +56,8 @@ public enum TextMediaTypes : int
     [EnumMember(Value = TextMediaTypeNames.Css)]
     Css,
 
-    [Display(Name = TextMediaTypeNames.Javascript, Description = nameof(Javascript))]
-    [EnumMember(Value = TextMediaTypeNames.Javascript)]
+    [Display(Name = TextMediaTypeNames.JavaScript, Description = nameof(Javascript))]
+    [EnumMember(Value = TextMediaTypeNames.JavaScript)]
     Javascript,
 
     [Display(Name = TextMediaTypeNames.Json, Description = nameof(Json))]

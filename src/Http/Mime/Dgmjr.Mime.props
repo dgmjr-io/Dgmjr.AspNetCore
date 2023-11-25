@@ -1,7 +1,5 @@
 <Project>
   <ItemGroup>
-    <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
-    <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <Using Include="Dgmjr.Mime" />
     <Using Include="Dgmjr.Mime.Constants" Static="true" />
   </ItemGroup>

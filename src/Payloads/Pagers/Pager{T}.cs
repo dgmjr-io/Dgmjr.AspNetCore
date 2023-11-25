@@ -17,7 +17,7 @@ using static System.Net.HttpStatusCode;
 
 namespace Dgmjr.Payloads;
 
-/// <inheritdoc cref="IPager{T}"/>
+/// <inheritdoc cref="Dgmjr.Payloads.Abstractions.IPager{T}"/>
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"
 )]

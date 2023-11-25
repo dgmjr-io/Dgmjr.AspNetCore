@@ -144,7 +144,7 @@ public static partial class UseSwaggerUIExtensions
             .WithName("SwaggerUI.custom.css")
             .WithGroupName("Style")
             .WithSummary("Custom CSS for Swagger UI")
-            .WithTags([ "Style" ])
+            .WithTags(new[] { "Style" })
             .Produces<string>(Status200OK, TextMediaTypeNames.Css);
 
         // _ = app.MapGet(

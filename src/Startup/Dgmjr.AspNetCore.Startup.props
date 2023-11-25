@@ -13,6 +13,7 @@
 <Project>
   <ItemGroup>
     <Using Include="Microsoft.Extensions.DependencyInjection" />
+    <Using Include="System.IO.File" Alias="File" />
     <!-- <Compile Include="$(MSBuildThisFileDirectory)AddSwaggerMetadataExtension.cs" Condition="'$(ProjectId)' != 'Dgmjr.AspNetCore.Startup'" /> -->
     <!-- This file will be compiled into the target project's code -->
     <!-- <Compile Include="$(MSBuildThisFileDirectory)AddSwaggerGenExtension.cs" PackagePath="build/AddSwaggerGenExtensions.cs" /> -->

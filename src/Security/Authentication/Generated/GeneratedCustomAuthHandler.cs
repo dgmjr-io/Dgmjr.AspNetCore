@@ -166,7 +166,7 @@ public class JwtBearerBasicAuthHandler<TUser, TRole>
                     user.GoByName,
                     Options.Issuer,
                     Options.Audience,
-                    TelegramID.ClaimTypes.TelegramClaimBase.UriString
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
                 )
             );
             userClaims.Add(
@@ -175,7 +175,7 @@ public class JwtBearerBasicAuthHandler<TUser, TRole>
                     user.GivenName,
                     Options.Issuer,
                     Options.Audience,
-                    TelegramID.ClaimTypes.TelegramClaimBase.UriString
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
                 )
             );
             userClaims.Add(
@@ -184,7 +184,7 @@ public class JwtBearerBasicAuthHandler<TUser, TRole>
                     user.Surname,
                     Options.Issuer,
                     Options.Audience,
-                    TelegramID.ClaimTypes.TelegramClaimBase.UriString
+                    TelegramID.ClaimTypes.TelegramClaimType.UriString
                 )
             );
 
@@ -199,7 +199,7 @@ public class JwtBearerBasicAuthHandler<TUser, TRole>
                         user.TelegramUsername,
                         Options.Issuer,
                         Options.Audience,
-                        TelegramID.ClaimTypes.TelegramClaimBase.UriString
+                        TelegramID.ClaimTypes.TelegramClaimType.UriString
                     )
                 );
             }
@@ -215,7 +215,7 @@ public class JwtBearerBasicAuthHandler<TUser, TRole>
                         user.PhoneNumber,
                         Options.Issuer,
                         Options.Audience,
-                        TelegramID.ClaimTypes.TelegramClaimBase.UriString
+                        TelegramID.ClaimTypes.TelegramClaimType.UriString
                     )
                 );
             }

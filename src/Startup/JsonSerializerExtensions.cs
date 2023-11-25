@@ -32,13 +32,27 @@ internal static class JsonSerializerExtensions
                 x.JsonSerializerOptions.IncludeFields = true;
                 x.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
                 x.JsonSerializerOptions.NumberHandling =
-                    JNumbers.AllowReadingFromString
-                    | JNumbers.AllowNamedFloatingPointLiterals;
+                    JNumbers.AllowReadingFromString | JNumbers.AllowNamedFloatingPointLiterals;
                 x.JsonSerializerOptions.ReadCommentHandling = JComments.Skip;
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                 x.JsonSerializerOptions.UnknownTypeHandling = JUnknownTypes.JsonElement;
                 x.JsonSerializerOptions.WriteIndented = true;
                 x.JsonSerializerOptions.Converters.Add(new JStringEnumConverter());
+                // new JsonSerializerOptionsBuilder().WithAllowTrailingCommas(true)
+                // .WithDefaultIgnoreCondition(JIgnore.WhenWritingNull)
+                // .WithDictionaryKeyPolicy(JNaming.CamelCase)
+                // .WithIgnoreReadOnlyFields(false)
+                // .WithIncludeFields(true)
+                // .WithPropertyNameCaseInsensitive(true)
+                // .WithNumberHandling(
+                //     JNumbers.AllowReadingFromString
+                //     | JNumbers.AllowNamedFloatingPointLiterals
+                // ).WithReadCommentHandling(JComments.Skip)
+                // .WithReferenceHandler(ReferenceHandler.IgnoreCycles)
+                // .WithWriteIndented(true)
+                // .WithUnknownTypeHandling(JUnknownTypes.JsonElement)
+                // .WithConverters(new JStringEnumConverter())
+                // .Build()
             });
         builder.Services.AddSingleton(y =>
         {
@@ -52,8 +66,7 @@ internal static class JsonSerializerExtensions
                 IncludeFields = true,
                 PropertyNameCaseInsensitive = true,
                 NumberHandling =
-                    JNumbers.AllowReadingFromString
-                    | JNumbers.AllowNamedFloatingPointLiterals,
+                    JNumbers.AllowReadingFromString | JNumbers.AllowNamedFloatingPointLiterals,
                 ReadCommentHandling = JComments.Allow,
                 ReferenceHandler = ReferenceHandler.IgnoreCycles,
                 UnknownTypeHandling = JUnknownTypes.JsonElement,

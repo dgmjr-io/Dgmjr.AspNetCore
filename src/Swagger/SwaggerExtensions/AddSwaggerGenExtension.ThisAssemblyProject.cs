@@ -91,11 +91,11 @@ public record TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
             ? "https://example.com/terms"
             : TermsOfServiceUrlString;
 
-    public uri? RepositoryUrlString =>
+    public string? RepositoryUrlString =>
         Project?.GetRuntimeField(nameof(RepositoryUrl))?.GetValue(null) as string;
-    public uri? PackageProjectUrlString =>
+    public string? PackageProjectUrlString =>
         Project?.GetRuntimeField(nameof(PackageProjectUrl))?.GetValue(null) as string;
-    public uri? TermsOfServiceUrlString =>
+    public string? TermsOfServiceUrlString =>
         Project?.GetRuntimeField(nameof(TermsOfServiceUrl))?.GetValue(null) as string;
     public string? ApiVersion =>
         "v"

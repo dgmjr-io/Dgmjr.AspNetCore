@@ -82,7 +82,7 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     public ICollection<IOutputFormatter> OutputFormatters { get; } = new List<IOutputFormatter>();
 
     [JIgnore, XmlIgnore]
-    public MediaTypeCollection ContentTypes { get; } = [];
+    public MediaTypeCollection ContentTypes { get; } = new();
 
     [JIgnore, XmlIgnore]
     HttpStatusCode? IResponsePayload.StatusCode =>

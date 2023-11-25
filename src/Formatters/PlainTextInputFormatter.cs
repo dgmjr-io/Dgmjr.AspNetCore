@@ -22,10 +22,10 @@ public class PlainTextInputFormatter : InputFormatter
 
     public PlainTextInputFormatter()
     {
-        SupportedMediaTypes.Add(Text.Plain.DisplayName);
-        SupportedMediaTypes.Add(Text.Css.DisplayName);
-        SupportedMediaTypes.Add(Text.Csv.DisplayName);
-        SupportedMediaTypes.Add(Text.Any.DisplayName);
+        SupportedMediaTypes.Add(TextMediaTypeNames.Plain);
+        SupportedMediaTypes.Add(TextMediaTypeNames.Css);
+        SupportedMediaTypes.Add(TextMediaTypeNames.Csv);
+        SupportedMediaTypes.Add(TextMediaTypeNames.Any);
     }
 
     /// <inheritdoc />

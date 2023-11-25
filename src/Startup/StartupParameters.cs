@@ -16,7 +16,7 @@ public class StartupParameters : IStartupParameters, IServiceCollection
     internal StartupParameters()
     {
         var entryAssembly = Assembly.GetEntryAssembly();
-        var thisAssembly = entryAssembly.GetTypes().FirstOrDefault(t => t.Name == "ThisAssembly");
+        var thisAssembly = Find(entryAssembly.GetTypes(), t => t.Name == "ThisAssembly");
 
         if (thisAssembly is null)
         {
@@ -45,14 +45,10 @@ public class StartupParameters : IStartupParameters, IServiceCollection
 
     Action<AzureAppConfigurationKeyVaultOptions> IStartupParameters.AzureKeyVaultConfigurator { get; set; }
 
-    /// <summary>Configures health checks using provided IHealthChecksBuilder configurator.</summary>
-    /// <returns>The updated WebApplicationBuilder object.</returns>
-    Action<IHealthChecksBuilder> IStartupParameters.HealthChecksConfigurator { get; set; } =
-        hcb => { };
-
     public required bool AppInsights { get; set; }
 
     public required bool Identity { get; set; }
+    public required bool HealthChecks { get; set; }
 
     public required bool Swagger { get; set; }
 
@@ -90,22 +86,14 @@ public class StartupParameters : IStartupParameters, IServiceCollection
 
     public Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVault { get; set; }
 
-    /// <summary>
-    /// Adds Health Check middleware to application.
-    /// </summary>
-    /// <param name="configure">Action to configure IHealthChecksBuilder.</param>
-    public Action<IHealthChecksBuilder> WithHealthChecks(Action<IHealthChecksBuilder>? configure) =>
-        ((IStartupParameters)this).HealthChecksConfigurator = (IHealthChecksBuilder hcb) =>
-        {
-            ((IStartupParameters)this).HealthChecksConfigurator(hcb);
-            configure(hcb);
-        };
+    /// <summary>Configures health checks using provided IHealthChecksBuilder configurator.</summary>
+    /// <returns>The updated <see cref="Action{IHealthChecksBuilder}" /> delegate.</returns>
+    public Action<IHealthChecksBuilder> HealthChecksConfigurator { get; set; } = _ => { };
 
     WebApplicationBuilder IStartupParameters.ConfigureHealthChecks(WebApplicationBuilder builder)
     {
-        ((IStartupParameters)this).HealthChecksConfigurator?.Invoke(
-            builder.Services.AddHealthChecks()
-        );
+        builder.Services.AddHealthChecks();
+        HealthChecksConfigurator?.Invoke(builder.Services.AddHealthChecks());
         return builder;
     }
 

@@ -15,7 +15,7 @@ using System.Net;
 
 namespace Dgmjr.Payloads;
 
-/// <inheritdoc cref="IPager"/>
+/// <inheritdoc cref="Dgmjr.Payloads.Abstractions.IPager"/>
 /// <remarks>Items are of type <see langword="object" />.</remarks>
 [DebuggerDisplay(
     $"{{{nameof(StringValue)}}}, {nameof(Page)}: {{{nameof(Page)}}} of {{{nameof(TotalRecords)}}}"

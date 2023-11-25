@@ -37,7 +37,7 @@ namespace Dgmjr.Payloads
 
         /// <value>^(?&x3c;Units&x3e;(?:item)|(?:byte)s)\s*(?&x3c;Start&x3e;[0-9]+)\-(?:(?&x3c;End&x3e;[0-9]+)?|[\*])$</value>
         public const string RegexString =
-            @"^(?<Units>(?:item)|(?:byte)s)\s*(?<Start>[0-9]+)\-(?:(?<End>[0-9]+)?|[\*])$";
+            @"^(?<Units>(?:(?:item)|(?:byte))s)\s*(?<Start>[0-9]+)\-(?:(?<End>[0-9]+)?|[\*])$";
 
         public Units Units =>
             Regex().Match(Value.ToString()).Groups[nameof(Units)].Value switch

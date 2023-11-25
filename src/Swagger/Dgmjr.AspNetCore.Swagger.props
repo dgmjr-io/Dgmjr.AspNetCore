@@ -1,11 +1,11 @@
 <!--
  * Dgmjr.Swagger.csproj
- * 
+ *
  *   Created: 2022-12-05-07:29:55
  *   Modified: 2022-12-05-07:29:55
- * 
+ *
  *   Author: David G. Moore, Jr, <david@dgmjr.io>
- *   
+ *
  *   Copyright © 2022-2023 David G. Moore, Jr,, All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
@@ -17,8 +17,11 @@
     <PackageReference Include="ThisAssembly" />
     <PackageReference Include="Dgmjr.Primitives" />
   </ItemGroup>
+  <ItemGroup>
+    <Using Include="System.IO.File" Alias="File" />
+  </ItemGroup>
   <PropertyGroup>
-    
+
   </PropertyGroup>
   <!-- <ItemGroup>
     <ProjectProperty Include="PackageVersion" />

@@ -27,7 +27,7 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
         : this(default, 0, 0) { }
 
     public SingleItemPager(T value, int pageNumber, int totalRecords)
-        : base([value], pageNumber, 1, totalRecords)
+        : base(new[] { value }, pageNumber, 1, totalRecords)
     {
         Page = pageNumber;
         TotalRecords = totalRecords;
@@ -49,8 +49,8 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
     [JProp("item")]
     public virtual T? Item
     {
-        get => (Items ?? [default]).FirstOrDefault();
-        set => Items = [value]!;
+        get => (Items ?? new[] { default(T) }).FirstOrDefault();
+        set => Items = new[] { value }!;
     }
 
     [JIgnore]
@@ -76,7 +76,7 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
     object[]? IPager.Items
     {
         get => (Items ?? new[] { default(T) }).OfType<object>().ToArray();
-        set => Items = (value ?? [default]).OfType<T>().ToArray();
+        set => Items = (value ?? new object[] { default(T) }).OfType<T>().ToArray();
     }
 
     public static new OpenApiSchema GetOpenApiSchema()

@@ -23,7 +23,9 @@
         <PackageReference Include="System.Compat" IncludeAssets="ContentFiles" ExlcudeAssets="Runtime;Compile;Lib;Native;Analyzers" />
         <PackageReference Include="System.Text.Json" />
         <PackageReference Include="System.Net.Http.Json" />
-        <PackageReference Include="Dgmjr.Mime" />
+        <!-- <PackageReference Include="Dgmjr.Mime" /> -->
         <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+        <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
     </ItemGroup>
+    <Import Project="../Http/Mime/Dgmjr.Mime.props" />
 </Project>

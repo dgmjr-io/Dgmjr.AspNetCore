@@ -40,6 +40,11 @@ public interface IStartupParameters
     IEnumerable<string> AuthenticationSchemes { get; set; }
 
     /// <summary>
+    /// Gets or sets a value indicating whether to use health checks.
+    /// </summary>
+    bool HealthChecks { get; set; }
+
+    /// <summary>
     /// Gets or sets a value indicating whether to use XML serialization.
     /// </summary>
     bool XmlSerialization { get; set; }
@@ -104,7 +109,6 @@ public interface IStartupParameters
     /// </summary>
     bool DefaultIdentityUI { get; set; }
     bool AzureAppConfig { get; set; }
-    Action<IHealthChecksBuilder> WithHealthChecks(Action<IHealthChecksBuilder>? configure);
     Action<AzureAppConfigurationOptions> AzureAppConfigurator { get; set; }
 
     Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVaultConfigurator { get; set; }

@@ -63,4 +63,7 @@ public static class ApplicationMediaTypeNames
 
     /// <value><inheritdoc cref="Base" />/pkcs12</value>
     public const string Pkcs12 = Base + "/" + "pkcs12";
+
+    /// <value><inheritdoc cref="Base" />/javascript</value>
+    public const string JavaScript = Base + "/" + "javascript";
 }

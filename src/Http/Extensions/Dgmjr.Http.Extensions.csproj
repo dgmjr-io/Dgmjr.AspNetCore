@@ -30,8 +30,6 @@
     <!-- <ProjectReference Include="../Meta/Dgmjr.Meta.csproj" />
     <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" /> -->
     <!-- <PackageReference Include="Dgmjr.Payloads" /> -->
-    <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
-    <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames.netstandard2.0Patch" ExcludeAssets="None" IncludeAssets="ContentFiles" /> -->
     <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="../Headers/Dgmjr.Http.Headers.csproj" />
   </ItemGroup>

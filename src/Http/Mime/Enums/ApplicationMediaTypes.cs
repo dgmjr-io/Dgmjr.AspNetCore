@@ -125,6 +125,7 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Xml)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Xml)]
+    [Synonyms(ApplicationMediaTypeNames.Json, TextMediaTypeNames.Xml)]
     Xml,
 
     /// <summary>A JSON document.</summary>
@@ -137,6 +138,7 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Json)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Json)]
+    [Synonyms(ApplicationMediaTypeNames.Json, TextMediaTypeNames.Json)]
     Json,
 
     /// <summary>A form URL-encoded document.</summary>
@@ -172,6 +174,10 @@ public enum ApplicationMediaTypes : int
         GroupName = ApplicationMediaTypeNames.Base
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.MessagePack)]
+    [Synonyms(
+        ApplicationMediaTypeNames.MessagePack,
+        ApplicationMediaTypeNames.Base + "/xml+problem"
+    )]
     MessagePack,
 
     /// <summary>A Problem JSON document.</summary>
@@ -184,6 +190,10 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.ProblemJson)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.ProblemJson)]
+    [Synonyms(
+        ApplicationMediaTypeNames.ProblemXml,
+        ApplicationMediaTypeNames.Base + "/json+problem"
+    )]
     ProblemJson,
 
     /// <summary>A Problem XML document.</summary>
@@ -196,6 +206,10 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.ProblemXml)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.ProblemXml)]
+    [Synonyms(
+        ApplicationMediaTypeNames.ProblemXml,
+        ApplicationMediaTypeNames.Base + "/xml+problem"
+    )]
     ProblemXml,
 
     /// <summary>A JSON Patch document.</summary>
@@ -208,6 +222,7 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.JsonPatch)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.JsonPatch)]
+    [Synonyms(ApplicationMediaTypeNames.JsonPatch, ApplicationMediaTypeNames.Base + "/patch+json")]
     JsonPatch,
 
     /// <summary>A Personal Information Exchange file.</summary>
@@ -220,5 +235,18 @@ public enum ApplicationMediaTypes : int
     )]
     [EnumMember(Value = ApplicationMediaTypeNames.Pkcs12)]
     [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.Pkcs12)]
-    Pkcs12
+    Pkcs12,
+
+    /// <summary>A JavaScript file.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.JavaScript"/></value>
+    /// <seealso cref="ApplicationMediaTypeNames.JavaScript"/>
+    [Display(
+        Name = ApplicationMediaTypeNames.JavaScript,
+        Description = nameof(JavaScript),
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.JavaScript)]
+    [Uri(IanaMediaTypeUrlBase + ApplicationMediaTypeNames.JavaScript)]
+    [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    JavaScript
 }

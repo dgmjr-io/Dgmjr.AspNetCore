@@ -23,7 +23,7 @@ public static class TextMediaTypeNames
     public const string Xml = Base + "/" + "xml";
     public const string Csv = Base + "/" + "csv";
     public const string Css = Base + "/" + "css";
-    public const string Javascript = Base + "/" + "javascript";
+    public const string JavaScript = Base + "/" + "javascript";
     public const string Json = Base + "/" + "json";
     public const string PlainWithProblem = Base + "/" + "plain+problem";
     public const string Markdown = Base + "/" + "markdown";

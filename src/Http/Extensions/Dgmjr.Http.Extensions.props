@@ -12,7 +12,7 @@
 
 <Project>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" />
     <!-- <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" /> -->

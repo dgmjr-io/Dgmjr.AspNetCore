@@ -35,10 +35,9 @@
     <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
 
-    <ProjectReference Include="../Http/Extensions/Dgmjr.Http.Extensions.csproj" />
-    <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
+    <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <!-- <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
-    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-    <!-- <PackageReference Include="System.Net.Mime.MediaTypeNames" /> -->
+    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" /> -->
   </ItemGroup>
 </Project>

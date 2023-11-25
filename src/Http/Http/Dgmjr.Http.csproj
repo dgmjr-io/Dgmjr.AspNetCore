@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0</TargetFrameworks>
     <SlnGenSolutionFolder>net-http</SlnGenSolutionFolder>
     <NoWarn>$(NoWarn);CS8769</NoWarn>
   </PropertyGroup>
@@ -20,6 +20,10 @@
     <ProjectReference Include="../Extensions/Dgmjr.Http.Extensions.csproj" />
     <ProjectReference Include="../Headers/Dgmjr.Http.Headers.csproj" />
     <ProjectReference Include="../Mime/Dgmjr.Mime.csproj" />
-    <ProjectReference Include="../ResponseCodes/Dgmjr.Http.ResponseCodes.csproj" />
+    <ProjectReference Include="../ResponseCodes/Dgmjr.Http.StatusCodes.csproj" />
   </ItemGroup>
+  <Import Project="../Extensions/Dgmjr.Http.Extensions.props" />
+  <Import Project="../Headers/Dgmjr.Http.Headers.props" />
+  <Import Project="../Mime/Dgmjr.Mime.props" />
+  <!-- <Import Project="../ResponseCodes/Dgmjr.Http.StatusCodes.props" /> -->
 </Project>
