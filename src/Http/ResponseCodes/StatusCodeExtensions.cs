@@ -8,7 +8,7 @@ public static class StatusCodeExtensions
         ((IHaveAValue<ushort>)statusCode).Value >= 100 && ((IHaveAValue<ushort>)statusCode).Value <= 199;
 
     public static bool IsSuccess(this int statusCode) => statusCode >= 200 && statusCode <= 299;
-    public static bool IsSuccess(this  Abstractions.IStatusCode statusCode) =>  ((IHaveAValue<ushort>)statusCode).Value >= 200 && ((IHaveAValue<ushort>)statusCode).Value <= 299;
+    public static bool IsSuccess(this Abstractions.IStatusCode statusCode) => ((IHaveAValue<ushort>)statusCode).Value >= 200 && ((IHaveAValue<ushort>)statusCode).Value <= 299;
 
     public static bool IsRedirection(this int statusCode) => statusCode >= 300 && statusCode <= 399;
 
