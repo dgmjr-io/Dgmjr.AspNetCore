@@ -33,7 +33,7 @@ jobs:
         private-nuget-endpoint: ${{ vars.PROGET_ENDPOINT_URL }}
         private-nuget-api-key: ${{ secrets.PROGET_API_KEY }}
         repo: dgmjr-io/Dgmjr.AspNetCore
-        project-file-path: src/Http/Dgmjr.Mime/Dgmjr.Mime.csproj
+        project-file-path: src/Http/Mime/Dgmjr.Mime.csproj
 
   nuget-push:
     needs: build
@@ -48,7 +48,7 @@ jobs:
         private-nuget-endpoint: ${{ vars.PROGET_ENDPOINT_URL }}
         private-nuget-api-key: ${{ secrets.PROGET_API_KEY }}
         repo: dgmjr-io/Dgmjr.AspNetCore
-        project-file-path: src/Http/Dgmjr.Mime/Dgmjr.Mime.csproj
+        project-file-path: src/Http/Mime/Dgmjr.Mime.csproj
         push-nuget: false
         push-dgmjr-io: true
         push-github: true
