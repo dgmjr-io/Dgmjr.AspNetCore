@@ -22,8 +22,8 @@ public class NumericResponsePayload(
 {
     /// <inheritdoc />
     public override string? StringValue
-    {
-        get => Value.ToString();
-        set => base.StringValue = stringValue ?? value;
-    }
+{
+    get => Value.ToString();
+    set => base.StringValue = stringValue ?? value;
+}
 }
