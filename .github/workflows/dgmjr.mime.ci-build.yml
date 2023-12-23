@@ -1,0 +1,54 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: CI Build
+
+concurrency:
+  group: dgmjr.mime.ci-build
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  packages: write
+  actions: read
+  repository-projects: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build using DgmjrSdk
+      uses: dgmjr-actions/build-using-dgmjrsdk@main
+      with:
+        git-token: ${{ secrets.GITHUB_TOKEN }}
+        environment: Release
+        git-nuget-endpoint: ${{ vars.GIT_NUGET_ENDPOINT }}
+        private-nuget-endpoint: ${{ vars.PROGET_ENDPOINT_URL }}
+        private-nuget-api-key: ${{ secrets.PROGET_API_KEY }}
+        repo: dgmjr-io/Dgmjr.AspNetCore
+        project-file-path: src/Http/Dgmjr.Mime/Dgmjr.Mime.csproj
+
+  nuget-push:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run nuget-push
+      uses: dgmjr-actions/nuget-push@main
+      with:
+        git-token: ${{ secrets.GITHUB_TOKEN }}
+        environment: Release
+        git-nuget-endpoint: ${{ vars.GIT_NUGET_ENDPOINT }}
+        private-nuget-endpoint: ${{ vars.PROGET_ENDPOINT_URL }}
+        private-nuget-api-key: ${{ secrets.PROGET_API_KEY }}
+        repo: dgmjr-io/Dgmjr.AspNetCore
+        project-file-path: src/Http/Dgmjr.Mime/Dgmjr.Mime.csproj
+        push-nuget: false
+        push-dgmjr-io: true
+        push-github: true
