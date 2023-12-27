@@ -20,43 +20,43 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
 {
     public override required EmailAddress DefaultFrom { get; set; }
 
-    public static new EmailSenderOptions Parse(string connectionString)
-    {
-        var options = AzureCommunicationServicesOptions<EmailAddress>.Parse(connectionString);
-        return new EmailSenderOptions(options);
-    }
+public static new EmailSenderOptions Parse(string connectionString)
+{
+    var options = AzureCommunicationServicesOptions<EmailAddress>.Parse(connectionString);
+    return new EmailSenderOptions(options);
+}
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions(
-        AzureCommunicationServicesOptionsBase options,
-        EmailAddress? defaultFrom = null
-    )
-    {
-        DefaultFrom = defaultFrom ?? EmailAddress.Empty;
-        Endpoint = options.Endpoint;
-        AccessKey = options.AccessKey;
-    }
+[SetsRequiredMembers]
+public EmailSenderOptions(
+    AzureCommunicationServicesOptionsBase options,
+    EmailAddress? defaultFrom = null
+)
+{
+    DefaultFrom = defaultFrom ?? EmailAddress.Empty;
+    Endpoint = options.Endpoint;
+    AccessKey = options.AccessKey;
+}
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions(AzureCommunicationServicesOptions<EmailAddress> options)
-        : base(options)
-    {
-        DefaultFrom = options.DefaultFrom;
-    }
+[SetsRequiredMembers]
+public EmailSenderOptions(AzureCommunicationServicesOptions<EmailAddress> options)
+    : base(options)
+{
+    DefaultFrom = options.DefaultFrom;
+}
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions(string connectionString, EmailAddress? defaultFrom = null)
-        : this(Parse(connectionString) with { DefaultFrom = defaultFrom ?? EmailAddress.Empty }) { }
+[SetsRequiredMembers]
+public EmailSenderOptions(string connectionString, EmailAddress? defaultFrom = null)
+    : this(Parse(connectionString) with { DefaultFrom = defaultFrom ?? EmailAddress.Empty }) { }
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions(string endpoint, string accessKey, EmailAddress? defaultFrom = null)
-    {
-        DefaultFrom = defaultFrom ?? EmailAddress.Empty;
-        Endpoint = endpoint;
-        AccessKey = accessKey;
-    }
+[SetsRequiredMembers]
+public EmailSenderOptions(string endpoint, string accessKey, EmailAddress? defaultFrom = null)
+{
+    DefaultFrom = defaultFrom ?? EmailAddress.Empty;
+    Endpoint = endpoint;
+    AccessKey = accessKey;
+}
 
-    [SetsRequiredMembers]
-    public EmailSenderOptions()
-        : this(string.Empty) { }
+[SetsRequiredMembers]
+public EmailSenderOptions()
+    : this(string.Empty) { }
 }

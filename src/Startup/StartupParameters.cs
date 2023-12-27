@@ -62,7 +62,7 @@ public class StartupParameters : IStartupParameters, IServiceCollection
 
     public required bool JsonPatch { get; set; } = true;
 
-    public required bool ApiAuthentication { get; set; }  = false;
+    public required bool ApiAuthentication { get; set; } = false;
 
     public required bool AddAzureAppConfig { get; set; } = false;
 

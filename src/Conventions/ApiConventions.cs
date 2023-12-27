@@ -17,5 +17,6 @@ public static class ApiConventions
         [ApiConventionNameMatch(ApiConventionNameMatchBehavior.Suffix)]
         [ApiConventionTypeMatch(ApiConventionTypeMatchBehavior.Any)]
             object id
-    ) { }
+    )
+    { }
 }

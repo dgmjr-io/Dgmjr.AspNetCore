@@ -61,7 +61,7 @@ public static class PingExtensions
                 }
             )
             .WithDisplayName("Health Check").WithName("Health Check").AllowAnonymous()//.Produces<HealthReport>(200, contentType: Dgmjr.Mime.Application.Json.DisplayName)
-        #if NET8_0_OR_GREATER
+#if NET8_0_OR_GREATER
             .WithOpenApi(op =>
             {
                 op.Responses["200"] = new()
@@ -84,7 +84,7 @@ public static class PingExtensions
                 };
                 return op;
             })
-        #endif
+#endif
             ;
 
         return app;
