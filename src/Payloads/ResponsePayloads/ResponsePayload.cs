@@ -16,7 +16,7 @@ using System.Net;
 using Dgmjr.Payloads.Abstractions;
 
 /// <inheritdoc cref="IResponsePayload"/>
-public class ResponsePayload : ResponsePayload<object>, IResponsePayload
+public class ResponsePayload : ResponsePayload<object>
 {
     public ResponsePayload()
         : this(default, true, default) { }

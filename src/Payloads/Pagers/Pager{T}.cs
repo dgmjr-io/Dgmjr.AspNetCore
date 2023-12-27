@@ -12,6 +12,9 @@
 
 using System.Collections;
 using System.Net;
+
+using Dgmjr.Payloads.Abstractions;
+
 using Microsoft.OpenApi.Models;
 using static System.Net.HttpStatusCode;
 
@@ -100,7 +103,7 @@ public class Pager<T> : ArrayResponsePayload<T>, IPager<T>
     [JProp("hasNext")]
     public virtual bool HasNextPage => Page < TotalPages;
 
-    HttpStatusCode? IResponsePayload.StatusCode => (HttpStatusCode?)StatusCode;
+    // HttpStatusCode? IResponsePayload.StatusCode => (HttpStatusCode?)StatusCode;
 
     private int? _statusCode;
     public override int? StatusCode

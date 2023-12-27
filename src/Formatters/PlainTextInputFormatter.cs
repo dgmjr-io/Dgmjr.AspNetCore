@@ -18,15 +18,15 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 
 public class PlainTextInputFormatter : InputFormatter
 {
-    private const string ContentType = TextMediaTypeNames.Any;
+    private const string ContentType = Text.Any.DisplayName;
 
     public PlainTextInputFormatter()
     {
-        SupportedMediaTypes.Add(TextMediaTypeNames.Plain);
-        SupportedMediaTypes.Add(TextMediaTypeNames.Css);
-        SupportedMediaTypes.Add(TextMediaTypeNames.Csv);
-        SupportedMediaTypes.Add(TextMediaTypeNames.Any);
-        SupportedMediaTypes.Add(ApplicationMediaTypeNames.JavaScript);
+        SupportedMediaTypes.Add(Dgmjr.Mime.Text.Plain.DisplayName);
+        SupportedMediaTypes.Add(Dgmjr.Mime.Text.Css.DisplayName);
+        SupportedMediaTypes.Add(Dgmjr.Mime.Text.Csv.DisplayName);
+        SupportedMediaTypes.Add(Dgmjr.Mime.Text.Any.DisplayName);
+        SupportedMediaTypes.Add(Dgmjr.Mime.Application.JavaScript.DisplayName);
     }
 
     /// <inheritdoc />

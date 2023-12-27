@@ -10,10 +10,12 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
+using Dgmjr.Payloads.Abstractions;
+
 namespace Dgmjr.Payloads;
 
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
-public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>, IPayload<T[]>
+public class ArrayPayload<T> : Payload<T[]>, IArrayPayload<T>
 {
     public const string DefaultItemSeparator = ", ";
 

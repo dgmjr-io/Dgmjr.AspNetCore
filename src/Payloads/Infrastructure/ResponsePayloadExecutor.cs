@@ -11,6 +11,9 @@
  */
 
 using System.Globalization;
+
+using Dgmjr.Payloads.Abstractions;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -18,9 +21,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
-using WriterFactory = System.Func<System.IO.Stream, System.Text.Encoding, System.IO.TextWriter>;
 
 namespace Dgmjr.Payloads.Infrastructure;
+
+using WriterFactory = Func<Stream, Encoding, TextWriter>;
 
 public partial class ResponsePayloadExecutor<T> : IActionResultExecutor<IResponsePayload<T>>, ILog
 {

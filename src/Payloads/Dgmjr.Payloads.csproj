@@ -13,7 +13,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <!-- <TargetFramework>net8.0</TargetFramework> -->
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
     <PackageId>Dgmjr.Payloads</PackageId>
     <AssemblyName>$(PackageId)</AssemblyName>
@@ -32,14 +32,20 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
     <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
+    <PackageReference Include="Dgmjr.AspNetCore.Mvc.Polyfills"  Condition="$(TargetFramework.Contains('netstandard'))" />
 
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
 
     <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
 
+    <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+
     <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Payloads.Abstractions.IResponsePayload" Alias="IResponsePayload" />
   </ItemGroup>
 </Project>

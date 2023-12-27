@@ -30,6 +30,7 @@ namespace Dgmjr.Payloads
         /// <value>records</value>
         public const string Records = "records";
 
+        public const string Description = "Requested range of values to return";
         public const string ExampleString = "items 0-10";
         public const string EmptyString = "items 0-0";
         public const string UriPrefix = "https://dgmjr.io/range";
@@ -58,6 +59,14 @@ namespace Dgmjr.Payloads
         /// <inheritdoc cref="RegexString" />
         public static Regex Regex() => _regex;
 #endif
+
+#if !NET6_0_OR_GREATER
+        Regex IRegexValueObject<Range>.Regex() => Regex();
+        string IRegexValueObject<Range>.RegexString => RegexString;
+        string IRegexValueObject<Range>.Description => Description;
+        Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);
+#endif
+        Uri IHaveAUri.Uri => Uri;
 
         /// <value>2147483647</value>
         private const string MaxIntString = "2147483647";
@@ -155,10 +164,9 @@ namespace Dgmjr.Payloads
 
 #if NET6_0_OR_GREATER
         static string IRegexValueObject<Range>.RegexString => RegexString;
-        static string IRegexValueObject<Range>.Description => "Requested range of values to return";
+        static string IRegexValueObject<Range>.Description => Description;
         static Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);
         static Range IRegexValueObject<Range>.Empty => From(EmptyString);
-        Uri IHaveAUri.Uri => Uri;
 #endif
 
         public int CompareTo(Range other) => Value.Start.Value.CompareTo(other.Value.Start.Value);

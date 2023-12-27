@@ -27,7 +27,7 @@ public class SingleItemPager<T> : Pager<T>, ISingleItemPager<T>, IPager
         : this(default, 0, 0) { }
 
     public SingleItemPager(T value, int pageNumber, int totalRecords)
-        : base(new[] { value }, pageNumber, 1, totalRecords)
+        : base([value], pageNumber, 1, totalRecords)
     {
         Page = pageNumber;
         TotalRecords = totalRecords;

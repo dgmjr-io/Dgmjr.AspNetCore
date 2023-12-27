@@ -21,12 +21,13 @@
   <ItemGroup>
     <!-- <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" VersionOverride="2.1.1" /> -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />-->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <PackageReference Include="System.Text.Json.Usings" />
     <PackageReference Include="Newtonsoft.Json.Bson" />
     <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" />
     <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" Condition="$(TargetFramework.Contains('net8'))" />
   </ItemGroup>
   <ItemGroup>

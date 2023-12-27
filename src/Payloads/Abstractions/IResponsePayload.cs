@@ -13,6 +13,7 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc; // Add this using directive
 
 namespace Dgmjr.Payloads.Abstractions;
 
@@ -41,5 +42,4 @@ public interface IResponsePayload : IPayload, IStatusCodeActionResult
     [JIgnore]
     MediaTypeCollection ContentTypes { get; }
     void OnFormatting(OutputFormatterWriteContext context);
-    new HttpStatusCode? StatusCode { get; }
 }

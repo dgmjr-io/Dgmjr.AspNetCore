@@ -29,11 +29,12 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Dgmjr.Mime;
+using IResponsePayload = IResponsePayload;
 
 /// <inheritdoc cref="IResponsePayload{T}"/>
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
 // [SwaggerSubType(typeof(ResponsePayload))]
-public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
+public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>
 {
     public ResponsePayload()
         : this(default, default) { }
@@ -84,9 +85,9 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     [JIgnore, XmlIgnore]
     public MediaTypeCollection ContentTypes { get; } = new();
 
-    [JIgnore, XmlIgnore]
-    HttpStatusCode? IResponsePayload.StatusCode =>
-        StatusCode.HasValue ? (HttpStatusCode)StatusCode.Value : default;
+    // [JIgnore, XmlIgnore]
+    // HttpStatusCode? IStatusCodeActionResult.StatusCode =>
+    //     StatusCode.HasValue ? (HttpStatusCode)StatusCode.Value : default;
 
     public static implicit operator ResponsePayload<T>(T value)
     {

@@ -1,5 +1,6 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
+using Dgmjr.Payloads.Abstractions;
 using Dgmjr.Payloads.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
