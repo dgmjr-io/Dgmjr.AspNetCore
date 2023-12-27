@@ -22,15 +22,16 @@ using Microsoft.OpenApi.Models;
 
 public static class PingExtensions
 {
-    /// <symmary>Adds a simple health check to the app</symmary>
+    /// <summary>Adds a simple health check to the app</summary>
     public static WebApplication MapPing(this WebApplication app)
     {
         _ = app.MapGet("/ping", () => "pong")
-            .Produces<string>(contentType: TextMediaTypeNames.Plain)
+            .Produces<string>(contentType: Text.Plain.DisplayName)
             .AllowAnonymous()
             .WithDisplayName("Ping")
             .WithName("Ping")
-            .WithTags("Diagnostics")
+            .WithTags(["Diagnostics"])
+#if NET8_0_OR_GREATER
             .WithOpenApi(op =>
             {
                 op.Responses["200"] = new()
@@ -38,7 +39,7 @@ public static class PingExtensions
                     Description = "Pong",
                     Content =
                     {
-                        [TextMediaTypeNames.Plain] = new()
+                        [Text.Plain.DisplayName] = new()
                         {
                             Schema = new() { Type = "pong", Description = "a simple reply" },
                             Example = new OpenApiString("pong")
@@ -46,7 +47,9 @@ public static class PingExtensions
                     }
                 };
                 return op;
-            });
+            })
+#endif
+        ;
 
         _ = app.MapHealthChecks(
                 "/health-check",
@@ -57,16 +60,16 @@ public static class PingExtensions
                     Predicate = _ => true
                 }
             )
-            .WithTags("Diagnostics")
-            .AllowAnonymous()
+            .WithDisplayName("Health Check").WithName("Health Check").AllowAnonymous()//.Produces<HealthReport>(200, contentType: Dgmjr.Mime.Application.Json.DisplayName)
+        #if NET8_0_OR_GREATER
             .WithOpenApi(op =>
             {
                 op.Responses["200"] = new()
                 {
-                    Description = "Pong",
+                    Description = "Health Check Response",
                     Content =
                     {
-                        [ApplicationMediaType.Json.DisplayName] = new()
+                        [Dgmjr.Mime.Application.Json.DisplayName] = new()
                         {
                             Schema = new()
                             {
@@ -80,7 +83,9 @@ public static class PingExtensions
                     }
                 };
                 return op;
-            });
+            })
+        #endif
+            ;
 
         return app;
     }

@@ -56,38 +56,38 @@ public readonly record struct TempMediaType(string Name)
 
     TypeCode IConvertible.GetTypeCode() => TypeCode.Object;
 
-    bool IConvertible.ToBoolean(IFormatProvider provider) => true;
+    bool IConvertible.ToBoolean(IFormatProvider? provider) => true;
 
-    byte IConvertible.ToByte(IFormatProvider provider) => Convert.ToByte(Value);
+    byte IConvertible.ToByte(IFormatProvider? provider) => Convert.ToByte(Value);
 
-    char IConvertible.ToChar(IFormatProvider provider) => Convert.ToChar(Value);
+    char IConvertible.ToChar(IFormatProvider? provider) => Convert.ToChar(Value);
 
-    datetime IConvertible.ToDateTime(IFormatProvider provider) => Convert.ToDateTime(Value);
+    datetime IConvertible.ToDateTime(IFormatProvider? provider) => Convert.ToDateTime(Value);
 
-    decimal IConvertible.ToDecimal(IFormatProvider provider) => Convert.ToDecimal(Value);
+    decimal IConvertible.ToDecimal(IFormatProvider? provider) => Convert.ToDecimal(Value);
 
-    double IConvertible.ToDouble(IFormatProvider provider) => Convert.ToDouble(Value);
+    double IConvertible.ToDouble(IFormatProvider? provider) => Convert.ToDouble(Value);
 
-    short IConvertible.ToInt16(IFormatProvider provider) => Convert.ToInt16(Value);
+    short IConvertible.ToInt16(IFormatProvider? provider) => Convert.ToInt16(Value);
 
-    int IConvertible.ToInt32(IFormatProvider provider) => Convert.ToInt32(Value);
+    int IConvertible.ToInt32(IFormatProvider? provider) => Convert.ToInt32(Value);
 
-    long IConvertible.ToInt64(IFormatProvider provider) => Convert.ToInt64(Value);
+    long IConvertible.ToInt64(IFormatProvider? provider) => Convert.ToInt64(Value);
 
-    sbyte IConvertible.ToSByte(IFormatProvider provider) => Convert.ToSByte(Value);
+    sbyte IConvertible.ToSByte(IFormatProvider? provider) => Convert.ToSByte(Value);
 
-    float IConvertible.ToSingle(IFormatProvider provider) => Convert.ToSingle(Value);
+    float IConvertible.ToSingle(IFormatProvider? provider) => Convert.ToSingle(Value);
 
-    string IConvertible.ToString(IFormatProvider provider) => Convert.ToString(Value);
+    string IConvertible.ToString(IFormatProvider? provider) => Convert.ToString(Value);
 
-    object IConvertible.ToType(type conversionType, IFormatProvider provider) =>
+    object IConvertible.ToType(type conversionType, IFormatProvider? provider) =>
         Convert.ChangeType(Value, conversionType);
 
-    ushort IConvertible.ToUInt16(IFormatProvider provider) => Convert.ToUInt16(Value);
+    ushort IConvertible.ToUInt16(IFormatProvider? provider) => Convert.ToUInt16(Value);
 
-    uint IConvertible.ToUInt32(IFormatProvider provider) => Convert.ToUInt32(Value);
+    uint IConvertible.ToUInt32(IFormatProvider? provider) => Convert.ToUInt32(Value);
 
-    ulong IConvertible.ToUInt64(IFormatProvider provider) => Convert.ToUInt64(Value);
+    ulong IConvertible.ToUInt64(IFormatProvider? provider) => Convert.ToUInt64(Value);
 
     bool IEquatable<int>.Equals(int other) => Id == other;
 

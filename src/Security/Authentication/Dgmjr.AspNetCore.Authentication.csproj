@@ -12,8 +12,8 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <!-- <TargetFrameworks></TargetFrameworks> -->
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <!-- <TargetFrameworks>net8.0</TargetFrameworks> -->
     <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
@@ -22,7 +22,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
@@ -50,5 +50,9 @@
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles; Build" />
     <PackageReference Include="Telegram.Identity" ExcludeAssets="ContentFiles" />
     <PackageReference Include="SendPulse.Identity" ExcludeAssets="ContentFiles" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="@(Compile)" />
   </ItemGroup>
 </Project>

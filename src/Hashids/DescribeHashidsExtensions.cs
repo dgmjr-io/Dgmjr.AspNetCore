@@ -10,9 +10,6 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 using System.Reflection;
-using Dgmjr.AspNetCore.Hashids;
-using Microsoft.AspNetCore.Builder;
-
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class DescribeHashidsExtensions

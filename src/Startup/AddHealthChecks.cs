@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-internal static class DgmjrHealthChecksExtensions
+public static class DgmjrHealthChecksExtensions
 {
     public static IHealthChecksBuilder AddDgmjrHealthChecks(
         this WebApplicationBuilder webApplicationBuilder,

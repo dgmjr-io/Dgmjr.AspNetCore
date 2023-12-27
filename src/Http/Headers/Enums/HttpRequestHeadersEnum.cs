@@ -241,4 +241,40 @@ public enum HttpRequestHeaderNames
     )]
     [EnumMember(Value = "User-Agent")]
     UserAgent,
+
+    /// <summary>The User-Agent request header is a characteristic string that lets servers and network peers identify the application, operating system, vendor, and/or version of the requesting user agent.</summary>
+    /// <value>User-Agent</value>
+    [Display(
+        Name = "X-Original-Host",
+        Description = "The X-Original-Host holds the masked host sent with the original request."
+    )]
+    [EnumMember(Value = "X-Original-Host")]
+    XOriginalHost,
+
+    /// <summary>The X-Forwarded-For (XFF) request header is a de-facto standard header for identifying the originating IP address of a client connecting to a web server through a proxy server.</summary>
+    /// <value>X-Forwarded-For</value>
+    [Display(
+        Name = "X-Forwarded-For",
+        Description = "The X-Forwarded-For (XFF) request header is a de-facto standard header for identifying the originating IP address of a client connecting to a web server through a proxy server."
+    )]
+    [EnumMember(Value = "X-Forwarded-For")]
+    XForwardedFor,
+
+    /// <summary>The X-Forwarded-Host (XFH) header is a de-facto standard header for identifying the original host requested by the client in the Host HTTP request header.</summary>
+    /// <value>X-Forwarded-Host</value>
+    [Display(
+        Name = "X-Forwarded-Host",
+        Description = "The X-Forwarded-Host (XFH) header is a de-facto standard header for identifying the original host requested by the client in the Host HTTP request header."
+    )]
+    [EnumMember(Value = "X-Forwarded-Host")]
+    XForwardedHost,
+
+    /// <summary>The X-Forwarded-Proto (XFP) header is a de-facto standard header for identifying the protocol (HTTP or HTTPS) that a client used to connect to your proxy or load balancer. Your server access logs contain the protocol used between the server and the load balancer, but not the protocol used between the client and the load balancer. To determine the protocol used between the client and the load balancer, the X-Forwarded-Proto request header can be used.</summary>
+    /// <value>X-Forwarded-Proto</value>
+    [Display(
+        Name = "X-Forwarded-Proto",
+        Description = "The X-Forwarded-Proto (XFP) header is a de-facto standard header for identifying the protocol (HTTP or HTTPS) that a client used to connect to your proxy or load balancer. Your server access logs contain the protocol used between the server and the load balancer, but not the protocol used between the client and the load balancer. To determine the protocol used between the client and the load balancer, the X-Forwarded-Proto request header can be used."
+    )]
+    [EnumMember(Value = "X-Forwarded-Proto")]
+    XForwardedProto,
 }

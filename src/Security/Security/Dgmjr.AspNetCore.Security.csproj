@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <targetFramework>net8.0</targetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>

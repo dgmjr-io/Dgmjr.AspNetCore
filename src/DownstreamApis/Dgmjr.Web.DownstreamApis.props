@@ -1,0 +1,14 @@
+<Project>
+  <ItemGroup>
+    <Using Include="Dgmjr.Web.DownstreamApis" />
+    <!-- <Using Include="Microsoft.AspNetCore.Http.Json.JsonOptions" Alias="JsonOptions" Condition="$(TargetFramework.Contains('netstandard'))" />
+    <Using Include="Microsoft.AspNetCore.Http.Json" Condition="$(TargetFramework.Contains('netstandard'))" /> -->
+    <Using Include="Microsoft.AspNetCore.Mvc.JsonOptions" Alias="JsonOptions" />
+    <!-- <Using Include="Microsoft.AspNetCore.Mvc" Condition="!$(TargetFramework.Contains('netstandard'))" /> -->
+    <Using Include="Microsoft.Extensions.Options" />
+    <Using Include="Microsoft.Identity.Abstractions" />
+    <Using Include="Microsoft.Identity.Web" />
+    <Using Include="System.Net.Http" />
+    <Using Include="System.Text.Json.JsonSerializer" Static="true" />
+  </ItemGroup>
+</Project>

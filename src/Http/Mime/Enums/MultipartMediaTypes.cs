@@ -15,12 +15,12 @@ namespace Dgmjr.Mime.Enums;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Multipart", "Dgmjr.Mime")]
-public enum MultipartMediaTypes : int
+public enum MultipartMediaTypes
 {
     /// <inheritdoc cref="MultipartMediaTypeNames.Any"/>
     [Display(Name = MultipartMediaTypeNames.Any, Description = nameof(MultipartMediaTypeNames.Any))]
     [EnumMember(Value = MultipartMediaTypeNames.Any)]
-    [Uri(IanaMediaTypeUrlBase + "#multipart-*")]
+    [Uri(IanaMediaTypeUrlBase + "#multipart/*")]
     Any = int.MaxValue,
 
     /// <inheritdoc cref="MultipartMediaTypeNames.Base"/>

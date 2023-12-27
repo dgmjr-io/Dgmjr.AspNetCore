@@ -14,7 +14,7 @@ namespace Dgmjr.Mime;
 
 public static class TextMediaTypeNames
 {
-    /// <inheritdoc cref="Enums.TextMediaType.Base" />
+    /// <inheritdoc cref="Enums.TextMediaTypes.Base" />
     public const string Base = "text";
     public const string Any = Base + "/*";
     public const string Html = Base + "/" + "html";
@@ -25,6 +25,6 @@ public static class TextMediaTypeNames
     public const string Css = Base + "/" + "css";
     public const string JavaScript = Base + "/" + "javascript";
     public const string Json = Base + "/" + "json";
-    public const string PlainWithProblem = Base + "/" + "plain+problem";
+    public const string PlainWithProblem = Base + "/" + "problem+plain";
     public const string Markdown = Base + "/" + "markdown";
 }

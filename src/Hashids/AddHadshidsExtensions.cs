@@ -15,6 +15,9 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 using global::AspNetCore.Hashids;
 using global::AspNetCore.Hashids.Options;
+
+using HashidsNet;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 
@@ -35,7 +38,9 @@ public static class AddHashidsExtensions
         IConfigurationRoot config
     )
     {
+        services.AddSingleton<IHashids, Hashids>();
         services.Configure<HashidsOptions>(
+            nameof(HashidsOptions),
             opts => config.GetSection(nameof(HashidsOptions)).Bind(opts)
         );
         return services;

@@ -99,44 +99,6 @@ namespace Dgmjr.AspNetCore.Swagger
                 }
             }
         }
-
-        // public static class ApiDescriptionExtensions
-        // {
-        //     public static IEnumerable<DetailedApiResponseFormat> ApiResponseFormats(this ApiResponseType responseType)
-        //     {
-        //         var formatterContext = new OutputFormatterWriteContext(
-        //             new DefaultHttpContext(),
-        //             (stream, encoding) => new StreamWriter(stream, encoding),
-        //             responseType.Type,
-        //             responseType.Object
-        //         );
-
-        //         var formatters = new List<OutputFormatter>();
-        //         formatters.Add(new JsonOutputFormatter());
-        //         formatters.Add(new XmlDataContractSerializerOutputFormatter());
-        //         formatters.Add(new XmlSerializerOutputFormatter());
-
-        //         foreach (var formatter in formatters)
-        //         {
-        //             if (!formatter.CanWriteResult(formatterContext))
-        //                 continue;
-
-        //             var mediaType = formatter.GetSupportedContentTypes(
-        //                 formatterContext.ContentType,
-        //                 formatterContext.ObjectType
-        //             ).FirstOrDefault();
-
-        //             if (mediaType == null)
-        //                 continue;
-
-        //             yield return new ApiResponseFormat
-        //             {
-        //                 MediaType = mediaType,
-        //                 Formatter = formatter
-        //             };
-        //         }
-        //     }
-        // }
     }
 
     public class DetailedApiDescription : ApiDescription
@@ -147,12 +109,14 @@ namespace Dgmjr.AspNetCore.Swagger
             HttpMethod = description.HttpMethod;
             RelativePath = description.RelativePath;
             GroupName = description.GroupName;
+#pragma warning disable S2201, CA1806
             description.SupportedRequestFormats.Select(format =>
             {
                 SupportedRequestFormats.Add(format);
                 return format;
             });
             description.SupportedResponseTypes.Select(responseType =>
+#pragma warning restore S2201, CA1806
             {
                 SupportedResponseTypes.Add(responseType);
                 return responseType;
@@ -173,7 +137,9 @@ namespace Dgmjr.AspNetCore.Swagger
             StatusCode = responseType.StatusCode;
             ModelMetadata = responseType.ModelMetadata;
             IsDefaultResponse = responseType.IsDefaultResponse;
+#pragma warning disable S2201, CA1806
             responseType.ApiResponseFormats.Select(format =>
+#pragma warning restore S2201, CA1806
             {
                 ApiResponseFormats.Add(format);
                 return format;

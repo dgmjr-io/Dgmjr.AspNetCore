@@ -23,7 +23,7 @@ public sealed class Produces400ErrorAttribute : SwaggerResponseAttribute
             Status400BadRequest,
             "You done fucked up!",
             typeof(BadRequestProblemDetails),
-            Dgmjr.Mime.Application.Json.ShortName
+            ApplicationMediaTypeNames.ProblemJson
         ) { }
 }
 

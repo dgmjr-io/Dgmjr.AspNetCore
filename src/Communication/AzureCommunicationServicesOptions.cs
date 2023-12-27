@@ -1,15 +1,17 @@
-using Microsoft.VisualBasic;
-
 namespace Dgmjr.AspNetCore.Communication;
 
+#if NET8_0_OR_GREATER
 using SS = System.Diagnostics.CodeAnalysis.StringSyntaxAttribute;
+#endif
 
 using System;
 
 [RegexDto(_RegexString)]
 public partial record class AzureCommunicationServicesOptionsBase
 {
+#if NET8_0_OR_GREATER
     [StringSyntax(SS.Regex)]
+#endif
     public const string _RegexString =
         "^endpoint=(?<Endpoint:uri>https://.*);accessKey=(?<AccessKey:string>.*)$";
 
@@ -22,12 +24,16 @@ public partial record class AzureCommunicationServicesOptionsBase
     public virtual string ConnectionString
     {
         get => $"endpoint={Endpoint};accessKey={AccessKey}";
-        set
-        {
-            var other = Parse(value);
-            Endpoint = other.Endpoint;
-            AccessKey = other.AccessKey;
-        }
+        // set
+        // {
+        //     var other = Parse(value);
+        //     Endpoint = other.Endpoint;
+        //     {
+        //         OriginalString = value,
+        //         Endpoint = other.Endpoint,
+        //         AccessKey = other.AccessKey
+        //     };
+        // }
     }
 }
 

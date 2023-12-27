@@ -21,7 +21,7 @@ public enum ExampleMediaTypes
     /// <inheritdoc cref="ExampleMediaTypeNames.Any"/>
     [Display(Name = ExampleMediaTypeNames.Any, Description = nameof(Any))]
     [EnumMember(Value = ExampleMediaTypeNames.Any)]
-    [Uri(IanaMediaTypeUrlBase + ExampleMediaTypeNames.Any)]
+    [Uri(IanaMediaTypeUrlBase + "#example/*")]
     Any = int.MaxValue,
 
     /// <inheritdoc cref="ExampleMediaTypeNames.Base"/>

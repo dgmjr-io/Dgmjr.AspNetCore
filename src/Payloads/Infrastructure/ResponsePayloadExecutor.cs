@@ -36,7 +36,7 @@ public partial class ResponsePayloadExecutor<T> : IActionResultExecutor<IRespons
         IOptions<MvcOptions> mvcOptions
     )
     {
-        this._formatterSelector =
+        _formatterSelector =
             formatterSelector ?? throw new ArgumentNullException(nameof(formatterSelector));
         Logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _outputFormatters = mvcOptions.Value.OutputFormatters;

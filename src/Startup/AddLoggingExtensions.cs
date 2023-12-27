@@ -41,7 +41,7 @@ internal static class AddLoggingExtensions
                 HReqH.UserAgent.DisplayName,
                 HReqH.Accept.DisplayName,
                 HReqH.Cookie.DisplayName
-            }.Select(x => opts.RequestHeaders.Add(x));
+            }.ForEach(x => opts.RequestHeaders.Add(x));
 
             // Add response media types to log
             opts.MediaTypeOptions.AddText(ApplicationMediaType.Json.DisplayName);
@@ -49,7 +49,7 @@ internal static class AddLoggingExtensions
             opts.MediaTypeOptions.AddText(ApplicationMediaType.Xml.DisplayName);
 
             // Add response headers to log
-            new[]
+            _ = new[]
             {
                 HResH.ContentType.DisplayName,
                 HResH.Location.DisplayName,
@@ -62,8 +62,8 @@ internal static class AddLoggingExtensions
 
     /// <summary>
     /// Extension method to add logging to the given IServiceCollection.
-    /// </sumary>
-    /// <param cref="services">The IServiceCollection to add logging to.</param>
+    /// </summary>
+    /// <param name="services">The IServiceCollection to add logging to.</param>
     /// <returns>The same IServiceCollection with logging configured.</returns>
     public static IServiceCollection AddLogging(this IServiceCollection services)
     {

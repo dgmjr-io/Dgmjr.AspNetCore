@@ -14,32 +14,32 @@ namespace Dgmjr.AspNetCore.Mvc;
 
 using static Microsoft.AspNetCore.Http.StatusCodes;
 
-public class NotFoundProblemDetails : IProblemDetails
+public readonly record struct NotFoundProblemDetails : IProblemDetails
 {
     /// <summary>The URI of the problem type.</summary>
     /// <example>https://tools.ietf.org/html/rfc7231#section-6.5.4</example>
-    public string Type { get; set; } = "https://tools.ietf.org/html/rfc7231#section-6.5.4";
+    public string Type => "https://tools.ietf.org/html/rfc7231#section-6.5.4";
 
     /// <summary>A short, human-readable summary of the problem.</summary>
     /// <example>Doesn't fucking exist!</example>
-    public string Title { get; set; } = "Doesn't fucking exist!";
+    public string Title => "Doesn't fucking exist!";
 
     /// <summary>Doesn't fucking exist!</summary>
     /// <example>500</example>
-    public int? Status { get; set; } = Status404NotFound;
+    public int? Status => Status404NotFound;
 
     /// <summary>Details about the problem.</summary>
     /// <example>The shit you were looking for ain't here, you dumb fuck!  You should probably go back to the home page and try again!</example>
-    public string Detail { get; set; } =
+    public string Detail =>
         "The shit you were looking for ain't here, you dumb fuck!  You should probably go back to the home page and try again!";
 
     /// <summary>A URI reference to the problem.</summary>
     /// <example>/api/endpoint</example>
-    public string Instance { get; set; } = "/api/endpoint";
+    public string Instance => "/api/endpoint";
 
     /// <summary>Additional details about the problem.</summary>
     /// <example>{ "traceId", "0HLQ9V1J3Q0:0000001" }</example>
-    public IDictionary<string, object?> Extensions { get; set; } =
+    public IDictionary<string, object?> Extensions =>
         new Dictionary<string, object?> { { "traceId", "0HLQ9V1J3Q0:00000004" } };
 }
 

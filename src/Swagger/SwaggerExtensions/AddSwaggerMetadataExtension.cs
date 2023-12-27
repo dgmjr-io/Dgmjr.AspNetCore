@@ -16,7 +16,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
 
-using Dgmjr.AspNetCore.Authentication;
+// using Dgmjr.AspNetCore.Authentication;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
@@ -68,7 +68,7 @@ public static partial class AddSwaggerMetadataExtension
     {
         builder.Services.ConfigureSwaggerGen(c =>
         {
-            c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
+            // c.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             c.AddSecurityDefinition(
                 "Api-Key",
                 new OpenApiSecurityScheme

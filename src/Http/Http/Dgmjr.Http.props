@@ -13,5 +13,6 @@
 <Project>
   <!-- <Import Project="../Extensions/Dgmjr.Http.Extensions.props" />
   <Import Project="../Headers/Dgmjr.Http.Headers.props" />
-  <Import Project="../Mime/Dgmjr.Mime.props" /> -->
+  <Import Project="../Mime/Dgmjr.Mime.props" />
+  <Import Project="../ResponseCodes/Dgmjr.Http.StatusCodes.csproj" /> -->
 </Project>

@@ -16,7 +16,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
-using System.Net.Mime.MediaTypes;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
@@ -29,6 +28,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using Dgmjr.Mime;
 
 /// <inheritdoc cref="IResponsePayload{T}"/>
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
@@ -56,10 +56,10 @@ public class ResponsePayload<T> : Payload<T>, IResponsePayload<T>, IPayload
     }
 
     /// <inheritdoc />
-    [JProp("isSuccess"), XmlAttribute("isSuccess")]
+    [JProp("isSuccess"), XAttribute("isSuccess")]
     public virtual bool IsSuccess => StatusCode!.Value >= 200 && StatusCode!.Value <= 299; //IsBetween(200, 299);
 
-    [XmlAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
+    [XAttribute("message"), JProp("message"), JIgnore(Condition = JIgnore.WhenWritingNull)]
     public virtual string Message { get; set; }
 
     /// <inheritdoc />

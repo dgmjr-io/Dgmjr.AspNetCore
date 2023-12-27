@@ -25,7 +25,18 @@ using Microsoft.Extensions.Configuration.AzureAppConfiguration;
 [BuilderFor(typeof(StartupParameters))]
 public partial class StartupParametersBuilder : IStartupParametersBuilder
 {
-    internal StartupParametersBuilder() { }
+    internal StartupParametersBuilder()
+    {
+        WithAppInsights(true);
+        WithConsoleLogger(true);
+        WithAutoMapper(true);
+        WithMediatR(true);
+        WithJsonPatch(true);
+        WithHashids(true);
+        WithHealthChecks(true);
+        WithoutDefaultIdentityUI();
+        WithoutIdentity();
+    }
 
     IStartupParameters IStartupParametersBuilder.Build() => Build();
 

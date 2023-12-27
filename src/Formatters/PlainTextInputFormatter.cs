@@ -26,6 +26,7 @@ public class PlainTextInputFormatter : InputFormatter
         SupportedMediaTypes.Add(TextMediaTypeNames.Css);
         SupportedMediaTypes.Add(TextMediaTypeNames.Csv);
         SupportedMediaTypes.Add(TextMediaTypeNames.Any);
+        SupportedMediaTypes.Add(ApplicationMediaTypeNames.JavaScript);
     }
 
     /// <inheritdoc />

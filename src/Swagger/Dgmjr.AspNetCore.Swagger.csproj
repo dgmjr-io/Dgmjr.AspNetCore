@@ -12,12 +12,11 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
@@ -30,7 +29,6 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Unchase.Swashbuckle.AspNetCore.Extensions" />
     <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.Claims" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="System.Usings" />
@@ -38,23 +36,23 @@
     <PackageReference Include="System.Xml.XPath" />
     <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
   </ItemGroup>
-  <!-- <ItemGroup>
-    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles"  Properties="PackageVersionOverride=$(PackageVersion)" />
-    <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
-    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
-    <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" Properties="PackageVersionOverride=$(PackageVersion)" />
-  </ItemGroup> -->
   <ItemGroup>
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" ExcludeAssets="ContentFiles"  Properties="PackageVersionOverride=$(PackageVersion)" />
+    <!-- <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
+    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" /> -->
+    <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" Properties="PackageVersionOverride=$(PackageVersion)" />
+  </ItemGroup>
+  <!-- <ItemGroup>
     <PackageReference Include="Dgmjr.Mime" ExcludeAssets="ContentFiles"  Properties="PackageVersionOverride=$(PackageVersion)" />
     <PackageReference Include="Dgmjr.AspNetCore.Authorization" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
     <PackageReference Include="Dgmjr.AspNetCore.Authentication" ExcludeAssets="ContentFiles" Properties="PackageVersionOverride=$(PackageVersion)" />
     <PackageReference Include="Dgmjr.Payloads" Properties="PackageVersionOverride=$(PackageVersion)" />
-  </ItemGroup>
+  </ItemGroup> -->
   <ItemGroup>
-    <EmbeddedResource Include="./swaggerui/themes/*.css" LogicalName="%(Filename)%(Extension)" Type="text" />
-    <EmbeddedResource Include="./swaggerui/swagger-ui.css" LogicalName="%(Filename)%(Extension)" Type="text" />
-    <EmbeddedResource Include="./swaggerui/indexmod.html" LogicalName="%(Filename)%(Extension)" Type="text" />
-    <EmbeddedResource Include="./swaggerui/index.html" LogicalName="%(Filename)%(Extension)" Type="text" />
-    <EmbeddedResource Include="swaggerui/swaggerui.*" LogicalName="%(Filename)%(Extension)" Type="text" />
+    <EmbeddedResource Include="swaggerui/themes/*.css" LogicalName="%(Filename)%(Extension)" />
+    <EmbeddedResource Include="swaggerui/swagger-ui.css" LogicalName="%(Filename)%(Extension)" />
+    <EmbeddedResource Include="swaggerui/indexmod.html" LogicalName="%(Filename)%(Extension)" />
+    <EmbeddedResource Include="swaggerui/index.html" LogicalName="%(Filename)%(Extension)" />
+    <EmbeddedResource Include="swaggerui/swaggerui.*" LogicalName="%(Filename)%(Extension)" />
   </ItemGroup>
 </Project>

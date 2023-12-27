@@ -19,7 +19,7 @@ using MessagePack.Resolvers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
-internal static class StartupExtensions
+public static class StartupExtensions
 {
     public static WebApplicationBuilder AddFormatters(this WebApplicationBuilder builder)
     {

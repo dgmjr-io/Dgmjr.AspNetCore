@@ -12,19 +12,12 @@
 
 <Project>
     <ItemGroup>
-    <PackageReference Include="Dgmjr.ComponentModel" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
-    <PackageReference Include="System.Text.Json" />
-    <PackageReference Include="System.Net.Mime.MediaTypeNames" />
-    <PackageReference Include="Ardalis.SmartEnum" />
-    <PackageReference Include="System.Usings" />
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
     <!-- <PackageReference Include="Dgmjr.Enumerations.Abstractions" /> -->
     <!-- <PackageReference Include="Dgmjr.CodeGeneration.Extensions" /> -->
     <!-- <PackageReference Include="Dgmjr.Enumerations.CodeGeneration" IncludeAssets="Analyzers;Lib;ContentFiles" PrivateAssets="All" /> -->
   </ItemGroup>
-    <ItemGroup>
+    <ItemGroup Condition="$(TargetFramework.Contains('net6')) Or $(TargetFramework.Contains('net8'))">
         <Using Include="Dgmjr.Payloads" />
         <Using Include="Dgmjr.Payloads.Abstractions" />
         <Using Include="System.Text.Json.Serialization.JsonPropertyNameAttribute" Alias="JPropAttribute" />

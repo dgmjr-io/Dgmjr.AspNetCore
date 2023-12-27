@@ -22,10 +22,10 @@ public static class IMediaTypeExtensions
     /// <param name="this">The <see cref="IMediaType" /> being checked</param>
     /// <returns><see langword="true" /> if the media type is a wildcard; otherwise <see langword="false" />. For example if the media type is text/plain; charset=utf-8, then the method will return <see langword="false" />.</returns>
     public static bool IsWildcard(this IMediaType @this) =>
-        @this.DisplayName.StartsWith("*") || @this.DisplayName.EndsWith("*");
+        @this.DisplayName.StartsWith("*") || @this.DisplayName.EndsWith("*", OrdinalIgnoreCase);
 
     public static bool PrimaryIsWildcard(this IMediaType @this) =>
-        @this.DisplayName.StartsWith("*");
+        @this.DisplayName.StartsWith("*", OrdinalIgnoreCase);
 
     public static string GetPrimaryType(this IMediaType @this) => @this.DisplayName.Split('/')[0];
 

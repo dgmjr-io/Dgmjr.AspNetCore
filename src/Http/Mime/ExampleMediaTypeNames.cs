@@ -27,7 +27,7 @@ public static class ExampleMediaTypeNames
 
     /// <summary>Example media type.</summary>
     /// <value><inheritdoc cref="Base" />/example</value>
-    /// <seealso cref="Dgmjr.Mime.Enums.ExampleMediaType"/>
-    /// <seealso cref="Dgmjr.Mime.Enums.ExampleMediaType.Example"/>
+    /// <seealso cref="Enums.ExampleMediaTypes"/>
+    /// <seealso cref="Enums.ExampleMediaTypes._Example"/>
     public const string Example = Base + "/" + "example";
 }

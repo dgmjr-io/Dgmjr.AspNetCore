@@ -15,14 +15,14 @@ namespace Dgmjr.Mime.Enums;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Audio", "Dgmjr.Mime")]
-public enum AudioMediaTypes : int
+public enum AudioMediaTypes
 {
     [Display(Name = AudioMediaTypeNames.Any, Description = nameof(Any))]
-    [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Any)]
+    [Uri(IanaMediaTypeUrlBase +"#audio/*")]
     Any = int.MaxValue,
 
     [Display(Name = AudioMediaTypeNames.Base, Description = nameof(Base))]
-    [Uri(IanaMediaTypeUrlBase + AudioMediaTypeNames.Base)]
+    [Uri(IanaMediaTypeUrlBase + "#audio")]
     Base = 0,
 
     [Display(Name = AudioMediaTypeNames.Vorbis, Description = nameof(Vorbis))]

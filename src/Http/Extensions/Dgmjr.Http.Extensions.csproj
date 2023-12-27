@@ -11,8 +11,8 @@
 -->
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
-    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <!-- <TargetFramework>net8.0</TargetFramework> -->
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <PackageId>Dgmjr.Http.Extensions</PackageId>
     <AssemblyName>$(PackageId)</AssemblyName>
     <RootNamespace>$(PackageId)</RootNamespace>
@@ -23,6 +23,12 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
     <!-- <PackageReference Include="Dgmjr.Mime" /> -->
     <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />

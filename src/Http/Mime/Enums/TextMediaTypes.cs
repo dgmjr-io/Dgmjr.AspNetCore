@@ -15,7 +15,7 @@ namespace Dgmjr.Mime.Enums;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Text", "Dgmjr.Mime")]
-public enum TextMediaTypes : int
+public enum TextMediaTypes
 {
     [Display(Name = TextMediaTypeNames.Any, Description = "Any text media type")]
     [EnumMember(Value = TextMediaTypeNames.Any)]

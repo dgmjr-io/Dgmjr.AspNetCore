@@ -11,6 +11,8 @@
  */
 namespace Dgmjr.Http.Headers.Enums;
 
+using System.Runtime.Serialization;
+
 /// source: https://stackoverflow.com/questions/11037004/are-there-any-constants-for-the-default-http-headers
 
 /// <summary>
@@ -169,5 +171,15 @@ public enum HttpResponseHeaderNames
 
     ///<summary>Indicates the authentication scheme that should be used to access the requested entity.</summary>
     [Display(Name = "WWW-Authenticate")]
+    [EnumMember(Value = "WWW-Authenticate")]
     WWWAuthenticate,
+
+    /// <summary>The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured.</summary>
+    /// <value>X-Content-Type-Options</value>
+    [Display(
+        Name = "X-Content-Type-Options",
+        Description = "The X-Content-Type-Options response HTTP header is a marker used by the server to indicate that the MIME types advertised in the Content-Type headers should be followed and not be changed. The header allows you to avoid MIME type sniffing by saying that the MIME types are deliberately configured."
+    )]
+    [EnumMember(Value = "X-Content-Type-Options")]
+    XContentTypeOptions
 }

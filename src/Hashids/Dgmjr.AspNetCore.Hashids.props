@@ -12,10 +12,8 @@
 
 <Project>
   <ItemGroup>
-    <PackageReference Include="Microsoft.OpenApi" />
-    <PackageReference Include="SWashbuckle.AspNetCore.SwaggerGen" />
-  </ItemGroup>
-  <ItemGroup Condition="!$(TargetFramework.Contains('netstandard'))">
-    <PackageReference Include="AspNetCore.Hashids"/>
+    <Using Include="Dgmjr.AspNetCore.Hashids" />
+    <Using Include="Microsoft.AspNetCore.Builder" />
+    <Using Include="Microsoft.AspNetCore.Mvc" />
   </ItemGroup>
 </Project>

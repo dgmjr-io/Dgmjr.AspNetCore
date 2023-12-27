@@ -16,7 +16,7 @@ using System.Diagnostics;
 using Dgmjr.Payloads.Abstractions;
 
 [DebuggerDisplay($"{{{nameof(StringValue)}}}")]
-public class Payload : Payload<object>, IPayload, IPayload<object>
+public class Payload : Payload<object>
 {
     public Payload()
         : this(default, default) { }

@@ -12,11 +12,7 @@
 
 <Project>
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
     <!-- <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.OpenApi" /> -->
-    <PackageReference Include="System.Text.Json" />
     <Using Include="Dgmjr.Http.Extensions" />
     <Using Include="Microsoft.AspNetCore.Http" />
     <Using Include="Dgmjr.Mime" />

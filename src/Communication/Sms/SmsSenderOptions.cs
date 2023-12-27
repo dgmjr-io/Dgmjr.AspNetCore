@@ -57,6 +57,6 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     public SmsSenderOptions(string connectionString, PhoneNumber? fromPhoneNumber)
         : base(connectionString)
     {
-        DefaultFrom = fromPhoneNumber.HasValue ? fromPhoneNumber?.Value : PhoneNumber.Empty;
+        DefaultFrom = fromPhoneNumber.HasValue ? fromPhoneNumber.Value : PhoneNumber.Empty;
     }
 }

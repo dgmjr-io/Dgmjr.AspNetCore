@@ -16,32 +16,32 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Image", "Dgmjr.Mime")]
-public enum ImageMediaTypes : int
+public enum ImageMediaTypes
 {
     [Display(Name = ImageMediaTypeNames.Any, Description = nameof(Any))]
     [EnumMember(Value = ImageMediaTypeNames.Any)]
-    [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Any)]
-    Any = 0,
+    [Uri(IanaMediaTypeUrlBase + "#image/*")]
+    Any = int.MaxValue,
 
     [Display(Name = ImageMediaTypeNames.Base, Description = nameof(Base))]
     [EnumMember(Value = ImageMediaTypeNames.Base)]
-    [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Base)]
+    [Uri(IanaMediaTypeUrlBase + "#image")]
     Base = 0,
 
     /// <summary>GIF image</summary>
-    [Display(Name = ImageMediaTypeNames.Gif, Description = nameof(Gif))]
+    [Display(Name = ImageMediaTypeNames.Gif, Description = "GIF image")]
     [EnumMember(Value = ImageMediaTypeNames.Gif)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Gif)]
     Gif,
 
     /// <summary>JPEG image</summary>
-    [Display(Name = ImageMediaTypeNames.Jpeg, Description = nameof(Jpeg))]
+    [Display(Name = ImageMediaTypeNames.Jpeg, Description = "JPEG image")]
     [EnumMember(Value = ImageMediaTypeNames.Jpeg)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Jpeg)]
     Jpeg,
 
     /// <summary>PNG image</summary>
-    [Display(Name = ImageMediaTypeNames.Png, Description = nameof(Png))]
+    [Display(Name = ImageMediaTypeNames.Png, Description = "PNG image")]
     [EnumMember(Value = ImageMediaTypeNames.Png)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Png)]
     Png,
@@ -53,49 +53,49 @@ public enum ImageMediaTypes : int
     Tiff,
 
     /// <summary>SVG image</summary>
-    [Display(Name = ImageMediaTypeNames.Svg, Description = nameof(Svg))]
+    [Display(Name = ImageMediaTypeNames.Svg, Description = "SVG image")]
     [EnumMember(Value = ImageMediaTypeNames.Svg)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Svg)]
     Svg,
 
     /// <summary>Icon image</summary>
-    [Display(Name = ImageMediaTypeNames.Icon, Description = nameof(Icon))]
+    [Display(Name = ImageMediaTypeNames.Icon, Description = "Icon image")]
     [EnumMember(Value = ImageMediaTypeNames.Icon)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Icon)]
     Icon,
 
     /// <summary>AVIF image</summary>
-    [Display(Name = ImageMediaTypeNames.Avif, Description = nameof(Avif))]
+    [Display(Name = ImageMediaTypeNames.Avif, Description = "AVIF image")]
     [EnumMember(Value = ImageMediaTypeNames.Avif)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Avif)]
     Avif,
 
     /// <summary>WebP image</summary>
-    [Display(Name = ImageMediaTypeNames.Webp, Description = nameof(Webp))]
+    [Display(Name = ImageMediaTypeNames.Webp, Description = "WebP image")]
     [EnumMember(Value = ImageMediaTypeNames.Webp)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Webp)]
     Webp,
 
     /// <summary>HEIF image</summary>
-    [Display(Name = ImageMediaTypeNames.Heif, Description = nameof(Heif))]
+    [Display(Name = ImageMediaTypeNames.Heif, Description = "HEIF image")]
     [EnumMember(Value = ImageMediaTypeNames.Heif)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Heif)]
     Heif,
 
     /// <summary>HEIC image</summary>
-    [Display(Name = ImageMediaTypeNames.Heic, Description = nameof(Heic))]
+    [Display(Name = ImageMediaTypeNames.Heic, Description = "HEIC image")]
     [EnumMember(Value = ImageMediaTypeNames.Heic)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Heic)]
     Heic,
 
     /// <summary>BMP image</summary>
-    [Display(Name = ImageMediaTypeNames.Bmp, Description = nameof(Bmp))]
+    [Display(Name = ImageMediaTypeNames.Bmp, Description = "BMP image")]
     [EnumMember(Value = ImageMediaTypeNames.Bmp)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Bmp)]
     Bmp,
 
     /// <summary>APNG image</summary>
-    [Display(Name = ImageMediaTypeNames.Apng, Description = nameof(Apng))]
+    [Display(Name = ImageMediaTypeNames.Apng, Description = "APNG image")]
     [EnumMember(Value = ImageMediaTypeNames.Apng)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Apng)]
     Apng

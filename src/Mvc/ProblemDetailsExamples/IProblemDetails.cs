@@ -14,5 +14,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dgmjr.AspNetCore.Mvc;
 
-[GenerateInterface(typeof(ProblemDetails))]
-public partial interface IProblemDetails { }
+// [GenerateInterface(typeof(ProblemDetails))]
+public interface IProblemDetails
+{
+    string? Type { get; }
+    string? Title { get; }
+    int? Status { get; }
+    string? Detail { get; }
+    string? Instance { get; }
+
+    IDictionary<string, object?> Extensions { get; }
+}

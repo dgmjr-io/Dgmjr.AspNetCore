@@ -1,6 +1,4 @@
-﻿using System.Security.AccessControl;
-
-/*
+﻿/*
  * EmailSender.cs
  *
  *   Created: 2022-12-24-05:29:40
@@ -12,13 +10,12 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmjr.AspNetCore.Communication.Mail;
+namespace Dgmjr.AspNetCore.Communication.Email;
 
 using Azure.Communication.Email;
 using Azure.Identity;
 
 using Azure.Messaging;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Options;
 
 /* The EmailSender class is an implementation of the IEmailSender interface that uses an EmailClient to

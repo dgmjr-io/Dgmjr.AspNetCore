@@ -46,9 +46,19 @@ public class BsonOutputFormatter : OutputFormatter
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
     {
         if (context.ObjectType == null)
-            throw new ArgumentNullException("type is null");
+        {
+            throw new ArgumentNullException(
+                nameof(context) + "." + nameof(context.ObjectType),
+                "type is null"
+            );
+        }
         if (context.WriterFactory == null)
-            throw new ArgumentNullException("Write stream is null");
+        {
+            throw new ArgumentNullException(
+                nameof(context) + "." + nameof(context.WriterFactory),
+                "Write stream is null"
+            );
+        }
 
         using var ms = new MemoryStream();
         using var bsonWriter = new BsonDataWriter(ms) { CloseOutput = false };
@@ -56,8 +66,6 @@ public class BsonOutputFormatter : OutputFormatter
         jsonSerializer.Serialize(bsonWriter, context.Object);
         bsonWriter.Flush();
         context.HttpContext.Response.ContentType = ApplicationMediaTypeNames.Bson;
-        await context.HttpContext.Response.Body.WriteAsync(
-            ms.ToArray().AsMemory(0, (int)ms.Length)
-        );
+        await context.HttpContext.Response.Body.WriteAsync(ms.ToArray(), 0, (int)ms.Length);
     }
 }

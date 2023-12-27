@@ -12,21 +12,23 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFramework>
     <Description>This is a metapackage of all of the ASP.NET Core Dgmjr packages</Description>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="../Security/Authentication/Dgmjr.AspNetCore.Authentication.csproj" />
-    <ProjectReference Include="../Security/Authorization/Dgmjr.AspNetCore.Authorization.csproj" />
+    <ProjectReference Include="../Communication/Dgmjr.AspNetCore.Communication.csproj" />
     <ProjectReference Include="../Controllers/Dgmjr.AspNetCore.Controllers.csproj" />
+    <ProjectReference Include="../Conventions/Dgmjr.AspNetCore.Conventions.csproj" />
     <ProjectReference Include="../ErrorHandling/Dgmjr.AspNetCore.ErrorHandling.csproj" />
-    <ProjectReference Include="../Exceptions/Dgmjr.AspNetCore.Exceptions.csproj" />
-    <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" />
+    <!-- <ProjectReference Include="../Exceptions/Dgmjr.AspNetCore.Exceptions.csproj" /> -->
     <ProjectReference Include="../Formatters/Dgmjr.AspNetCore.Formatters.csproj" />
+    <ProjectReference Include="../Hosting.Extensions/Dgmjr.AspNetCore.Hosting.Extensions.csproj" />
+    <ProjectReference Include="../Hashids/Dgmjr.AspNetCore.Hashids.csproj" />
     <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" />
+    <ProjectReference Include="../Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
     <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" />
+    <ProjectReference Include="../Security/Security/Dgmjr.AspNetCore.Security.csproj" />
     <ProjectReference Include="../Startup/Dgmjr.AspNetCore.Startup.csproj" />
     <ProjectReference Include="../Swagger/Dgmjr.AspNetCore.Swagger.csproj" />
-    <ProjectReference Include="../Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
   </ItemGroup>
 </Project>

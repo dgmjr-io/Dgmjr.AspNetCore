@@ -45,44 +45,44 @@ public class StartupParameters : IStartupParameters, IServiceCollection
 
     Action<AzureAppConfigurationKeyVaultOptions> IStartupParameters.AzureKeyVaultConfigurator { get; set; }
 
-    public required bool AppInsights { get; set; }
+    public required bool AppInsights { get; set; } = true;
 
-    public required bool Identity { get; set; }
-    public required bool HealthChecks { get; set; }
+    public required bool Identity { get; set; } = false;
+    public required bool HealthChecks { get; set; } = true;
 
-    public required bool Swagger { get; set; }
+    public required bool Swagger { get; set; } = true;
 
     public required IEnumerable<string> AuthenticationSchemes { get; set; } = Empty<string>();
 
-    public required bool XmlSerialization { get; set; }
+    public required bool XmlSerialization { get; set; } = true;
 
-    public required bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; }
+    public required bool SearchEntireAppDomainForAutoMapperAndMediatRTypes { get; set; } = true;
 
-    public required bool RazorPages { get; set; }
+    public required bool RazorPages { get; set; } = false;
 
-    public required bool JsonPatch { get; set; }
+    public required bool JsonPatch { get; set; } = true;
 
-    public required bool ApiAuthentication { get; set; }
+    public required bool ApiAuthentication { get; set; }  = false;
 
-    public required bool AddAzureAppConfig { get; set; }
+    public required bool AddAzureAppConfig { get; set; } = false;
 
-    public required bool Hashids { get; set; }
+    public required bool Hashids { get; set; } = true;
 
-    public required bool MediatR { get; set; }
+    public required bool MediatR { get; set; } = true;
 
-    public required bool AutoMapper { get; set; }
+    public required bool AutoMapper { get; set; } = true;
 
-    public required bool Logging { get; set; }
+    public required bool Logging { get; set; } = true;
 
-    public required bool HttpLogging { get; set; }
+    public required bool HttpLogging { get; set; } = true;
 
-    public required bool ConsoleLogger { get; set; }
+    public required bool ConsoleLogger { get; set; } = false;
 
-    public required bool DebugLogger { get; set; }
+    public required bool DebugLogger { get; set; } = false;
 
-    public required bool DefaultIdentityUI { get; set; }
+    public required bool DefaultIdentityUI { get; set; } = false;
 
-    public required bool AzureAppConfig { get; set; }
+    public required bool AzureAppConfig { get; set; } = false;
 
     public Action<AzureAppConfigurationKeyVaultOptions> AzureKeyVault { get; set; }
 

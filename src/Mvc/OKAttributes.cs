@@ -16,8 +16,6 @@ using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
-using Swashbuckle.AspNetCore.Annotations;
-using static Microsoft.AspNetCore.Http.StatusCodes;
 using ApplicationMediaTypeNames = Dgmjr.Mime.ApplicationMediaTypeNames;
 
 /// <summary>Notes that the method can produce a 200 OK response</summary>
@@ -31,11 +29,11 @@ public class ProducesOKResponseAttribute(
         Status200OK,
         description ?? "Yay! You didn't fuck up!",
         modelType,
-        ApplicationMediaTypeNames.Json,
-        ApplicationMediaTypeNames.Xml,
-        ApplicationMediaTypeNames.MessagePack,
-        ApplicationMediaTypeNames.Bson,
-        TextMediaTypeNames.Plain
+        Application.Json.DisplayName,
+        Application.Xml.DisplayName,
+        Application.MessagePack.DisplayName,
+        Application.Bson.DisplayName,
+        Text.Plain.DisplayName
     ) { }
 
 /// <summary>Notes that the method can produce a 200 OK response</summary>
@@ -43,8 +41,7 @@ public class ProducesOKResponseAttribute(
 /// <param name="description" example="Yay! You didn't fuck up!">A short description of the response indicating success.</param>
 public sealed class ProducesOKResponseAttribute<TModel>(
     string description = "Yay! You didn't fuck up!"
-)
-    : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
+) : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
 
 public sealed class ProducesNoContentResponseAttribute(
     string description = "You didn't fuck up and the request produced no content."
@@ -53,10 +50,10 @@ public sealed class ProducesNoContentResponseAttribute(
         Status204NoContent,
         description ?? "You didn't fuck up and the request produced no content.",
         null,
-        ApplicationMediaTypeNames.Json,
-        ApplicationMediaTypeNames.Xml,
-        ApplicationMediaTypeNames.MessagePack,
-        ApplicationMediaTypeNames.Bson,
+        Application.Json.DisplayName,
+        Application.Xml.DisplayName,
+        Application.MessagePack.DisplayName,
+        Application.Bson.DisplayName,
         TextMediaTypeNames.Plain
     ) { }
 
@@ -68,19 +65,18 @@ public class ProducesCreatedResponseAttribute(
         Status201Created,
         description ?? "The shit you were try'n'a create was created successfully.",
         modelType,
-        ApplicationMediaTypeNames.Json,
-        ApplicationMediaTypeNames.Xml,
-        ApplicationMediaTypeNames.MessagePack,
-        ApplicationMediaTypeNames.Bson,
-        TextMediaTypeNames.Plain,
-        ApplicationMediaTypeNames.ProblemJson,
+        Application.Json.DisplayName,
+        Application.Xml.DisplayName,
+        Application.MessagePack.DisplayName,
+        Application.Bson.DisplayName,
+        Text.Plain.DisplayName,
+        Application.ProblemJson.DisplayName,
         ApplicationMediaTypeNames.ProblemXml
     ) { }
 
 public class ProducesCreatedResponseAttribute<TModel>(
     string description = "The shit you were try'n'a create was created successfully."
-)
-    : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
+) : ProducesCreatedResponseAttribute(typeof(TModel), description) { }
 
 public class ProducesPartialContentResponseAttribute(
     type modelType,
@@ -90,16 +86,16 @@ public class ProducesPartialContentResponseAttribute(
         Status206PartialContent,
         description ?? "Here's some of the shit you requested.",
         modelType,
-        ApplicationMediaTypeNames.Json,
-        ApplicationMediaTypeNames.Xml,
-        ApplicationMediaTypeNames.MessagePack,
-        ApplicationMediaTypeNames.Bson,
+        Application.Json.DisplayName,
+        Application.Xml.DisplayName,
+        Application.MessagePack.DisplayName,
+        Application.Bson.DisplayName,
         TextMediaTypeNames.Plain
     ) { }
+
 public sealed class ProducesPartialContentResponseAttribute<TModel>(
     string description = "Here's some of the shit you requested."
-)
-    : ProducesPartialContentResponseAttribute(typeof(TModel), description) { }
+) : ProducesPartialContentResponseAttribute(typeof(TModel), description) { }
 
 public sealed class CreateOperationAttribute(
     string? operationId,

@@ -65,8 +65,8 @@ public class SmsSender
     /// <returns>A <![CDATA[Task<SmsSendResult>]]></returns>
     public async Task<SmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
     {
-        return (
-            await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)
-        ).Value;
+        return new(
+            (await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)).Value
+        );
     }
 }

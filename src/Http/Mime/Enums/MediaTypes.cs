@@ -13,7 +13,7 @@
 namespace Dgmjr.Mime.Enums;
 
 [GenerateEnumerationRecordStruct("MediaType", "Dgmjr.Mime")]
-public enum MediaTypes : int
+public enum MediaTypes
 {
     [Display(Description = "The '*' media type")]
     [Uri(IanaMediaTypeUrlBase)]

@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework></TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <OutputType>Exe</OutputType>
         <AssemblyName>UnRef</AssemblyName>
         <Title>The JSON/YAML Schema Dereferencer</Title>

@@ -16,14 +16,14 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
 [GenerateEnumerationRecordStruct("Video", "Dgmjr.Mime")]
-public enum VideoMediaTypes : int
+public enum VideoMediaTypes
 {
     [Display(Name = VideoMediaTypeNames.Any, Description = nameof(Any))]
-    [Uri(IanaMediaTypeUrlBase + "#video")]
+    [Uri(IanaMediaTypeUrlBase + "#video/*")]
     Any = int.MaxValue,
 
     [Display(Name = VideoMediaTypeNames.Base, Description = nameof(Base))]
-    [Uri(IanaMediaTypeUrlBase + "#video-*")]
+    [Uri(IanaMediaTypeUrlBase + "#video")]
     Base = 0,
 
     [Display(Name = VideoMediaTypeNames.Mpeg, Description = nameof(Mpeg))]

@@ -12,6 +12,13 @@
 
 namespace Dgmr.Http;
 
+public static class Foo
+{
+    static Foo()
+    {
+        Dgmjr.Http.Headers.HttpRequestHeaderNames.TryParse("Range", out var result);
+    }
+}
 
 // public static partial class HttpRequestMethod
 // {

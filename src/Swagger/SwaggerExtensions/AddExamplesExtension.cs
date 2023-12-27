@@ -22,7 +22,7 @@ public static class AddExamplesExtension
         params Assembly[]? assemblies
     )
     {
-        assemblies ??= AppDomain.CurrentDomain.GetAssemblies();
+        assemblies ??= CurrentDomain.GetAssemblies();
         builder.Services.AddSwaggerExamplesFromAssemblies(assemblies);
         return builder;
     }

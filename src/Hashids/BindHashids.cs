@@ -10,8 +10,6 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Microsoft.AspNetCore.Mvc;
-
 using global::AspNetCore.Hashids;
 
 public class HashidsAttribute : ModelBinderAttribute

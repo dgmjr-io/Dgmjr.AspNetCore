@@ -1,40 +1,43 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <IncludeOpenAPIAnalyzers>true</IncludeOpenAPIAnalyzers>
     <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-    <PackageReference Include="AutoMapper" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.ExpressionMapping" />
-    <!-- <PackageReference Include="Dgmjr.Abstractions" /> -->
-    <!-- <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" /> -->
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    <PackageReference Include="Microsoft.OpenApi" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters.Abstractions" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
-    <PackageReference Include="MediatR" />
-    <PackageReference Include="System.All.Usings" />
-    <PackageReference Include="Dgmjr.Payloads" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.MediatR" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.MediatR.Abstractions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="AutoMapper" />
+    <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-    <!-- <PackageReference Include="Dgmjr.AspNetCore.Mvc" ExcludeAssets="ContentFiles" /> -->
     <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="ContentFiles;Lib;Runtime;Compile" />
+    <PackageReference Include="Dgmjr.MediatR.Abstractions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.MediatR" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" VersionOverride="$(JsonPatchVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.OpenApi" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters.Abstractions" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="System.All.Usings" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="../Mvc/Dgmjr.AspNetCore.Mvc.csproj" />
     <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
-    <PackageReference Include="Dgmjr.Http.Headers" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
+    <ProjectReference Include="../Payloads/Dgmjr.Payloads.csproj" />
   </ItemGroup>
   <ItemGroup>
     <!-- <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" /> -->

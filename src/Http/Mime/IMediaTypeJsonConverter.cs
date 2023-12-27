@@ -25,11 +25,7 @@ public class MediaTypeJsonConverter : JsonConverter<IMediaType>
     /// <param name="options">The used to deserialize the object. This can be</param>
     public override IMediaType Read(ref Utf8JsonReader reader, type typeToConvert, Jso options)
     {
-        var mediaType = reader.GetString();
-        // If media type is null throw an exception
-        if (mediaType is null)
-            throw new JsonException("Media type cannot be null");
-
+        var mediaType = reader.GetString() ?? throw new JsonException("Media type cannot be null");
         return new TempMediaType(mediaType);
     }
 

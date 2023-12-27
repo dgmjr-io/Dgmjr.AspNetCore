@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <!-- <TargetFramework>netstandard2.0</TargetFramework> -->
+    <!-- <TargetFramework>net8.0</TargetFramework> -->
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <EnableGlobalCodeGenerators>false</EnableGlobalCodeGenerators>
     <PackageId>Dgmjr.Payloads</PackageId>
@@ -23,21 +23,23 @@
     <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Vogen" />
+    <PackageReference Include="Dgmjr.ComponentModel" />
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
     <PackageReference Include="Dgmjr.System.Extensions" Aliases="DgmjrSysExts,global" />
 
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+
+    <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
 
     <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
-    <!-- <ProjectReference Include="../Http/Headers/Dgmjr.Http.Headers.csproj" />
-    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
-    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" /> -->
   </ItemGroup>
 </Project>

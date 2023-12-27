@@ -1,0 +1,6 @@
+<Project>
+    <ItemGroup>
+        <Compile Remove="@(Compile)" />
+        <Compile Include="./AuthorizationHeaderParameterOperationFilter.cs" />
+    </ItemGroup>
+</Project>

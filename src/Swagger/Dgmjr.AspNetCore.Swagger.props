@@ -12,10 +12,6 @@
 
 <Project>
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-    <PackageReference Include="ThisAssembly.Project" />
-    <PackageReference Include="ThisAssembly" />
-    <PackageReference Include="Dgmjr.Primitives" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="System.IO.File" Alias="File" />

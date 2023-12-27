@@ -12,7 +12,7 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <Description>This package contains the communication classes for the project.  It's used for sending SMS and email messages.</Description>
     <SlnGenSolutionFolder>comms</SlnGenSolutionFolder>
   </PropertyGroup>
@@ -23,9 +23,10 @@
     <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" />
     <PackageReference Include="Microsoft.Extensions.Options" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <ProjectReference Include="../Communication.Abstractions/Dgmjr.AspNetCore.Communication.Abstractions.csproj" />
+    <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
   </ItemGroup>
 </Project>

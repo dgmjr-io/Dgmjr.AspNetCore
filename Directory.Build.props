@@ -11,10 +11,13 @@
 -->
 
 <Project>
-  <Import Project="Sdk.props" Condition="Exists('Sdk.props')" Sdk="JustinWritesCodeSdk" Condition="'$(JustinWritesCodeSdkProps)' == ''" />
+  <Import Project="Sdk.props" Sdk="DgmjrSdk" />
   <PropertyGroup>
-    <JustinWritesCodeSdkProps>$(MSBuildThisFileDirectory)Sdk.props</JustinWritesCodeSdkProps>
+    <DgmjrSdkProps>$(MSBuildThisFileDirectory)Sdk.props</DgmjrSdkProps>
 		<InheritedDirectoryBuildProps>$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))</InheritedDirectoryBuildProps>
+    <TargetLibraryFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetLibraryFrameworks>
+    <IsTargetingNetStandard>$(TargetFramework.Contains('netstandard'))</IsTargetingNetStandard>
+    <TargetFrameworks>$(TargetLibraryFrameworks)</TargetFrameworks>
 	</PropertyGroup>
 	<Import Project="$(InheritedDirectoryBuildProps)" Condition="Exists('$(InheritedDirectoryBuildProps)')" />
 </Project>

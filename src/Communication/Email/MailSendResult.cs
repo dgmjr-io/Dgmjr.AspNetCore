@@ -1,18 +1,28 @@
-namespace Dgmjr.AspNetCore.Communication.Mail;
+namespace Dgmjr.AspNetCore.Communication.Email;
 
-public class MailSendResult : IMessageSendResult, IMailSendResult
+/// <summary>
+/// Represents the result of sending an email.
+/// </summary>
+public readonly record struct MailSendResult : IMailSendResult
 {
-    public new MailSendResponseCode StatusCode
+    /// <summary>
+    /// Gets or sets the response code of the email send result.
+    /// </summary>
+    public Abstractions.IMailSendResponseCode Status
     {
-        get => (MailSendResponseCode)((ISmsSendResult)this).StatusCode;
-        set => StatusCode = value.Id;
+        get => MailSendResponseCode.FromId(StatusCode)!;
+        init => StatusCode = ((IIdentifiable<int>)value).Id;
     }
 
-    public bool IsSuccess => StatusCode == MailSendResponseCode.Success;
+    /// <summary>
+    /// Gets a value indicating whether the email send operation was successful.
+    /// </summary>
+    public bool IsSuccess =>
+        ((IHaveAValue<Enums.MailSendResponseCode>)Status).Value
+        is Enums.MailSendResponseCode.Succeeded;
 
-    int IMessageSendResult.StatusCode
-    {
-        get => throw new NotImplementedException();
-        set => throw new NotImplementedException();
-    }
+    /// <summary>
+    /// Gets or sets the status code of the email send result.
+    /// </summary>
+    public int StatusCode { get; init; }
 }

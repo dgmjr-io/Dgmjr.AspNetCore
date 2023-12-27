@@ -23,7 +23,7 @@ public static class AddTheWorksExtensions
 
     public static WebApplicationBuilder AddTheWorks(
         this WebApplicationBuilder builder,
-        IStartupParameters @params = default,
+        IStartupParameters? @params = default,
         Action<WebApplicationBuilder>? configure = default
     )
     {
@@ -62,7 +62,7 @@ public static class AddTheWorksExtensions
                         }
                         catch
                         {
-                            return Array.Empty<type>();
+                            return Empty<type>();
                         }
                     })
             );
@@ -100,10 +100,10 @@ public static class AddTheWorksExtensions
 
         if (@params.JsonPatch)
         {
-            _ = builder.AddJsonPatch();
+            // _ = builder.AddJsonPatch();
         }
 
-        // _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
+        _ = builder.Configuration.AddUserSecrets(@params.ThisAssemblyProject.Assembly);
 
         if (@params.AzureAppConfig)
         {

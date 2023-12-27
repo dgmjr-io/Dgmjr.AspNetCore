@@ -10,7 +10,6 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-using System.Net.Mime.MediaTypes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
@@ -33,7 +32,11 @@ public class PlainTextPayloadFormatter : OutputFormatter
             && context.HttpContext.Request
                 .GetTypedHeaders()
                 .Accept.Any(
-                    a => a.MediaType.Value.ToLower().Equals(TextMediaTypeNames.Plain.ToLower())
+                    a =>
+                        Dgmjr.Mime.IMediaTypeExtensions.Matches(
+                            Dgmjr.Mime.IMediaTypeExtensions.ToMediaType(a.MediaType.Value),
+                            TextMediaTypeNames.Plain
+                        )
                 );
     }
 
