@@ -37,7 +37,6 @@ public partial interface IMediaType
     /// </summary>
     /// <returns>A that represents this instance and can be parsed by System. String. Format () or null if this instance is null</returns>
     string ToString();
-    // new uri Uri { get; }
 }
 
 public static class MediTypeExtensions { }

@@ -29,5 +29,5 @@ public static class ExampleMediaTypeNames
     /// <value><inheritdoc cref="Base" />/example</value>
     /// <seealso cref="Enums.ExampleMediaTypes"/>
     /// <seealso cref="Enums.ExampleMediaTypes._Example"/>
-    public const string Example = Base + "/" + "example";
+    public const string Example = Base + "/example";
 }

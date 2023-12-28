@@ -17,14 +17,14 @@ public static class TextMediaTypeNames
     /// <inheritdoc cref="Enums.TextMediaTypes.Base" />
     public const string Base = "text";
     public const string Any = Base + "/*";
-    public const string Html = Base + "/" + "html";
-    public const string Plain = Base + "/" + "plain";
-    public const string RichText = Base + "/" + "richtext";
-    public const string Xml = Base + "/" + "xml";
-    public const string Csv = Base + "/" + "csv";
-    public const string Css = Base + "/" + "css";
-    public const string JavaScript = Base + "/" + "javascript";
-    public const string Json = Base + "/" + "json";
-    public const string PlainWithProblem = Base + "/" + "problem+plain";
-    public const string Markdown = Base + "/" + "markdown";
+    public const string Html = Base + "/html";
+    public const string Plain = Base + "/plain";
+    public const string RichText = Base + "/richtext";
+    public const string Xml = Base + "/xml";
+    public const string Csv = Base + "/csv";
+    public const string Css = Base + "/css";
+    public const string JavaScript = Base + "/javascript";
+    public const string Json = Base + "/json";
+    public const string PlainWithProblem = Base + "/problem+plain";
+    public const string Markdown = Base + "/markdown";
 }

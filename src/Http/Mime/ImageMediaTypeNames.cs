@@ -22,97 +22,97 @@ public static class ImageMediaTypeNames
 
     /// <summary>Media type for any image.</summary>
     /// <value><inheritdoc cref="Base" />*</value>
-    public const string Any = Base + "/" + "*";
+    public const string Any = Base + "/*";
 
     /// <summary>GIF image</summary>
     /// <value><inheritdoc cref="Base" />gif</value>
-    public const string Gif = Base + "/" + "gif";
+    public const string Gif = Base + "/gif";
 
     /// <summary>JPEG image</summary>
     /// <value><inheritdoc cref="Base" />jpeg</value>
-    public const string Jpeg = Base + "/" + "jpeg";
+    public const string Jpeg = Base + "/jpeg";
 
     /// <summary>PNG image</summary>
     /// <value><inheritdoc cref="Base" />png</value>
-    public const string Png = Base + "/" + "png";
+    public const string Png = Base + "/png";
 
     /// <summary>TIFF image</summary>
     /// <value><inheritdoc cref="Base" />tiff</value>
-    public const string Tiff = Base + "/" + "tiff";
+    public const string Tiff = Base + "/tiff";
 
     /// <summary>SVG image</summary>
     /// <value><inheritdoc cref="Base" />svg+xml</value>
-    public const string Svg = Base + "/" + "svg+xml";
+    public const string Svg = Base + "/svg+xml";
 
     /// <summary>Icon image</summary>
     /// <value><inheritdoc cref="Base" />vnd.microsoft.icon</value>
-    public const string Icon = Base + "/" + "vnd.microsoft.icon";
+    public const string Icon = Base + "/vnd.microsoft.icon";
 
     /// <summary>AVIF image</summary>
     /// <value><inheritdoc cref="Base" />avif</value>
-    public const string Avif = Base + "/" + "avif";
+    public const string Avif = Base + "/avif";
 
     /// <summary>Bitmap image</summary>
     /// <value><inheritdoc cref="Base" />bmp</value>
-    public const string Bmp = Base + "/" + "bmp";
+    public const string Bmp = Base + "/bmp";
 
     /// <summary>WebP image</summary>
     /// <value><inheritdoc cref="Base" />webp</value>
-    public const string Webp = Base + "/" + "webp";
+    public const string Webp = Base + "/webp";
 
     /// <summary>APNG image</summary>
     /// <value><inheritdoc cref="Base" />apng</value>
-    public const string Apng = Base + "/" + "apng";
+    public const string Apng = Base + "/apng";
 
     /// <summary>HEIF image</summary>
     /// <value><inheritdoc cref="Base" />heif</value>
-    public const string Heif = Base + "/" + "heif";
+    public const string Heif = Base + "/heif";
 
     /// <summary>HEIC image</summary>
     /// <value><inheritdoc cref="Base" />heic</value>
-    public const string Heic = Base + "/" + "heic";
+    public const string Heic = Base + "/heic";
 
     /// <summary>HEIF sequence image</summary>
     /// <value><inheritdoc cref="Base" />heif-sequence</value>
-    public const string HeifSequence = Base + "/" + "heif-sequence";
+    public const string HeifSequence = Base + "/heif-sequence";
 
     /// <summary>HEIC sequence image</summary>
     /// <value><inheritdoc cref="Base" />heic-sequence</value>
-    public const string HeicSequence = Base + "/" + "heic-sequence";
+    public const string HeicSequence = Base + "/heic-sequence";
 
     /// <summary>JP2 image</summary>
     /// <value><inheritdoc cref="Base" />jp2</value>
-    public const string Jp2 = Base + "/" + "jp2";
+    public const string Jp2 = Base + "/jp2";
 
     /// <summary>JPM image</summary>
     /// <value><inheritdoc cref="Base" />jpm</value>
-    public const string Jpm = Base + "/" + "jpm";
+    public const string Jpm = Base + "/jpm";
 
     /// <summary>JPX image</summary>
     /// <value><inheritdoc cref="Base" />jpx</value>
-    public const string Jpx = Base + "/" + "jpx";
+    public const string Jpx = Base + "/jpx";
 
     /// <summary>JB2 image</summary>
     /// <value><inheritdoc cref="Base" />jb2</value>
-    public const string Jb2 = Base + "/" + "jb2";
+    public const string Jb2 = Base + "/jb2";
 
     /// <summary>SWF image</summary>
     /// <value><inheritdoc cref="Base" />x-shockwave-flash</value>
-    public const string Swf = Base + "/" + "x-shockwave-flash";
+    public const string Swf = Base + "/x-shockwave-flash";
 
     /// <summary>FlashPix image</summary>
     /// <value><inheritdoc cref="Base" />vnd.adobe.photoshop</value>
-    public const string FlashPix = Base + "/" + "vnd.adobe.photoshop";
+    public const string FlashPix = Base + "/vnd.adobe.photoshop";
 
     /// <summary>Camera image</summary>
     /// <value><inheritdoc cref="Base" />x-canon-cr2</value>
-    public const string Camera = Base + "/" + "x-canon-cr2";
+    public const string Camera = Base + "/x-canon-cr2";
 
     /// <summary>Camera image</summary>
     /// <value><inheritdoc cref="Base" />x-canon-crw</value>
-    public const string Camera2 = Base + "/" + "x-canon-crw";
+    public const string Camera2 = Base + "/x-canon-crw";
 
     /// <summary>Camera image</summary>
     /// <value><inheritdoc cref="Base" />x-nikon-nef</value>
-    public const string Camera3 = Base + "/" + "x-nikon-nef";
+    public const string Camera3 = Base + "/x-nikon-nef";
 }
