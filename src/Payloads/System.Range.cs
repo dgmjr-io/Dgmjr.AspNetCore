@@ -121,9 +121,9 @@ namespace System
 
         private static void ThrowArgumentOutOfRangeException()
         {
-            #pragma warning disable S3928
+#pragma warning disable S3928
             throw new ArgumentOutOfRangeException("length");
-            #pragma warning restore S3928
+#pragma warning restore S3928
         }
     }
 }
