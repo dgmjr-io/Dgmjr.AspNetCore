@@ -32,6 +32,7 @@
     <PackageReference Include="System.Security.Cryptography.Algorithms" />
     <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator.Runtime" />
   </ItemGroup>
   <ItemGroup>
     <PackageTag Include="mime" />
