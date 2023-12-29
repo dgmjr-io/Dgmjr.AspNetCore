@@ -18,7 +18,7 @@ using System.Runtime.Serialization;
 public enum AudioMediaTypes
 {
     [Display(Name = AudioMediaTypeNames.Any, Description = nameof(Any))]
-    [Uri(IanaMediaTypeUrlBase +"#audio/*")]
+    [Uri(IanaMediaTypeUrlBase + "#audio/*")]
     Any = int.MaxValue,
 
     [Display(Name = AudioMediaTypeNames.Base, Description = nameof(Base))]

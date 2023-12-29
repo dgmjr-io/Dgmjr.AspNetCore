@@ -34,7 +34,8 @@ public class ProducesOKResponseAttribute(
         Application.MessagePack.DisplayName,
         Application.Bson.DisplayName,
         Text.Plain.DisplayName
-    ) { }
+    )
+{ }
 
 /// <summary>Notes that the method can produce a 200 OK response</summary>
 /// <typeparam name="TModel">The type of the model to be returned.</param>
@@ -55,7 +56,8 @@ public sealed class ProducesNoContentResponseAttribute(
         Application.MessagePack.DisplayName,
         Application.Bson.DisplayName,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public class ProducesCreatedResponseAttribute(
     type modelType,
@@ -72,7 +74,8 @@ public class ProducesCreatedResponseAttribute(
         Text.Plain.DisplayName,
         Application.ProblemJson.DisplayName,
         ApplicationMediaTypeNames.ProblemXml
-    ) { }
+    )
+{ }
 
 public class ProducesCreatedResponseAttribute<TModel>(
     string description = "The shit you were try'n'a create was created successfully."
@@ -91,7 +94,8 @@ public class ProducesPartialContentResponseAttribute(
         Application.MessagePack.DisplayName,
         Application.Bson.DisplayName,
         TextMediaTypeNames.Plain
-    ) { }
+    )
+{ }
 
 public sealed class ProducesPartialContentResponseAttribute<TModel>(
     string description = "Here's some of the shit you requested."
@@ -112,9 +116,9 @@ public sealed class CreateOperationAttribute(
 
 public sealed class UpdateOperationAttribute(
     string? operationId,
-    string? summary = "Update an existing resource from a complete model object",
-    string? description = "Update an existing resource from a complete model object",
-    string[]? tags = null
+    string ? summary = "Update an existing resource from a complete model object",
+    string ? description = "Update an existing resource from a complete model object",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
@@ -125,9 +129,9 @@ public sealed class UpdateOperationAttribute(
 
 public sealed class DeleteOperationAttribute(
     string? operationId,
-    string? summary = "Delete an existing resource",
-    string? description = "Delete an existing resource",
-    string[]? tags = null
+    string ? summary = "Delete an existing resource",
+    string ? description = "Delete an existing resource",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
@@ -138,9 +142,9 @@ public sealed class DeleteOperationAttribute(
 
 public sealed class PatchOperationAttribute(
     string? operationId,
-    string? summary = "Update an existing resource from a partial model object",
-    string? description = "Update an existing resource from a partial model object",
-    string[]? tags = null
+    string ? summary = "Update an existing resource from a partial model object",
+    string ? description = "Update an existing resource from a partial model object",
+    string[] ? tags = null
 )
     : DgmjrOperationAttribute(
         operationId,
