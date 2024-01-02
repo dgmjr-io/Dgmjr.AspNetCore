@@ -21,7 +21,7 @@ public class HttpResponseMessageOutputFormatter : OutputFormatter
     public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
     {
         var response = context.Object is HttpResponseMessage resp ? resp : null;
-        if(response != null)
+        if (response != null)
         {
             context.HttpContext.Response.StatusCode = (int)response.StatusCode;
             foreach (var header in response.Headers)
