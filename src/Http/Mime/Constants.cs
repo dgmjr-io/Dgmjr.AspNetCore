@@ -22,6 +22,7 @@ public static class Constants
 
     /// <value>urn:ietf:rfc</value>
     public const string IetfRfcUrnBase = "urn:ietf:rfc";
+
     /// <value>urn:iana:mime</value>
     public const string MimeUrnBase = "urn:iana:mime";
 

@@ -24,7 +24,9 @@ public class ArrayResponsePayload(
     string? message = default,
     string? stringValue = default,
     string itemSeparator = ArrayPayload<object>.DefaultItemSeparator
-    ) : ArrayResponsePayload<object>(value.OfType<object>().ToArray(), message, stringValue), IArrayResponsePayload
+)
+    : ArrayResponsePayload<object>(value.OfType<object>().ToArray(), message, stringValue),
+        IArrayResponsePayload
 {
     public ArrayResponsePayload()
         : this(Empty<object>()) { }

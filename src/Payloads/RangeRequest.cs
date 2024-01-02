@@ -62,6 +62,7 @@ namespace Dgmjr.Payloads
 
 #if !NET6_0_OR_GREATER
         Regex IRegexValueObject<Range>.Regex() => Regex();
+
         string IRegexValueObject<Range>.RegexString => RegexString;
         string IRegexValueObject<Range>.Description => Description;
         Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);

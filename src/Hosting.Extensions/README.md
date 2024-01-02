@@ -6,12 +6,12 @@ license: MIT
 slug: Dgmjr.AspNetCore.Hosting.Extensions-readme
 version:
 authors:
-  - dgmjr;
+- dgmjr
 description: Dgmjr.AspNetCore.Hosting.Extensions Readme #TODO: write description for Dgmjr.AspNetCore.Hosting.Extensions Readme
 keywords:
 - Dgmjr.AspNetCore.Hosting.Extensions
-  - dgmjr
-  - dgmjr-io
+- dgmjr
+- dgmjr-io
 type: readme
 ---
 # Dgmjr.AspNetCore.Hosting.Extensions Readme

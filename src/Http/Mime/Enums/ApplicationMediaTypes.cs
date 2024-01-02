@@ -265,36 +265,47 @@ public enum ApplicationMediaTypes
     [Display(Name = ApplicationMediaTypeNames.Any + "+json")]
     [Uri($"{RfcUrlBase}/6839#section-3.1")]
     JsonSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+json-seq")]
     [Uri($"{RfcUrlBase}/8091")]
     JsonSeqSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+xml")]
     [Uri($"{RfcUrlBase}/6839#section-4.1")]
     XmlSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+cbor")]
     [Uri($"{RfcUrlBase}/8949#section-9.5")]
     CborSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+ber")]
     [Uri($"{RfcUrlBase}/6839#section-3.2")]
     BerSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+der")]
     [Uri($"{RfcUrlBase}/6839#section-3.3")]
     DerSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+zip")]
     [Uri($"{RfcUrlBase}/6839#section-3.6")]
     ZipSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+fastinfoset")]
     [Uri($"{RfcUrlBase}/6839#section-3.4")]
     FastInfoSetSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+wbxml")]
     [Uri($"{RfcUrlBase}/6839#section-3.5")]
     WbxmlSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+bson")]
     [Uri("http://www.sqlite.org/fileformat2.html")]
     Sqlite3Suffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+bson")]
     [Uri($"{RfcUrlBase}/6839#section-3.5")]
     BsonSuffix,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+msgpack")]
     [Uri("https://msgpack.org/#+msgpack")]
     MessagePackSuffix,

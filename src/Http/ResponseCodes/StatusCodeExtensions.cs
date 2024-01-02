@@ -4,11 +4,16 @@ public static class StatusCodeExtensions
 {
     public static bool IsInformational(this int statusCode) =>
         statusCode >= 100 && statusCode <= 199;
+
     public static bool IsInformational(this Abstractions.IStatusCode statusCode) =>
-        ((IHaveAValue<ushort>)statusCode).Value >= 100 && ((IHaveAValue<ushort>)statusCode).Value <= 199;
+        ((IHaveAValue<ushort>)statusCode).Value >= 100
+        && ((IHaveAValue<ushort>)statusCode).Value <= 199;
 
     public static bool IsSuccess(this int statusCode) => statusCode >= 200 && statusCode <= 299;
-    public static bool IsSuccess(this  Abstractions.IStatusCode statusCode) =>  ((IHaveAValue<ushort>)statusCode).Value >= 200 && ((IHaveAValue<ushort>)statusCode).Value <= 299;
+
+    public static bool IsSuccess(this Abstractions.IStatusCode statusCode) =>
+        ((IHaveAValue<ushort>)statusCode).Value >= 200
+        && ((IHaveAValue<ushort>)statusCode).Value <= 299;
 
     public static bool IsRedirection(this int statusCode) => statusCode >= 300 && statusCode <= 399;
 

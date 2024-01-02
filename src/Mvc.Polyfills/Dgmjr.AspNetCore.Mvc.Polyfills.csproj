@@ -9,4 +9,7 @@
   <ItemGroup>
     <Using Include="System.Text.Json.JsonSerializerOptions" Alias="Jso" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="@(Compile)" Condition="!$(TargetFramework.StartsWith('netstandard'))" />
+  </ItemGroup>
 </Project>

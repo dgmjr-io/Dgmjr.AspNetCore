@@ -10,6 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 using System.Reflection;
+
 namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class DescribeHashidsExtensions

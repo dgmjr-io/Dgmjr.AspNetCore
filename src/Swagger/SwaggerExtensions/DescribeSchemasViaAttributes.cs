@@ -26,7 +26,9 @@ public static class AddSwaggerSchemasViaAttributeExtension
 
     public static IServiceCollection DescribeSchemasViaAttributes(this IServiceCollection services)
     {
-        services.AddSwaggerGen(c => c.SchemaFilter<Dgmjr.AspNetCore.Swagger.DescribeSchemasViaAttributesFilter>());
+        services.AddSwaggerGen(
+            c => c.SchemaFilter<Dgmjr.AspNetCore.Swagger.DescribeSchemasViaAttributesFilter>()
+        );
         return services;
     }
 }

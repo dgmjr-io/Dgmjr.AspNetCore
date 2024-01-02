@@ -41,8 +41,8 @@ public static class FormattersExtensions
                 {
                     SupportedMediaTypes =
                     {
-                        Application.MessagePack.Synonyms
-                        new MediaTypeHeaderValue("application/x-msgpack"),
+                        Application.MessagePack.DisplayName,
+                        new MediaTypeHeaderValue(Application.MessagePack.DisplayName),
                         new MediaTypeHeaderValue("application/x-msgpack-seq")
                     }
                 }

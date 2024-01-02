@@ -36,6 +36,7 @@
 
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" />
 
     <PackageReference Include="System.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="System.Text.Json.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
@@ -44,6 +45,7 @@
     <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
 
     <ProjectReference Include="../Http/Http/Dgmjr.Http.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
+    <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" Properties="PackageVersionOverride=$(PackageVersion)" Targets="Build" ReferenceOutputAssembly="true" OutputItemType="true" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Payloads.Abstractions.IResponsePayload" Alias="IResponsePayload" />

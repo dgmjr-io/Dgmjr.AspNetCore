@@ -12,7 +12,10 @@
 
 namespace Dgmjr.AspNetCore.Authentication.Enums
 {
-    [GenerateEnumerationRecordStruct(nameof(AuthenticationResult), "Dgmjr.AspNetCore.Authentication")]
+    [GenerateEnumerationRecordStruct(
+        nameof(AuthenticationResult),
+        "Dgmjr.AspNetCore.Authentication"
+    )]
     public enum AuthenticationResult
     {
         SuccessTokenIssued,

@@ -156,8 +156,7 @@ public static class ModelMediaTypeNames
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.parasolid.transmit.binary">[Parasolid]</see>
     /// <value>model/vnd.parasolid.transmit.binary</value>
     /// <summary> The model/vnd.parasolid.transmit.binary MIME type</summary>
-    public const string vnd_parasolid_transmit_binary =
-        Base + "/vnd.parasolid.transmit.binary";
+    public const string vnd_parasolid_transmit_binary = Base + "/vnd.parasolid.transmit.binary";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.parasolid.transmit.text">[Parasolid]</see>
     /// <value>model/vnd.parasolid.transmit.text</value>
@@ -193,8 +192,7 @@ public static class ModelMediaTypeNames
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.valve.source.compiled-map">[Henrik_Andersson]</see>
     /// <value>model/vnd.valve.source.compiled-map</value>
     /// <summary> The model/vnd.valve.source.compiled-map MIME type</summary>
-    public const string vnd_valve_source_compiled_map =
-        Base + "/vnd.valve.source.compiled-map";
+    public const string vnd_valve_source_compiled_map = Base + "/vnd.valve.source.compiled-map";
 
     /// <see href="https://www.iana.org/assignments/media-types/model/vnd.vtu">[Boris_Rabinovitch]</see>
     /// <value>model/vnd.vtu</value>

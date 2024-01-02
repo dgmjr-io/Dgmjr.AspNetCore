@@ -22,7 +22,10 @@
     <!-- <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" />-->
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" VersionOverride="[2.2.5,)" />
+    <PackageReference Include="Microsoft.Net.Http.Headers" VersionOverride="[2.2.0,)" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" VersionOverride="[2.2.0,)" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" VersionOverride="[2.2.0,)" />
     <PackageReference Include="System.Text.Json.Usings" />
     <PackageReference Include="Newtonsoft.Json.Bson" />
     <PackageReference Include="MessagePack.AspNetCoreMvcFormatter" />

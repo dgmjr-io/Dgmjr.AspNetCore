@@ -37,10 +37,8 @@ namespace System
 
         /// <summary>Indicates whether the current Range object is equal to another object of the same type.</summary>
         /// <param name="value">An object to compare with this object</param>
-        public override bool Equals([NotNullWhen(true)] object? value) =>
-            value is Range r &&
-            r.Start.Equals(Start) &&
-            r.End.Equals(End);
+        public override bool Equals(object? value) =>
+            value is Range r && r.Start.Equals(Start) && r.End.Equals(End);
 
         /// <summary>Indicates whether the current Range object is equal to another Range object.</summary>
         /// <param name="other">An object to compare with this object</param>
@@ -121,9 +119,9 @@ namespace System
 
         private static void ThrowArgumentOutOfRangeException()
         {
-            #pragma warning disable S3928
+#pragma warning disable S3928
             throw new ArgumentOutOfRangeException("length");
-            #pragma warning restore S3928
+#pragma warning restore S3928
         }
     }
 }

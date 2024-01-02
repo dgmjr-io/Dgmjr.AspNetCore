@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(LibraryTargetFrameworks)</TargetFrameworks>
+  </PropertyGroup>
+ <ItemGroup>
+    <FrameworkReference Include="Micrososft.AspNetCore.App" />
+ </ItemGroup>
+  <ItemGroup>
+
+  </ItemGroup>
+</Project>

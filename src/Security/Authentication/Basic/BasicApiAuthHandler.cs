@@ -56,7 +56,8 @@ public class BasicApiAuthHandler<TUser, TRole>
         Logger = logger.CreateLogger<BasicApiAuthHandler<TUser, TRole>>();
     }
 
-    protected virtual string? AuthenticationSchemeName => (_options as IBasicAuthenticationSchemeOptions)?.AuthenticationSchemeName;
+    protected virtual string? AuthenticationSchemeName =>
+        (_options as IBasicAuthenticationSchemeOptions)?.AuthenticationSchemeName;
 
     protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
     {

@@ -12,9 +12,11 @@
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Dgmjr.Mime;
 using TextMediaTypeNames = Dgmjr.Mime.TextMediaTypeNames;
 
 namespace Dgmjr.Payloads.Formatters;
+
 using Abstractions;
 
 using static Dgmjr.Http.Headers.HttpResponseHeaderNames;
@@ -32,12 +34,7 @@ public class PlainTextPayloadFormatter : OutputFormatter
         return context.Object is IPayload
             && context.HttpContext.Request
                 .GetTypedHeaders()
-                .Accept.Any(
-                    a =>
-                        a.MediaType.Value.ToMediaType().Matches(
-                            TextMediaTypeNames.Plain
-                        )
-                );
+                .Accept.Any(a => a.MediaType.Value.ToMediaType().Matches(TextMediaTypeNames.Plain));
     }
 
     public override void WriteResponseHeaders(OutputFormatterWriteContext context)

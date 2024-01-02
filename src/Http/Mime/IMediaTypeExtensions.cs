@@ -42,35 +42,35 @@ public static class IMediaTypeExtensions
     /// <param name="other">The other media type to compare. Must not be null</param>
     /// <returns>true if the media types match false if they don't or if there is a mismatch ( such as a duplicate media type</returns>
     public static bool Matches(this IMediaType @this, IMediaType other) =>
-    (
-        @this.IsWildcard()
-        && other.DisplayName.StartsWith(@this.GetPrimaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        other.IsWildcard()
-        && @this.DisplayName.StartsWith(other.GetPrimaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        @this.PrimaryIsWildcard()
-        && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        @other.PrimaryIsWildcard()
-        && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        @this.PrimaryIsWildcard()
-        && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        @other.SecondaryIsWildcard()
-        && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType(), OrdinalIgnoreCase)
-    )
-    || (
-        @this.SecondaryIsWildcard()
-        && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
-    )
-    || @this.DisplayName.Equals(other.DisplayName);
+        (
+            @this.IsWildcard()
+            && other.DisplayName.StartsWith(@this.GetPrimaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            other.IsWildcard()
+            && @this.DisplayName.StartsWith(other.GetPrimaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            @this.PrimaryIsWildcard()
+            && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            @other.PrimaryIsWildcard()
+            && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            @this.PrimaryIsWildcard()
+            && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            @other.SecondaryIsWildcard()
+            && @other.GetSecondaryType().EndsWith(@this.GetSecondaryType(), OrdinalIgnoreCase)
+        )
+        || (
+            @this.SecondaryIsWildcard()
+            && @this.GetSecondaryType().EndsWith(other.GetSecondaryType(), OrdinalIgnoreCase)
+        )
+        || @this.DisplayName.Equals(other.DisplayName);
 
     /// <summary>
     /// Determines whether the specified media type matches the specified. This method is equivalent to the method of the same name in C#

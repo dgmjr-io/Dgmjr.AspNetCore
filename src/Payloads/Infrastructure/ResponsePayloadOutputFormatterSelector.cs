@@ -41,7 +41,6 @@ public class ResponsePayloadOutputFormatterSelector : OutputFormatterSelector
                 var mediaTypesIntersection = @of?.SupportedMediaTypes?.Intersect(acceptHeader);
                 contentType = mediaTypesIntersection?.FirstOrDefault() ?? contentType;
                 return mediaTypesIntersection?.Any() ?? false;
-                // return mediaTypesIntersection.Any() && @of.CanWriteResult(context);
             });
             if (formatter is not null)
             {
@@ -49,11 +48,14 @@ public class ResponsePayloadOutputFormatterSelector : OutputFormatterSelector
                 return formatter;
             }
         }
-
-        return new SystemTextJsonOutputFormatter(
+#if NET5_0_OR_GREATER
+        return new Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter(
             context.HttpContext.RequestServices
                 .GetRequiredService<IOptions<MvcJsonOptions>>()
                 .Value.JsonSerializerOptions
         );
+#else
+        return default;
+#endif
     }
 }

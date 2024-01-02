@@ -20,7 +20,5 @@ namespace Dgmjr.AspNetCore.Swagger;
 
 public class DescribeSchemasViaAttributesFilter : ISchemaFilter
 {
-    public void Apply(OpenApiSchema model, SchemaFilterContext context)
-    {
-    }
+    public void Apply(OpenApiSchema model, SchemaFilterContext context) { }
 }

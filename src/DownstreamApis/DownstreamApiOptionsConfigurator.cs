@@ -1,4 +1,5 @@
 namespace Dgmjr.Web.DownstreamApis;
+
 using System.Net.Http;
 
 public class DownstreamApiOptionsConfigurator(IOptions<JsonOptions> jsonOptions)
@@ -9,10 +10,6 @@ public class DownstreamApiOptionsConfigurator(IOptions<JsonOptions> jsonOptions)
     public void Configure(DownstreamApiOptions options)
     {
         options.Serializer = requestObject =>
-            new StringContent(
-                Serialize(requestObject, _jso),
-                UTF8,
-                Application.Json.DisplayName
-            );
+            new StringContent(Serialize(requestObject, _jso), UTF8, Application.Json.DisplayName);
     }
 }
