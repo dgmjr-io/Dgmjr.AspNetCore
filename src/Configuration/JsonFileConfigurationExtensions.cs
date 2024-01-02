@@ -23,9 +23,10 @@ public static class JsonFileConfigurationExtensions
                     recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly
                 )
                 .ToArray(),
-            jsonFile => {
+            jsonFile =>
+            {
                 try { config = (config.AddJsonStream(jsonFile.MakeKeyPerJsonFileInputStream()) as ConfigurationManager)!; }
-                catch(JsonException ex) { throw new JsonParseException(jsonFile, $"Failed to add {jsonFile.FullName} to {nameof(ConfigurationManager)}", ex); }
+                catch (JsonException ex) { throw new JsonParseException(jsonFile, $"Failed to add {jsonFile.FullName} to {nameof(ConfigurationManager)}", ex); }
             }
         );
         return config;
@@ -36,7 +37,7 @@ public static class JsonFileConfigurationExtensions
         var json = $$$"""
         {
             "{{{Path.GetFileNameWithoutExtension(jsonFile.FullName)}}}":
-            {{{File.ReadAllText(jsonFile.FullName)}}}
+            { { { File.ReadAllText(jsonFile.FullName)} } }
         }
         """;
         return new MemoryStream(UTF8.GetBytes(json));
