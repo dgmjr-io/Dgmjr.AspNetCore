@@ -1,4 +1,5 @@
 ---
+
 title:
 lastmod: 2023-27-28T06:27:20.7550-04:00Z
 date: 2023-27-28T06:27:20.7551-04:00Z
@@ -13,15 +14,25 @@ keywords:
 - dgmjr
 - dgmjr-io
 type: readme
----
+------------
+
 # Dgmjr.AspNetCore.Hosting.Extensions Readme
+
 <!-- TODO: Write the contents of the Dgmjr.AspNetCore.Hosting.Extensions Readme file -->
+
 ## Package Description
+
 ## Getting Started
+
 ## Prerequisites
+
 ## Installation
+
 ## Usage
+
 ## Contributing
+
 ## Versioning
-Built from [commit  on branch  at ]
+
+Built from [commit  on branch  at]
 (/tree/)
