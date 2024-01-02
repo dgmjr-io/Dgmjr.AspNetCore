@@ -1,41 +1,22 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "build",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+  "tasks": [ {
+    "args": [ "build", "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary;ForceNoAlign" ],
+    "command": "dotnet",
+    "label": "build",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  }, {
+    "args": [ "publish", "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary;ForceNoAlign" ],
+    "command": "dotnet",
+    "label": "publish",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  }, {
+    "args": [ "watch", "run", "--project", "${workspaceFolder}/lib/AspNetCore.Hashids/samples/WebApi/WebApi.csproj" ],
+    "command": "dotnet",
+    "label": "watch",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  } ],
+  "version": "2.0.0"
 }
