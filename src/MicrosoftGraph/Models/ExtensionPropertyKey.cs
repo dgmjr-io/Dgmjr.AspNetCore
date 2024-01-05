@@ -44,16 +44,16 @@ public readonly partial record struct ExtensionProperty
 
     // public static implicit operator DgmjrExtensionProperty((string key, guid appId) key) => new (key.key, key.appId);
 
-// #if NET6_0_OR_GREATER
-//     public static Regx IRegexValueObject<ExtensionProperty>.Regex => Regex();
-// #else
-//     Regx IRegexValueObject<ExtensionProperty>.Regex() => Regex();
+    // #if NET6_0_OR_GREATER
+    //     public static Regx IRegexValueObject<ExtensionProperty>.Regex => Regex();
+    // #else
+    //     Regx IRegexValueObject<ExtensionProperty>.Regex() => Regex();
 
-//     bool IEquatable<ExtensionProperty>.Equals(ExtensionProperty other)
-//     {
-//         throw new NotImplementedException();
-//     }
-// #endif
+    //     bool IEquatable<ExtensionProperty>.Equals(ExtensionProperty other)
+    //     {
+    //         throw new NotImplementedException();
+    //     }
+    // #endif
 }
 
 public static class Helpers
