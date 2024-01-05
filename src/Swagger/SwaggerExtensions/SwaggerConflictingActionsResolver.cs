@@ -14,16 +14,15 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class SwaggerConflictingActionsResolver
+public static partial class SwaggerExtensions
 {
     public static WebApplicationBuilder AddSwaggerConflictingActionsResolver(
         this WebApplicationBuilder builder
     )
     {
-        builder.Services.ConfigureSwaggerGen(options =>
-        {
-            options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First());
-        });
+        builder.Services.ConfigureSwaggerGen(
+            options => options.ResolveConflictingActions(apiDescriptions => apiDescriptions.First())
+        );
         return builder;
     }
 }

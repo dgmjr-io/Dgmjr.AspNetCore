@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-/*
+﻿/*
  * AddSwaggerGenExtension.cs
  *
  *   Created: 2022-12-05-07:35:08
@@ -22,6 +21,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
+using Microsoft.Extensions.Configuration;
 
 using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
@@ -29,17 +29,10 @@ using Swashbuckle.AspNetCore.Swagger;
 using static System.String;
 using static ThisAssembly.Project;
 
-public static partial class AddSwaggerMetadataExtension
+public static partial class SwaggerExtensions
 {
-    public static WebApplicationBuilder AddSwaggerGen(this WebApplicationBuilder builder)
-    {
-        builder.Services.AddEndpointsApiExplorer();
-        builder.Services.AddSwaggerGen(options => options.CustomSchemaIds(type => type.ToString()));
-        return builder;
-    }
-
-    public static WebApplicationBuilder AddSwaggerMetadata(
-        this WebApplicationBuilder builder,
+    private static IHostApplicationBuilder AddSwaggerMetadata(
+        this IHostApplicationBuilder builder,
         Type tThisAssemblyProject,
         string version = "v1",
         OpenApiInfo? openApiInfo = default
@@ -62,8 +55,8 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static WebApplicationBuilder AddApiKeyToSwaggerSecurity(
-        this WebApplicationBuilder builder
+    private static IHostApplicationBuilder AddApiKeyToSwaggerSecurity(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(c =>
@@ -84,8 +77,8 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static WebApplicationBuilder DescribeBasicApiAuthentication(
-        this WebApplicationBuilder builder
+    private static IHostApplicationBuilder DescribeBasicApiAuthentication(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(c =>
@@ -121,8 +114,8 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static WebApplicationBuilder AddSwaggerHeaderOperationFilter(
-        this WebApplicationBuilder builder
+    private static IHostApplicationBuilder AddSwaggerHeaderOperationFilter(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(
@@ -136,8 +129,8 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static WebApplicationBuilder DescribeDataTypesToSwagger(
-        this WebApplicationBuilder builder
+    private static IHostApplicationBuilder DescribeDataTypesToSwagger(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.Describe<uri>();
@@ -149,7 +142,7 @@ public static partial class AddSwaggerMetadataExtension
         return builder;
     }
 
-    public static OpenApiInfo DefaultOpenApiInfo(Assembly thisAssembly)
+    private static OpenApiInfo DefaultOpenApiInfo(Assembly thisAssembly)
     {
         var thisAssemblyProject = TThisAssemblyStaticProxy.From(thisAssembly);
         var versionString = thisAssemblyProject.ApiVersion;

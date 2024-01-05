@@ -15,10 +15,10 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddExamplesExtension
+public static partial class SwaggerExtensions
 {
-    public static WebApplicationBuilder AddSwaggerExamples(
-        this WebApplicationBuilder builder,
+    internal static IHostApplicationBuilder AddSwaggerExamples(
+        this IHostApplicationBuilder builder,
         params Assembly[]? assemblies
     )
     {

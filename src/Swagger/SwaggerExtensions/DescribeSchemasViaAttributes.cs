@@ -14,10 +14,10 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddSwaggerSchemasViaAttributeExtension
+public static partial class SwaggerExtensions
 {
-    public static WebApplicationBuilder DescribeSchemasViaAttributes(
-        this WebApplicationBuilder builder
+    public static IHostApplicationBuilder DescribeSchemasViaAttributes(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.DescribeSchemasViaAttributes();

@@ -13,11 +13,12 @@
 namespace Microsoft.Extensions.DependencyInjection
 {
     using Dgmjr.AspNetCore.Swagger;
+
     using Microsoft.AspNetCore.Builder;
 
-    public static class DescribeTypesForAllOutputFormattersExtension
+    public static partial class SwaggerExtensions
     {
-        public static IServiceCollection AddDescribeTypesForAllOutputFormatters(
+        internal static IServiceCollection DescribeTypesForAllOutputFormatters(
             this IServiceCollection services
         )
         {
@@ -27,8 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        public static WebApplicationBuilder AddDescribeTypesForAllOutputFormatters(
-            this WebApplicationBuilder builder
+        internal static IHostApplicationBuilder DescribeTypesForAllOutputFormatters(
+            this IHostApplicationBuilder builder
         )
         {
             builder.Services.ConfigureSwaggerGen(
@@ -43,63 +44,14 @@ namespace Dgmjr.AspNetCore.Swagger
 {
     using System.Linq;
     using System.Text;
+
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc.ApiExplorer;
     using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.OpenApi.Any;
     using Microsoft.OpenApi.Models;
+
     using Swashbuckle.AspNetCore.SwaggerGen;
-
-    public class DescribeTypesForAllOutputFormattersFilter : IOperationFilter
-    {
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
-        {
-            var detailedApiDescription = new DetailedApiDescription(context.ApiDescription);
-
-            var responseTypes = detailedApiDescription.DetailedApiResponseTypes;
-
-            foreach (var responseType in responseTypes)
-            {
-                var openApiResponse =
-                    operation.Responses
-                        .FirstOrDefault(x => x.Key == responseType.StatusCode.ToString())
-                        .Value ?? new OpenApiResponse();
-
-                foreach (var responseFormat in responseType.DetailedApiResponseFormats)
-                {
-                    var mediaType = responseFormat.MediaType;
-                    var formatter = responseFormat.Formatter;
-
-                    var openApiMediaType =
-                        openApiResponse.Content.FirstOrDefault(x => x.Key == mediaType).Value
-                        ?? new OpenApiMediaType();
-                    var ms = new MemoryStream();
-                    var writer = new StreamWriter(ms);
-                    var @object = Activator.CreateInstance(responseType.Type);
-
-                    var httpContext = new DefaultHttpContext();
-                    httpContext.Response.Body = ms;
-
-                    openApiMediaType.Schema = context.SchemaGenerator.GenerateSchema(
-                        responseType.Type,
-                        context.SchemaRepository
-                    );
-
-                    formatter.WriteAsync(
-                        new OutputFormatterWriteContext(
-                            httpContext,
-                            (stream, encoding) => new StreamWriter(stream, encoding),
-                            responseType.Type,
-                            @object
-                        )
-                    );
-
-                    openApiMediaType.Example = new OpenApiString(UTF8.GetString(ms.ToArray()));
-                    openApiResponse.Content[mediaType] = openApiMediaType;
-                }
-            }
-        }
-    }
 
     public class DetailedApiDescription : ApiDescription
     {

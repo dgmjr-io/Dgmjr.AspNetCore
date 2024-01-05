@@ -17,13 +17,13 @@ using Unchase.Swashbuckle.AspNetCore.Extensions.Filters;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static class AddXmlCommentsToSwaggerExtensions
+public static partial class SwaggerExtensions
 {
     private static bool IsParsable(string xmlDoc)
     {
         try
         {
-            var xDoc = new System.Xml.XPath.XPathDocument(xmlDoc);
+            _ = new XPathDoc.XPathDocument(xmlDoc);
             return true;
         }
         catch (Exception ex)
@@ -33,7 +33,7 @@ public static class AddXmlCommentsToSwaggerExtensions
         return false;
     }
 
-    public static WebApplicationBuilder AddXmlCommentsToSwagger(this WebApplicationBuilder builder)
+    internal static IHostApplicationBuilder AddXmlCommentsToSwagger(this IHostApplicationBuilder builder)
     {
         var binRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var xmlDocs = Directory

@@ -17,6 +17,9 @@
     <SlnGenSolutionFolder>extensions</SlnGenSolutionFolder>
   </PropertyGroup>
   <ItemGroup>
+    <FeameworkReferene Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
@@ -34,6 +37,7 @@
     <PackageReference Include="System.Usings" />
     <PackageReference Include="System.Text.Usings" />
     <PackageReference Include="System.Xml.XPath" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
     <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
   </ItemGroup>
   <ItemGroup>
@@ -54,5 +58,9 @@
     <EmbeddedResource Include="swaggerui/indexmod.html" LogicalName="%(Filename)%(Extension)" />
     <EmbeddedResource Include="swaggerui/index.html" LogicalName="%(Filename)%(Extension)" />
     <EmbeddedResource Include="swaggerui/swaggerui.*" LogicalName="%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 </Project>

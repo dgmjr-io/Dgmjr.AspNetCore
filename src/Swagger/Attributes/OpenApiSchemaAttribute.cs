@@ -13,6 +13,7 @@
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Interfaces;
 using Microsoft.OpenApi.Models;
+
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.OpenApi.Attributes;
@@ -20,8 +21,6 @@ namespace Microsoft.OpenApi.Attributes;
 [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
 public class OpenApiSchemaAttribute : Attribute, IOpenApiExtensible
 {
-    public OpenApiSchemaAttribute() { }
-
     protected virtual OpenApiSchema ToSchema()
     {
         var schema = new OpenApiSchema
@@ -132,7 +131,7 @@ public class OpenApiSchemaAttribute : Attribute, IOpenApiExtensible
     ///     MUST conform to the defined type for the Schema Object defined at the same level.
     ///     For example, if type is string, then default can be "foo" but cannot be 1.
     /// </summary>
-    public IOpenApiAny Default { get; set; }
+    public OpenApiAnyType Default { get; set; }
 
     /// <summary>
     ///     Relevant only for Schema "properties" definitions. Declares the property as "read
@@ -252,7 +251,7 @@ public class OpenApiSchemaAttribute : Attribute, IOpenApiExtensible
     ///     represent examples that cannot be naturally represented in JSON or YAML, a string
     ///     value can be used to contain the example with escaping where necessary.
     /// </summary>
-    public IOpenApiAny Example { get; set; }
+    public OpenApiAnyType Example { get; set; }
 
     /// <summary>
     ///     Follow JSON Schema definition: https://tools.ietf.org/html/draft-fge-json-schema-validation-00
@@ -291,111 +290,4 @@ public class OpenApiSchemaAttribute : Attribute, IOpenApiExtensible
     ///     Reference object.
     /// </summary>
     public OpenApiReference Reference { get; set; }
-}
-
-public class DescribeSchemasViaAttributesFilter : ISchemaFilter
-{
-    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
-    {
-        var member = context.MemberInfo as ICustomAttributeProvider ?? context.ParameterInfo;
-        var openApiSchemaAttribute = member
-            .GetCustomAttributes(true)
-            .OfType<OpenApiSchemaAttribute>()
-            .FirstOrDefault();
-        if (openApiSchemaAttribute != null)
-        {
-            if (openApiSchemaAttribute.Type != null)
-            {
-                schema.Type = openApiSchemaAttribute.Type;
-            }
-
-            if (openApiSchemaAttribute.Format != null)
-            {
-                schema.Format = openApiSchemaAttribute.Format;
-            }
-
-            if (openApiSchemaAttribute.Description != null)
-            {
-                schema.Description = openApiSchemaAttribute.Description;
-            }
-
-            if (openApiSchemaAttribute.Example != null)
-            {
-                schema.Example = openApiSchemaAttribute.Example;
-            }
-
-            if (openApiSchemaAttribute.Default != null)
-            {
-                schema.Default = openApiSchemaAttribute.Default;
-            }
-
-            if (openApiSchemaAttribute.ReadOnly)
-            {
-                schema.ReadOnly = openApiSchemaAttribute.ReadOnly;
-            }
-
-            if (openApiSchemaAttribute.WriteOnly)
-            {
-                schema.WriteOnly = openApiSchemaAttribute.WriteOnly;
-            }
-
-            if (openApiSchemaAttribute.Nullable)
-            {
-                schema.Nullable = openApiSchemaAttribute.Nullable;
-            }
-
-            if (openApiSchemaAttribute.Discriminator != null)
-            {
-                schema.Discriminator = openApiSchemaAttribute.Discriminator;
-            }
-
-            if (openApiSchemaAttribute.ExternalDocs != null)
-            {
-                schema.ExternalDocs = openApiSchemaAttribute.ExternalDocs;
-            }
-
-            if (openApiSchemaAttribute.Xml != null)
-            {
-                schema.Xml = openApiSchemaAttribute.Xml;
-            }
-
-            if (openApiSchemaAttribute.Extensions != null)
-            {
-                foreach (var extension in openApiSchemaAttribute.Extensions)
-                {
-                    schema.Extensions.Add(extension.Key, extension.Value);
-                }
-            }
-
-            if (openApiSchemaAttribute.Enum != null)
-            {
-                schema.Enum = openApiSchemaAttribute.Enum;
-            }
-
-            if (openApiSchemaAttribute.MinLength != null)
-            {
-                schema.MinLength = openApiSchemaAttribute.MinLength;
-            }
-
-            if (openApiSchemaAttribute.MaxLength != null)
-            {
-                schema.MaxLength = openApiSchemaAttribute.MaxLength;
-            }
-
-            if (openApiSchemaAttribute.Pattern != null)
-            {
-                schema.Pattern = openApiSchemaAttribute.Pattern;
-            }
-
-            if (openApiSchemaAttribute.MinItems != null)
-            {
-                schema.MinItems = openApiSchemaAttribute.MinItems;
-            }
-
-            if (openApiSchemaAttribute.MaxItems != null)
-            {
-                schema.MaxItems = openApiSchemaAttribute.MaxItems;
-            }
-        }
-    }
 }
