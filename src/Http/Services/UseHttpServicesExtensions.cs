@@ -11,7 +11,7 @@ public static partial class HttpServicesExtensions
     {
         var options = app.ApplicationServices.GetRequiredService<IOptions<HttpServicesOptions>>().Value;
 
-        if(options.UseRequestDecompression)
+        if (options.UseRequestDecompression)
         {
             app.UseRequestDecompression();
         }
@@ -21,37 +21,37 @@ public static partial class HttpServicesExtensions
             app.UseResponseCompression();
         }
 
-        if(options.UseFileServer)
+        if (options.UseFileServer)
         {
             app.UseFileServer(options.FileServer);
 
-            if(options.FileServer.EnableDefaultFiles)
+            if (options.FileServer.EnableDefaultFiles)
             {
                 app.UseDefaultFiles(options.FileServer.DefaultFilesOptions);
             }
 
-            if(options.FileServer.EnableDirectoryBrowsing)
+            if (options.FileServer.EnableDirectoryBrowsing)
             {
                 app.UseDirectoryBrowser(options.FileServer.DirectoryBrowserOptions);
             }
 
-            if(options.FileServer.StaticFileOptions != null)
+            if (options.FileServer.StaticFileOptions != null)
             {
                 app.UseStaticFiles(options.FileServer.StaticFileOptions);
             }
         }
 
-        if(options.UseResponseCaching)
+        if (options.UseResponseCaching)
         {
             app.UseResponseCaching();
         }
 
-        if(options.UseForwardedHeaders)
+        if (options.UseForwardedHeaders)
         {
             app.UseForwardedHeaders(options.ForwardedHeaders);
         }
 
-        if(options.UseCors)
+        if (options.UseCors)
         {
             _ = app.UseCors(corsOptions => corsOptions
                 .WithExposedHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).ExposedHeaders.ToArray())
@@ -62,22 +62,22 @@ public static partial class HttpServicesExtensions
             );
         }
 
-        if(options.UseCookiePolicy)
+        if (options.UseCookiePolicy)
         {
             app.UseCookiePolicy(options.CookiePolicy);
         }
 
-        if(options.UseSession)
+        if (options.UseSession)
         {
             app.UseSession(options.Session);
         }
 
-        if(options.UseHsts)
+        if (options.UseHsts)
         {
             app.UseHsts();
         }
 
-        if(options.UseHttpsRedirection)
+        if (options.UseHttpsRedirection)
         {
             app.UseHttpsRedirection();
         }

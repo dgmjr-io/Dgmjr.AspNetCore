@@ -117,7 +117,7 @@ public static partial class HttpServicesExtensions
                 );
             }
 
-            if(options.IIS != null)
+            if (options.IIS != null)
             {
                 builder.Services.Configure<IISServerOptions>(
                     options =>
@@ -125,7 +125,7 @@ public static partial class HttpServicesExtensions
                 );
             }
 
-            if(options.Kestrel != null)
+            if (options.Kestrel != null)
             {
                 builder.Services.Configure<KestrelServerOptions>(
                     options =>
