@@ -14,12 +14,17 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
     <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+    <Description>This package contains a set of extensions and things for ASP.NET Core MVC</Description>
   </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
   <ItemGroup>
     <!-- <FrameworkReference Include="Microsoft.AspNetCore.App" /> -->
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
-    <PackageReference Include="System.Text.Json" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.Net.Http.Json" />

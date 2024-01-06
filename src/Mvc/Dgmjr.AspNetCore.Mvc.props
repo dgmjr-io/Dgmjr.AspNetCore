@@ -13,5 +13,6 @@
 <Project>
     <ItemGroup>
       <Using Include="Dgmjr.AspNetCore.Mvc" />
+      <Using Include="Microsoft.Extensions.Hosting" />
     </ItemGroup>
 </Project>

@@ -15,20 +15,21 @@ using Swashbuckle.AspNetCore.Swagger;
 
 using static ThisAssembly.Project;
 using Dgmjr.AspNetCore.Swagger;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 public static partial class SwaggerExtensions
 {
     const string Swagger = nameof(Swagger);
 
-    public static IHostApplicationBuilder AddSwaggerGen(this IHostApplicationBuilder builder)
+    const string SwaggerUI = nameof(SwaggerUI);
+
+    public static IHostApplicationBuilder AddSwaggerGen(this IHostApplicationBuilder builder, string configurationSectionKey = Swagger, Action<SwaggerGenOptions>? configure = default)
     {
         builder.Services.AddEndpointsApiExplorer();
-        var options = builder.Configuration
-            .GetRequiredSection(nameof(OpenApiInfo))
-            .Get<OpenApiInfo>()!;
+
         builder.Services.AddSwaggerGen(c =>
         {
-            builder.Configuration.GetSection(Swagger).Bind(c);
+            builder.Configuration.Bind(configurationSectionKey, c);
             c.CustomSchemaIds(type => $"{type.Namespace}.{type.GetDisplayName()}");
             c.AddAuthorizeSummary();
             c.DocumentFilter<PathLowercaseDocumentFilter>();
@@ -38,6 +39,26 @@ public static partial class SwaggerExtensions
         builder.AddSwaggerHeaderOperationFilter();
         builder.DescribeSchemasViaAttributes();
         builder.DescribeTypesForAllOutputFormatters();
+        builder.AddSwaggerConflictingActionsResolver();
+        builder.DescribeFileUploads();
+        builder.DescribeEnumsAsStrings();
+
+        builder.Services.ConfigureSwaggerGen(c => configure?.Invoke(c));
+
         return builder;
+    }
+
+    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, string configurationSectionKey = SwaggerUI)
+    {
+        app.InjectUICustomizations();
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            var config = app.ApplicationServices
+                .CreateScope()
+                .ServiceProvider.GetRequiredService<IConfiguration>();
+            config.Bind(configurationSectionKey, c);
+        });
+        return app;
     }
 }

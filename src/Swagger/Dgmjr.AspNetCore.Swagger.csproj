@@ -53,11 +53,7 @@
     <PackageReference Include="Dgmjr.Payloads" Properties="PackageVersionOverride=$(PackageVersion)" />
   </ItemGroup> -->
   <ItemGroup>
-    <EmbeddedResource Include="swaggerui/themes/*.css" LogicalName="%(Filename)%(Extension)" />
-    <EmbeddedResource Include="swaggerui/swagger-ui.css" LogicalName="%(Filename)%(Extension)" />
-    <EmbeddedResource Include="swaggerui/indexmod.html" LogicalName="%(Filename)%(Extension)" />
-    <EmbeddedResource Include="swaggerui/index.html" LogicalName="%(Filename)%(Extension)" />
-    <EmbeddedResource Include="swaggerui/swaggerui.*" LogicalName="%(Filename)%(Extension)" />
+    <!-- <EmbeddedResource Include="swaggerui/themes/**/*.*" LogicalName="Dgmjr.AspNetCore.Swagger.%(Filename)%(Extension)" /> -->
   </ItemGroup>
 
   <ItemGroup>

@@ -16,8 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 public static partial class SwaggerExtensions
 {
-    public static WebApplicationBuilder AddSwaggerConflictingActionsResolver(
-        this WebApplicationBuilder builder
+    public static IHostApplicationBuilder AddSwaggerConflictingActionsResolver(
+        this IHostApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(

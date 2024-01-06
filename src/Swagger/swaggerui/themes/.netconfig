@@ -1,35 +1,80 @@
-[file "theme-feeling-blue.css"]
+[file "feeling-blue.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-feeling-blue.css
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = 235a210a6c4f34e370e80b1f7820bba2503b2de537bd466b14927535b2066b3f
 	weak
-[file "theme-flattop.css"]
+[file "flattop.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-flattop.css
 	weak
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = b17d1d78cc6bd70d10e3fbe555fe33aff09362680c32e52e0aad247ed6017020
-[file "theme-material.css"]
+[file "material.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-material.css
 	weak
 	sha = 5cfee97c2f0a382c58bab0c6cd496f079de84497
 	etag = 18292570408d487bbed4ff56c4df567e6a912b8372b1d7cf8edf3bf72cc47fd6
-[file "theme-monokai.css"]
+[file "monokai.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-monokai.css
 	weak
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = 3b9ce591a7dee130d04a5492cb8e161f27010cf73e50ecfa4ef9a2351cc0c0b7
-[file "theme-muted.css"]
+[file "muted.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-muted.css
 	weak
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = ccb0302cfedb20e2ad09b7f0e18fc03ac5df707e4a4ced0a5fbaecf0ede7db18
-[file "theme-newspaper.css"]
+[file "newspaper.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-newspaper.css
 	weak
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = 89ef1da572e1a4dce4f40e4d11b32b444589c3e08393a2be508ba872f7b59b4a
-[file "theme-outline.css"]
+[file "outline.css"]
 	url = https://github.com/ostranme/swagger-ui-themes/blob/develop/themes/3.x/theme-outline.css
 	weak
 	sha = 1c9c97f3fda7b5a6556537e814d2834d86a95627
 	etag = 8391c9e7af72b609809adc2b0a63b84874cb0f24a0e19cdd515cde99b89ded97
+[file "classic.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/classic.css
+	sha = de0c9e3ea1b2ffc9b926e72ed684cd42d79facee
+	etag = 938f66ede415ccb10764da47cd5f3cfc076c07b8791c708cfa8ec54982197c1f
+	weak
+[file "dark.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/dark.css
+	sha = db9548b96e760ca45d03cc5be3b3c8a542f937f9
+	etag = da1d5f8f690c6a5090abb85eb09a14090e6eec0946d408672c24c4be0c9c3edc
+	weak
+[file "feeling-blue.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/feeling-blue.css
+	sha = 1dbbfc8a8a35395c046f316c9adef157c439fbf0
+	etag = 235a210a6c4f34e370e80b1f7820bba2503b2de537bd466b14927535b2066b3f
+	weak
+[file "flattop.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/flattop.css
+	sha = debbd9d389927dde1aa58609e0247d7d8bd939e0
+	etag = b17d1d78cc6bd70d10e3fbe555fe33aff09362680c32e52e0aad247ed6017020
+	weak
+[file "material.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/material.css
+	sha = 7e6acb1311fb0fa2602c43e6731d994ce4716b10
+	etag = 18292570408d487bbed4ff56c4df567e6a912b8372b1d7cf8edf3bf72cc47fd6
+	weak
+[file "monokai.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/monokai.css
+	sha = f00e1c4c8f5317e059a08b1ed66deaa8f43f2392
+	etag = 3b9ce591a7dee130d04a5492cb8e161f27010cf73e50ecfa4ef9a2351cc0c0b7
+	weak
+[file "muted.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/muted.css
+	sha = de40212fa9fac088e983c39687f5325085d56d2e
+	etag = ccb0302cfedb20e2ad09b7f0e18fc03ac5df707e4a4ced0a5fbaecf0ede7db18
+	weak
+[file "newspaper.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/newspaper.css
+	sha = 0cd7f1dd8f27d9402427540350738ba975f59c2e
+	etag = 89ef1da572e1a4dce4f40e4d11b32b444589c3e08393a2be508ba872f7b59b4a
+	weak
+[file "outline.css"]
+	url = https://github.com/ilyamixaltik/swagger-themes/blob/main/themes/v3/outline.css
+	sha = 3d48dbb118f712e2214ba61ba84ae9ab8b3ae645
+	etag = 8391c9e7af72b609809adc2b0a63b84874cb0f24a0e19cdd515cde99b89ded97
+	weak
