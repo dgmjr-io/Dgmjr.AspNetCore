@@ -83,7 +83,7 @@ public static partial class JsonFileConfigurationExtensions
         json = $$$"""
         {
             "{{{Path.GetFileNameWithoutExtension(jsonFile.FullName)}}}":
-            {{{json}}}
+            { { { json} } }
         }
         """;
         return new MemoryStream(json.ToUTF8Bytes());
