@@ -10,4 +10,5 @@ public class MvcOptions : Microsoft.AspNetCore.Mvc.MvcOptions
     public bool AddXmlSerializerFormatters { get; set; } = false;
     public bool AddXmlDataContractSerializerFormatters { get; set; } = false;
     public bool AddMvcConventions { get; set; } = false;
+    public bool AddControllers { get; set; } = false;
 }

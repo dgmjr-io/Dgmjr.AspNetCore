@@ -37,5 +37,8 @@
     <Using Include="Swashbuckle.AspNetCore.Annotations" />
     <Using Include="Dgmjr.Mime" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
   <Import Project="../Http/Mime/Dgmjr.Mime.props" />
 </Project>

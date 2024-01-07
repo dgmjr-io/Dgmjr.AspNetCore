@@ -2,9 +2,11 @@ namespace Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Mvc;
 #if NET5_0_OR_GREATER
 using Microsoft.AspNetCore.Mvc.RazorPages;
 #endif
+using MvcOptions = Dgmjr.AspNetCore.Mvc.MvcOptions;
 
 public static class IHostApplicationBuilderMvcExtensions
 {
@@ -15,7 +17,9 @@ public static class IHostApplicationBuilderMvcExtensions
     {
         var mvcBuilder = builder.Services.AddMvcCore(options => builder.Configuration.Bind(configurationSectionKey, options));
 
-        var mvcOptions = builder.Configuration.GetSection(configurationSectionKey).Get<MvcOptions>();
+        var mvcOptionsSection = builder.Configuration.GetSection(configurationSectionKey);
+        builder.Services.Configure<MvcOptions>(mvcOptionsSection);
+        var mvcOptions = mvcOptionsSection.Get<MvcOptions>();
 
         if(mvcOptions is not null)
         {
@@ -34,7 +38,12 @@ public static class IHostApplicationBuilderMvcExtensions
             {
                 mvcBuilder.AddRazorPages();
             }
+            if(mvcOptions.AddControllers)
+            {
+                builder.Services.AddControllers();
+            }
 #endif
+
             if(mvcOptions.AddControllersAsServices)
             {
                 mvcBuilder.AddControllersAsServices();

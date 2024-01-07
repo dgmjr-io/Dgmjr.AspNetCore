@@ -7,15 +7,15 @@ using System.IO;
 
 public static partial class JsonFileConfigurationExtensions
 {
-    public static ConfigurationManager AddKeyPerJsonFile(
-        this ConfigurationManager config,
+    public static IConfigurationManager AddKeyPerJsonFile(
+        this IConfigurationManager config,
         string path,
         bool recursive = true,
         ILogger? logger = null
     ) => config.AddKeyPerJsonFile(new DirectoryInfo(path), recursive, logger);
 
-    public static ConfigurationManager AddKeyPerJsonFile(
-        this ConfigurationManager config,
+    public static IConfigurationManager AddKeyPerJsonFile(
+        this IConfigurationManager config,
         DirectoryInfo directory,
         bool recursive = true,
         ILogger? logger = null

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
-using Dgmjr.AspNetCore.Http.Services;
+using Dgmjr.AspNetCore.Http;
 using System.Runtime.Serialization;
 
 namespace Microsoft.Extensions.DependencyInjection;
@@ -53,13 +53,14 @@ public static partial class HttpServicesExtensions
 
         if(options.UseCors)
         {
-            _ = app.UseCors(corsOptions => corsOptions
-                .WithExposedHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).ExposedHeaders.ToArray())
-                .WithHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Headers.ToArray())
-                .WithMethods(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Methods.ToArray())
-                .WithOrigins(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Origins.ToArray())
-                .SetPreflightMaxAge(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).PreflightMaxAge ?? TimeSpan.Zero)
-            );
+            app.UseCors();
+            // _ = app.UseCors(corsOptions => corsOptions
+            //     .WithExposedHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).ExposedHeaders.ToArray())
+            //     .WithHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Headers.ToArray())
+            //     .WithMethods(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Methods.ToArray())
+            //     .WithOrigins(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Origins.ToArray())
+            //     .SetPreflightMaxAge(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).PreflightMaxAge ?? TimeSpan.Zero)
+            // );
         }
 
         if(options.UseCookiePolicy)

@@ -1,13 +1,13 @@
 ﻿namespace Microsoft.Extensions.DependencyInjection;
 
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
-using Dgmjr.AspNetCore.Http.Services;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 
-// using Microsoft.AspNetCore.ResponseCompression;
+using Dgmjr.AspNetCore.Http;
+
 
 public static partial class HttpServicesExtensions
 {
@@ -100,6 +100,8 @@ public static partial class HttpServicesExtensions
                         builder.Configuration.Bind($"{configurationSectionKey}:{Cookies}", policy)
                 );
             }
+
+            builder.Services.AddCors();
 
             if (options.UseCors)
             {
