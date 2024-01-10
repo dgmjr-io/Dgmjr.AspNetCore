@@ -25,5 +25,6 @@ public sealed class Produces418ErrorAttribute : SwaggerResponseAttribute
             "I'm a fucking teapot, short and stout.  Here's my handle; here's my spout.  If you've reached this error code, you must shout, \"I'm a fuckin' idiot so kick me out!\"",
             typeof(ImATeapotProblemDetailsExample),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

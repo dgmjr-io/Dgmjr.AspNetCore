@@ -25,5 +25,6 @@ public sealed class Produces500ErrorAttribute : SwaggerResponseAttribute
             "Shit hit the fucking fan!",
             typeof(InternalServerErrorProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

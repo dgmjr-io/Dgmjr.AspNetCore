@@ -40,75 +40,75 @@ public class PassphraseGenerator(IOptions<PassphraseGeneratorOptions> options)
     : IPassphraseGenerator
 {
     private static readonly RandomNumberGenerator Random = RandomNumberGenerator.Create();
-    private readonly PassphraseGeneratorOptions _options =
-        options?.Value ?? throw new ArgumentNullException(nameof(options));
-    private string[] WordList => _options.WordList;
-    private char[] SpecialCharacters => _options.SpecialCharacters;
-    private int WordCount => _options.WordCount;
-    private int EmojiCount => _options.EmojiCount;
-    private int SpecialCharacterCount => _options.SpecialCharacterCount;
-    private int LowercaseCharacterCount => _options.LowercaseCharacterCount;
-    private int UppercaseCharacterCount => _options.UppercaseCharacterCount;
-    private int CharacterCount => _options.CharacterCount;
-    private char[] Emoji => _options.Emoji;
+private readonly PassphraseGeneratorOptions _options =
+    options?.Value ?? throw new ArgumentNullException(nameof(options));
+private string[] WordList => _options.WordList;
+private char[] SpecialCharacters => _options.SpecialCharacters;
+private int WordCount => _options.WordCount;
+private int EmojiCount => _options.EmojiCount;
+private int SpecialCharacterCount => _options.SpecialCharacterCount;
+private int LowercaseCharacterCount => _options.LowercaseCharacterCount;
+private int UppercaseCharacterCount => _options.UppercaseCharacterCount;
+private int CharacterCount => _options.CharacterCount;
+private char[] Emoji => _options.Emoji;
 
-    public string Generate()
+public string Generate()
+{
+    var wordsToGo = WordCount;
+    var emojiToGo = EmojiCount;
+    var specialCharactersToGo = SpecialCharacterCount;
+    var lowercaseCharactersToGo = LowercaseCharacterCount;
+    var uppercaseCharactersToGo = UppercaseCharacterCount;
+    var charactersToGo = CharacterCount;
+
+    var passphrase = new StringBuilder();
+
+    while (
+        wordsToGo > 0
+        || emojiToGo > 0
+        || specialCharactersToGo > 0
+        || lowercaseCharactersToGo > 0
+        || uppercaseCharactersToGo > 0
+        || charactersToGo > 0
+    )
     {
-        var wordsToGo = WordCount;
-        var emojiToGo = EmojiCount;
-        var specialCharactersToGo = SpecialCharacterCount;
-        var lowercaseCharactersToGo = LowercaseCharacterCount;
-        var uppercaseCharactersToGo = UppercaseCharacterCount;
-        var charactersToGo = CharacterCount;
+        var word = GetRandomWord();
+        passphrase.Append(word);
+        wordsToGo--;
+        charactersToGo -= word.Length;
+        lowercaseCharactersToGo -= word.Count(char.IsLower);
+        uppercaseCharactersToGo -= word.Count(char.IsUpper);
 
-        var passphrase = new StringBuilder();
-
-        while (
-            wordsToGo > 0
-            || emojiToGo > 0
-            || specialCharactersToGo > 0
-            || lowercaseCharactersToGo > 0
-            || uppercaseCharactersToGo > 0
-            || charactersToGo > 0
-        )
+        if (emojiToGo > 0)
         {
-            var word = GetRandomWord();
-            passphrase.Append(word);
-            wordsToGo--;
-            charactersToGo -= word.Length;
-            lowercaseCharactersToGo -= word.Count(char.IsLower);
-            uppercaseCharactersToGo -= word.Count(char.IsUpper);
-
-            if (emojiToGo > 0)
-            {
-                var emoji = PickRandomElement(Emoji);
-                passphrase.Append(emoji);
-                emojiToGo--;
-                charactersToGo--;
-            }
-
-            if (lowercaseCharactersToGo > 0)
-            {
-                var emoji = PickRandomElement(Emoji);
-                passphrase.Append(emoji);
-                emojiToGo--;
-                charactersToGo--;
-            }
-
-            if (specialCharactersToGo > 0)
-            {
-                var specialCharacter = PickRandomElement(SpecialCharacters);
-                passphrase.Append(specialCharacter);
-                specialCharactersToGo--;
-                charactersToGo--;
-            }
+            var emoji = PickRandomElement(Emoji);
+            passphrase.Append(emoji);
+            emojiToGo--;
+            charactersToGo--;
         }
 
-        return passphrase.ToString();
+        if (lowercaseCharactersToGo > 0)
+        {
+            var emoji = PickRandomElement(Emoji);
+            passphrase.Append(emoji);
+            emojiToGo--;
+            charactersToGo--;
+        }
+
+        if (specialCharactersToGo > 0)
+        {
+            var specialCharacter = PickRandomElement(SpecialCharacters);
+            passphrase.Append(specialCharacter);
+            specialCharactersToGo--;
+            charactersToGo--;
+        }
     }
 
-    private string GetRandomWord() => PickRandomElement(WordList);
+    return passphrase.ToString();
+}
 
-    private static T PickRandomElement<T>(T[] elements) =>
-        elements.Skip(Random.NextInt32(elements.Length - 1)).First();
+private string GetRandomWord() => PickRandomElement(WordList);
+
+private static T PickRandomElement<T>(T[] elements) =>
+    elements.Skip(Random.NextInt32(elements.Length - 1)).First();
 }
