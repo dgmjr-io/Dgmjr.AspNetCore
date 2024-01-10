@@ -11,7 +11,7 @@ public static partial class HttpServicesExtensions
     {
         var options = app.ApplicationServices.GetRequiredService<IOptions<HttpServicesOptions>>().Value;
 
-        if(options.UseRequestDecompression)
+        if (options.UseRequestDecompression)
         {
             app.UseRequestDecompression();
         }
@@ -21,37 +21,37 @@ public static partial class HttpServicesExtensions
             app.UseResponseCompression();
         }
 
-        if(options.UseFileServer)
+        if (options.UseFileServer)
         {
             app.UseFileServer(options.FileServer);
 
-            if(options.FileServer.EnableDefaultFiles)
+            if (options.FileServer.EnableDefaultFiles)
             {
                 app.UseDefaultFiles(options.FileServer.DefaultFilesOptions);
             }
 
-            if(options.FileServer.EnableDirectoryBrowsing)
+            if (options.FileServer.EnableDirectoryBrowsing)
             {
                 app.UseDirectoryBrowser(options.FileServer.DirectoryBrowserOptions);
             }
 
-            if(options.FileServer.StaticFileOptions != null || options.UseStaticFiles)
+            if (options.FileServer.StaticFileOptions != null || options.UseStaticFiles)
             {
                 app.UseStaticFiles(options.FileServer.StaticFileOptions);
             }
         }
 
-        if(options.UseResponseCaching)
+        if (options.UseResponseCaching)
         {
             app.UseResponseCaching();
         }
 
-        if(options.UseForwardedHeaders)
+        if (options.UseForwardedHeaders)
         {
             app.UseForwardedHeaders(options.ForwardedHeaders);
         }
 
-        if(options.UseCors)
+        if (options.UseCors)
         {
             app.UseCors();
             // _ = app.UseCors(corsOptions => corsOptions
@@ -63,32 +63,32 @@ public static partial class HttpServicesExtensions
             // );
         }
 
-        if(options.UseCookiePolicy)
+        if (options.UseCookiePolicy)
         {
             app.UseCookiePolicy(options.CookiePolicy);
         }
 
-        if(options.UseSession)
+        if (options.UseSession)
         {
             app.UseSession(options.Session);
         }
 
-        if(options.UseHsts)
+        if (options.UseHsts)
         {
             app.UseHsts();
         }
 
-        if(options.UseHttpsRedirection)
+        if (options.UseHttpsRedirection)
         {
             app.UseHttpsRedirection();
         }
 
-        if(options.UseExceptionHandler)
+        if (options.UseExceptionHandler)
         {
             app.UseExceptionHandler(options.ExceptionHandling);
         }
 
-        if(options.UseWelcomePage)
+        if (options.UseWelcomePage)
         {
             app.UseWelcomePage(options.WelcomePage);
         }
