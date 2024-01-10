@@ -39,40 +39,40 @@ public class OpenApiAnyType(object value) : IOpenApiAny
         _ => AnyType.Object
     };
 
-    private readonly IOpenApiAny? _value = value switch
-    {
-        null => new OpenApiNull(),
-        bool => new OpenApiBoolean((bool)value),
-        byte
-        or sbyte => new OpenApiByte((byte)value),
-        byte[] => new OpenApiBinary((byte[])value),
-        short
-        or ushort
-        or int
-        or uint
-        or long
-        or ulong => new OpenApiInteger((short)value),
-        float => new OpenApiFloat((float)value),
-        double
-        or decimal => new OpenApiDouble((double)value),
-        char
-        or string => new OpenApiString((string)value),
-        datetime => new OpenApiDateTime((DateTime)value),
-        date => new OpenApiDate(((date)value).ToDateTime(new time(0, 0, 0, 0))),
-        time => new OpenApiString(((time)value).ToTimeSpan().ToString()),
-        DateTimeOffset => new OpenApiDateTime(DateTime.FromFileTimeUtc(((DateTimeOffset)value).ToUniversalTime().ToFileTime())),
-        Uri => new OpenApiString(((Uri)value).ToString()),
-        duration => new OpenApiString(((TimeSpan)value).ToString()),
-        guid => new OpenApiString(((Guid)value).ToString()),
-        Version => new OpenApiString(((Version)value).ToString()),
-        IEnumerable => (value as IEnumerable).ToOpenApiArray(),
-        _ => value.ToOpenApiObject()
-    };
+private readonly IOpenApiAny? _value = value switch
+{
+    null => new OpenApiNull(),
+    bool => new OpenApiBoolean((bool)value),
+    byte
+    or sbyte => new OpenApiByte((byte)value),
+    byte[] => new OpenApiBinary((byte[])value),
+    short
+    or ushort
+    or int
+    or uint
+    or long
+    or ulong => new OpenApiInteger((short)value),
+    float => new OpenApiFloat((float)value),
+    double
+    or decimal => new OpenApiDouble((double)value),
+    char
+    or string => new OpenApiString((string)value),
+    datetime => new OpenApiDateTime((DateTime)value),
+    date => new OpenApiDate(((date)value).ToDateTime(new time(0, 0, 0, 0))),
+    time => new OpenApiString(((time)value).ToTimeSpan().ToString()),
+    DateTimeOffset => new OpenApiDateTime(DateTime.FromFileTimeUtc(((DateTimeOffset)value).ToUniversalTime().ToFileTime())),
+    Uri => new OpenApiString(((Uri)value).ToString()),
+    duration => new OpenApiString(((TimeSpan)value).ToString()),
+    guid => new OpenApiString(((Guid)value).ToString()),
+    Version => new OpenApiString(((Version)value).ToString()),
+    IEnumerable => (value as IEnumerable).ToOpenApiArray(),
+    _ => value.ToOpenApiObject()
+};
 
-    public void Write(IOpenApiWriter writer, OpenApiSpecVersion specVersion)
-    {
-        _value.Write(writer, specVersion);
-    }
+public void Write(IOpenApiWriter writer, OpenApiSpecVersion specVersion)
+{
+    _value.Write(writer, specVersion);
+}
 }
 
 public static class ToOpenApiObjectExtensions

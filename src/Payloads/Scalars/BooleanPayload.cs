@@ -17,5 +17,5 @@ public class BooleanPayload(bool value) : Payload<bool>(value, value.ToString())
     public BooleanPayload()
         : this(true) { }
 
-    public override string ToString() => Value.ToString();
+public override string ToString() => Value.ToString();
 }

@@ -25,5 +25,6 @@ public sealed class Produces400ErrorAttribute : SwaggerResponseAttribute
             "You done fucked up!",
             typeof(BadRequestProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

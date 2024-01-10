@@ -8,8 +8,8 @@ public class RequestLoggingMiddleware(ILogger<RequestLoggingMiddleware> logger) 
 {
     public ILogger Logger => logger;
 
-    public Task InvokeAsync(HttpContext context, RequestDelegate next)
-    {
-        throw new NotImplementedException();
-    }
+public Task InvokeAsync(HttpContext context, RequestDelegate next)
+{
+    throw new NotImplementedException();
+}
 }

@@ -6,7 +6,7 @@ using ICorsPolicyDictionary = IDictionary<
     string,
     Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy
 >;
-using ICorsPolicyCollection = ICollection<KeyValuePair<string,  Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
+using ICorsPolicyCollection = ICollection<KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
 using ICorsPolicyEnumerable = IEnumerable<KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
 
 public class CorsOptions
