@@ -82,6 +82,6 @@ public static class ApplicationMediaTypeNames
     /// <value><inheritdoc cref="OpenApiJson" path="/value" />; version=3.x</value>
     public const string OpenApiV3Json = $"{OpenApiJson}; version=3.x";
 
-     /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=3.x</value>
+    /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=3.x</value>
     public const string OpenApiV3Yaml = $"{OpenApiYaml}; version=3.x";
 }
