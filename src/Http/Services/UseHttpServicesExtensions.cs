@@ -88,6 +88,11 @@ public static partial class HttpServicesExtensions
             app.UseExceptionHandler(options.ExceptionHandling);
         }
 
+        if(options.UseWelcomePage)
+        {
+            app.UseWelcomePage(options.WelcomePage);
+        }
+
         return app;
     }
 }

@@ -25,12 +25,13 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
     private SwaggerOptions SwaggerOptions => swaggerOptions.CurrentValue;
     private SwaggerGenOptions SwaggerGenOptions => swaggerGenOptions.CurrentValue;
 
+    private readonly Jso _jso = new ()  { WriteIndented = false, DefaultIgnoreCondition = JIgnore.Never, IgnoreReadOnlyProperties = true, PropertyNamingPolicy = JNaming.CamelCase, DictionaryKeyPolicy = JNaming.CamelCase };
     private ConfigObject ConfigObject => Options.ConfigObject;
     private OAuthConfigObject OAuthConfigObject => Options.OAuthConfigObject;
     private InterceptorFunctions Interceptors => Options.Interceptors;
-    private string ConfigObjectJson => Serialize(ConfigObject);
-    private string OAuthConfigObjectJson => Serialize(OAuthConfigObject);
-    private string InterceptorsJson => Serialize(Interceptors);
+    private string ConfigObjectJson => Serialize(ConfigObject, _jso).Replace("\n", " ").Replace("\r", " ");
+    private string OAuthConfigObjectJson => Serialize(OAuthConfigObject, _jso).Replace("\n", " ").Replace("\r", " ");
+    private string InterceptorsJson => Serialize(Interceptors, _jso).Replace("\n", " ").Replace("\r", " ");
 
     private readonly IDistributedCache _cache = cache;
     private readonly HttpClient _httpClient = httpClient;
@@ -106,6 +107,7 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
         else
         {
             Logger.LogCacheMiss(cacheKey);
+            contentBytes = await _httpClient.GetByteArrayAsync($"{BaseUrl}/assets/swagger-ui.js");
         }
         var stringContent = contentBytes.ToUTF8String();
 

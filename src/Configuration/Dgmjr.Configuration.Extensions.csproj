@@ -1,5 +1,5 @@
 <!--
- * Dgmjr.Application.Configuration.csproj
+ * Dgmjr.Configuration.Extensions.csproj
  *
  *   Created: 2023-01-03-12:03:09
  *   Modified: 2023-01-03-12:03:09
@@ -35,6 +35,7 @@
     <PackageReference Include="Azure.Identity" />
     <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" />
     <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
+    <PackageReference Include="Workleap.Extensions.Configuration.Substitution" />
   </ItemGroup>
   <ItemGroup>
     <Using Remove="Microsoft.Extensions.Configuration.Ini" />

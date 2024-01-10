@@ -1,21 +1,21 @@
 ---
-title: Dgmjr.Application.Configuration
+title: Dgmjr.Configuration.Extensions
 lastmod: 2023-10-10T19:-03:0
 date: 2023-10-10T19:01:56.ppppZ
 license: MIT
-slug: Dgmjr.Application.Configuration-readme
+slug: Dgmjr.Configuration.Extensions-readme
 version: 0.0.1-Local
 authors:
 - dgmjr
-description: Dgmjr.Application.Configuration Readme #TODO: write description for Dgmjr.Application.Configuration Readme
+description: Dgmjr.Configuration.Extensions Readme #TODO: write description for Dgmjr.Configuration.Extensions Readme
 keywords:
-- Dgmjr.Application.Configuration
+- Dgmjr.Configuration.Extensions
 - dgmjr
 - dgmjr-io
 type: readme
 ---
-# Dgmjr.Application.Configuration Readme
-<!-- TODO: Write the contents of the Dgmjr.Application.Configuration Readme file -->
+# Dgmjr.Configuration.Extensions Readme
+<!-- TODO: Write the contents of the Dgmjr.Configuration.Extensions Readme file -->
 ## Package Description
 This package contains the configuration classes for the project.  It's used for reading configuration values from the appsettings.json file and various other sources.
 

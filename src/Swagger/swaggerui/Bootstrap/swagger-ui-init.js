@@ -59,7 +59,7 @@
 
           // Begin Swagger UI call region
 
-          const ui = SwaggerUIBundle(configObject);
+          const ui = SwaggerUI(configObject);
 
           ui.initOAuth(oauthConfigObject);
 

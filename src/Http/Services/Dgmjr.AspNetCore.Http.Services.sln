@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\..\..\..\Packages\Versions.Local.props = ..\..\..\..\..\Packages\Versions.Local.props
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Http.Services", "Dgmjr.AspNetCore.Http.Services.csproj", "{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dgmjr.AspNetCore.Http.Services", "Dgmjr.AspNetCore.Http.Services.csproj", "{6F69B05C-575F-41A8-9E92-B65799619A5F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,18 +20,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Local|Any CPU.ActiveCfg = Local|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Local|Any CPU.Build.0 = Local|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Testing|Any CPU.Build.0 = Testing|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Staging|Any CPU.Build.0 = Staging|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Production|Any CPU.ActiveCfg = Local|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Production|Any CPU.Build.0 = Local|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A6AE70E-99B7-4A1E-BFF0-963CB9DBA364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Local|Any CPU.ActiveCfg = Local|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Local|Any CPU.Build.0 = Local|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Testing|Any CPU.ActiveCfg = Testing|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Testing|Any CPU.Build.0 = Testing|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Staging|Any CPU.Build.0 = Staging|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Production|Any CPU.ActiveCfg = Local|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Production|Any CPU.Build.0 = Local|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F69B05C-575F-41A8-9E92-B65799619A5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

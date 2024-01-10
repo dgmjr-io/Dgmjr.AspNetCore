@@ -1,6 +1,6 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
-using Dgmjr.Application.Configuration;
+using Dgmjr.Configuration.Extensions;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;

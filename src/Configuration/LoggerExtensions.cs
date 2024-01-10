@@ -1,6 +1,6 @@
 using Microsoft.Extensions.Logging;
 
-namespace Dgmjr.Application.Configuration;
+namespace Dgmjr.Configuration.Extensions;
 
 public static partial class LoggerExtensions
 {

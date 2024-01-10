@@ -19,6 +19,9 @@ using CorsOptions = Dgmjr.AspNetCore.Http.Services.CorsOptions;
 
 public class HttpServicesOptions
 {
+    public bool UseWelcomePage { get; set; } = true;
+    public WelcomePageOptions WelcomePage { get; set; } = new () { Path = "/welcome" };
+
     public bool UseCookiePolicy { get; set; } = true;
     public CookiePolicyOptions CookiePolicy { get; set; } = new();
 

@@ -18,7 +18,15 @@
       <Using Include="Dgmjr.AspNetCore.Mvc.Produces401ErrorAttribute" Alias="ProducesUnauthorizedErrorAttribute" />
       <Using Include="Dgmjr.AspNetCore.Mvc.Produces400ErrorAttribute" Alias="ProducesBadRequestErrorAttribute" />
       <Using Include="Dgmjr.AspNetCore.Mvc.Produces404ErrorAttribute" Alias="ProducesNotFoundErrorAttribute" />
-      <Using Include="Dgmjr.AspNetCore.Mvc.Produces416ErrorAttribute" Alias="ProducesImATeapotErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces418ErrorAttribute" Alias="ProducesImATeapotErrorAttribute" />
       <Using Include="Dgmjr.AspNetCore.Mvc.Produces500ErrorAttribute" Alias="ProducesInternalServerErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces501ErrorAttribute" Alias="ProducesNotImplementedErrorAttribute" />
+
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces401ErrorAttribute" Alias="ThrowsUnauthorizedErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces400ErrorAttribute" Alias="ThrowsBadRequestErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces404ErrorAttribute" Alias="ThrowsNotFoundErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces418ErrorAttribute" Alias="ThrowsImATeapotErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces500ErrorAttribute" Alias="ThrowsInternalServerErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces501ErrorAttribute" Alias="ThrowsNotImplementedErrorAttribute" />
     </ItemGroup>
 </Project>

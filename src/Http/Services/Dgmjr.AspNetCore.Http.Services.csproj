@@ -18,6 +18,7 @@
     <!-- <PackageReference Include="Microsoft.AspNetCore.OutputCaching" /> -->
     <!-- <PackageReference Include="Microsoft.AspNetCore.RequestDecompression" /> -->
     <PackageReference Include="Dgmjr.Mime" />
+    <PackageReference Include="Dgmjr.Configuration.Extensions" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
