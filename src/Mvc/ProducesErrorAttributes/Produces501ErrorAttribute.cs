@@ -25,5 +25,6 @@ public sealed class Produces501ErrorAttribute : SwaggerResponseAttribute
             "I'm not fucking programmed to do that shit!",
             typeof(NotImplementedProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

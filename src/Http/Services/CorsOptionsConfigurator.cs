@@ -9,10 +9,10 @@ public class CorsOptionsConfigurator(IConfiguration configuration) : IConfigureO
 {
     public const string CorsOptionsSection = $"{Http}:{Cors}";
 
-    private readonly IConfiguration _configuration = configuration;
+private readonly IConfiguration _configuration = configuration;
 
-    public void Configure(CorsOptions options)
-    {
-        var corsPolicyDictionary = _configuration.GetSection(CorsOptionsSection).Get<Dictionary<string, CorsPolicy>>();
-    }
+public void Configure(CorsOptions options)
+{
+    var corsPolicyDictionary = _configuration.GetSection(CorsOptionsSection).Get<Dictionary<string, CorsPolicy>>();
+}
 }

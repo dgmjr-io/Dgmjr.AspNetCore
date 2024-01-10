@@ -21,7 +21,7 @@ public static class IHostApplicationBuilderMvcExtensions
         builder.Services.Configure<MvcOptions>(mvcOptionsSection);
         var mvcOptions = mvcOptionsSection.Get<MvcOptions>();
 
-        if(mvcOptions is not null)
+        if (mvcOptions is not null)
         {
 #if NET5_0_OR_GREATER
             if(mvcOptions.EnableEndpointRouting)
@@ -44,22 +44,22 @@ public static class IHostApplicationBuilderMvcExtensions
             }
 #endif
 
-            if(mvcOptions.AddControllersAsServices)
+            if (mvcOptions.AddControllersAsServices)
             {
                 mvcBuilder.AddControllersAsServices();
             }
 
-            if(mvcOptions.AddXmlSerializerFormatters)
+            if (mvcOptions.AddXmlSerializerFormatters)
             {
                 mvcBuilder.AddXmlSerializerFormatters();
             }
 
-            if(mvcOptions.AddXmlDataContractSerializerFormatters)
+            if (mvcOptions.AddXmlDataContractSerializerFormatters)
             {
                 mvcBuilder.AddXmlDataContractSerializerFormatters();
             }
 
-            if(mvcOptions.AddMvcConventions)
+            if (mvcOptions.AddMvcConventions)
             {
                 // mvcBuilder.AddMvcOptions(options => builder.Configuration.Bind(configurationSectionKey, options));
             }

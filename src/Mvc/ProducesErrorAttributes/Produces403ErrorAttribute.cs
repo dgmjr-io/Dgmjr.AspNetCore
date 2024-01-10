@@ -25,5 +25,6 @@ public sealed class Produces403ErrorAttribute : SwaggerResponseAttribute
             "You're not allowed to fucking do that!",
             typeof(ForbiddenProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

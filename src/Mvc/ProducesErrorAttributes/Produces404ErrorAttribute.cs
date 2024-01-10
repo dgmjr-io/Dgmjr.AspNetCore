@@ -25,5 +25,6 @@ public sealed class Produces404ErrorAttribute : SwaggerResponseAttribute
             "The shit you're looking for doesn't fucking exist!",
             typeof(NotFoundProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }
