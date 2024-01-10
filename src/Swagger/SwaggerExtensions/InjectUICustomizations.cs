@@ -4,29 +4,40 @@ using Microsoft.Extensions.FileProviders;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    private const string SwaggerUITheme = $"{SwaggerUI}:Theme";
+    private const string SwaggerUI = nameof(SwaggerUI);
+    private const string SwaggerUI_Theme = $"{SwaggerUI}:Theme";
     private const string Classic = "classic";
 
-    internal static IApplicationBuilder InjectUICustomizations(this IApplicationBuilder app)
+    public static IApplicationBuilder InjectUICustomizations(this IApplicationBuilder app)
     {
-        var theme = app.ApplicationServices.GetRequiredService<IConfiguration>()[SwaggerUITheme];
-        if (IsNullOrWhiteSpace(theme))
-        {
-            theme = Classic;
-        }
-        app.UseStaticFiles();
-        app.UseStaticFiles(new StaticFileOptions
-        {
-            FileProvider = new EmbeddedFileProvider(typeof(SwaggerExtensions).Assembly, "Dgmjr.AspNetCore.Swagger"),
-            RequestPath = "/swagger"
-        });
-        app.UseSwaggerUI(c =>
-        {
-            c.InjectStylesheet("/swagger/swagger-ui.css");
-            c.InjectStylesheet($"/swagger/{theme}.css");
-        });
+        var theme = app.ApplicationServices.GetRequiredService<IConfiguration>()[SwaggerUI_Theme];
+        // if (IsNullOrWhiteSpace(theme))
+        // {
+        //     theme = Classic;
+        // }
+        // app.UseRouting();
+        // app.UseEndpoints(endpoints =>
+        // {
+        //     endpoints.MapGet("/swagger/swagger-ui.css", async context =>
+        //     {
+        //         var fileProvider = new ManifestEmbeddedFileProvider(typeof(InternalSwaggerExtensions).Assembly, "swagger-ui");
+        //         var file = fileProvider.GetFileInfo("swagger-ui.css");
+        //         await context.Response.SendFileAsync(file);
+        //     });
+        //     endpoints.MapGet($"/swagger/{theme}.css", async context =>
+        //     {
+        //         var fileProvider = new ManifestEmbeddedFileProvider(typeof(InternalSwaggerExtensions).Assembly, "swagger-ui");
+        //         var file = fileProvider.GetFileInfo($"{theme}.css");
+        //         await context.Response.SendFileAsync(file);
+        //     });
+        // });
+        // app.UseSwaggerUI(c =>
+        // {
+        //     c.InjectStylesheet("/swagger/swagger-ui.css");
+        //     c.InjectStylesheet($"/swagger/{theme}.css");
+        // });
         return app;
     }
 }

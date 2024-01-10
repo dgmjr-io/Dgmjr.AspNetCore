@@ -15,9 +15,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    internal static void AddAuthorizeSummary(this SwaggerGenOptions options)
+    public static void AddAuthorizeSummary(this SwaggerGenOptions options)
     {
         options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
     }

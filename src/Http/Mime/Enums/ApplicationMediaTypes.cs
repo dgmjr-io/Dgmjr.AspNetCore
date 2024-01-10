@@ -262,6 +262,78 @@ public enum ApplicationMediaTypes
     // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
     JavaScript,
 
+    /// <summary>An OpenAPI JSON document</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiJson" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiJson,
+        Description = "An OpenAPI JSON document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiJson)]
+    [Uri("https://swagger.io/specification/#json")]
+    // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    OpenApiJson,
+
+    /// <summary>An OpenAPI YAML document</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiYaml" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiYaml,
+        Description = "An OpenAPI YAML document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiYaml)]
+    [Uri("https://swagger.io/specification/#yaml")]
+    OpenApiYaml,
+
+    /// <summary>An OpenAPI v3 JSON document</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiV3Json" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiV3Json,
+        Description = "An OpenAPI v3 JSON document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiV3Json)]
+    [Uri("https://swagger.io/specification/v3/#json")]
+    // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    OpenApiV3Json,
+
+    /// <summary>An OpenAPI v3 YAML document.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiV3Yaml" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiV3Yaml,
+        Description = "An OpenAPI v3 YAML document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiV3Yaml)]
+    [Uri("https://swagger.io/specification/v3/#yaml")]
+    // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    OpenApiV3Yaml,
+
+
+    /// <summary>An OpenAPI v2 JSON document</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiV2Json" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiV2Json,
+        Description = "An OpenAPI v2 JSON document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiV2Json)]
+    [Uri("https://swagger.io/specification/v2/#json")]
+    // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    OpenApiV2Json,
+
+    /// <summary>An OpenAPI v2 YAML document.</summary>
+    /// <value><inheritdoc cref="ApplicationMediaTypeNames.OpenApiV2Yaml" path="/value" /></value>
+    [Display(
+        Name = ApplicationMediaTypeNames.OpenApiV2Yaml,
+        Description = "An OpenAPI v2 YAML document",
+        GroupName = ApplicationMediaTypeNames.Base
+    )]
+    [EnumMember(Value = ApplicationMediaTypeNames.OpenApiV2Yaml)]
+    [Uri("https://swagger.io/specification/v2/#yaml")]
+    // [Synonyms(ApplicationMediaTypeNames.JsonPatch, TextMediaTypeNames.JavaScript)]
+    OpenApiV2Yaml,
+
     [Display(Name = ApplicationMediaTypeNames.Any + "+json")]
     [Uri($"{RfcUrlBase}/6839#section-3.1")]
     JsonSuffix,

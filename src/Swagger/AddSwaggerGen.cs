@@ -16,6 +16,7 @@ using Swashbuckle.AspNetCore.Swagger;
 using static ThisAssembly.Project;
 using Dgmjr.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using Dgmjr.AspNetCore.Swagger.UI;
 
 public static partial class SwaggerExtensions
 {
@@ -34,6 +35,8 @@ public static partial class SwaggerExtensions
             c.AddAuthorizeSummary();
             c.DocumentFilter<PathLowercaseDocumentFilter>();
         });
+        builder.Services.Configure<SwaggerUIOptions>(builder.Configuration.GetSection(SwaggerUI));
+        builder.Services.Configure<SwaggerOptions>(builder.Configuration.GetSection(Swagger));
         builder.AddSwaggerExamples();
         builder.AddXmlCommentsToSwagger();
         builder.AddSwaggerHeaderOperationFilter();

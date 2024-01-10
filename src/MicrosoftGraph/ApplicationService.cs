@@ -7,12 +7,24 @@ public class ApplicationService(GraphServiceClient graph, ILogger<UsersService> 
     private readonly IConfiguration _configuration = configuration;
     private MicrosoftB2CGraphOptions GraphOptions => _configuration.GetSection(Constants.AzureAdB2C).Get<MicrosoftB2CGraphOptions>();
     private MicrosoftIdentityOptions IdentityOptions => _configuration.GetSection(Constants.AzureAdB2C).Get<MicrosoftIdentityOptions>();
-    private readonly GraphServiceClient _graphServiceClient = graph;
+    protected virtual GraphServiceClient Graph => graph;
+    public guid ExtensionsAppClientId => GraphOptions.AzureAdB2CExtensionsApplicationId;
 
-    public async Task<Application?> GetApplication()
-        => await _graphServiceClient.Applications[ClientId].Request().GetAsync();
-
+    /// <summary>Retrieves the client ID from "AzureAdB2C:ClientIf"</summary>
     public string ClientId =>
         IdentityOptions?.ClientId ??
         throw new InvalidOperationException("ClientId is required");
+
+    public async Task<Application?> GetApplication()
+        => await Graph.Applications[ClientId].Request().GetAsync();
+
+    public async Task<Application?> GetExtensionsApplication()
+        => await Graph.Applications[GraphOptions.AzureAdB2CExtensionsApplicationId.ToString()].Request().GetAsync();
+
+    public async Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken = default)
+    {
+
+        var extensionProperties = await Graph.Applications[ExtensionsAppClientId.ToString()].ExtensionProperties.Request().GetAsync();
+        return extensionProperties.AsEnumerable().ToArray();
+    }
 }

@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Library</OutputType>
+    <Description>This package contains an options class for use in the ASP.NET Core configuration that drives two extension methods:, AddHttpServices and UseHttpServices.</Description>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,28 +14,38 @@
   </ItemGroup>
 
   <ItemGroup>
+
+    <!-- <PackageReference Include="Microsoft.AspNetCore.OutputCaching" /> -->
+    <!-- <PackageReference Include="Microsoft.AspNetCore.RequestDecompression" /> -->
+    <PackageReference Include="Dgmjr.Mime" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.AspNetCore.OutputCaching.StackExchangeRedis" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.Identity.Abstractions" />
     <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" />
     <PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" />
     <PackageReference Include="Microsoft.Identity.Web.UI" />
     <PackageReference Include="Microsoft.Identity.Web" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
-    <PackageReference Include="System.Drawing.Common" />
-    <PackageReference Remove="Microsoft.AspNetCore.Razor.Design" />
-    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" />
-    <!-- <PackageReference Include="Microsoft.AspNetCore.RequestDecompression" /> -->
-    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" />
-    <!-- <PackageReference Include="Microsoft.AspNetCore.OutputCaching" /> -->
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="MimeKit" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
     <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
-    <PackageReference Include="Microsoft.AspNetCore.OutputCaching.StackExchangeRedis" />
-
+    <PackageReference Include="System.Drawing.Common" />
+    <PackageReference Remove="Microsoft.AspNetCore.Razor.Design" />
     <PackageReference Remove="Microsoft.Identity.Web.UI" Condition="!$(DefineConstants.Contains('NET5_0_OR_GREATER'))" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Microsoft.Extensions.DependencyInjection.HttpServicesExtensions" Static="true" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageFile Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
   </ItemGroup>
 
 </Project>

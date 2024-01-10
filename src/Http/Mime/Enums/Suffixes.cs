@@ -19,6 +19,10 @@ public enum Suffixes
     [Uri($"{IetfRfcUrnBase}:6839#section-4.1")]
     Xml,
 
+    [Display(Name = "+yaml")]
+    [Uri("https://datatracker.ietf.org/doc/draft-ietf-httpapi-yaml-mediatypes")]
+    Yaml,
+
     [Display(Name = "+cbor")]
     [Uri($"{IetfRfcUrnBase}:8949#section-9.5")]
     Cbor,

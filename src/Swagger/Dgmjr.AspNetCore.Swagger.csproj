@@ -38,6 +38,8 @@
     <PackageReference Include="System.Text.Usings" />
     <PackageReference Include="System.Xml.XPath" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
+    <PackageReference Include="Dgmjr.Extensions.Caching" />
+    <PackageReference Include="MimeKit" />
     <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +55,8 @@
     <PackageReference Include="Dgmjr.Payloads" Properties="PackageVersionOverride=$(PackageVersion)" />
   </ItemGroup> -->
   <ItemGroup>
+    <EmbeddedResource Include="./swaggerui/Bootstrap/index.html" LogicalName="swaggerui.Bootstrap.index.html" />
+    <EmbeddedResource Include="./swaggerui/Bootstrap/swagger-ui-init.js" LogicalName="swaggerui.Bootstrap.swagger-ui-init.js" />
     <!-- <EmbeddedResource Include="swaggerui/themes/**/*.*" LogicalName="Dgmjr.AspNetCore.Swagger.%(Filename)%(Extension)" /> -->
   </ItemGroup>
 

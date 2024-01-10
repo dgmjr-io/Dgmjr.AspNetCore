@@ -1,8 +1,8 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    internal static IHostApplicationBuilder DescribeEnumsAsStrings(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder DescribeEnumsAsStrings(this IHostApplicationBuilder builder)
     {
         builder.Services.ConfigureSwaggerGen(c => c.SchemaFilter<EnumsAsStringsSchemaFilter>());
         return builder;

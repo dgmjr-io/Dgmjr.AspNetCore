@@ -18,4 +18,7 @@
     <Using Include="Microsoft.Identity.Web" />
     <Using Include="Microsoft.Graph.Application" Alias="Application" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
 </Project>

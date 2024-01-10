@@ -22,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" />
     <PackageReference Include="Dgmjr.Enumerations.Enumeration" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <PackageReference Include="Dgmjr.Abstractions" />
@@ -34,6 +35,7 @@
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator.Runtime" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator.Runtime" />
+    <PackageReference Include="MimeKit" />
   </ItemGroup>
   <ItemGroup>
     <PackageTag Include="mime" />

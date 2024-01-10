@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Identity.Web;
 using Dgmjr.MicrosoftGraph;
 using Dgmjr.Web.DownstreamApis;
+using static Dgmjr.Graph.MsGraphConstants;
 
 public static class MicrosoftGraphExtensions
 {
@@ -10,8 +11,8 @@ public static class MicrosoftGraphExtensions
     {
         services.AddMicrosoftGraph(options => config.Bind(options))
             .ConfigureDownstreamApi(
-                MicrosoftB2CGraphOptions.AppSettingsKey,
-                config.GetSection($"{DownstreamApisBase.AppSettingsKey}:{MicrosoftB2CGraphOptions.AppSettingsKey}")
+                MicrosoftGraph,
+                config.GetSection(DownstreamApis_MicrosoftGraph)
             );
         services.AddScoped<IUsersService, UsersService>();
         services.AddSingleton<IPassphraseGenerator, PassphraseGenerator>();

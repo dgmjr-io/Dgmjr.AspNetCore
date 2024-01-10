@@ -20,9 +20,9 @@ using MultipartMediaTypeNames = Dgmjr.Mime.MultipartMediaTypeNames;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    internal static IHostApplicationBuilder DescribeFileUploads(
+    public static IHostApplicationBuilder DescribeFileUploads(
         this IHostApplicationBuilder builder
     )
     {

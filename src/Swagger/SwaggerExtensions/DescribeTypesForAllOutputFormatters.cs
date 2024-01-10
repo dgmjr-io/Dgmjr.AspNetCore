@@ -16,9 +16,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
     using Microsoft.AspNetCore.Builder;
 
-    public static partial class SwaggerExtensions
+    internal static partial class InternalSwaggerExtensions
     {
-        internal static IServiceCollection DescribeTypesForAllOutputFormatters(
+        public static IServiceCollection DescribeTypesForAllOutputFormatters(
             this IServiceCollection services
         )
         {
@@ -28,7 +28,7 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        internal static IHostApplicationBuilder DescribeTypesForAllOutputFormatters(
+        public static IHostApplicationBuilder DescribeTypesForAllOutputFormatters(
             this IHostApplicationBuilder builder
         )
         {

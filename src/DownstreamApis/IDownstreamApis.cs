@@ -5,5 +5,5 @@ namespace Dgmjr.Web.DownstreamApis;
 /// </summary>
 public interface IDownstreamApis
 {
-    MicrosoftGraphOptions MicrosoftGraphOptions { get; set; }
+    MicrosoftGraphOptions MicrosoftGraph { get; set; }
 }

@@ -19,23 +19,28 @@ public readonly record struct BadRequestProblemDetails : IProblemDetails
 {
     /// <summary>A short, human-readable summary of the problem.</summary>
     /// <example>Bad Request</example>
-    public string Title => "Bad Request";
+    /// <value>Bad Request</value>
+    public string Title => "You dumb fuck";
 
     /// <summary>The HTTP status code of the response (<inheritdoc cref="Status" path="/example"/>).</summary>
-    /// <example>400</example>
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.BadRequest.Id" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.BadRequest.Id" path="/value" /></value>
     public int? Status => Status400BadRequest;
 
     /// <summary>A human-readable explanation specific to this occurrence of the problem.</summary>
     /// <example>You dumb fuck! You submitted bad data to the server and now it's fucking PISSED and refusing to respond to your request!!!</example>
+    /// <value>You dumb fuck! You submitted bad data to the server and now it's fucking PISSED and refusing to respond to your request!!!</value>
     public string Detail =>
         "You dumb fuck! You submitted bad data to the server and now it's fucking PISSED and refusing to service your request!!!";
 
     /// <summary>A URI reference to the problem.</summary>
-    /// <example>https://httpstatuses.com/400</example>
-    public string Type => "https://httpstatuses.com/400";
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.BadRequest.UriString" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.BadRequest.UriString" path="/value" /></value>
+    public string Type => Dgmjr.Http.StatusCode.BadRequest.UriString;
 
     /// <summary>A URI reference to the problem.</summary>
     /// <example>/api/endpoint</example>
+    /// <value>/api/endpoint</value>
     public string Instance => "/api/endpoint";
 
     /// <summary>Additional details about the problem.</summary>

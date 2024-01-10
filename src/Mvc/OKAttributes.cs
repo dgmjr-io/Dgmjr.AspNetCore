@@ -69,9 +69,7 @@ public class ProducesCreatedResponseAttribute(
         Application.Xml.DisplayName,
         Application.MessagePack.DisplayName,
         Application.Bson.DisplayName,
-        Text.Plain.DisplayName,
-        Application.ProblemJson.DisplayName,
-        ApplicationMediaTypeNames.ProblemXml
+        Text.Plain.DisplayName
     ) { }
 
 public class ProducesCreatedResponseAttribute<TModel>(

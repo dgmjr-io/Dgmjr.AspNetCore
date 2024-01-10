@@ -14,5 +14,11 @@
     <ItemGroup>
       <Using Include="Dgmjr.AspNetCore.Mvc" />
       <Using Include="Microsoft.Extensions.Hosting" />
+
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces401ErrorAttribute" Alias="ProducesUnauthorizedErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces400ErrorAttribute" Alias="ProducesBadRequestErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces404ErrorAttribute" Alias="ProducesNotFoundErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces416ErrorAttribute" Alias="ProducesImATeapotErrorAttribute" />
+      <Using Include="Dgmjr.AspNetCore.Mvc.Produces500ErrorAttribute" Alias="ProducesInternalServerErrorAttribute" />
     </ItemGroup>
 </Project>

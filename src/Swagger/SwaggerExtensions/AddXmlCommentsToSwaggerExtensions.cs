@@ -17,9 +17,9 @@ using Unchase.Swashbuckle.AspNetCore.Extensions.Filters;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    private static bool IsParsable(string xmlDoc)
+    public static bool IsParsable(string xmlDoc)
     {
         try
         {
@@ -33,7 +33,7 @@ public static partial class SwaggerExtensions
         return false;
     }
 
-    internal static IHostApplicationBuilder AddXmlCommentsToSwagger(this IHostApplicationBuilder builder)
+    public static IHostApplicationBuilder AddXmlCommentsToSwagger(this IHostApplicationBuilder builder)
     {
         var binRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var xmlDocs = Directory

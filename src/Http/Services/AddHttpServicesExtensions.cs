@@ -11,17 +11,18 @@ using Dgmjr.AspNetCore.Http;
 
 public static partial class HttpServicesExtensions
 {
-    private const string Http = nameof(Http);
-    private const string RequestDecompression = nameof(RequestDecompression);
-    private const string ResponseCompression = nameof(ResponseCompression);
-    private const string ResponseCaching = nameof(ResponseCaching);
-    private const string Cookies = nameof(Cookies);
-    private const string Cors = nameof(Cors);
-    private const string Hsts = nameof(Hsts);
-    private const string OutputCache = nameof(OutputCache);
-    private const string Session = nameof(Session);
-    private const string IIS = nameof(IIS);
-    private const string Kestrel = nameof(Kestrel);
+    public const string Http = nameof(Http);
+    public const string RequestDecompression = nameof(RequestDecompression);
+    public const string ResponseCompression = nameof(ResponseCompression);
+    public const string ResponseCaching = nameof(ResponseCaching);
+    public const string Cookies = nameof(Cookies);
+    public const string Cors = nameof(Cors);
+    public const string Hsts = nameof(Hsts);
+    public const string OutputCache = nameof(OutputCache);
+    public const string Session = nameof(Session);
+    public const string IIS = nameof(IIS);
+    public const string Kestrel = nameof(Kestrel);
+    public const string ExceptionHandling = nameof(ExceptionHandling);
 
     public static IHostApplicationBuilder AddHttpServices(
         this IHostApplicationBuilder builder,
@@ -31,6 +32,11 @@ public static partial class HttpServicesExtensions
         var options = builder.Configuration
             .GetSection(configurationSectionKey)
             .Get<HttpServicesOptions>();
+
+        builder.Services.Configure<HttpServicesOptions>(
+            options =>
+                builder.Configuration.Bind(configurationSectionKey, options)
+        );
 
         if (options is not null)
         {
@@ -132,6 +138,14 @@ public static partial class HttpServicesExtensions
                 builder.Services.Configure<KestrelServerOptions>(
                     options =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{Kestrel}", options)
+                );
+            }
+
+            if(options.ExceptionHandling != null)
+            {
+                builder.Services.Configure<ExceptionHandlerOptions>(
+                    options =>
+                        builder.Configuration.Bind($"{configurationSectionKey}:{ExceptionHandling}", options)
                 );
             }
         }

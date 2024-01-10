@@ -35,7 +35,7 @@ public static partial class HttpServicesExtensions
                 app.UseDirectoryBrowser(options.FileServer.DirectoryBrowserOptions);
             }
 
-            if(options.FileServer.StaticFileOptions != null)
+            if(options.FileServer.StaticFileOptions != null || options.UseStaticFiles)
             {
                 app.UseStaticFiles(options.FileServer.StaticFileOptions);
             }
@@ -81,6 +81,11 @@ public static partial class HttpServicesExtensions
         if(options.UseHttpsRedirection)
         {
             app.UseHttpsRedirection();
+        }
+
+        if(options.UseExceptionHandler)
+        {
+            app.UseExceptionHandler(options.ExceptionHandling);
         }
 
         return app;

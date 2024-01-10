@@ -17,6 +17,7 @@ public static class Constants
         TextMediaTypeNames.Plain,
         ApplicationMediaTypeNames.MessagePack,
         ApplicationMediaTypeNames.Bson,
-        ApplicationMediaTypeNames.FormUrlEncoded
+        ApplicationMediaTypeNames.FormUrlEncoded,
+        MultipartMediaTypeNames.FormData
     ];
 }

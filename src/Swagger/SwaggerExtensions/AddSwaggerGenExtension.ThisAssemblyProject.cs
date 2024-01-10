@@ -16,7 +16,7 @@ using System;
 using System.Reflection;
 using static System.String;
 
-public record struct TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
+internal record struct TThisAssemblyStaticProxy(type ThisAssemblyStaticProxy)
 {
     public const string ThisAssembly = nameof(ThisAssembly);
 

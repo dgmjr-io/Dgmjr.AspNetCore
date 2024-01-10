@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Builder;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
     public static IHostApplicationBuilder DescribeSchemasViaAttributes(
         this IHostApplicationBuilder builder

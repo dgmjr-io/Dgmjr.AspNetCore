@@ -66,4 +66,22 @@ public static class ApplicationMediaTypeNames
 
     /// <value><inheritdoc cref="Base" />/javascript</value>
     public const string JavaScript = Base + "/javascript";
+
+    /// <value><inheritdoc cref="MediaType.Application.DisplayName" path="/value" />/openapi<inheritdoc cref="Mime.Suffixes.Json.DisplayName" path="/value" /></value>
+    public const string OpenApiJson = $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Json.DisplayName}";
+
+    /// <value><inheritdoc cref="MediaType.Application.DisplayName" path="/value" />/openapi<inheritdoc cref="Mime.Suffixes.Yaml.DisplayName" path="/value" /></value>
+    public const string OpenApiYaml = $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Yaml.DisplayName}";
+
+    /// <value><inheritdoc cref="OpenApiJson" path="/value" />; version=2.x</value>
+    public const string OpenApiV2Json = $"{OpenApiJson}; version=2.x";
+
+    /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=2.x</value>
+    public const string OpenApiV2Yaml = $"{OpenApiYaml}; version=2.x";
+
+    /// <value><inheritdoc cref="OpenApiJson" path="/value" />; version=3.x</value>
+    public const string OpenApiV3Json = $"{OpenApiJson}; version=3.x";
+
+     /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=3.x</value>
+    public const string OpenApiV3Yaml = $"{OpenApiYaml}; version=3.x";
 }

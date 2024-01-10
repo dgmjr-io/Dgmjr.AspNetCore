@@ -19,14 +19,7 @@ using Abstractions;
 using Dgmjr.Mime.Enums;
 
 public readonly record struct TempMediaType(string Name)
-    : IMediaType,
-        IHaveAuri,
-        IConvertible,
-        IHaveAValue<MediaTypes>,
-        IHaveAValue<int>,
-        IEquatable<int>,
-        IEquatable<IMediaType>,
-        IHaveAValue
+    : IMediaType
 {
     public string DisplayName { get; } = Name;
     private static readonly MD5 MD5 = MD5.Create();

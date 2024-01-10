@@ -18,22 +18,25 @@ public readonly record struct ForbiddenProblemDetails : IProblemDetails
 {
     /// <summary>A short, human-readable summary of the problem.</summary>
     /// <example>Das ist verboten!</example>
-    public string Title => "You're not allowed to fucking do that!";
+    public string Title => "Das ist verboten!";
 
-    /// <example>403</example>
-    public int? Status => Status401Unauthorized;
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.Forbidden.Id" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.Forbidden.Id" path="/value" /></value>
+    public int? Status => Status403Forbidden;
 
     /// <summary>A human-readable explanation specific to this occurrence of the problem.</summary>
-    /// <example>You dumb fuck! You're not allowed to fucking do that!  Stop touching shit you know you're not supposed to fucking touch!</example>
-    public string Detail =>
-        "You dumb fuck! You're not allowed to fucking do that!  Stop touching shit you know you're not supposed to fucking touch!";
+    /// <example>Du verdammter Scheißer! Du darfst das nicht!</example>
+    /// <value>Du verdammter Scheißer! Du darfst das nicht!</value>
+    public string Detail => "Du verdammter Scheißer! Du darfst das nicht!";
 
     /// <summary>A URI reference to the problem.</summary>
-    /// <example>https://httpstatuses.com/403</example>
-    public string Type => "https://httpstatuses.com/403";
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.Forbidden.UriString" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.Forbidden.UriString" path="/value" /></value>
+    public string Type => Dgmjr.Http.StatusCode.Forbidden.UriString;
 
     /// <summary>A URI reference to the problem.</summary>
     /// <example>/api/endpoint</example>
+    /// <value>/api/endpoint</value>
     public string Instance => "/api/endpoint";
 
     /// <summary>Additional details about the problem.</summary>

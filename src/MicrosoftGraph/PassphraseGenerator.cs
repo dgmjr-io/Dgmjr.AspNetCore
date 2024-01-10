@@ -22,7 +22,7 @@ public interface IPassphraseGenerator
 
 public class PassphraseGeneratorOptions
 {
-    public const string AppSettingsKey = "PssphraseGenerator";
+    public const string AppSettingsKey = nameof(PassphraseGenerator);
 
     public int WordCount { get; set; } = 4;
     public int EmojiCount { get; set; } = 2;

@@ -17,24 +17,29 @@ using static Microsoft.AspNetCore.Http.StatusCodes;
 public readonly record struct NotFoundProblemDetails : IProblemDetails
 {
     /// <summary>The URI of the problem type.</summary>
-    /// <example>https://tools.ietf.org/html/rfc7231#section-6.5.4</example>
-    public string Type => "https://tools.ietf.org/html/rfc7231#section-6.5.4";
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.NotFound.UriString" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.NotFound.UriString" path="/value" /></value>
+    public string Type => Dgmjr.Http.StatusCode.NotFound.UriString;
 
     /// <summary>A short, human-readable summary of the problem.</summary>
     /// <example>Doesn't fucking exist!</example>
+    /// <value>Doesn't fucking exist!</value>
     public string Title => "Doesn't fucking exist!";
 
     /// <summary>Doesn't fucking exist!</summary>
-    /// <example>500</example>
+    /// <example><inheritdoc cref="Dgmjr.Http.StatusCode.NotFound.Id" path="/value" /></example>
+    /// <value><inheritdoc cref="Dgmjr.Http.StatusCode.NotFound.Id" path="/value" /></value>
     public int? Status => Status404NotFound;
 
     /// <summary>Details about the problem.</summary>
     /// <example>The shit you were looking for ain't here, you dumb fuck!  You should probably go back to the home page and try again!</example>
+    /// <value>The shit you were looking for ain't here, you dumb fuck!  You should probably go back to the home page and try again!</value>
     public string Detail =>
         "The shit you were looking for ain't here, you dumb fuck!  You should probably go back to the home page and try again!";
 
     /// <summary>A URI reference to the problem.</summary>
     /// <example>/api/endpoint</example>
+    /// <value>/api/endpoint</value>
     public string Instance => "/api/endpoint";
 
     /// <summary>Additional details about the problem.</summary>
@@ -42,20 +47,3 @@ public readonly record struct NotFoundProblemDetails : IProblemDetails
     public IDictionary<string, object?> Extensions =>
         new Dictionary<string, object?> { { "traceId", "0HLQ9V1J3Q0:00000004" } };
 }
-
-// {
-//     public ProblemDetails GetExamples()
-//     {
-//         var pd = new ProblemDetails
-//         {
-//             Type = "https://tools.ietf.org/html/rfc7231#section-6.5.4",
-//             Title = "Not Found",
-//             Status = Status404NotFound,
-//             Detail =
-//                 "",
-//             Instance = "/api/endpoint"
-//         };
-//         pd.Extensions.Add("traceId", "0HLQ9V1J3Q0:00000003");
-//         return pd;
-//     }
-// }

@@ -1,0 +1,7 @@
+<Project>
+  <ItemGroup>
+    <Content Include="$(MSBuildProjectDirectory)Configuration/*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+    <Content Include="$(MSBuildProjectDirectory)appsettings/*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+    <Content Include="$(MSBuildProjectDirectory)settings/*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
+  </ItemGroup>
+</Project>

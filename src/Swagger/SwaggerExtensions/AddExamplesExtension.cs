@@ -15,9 +15,9 @@ using Swashbuckle.AspNetCore.Filters;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    internal static IHostApplicationBuilder AddSwaggerExamples(
+    public static IHostApplicationBuilder AddSwaggerExamples(
         this IHostApplicationBuilder builder,
         params Assembly[]? assemblies
     )

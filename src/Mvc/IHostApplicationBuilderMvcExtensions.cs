@@ -59,16 +59,14 @@ public static class IHostApplicationBuilderMvcExtensions
                 mvcBuilder.AddXmlDataContractSerializerFormatters();
             }
 
-            if(mvcOptions.AddJsonOptions)
-            {
-                mvcBuilder.AddJsonOptions(options => builder.Configuration.Bind(JsonSerializer, options));
-            }
-
             if(mvcOptions.AddMvcConventions)
             {
                 // mvcBuilder.AddMvcOptions(options => builder.Configuration.Bind(configurationSectionKey, options));
             }
         }
+
+        builder.Services.Configure<JsonOptions>(options => builder.Configuration.GetSection(JsonSerializer).Bind(options.JsonSerializerOptions));
+
         return builder;
     }
 }

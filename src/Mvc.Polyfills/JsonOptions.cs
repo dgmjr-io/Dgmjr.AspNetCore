@@ -1,6 +1,6 @@
 namespace Microsoft.AspNetCore.Mvc;
 
-#if NETSTANDARD
+#if !NET5_0_OR_GREATER
 public class JsonOptions
 {
     /// <summary>

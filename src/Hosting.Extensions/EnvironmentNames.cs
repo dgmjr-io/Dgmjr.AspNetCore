@@ -11,8 +11,20 @@
  */
 
 namespace Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Hosting;
 
 public static class EnvironmentNames
 {
     public const string Local = nameof(Local);
+    public const string Testing = nameof(Testing);
+    public const string Azure = nameof(Azure);
+
+    public static readonly string[] All = [
+        Local,
+        Environments.Development,
+        Environments.Staging,
+        Environments.Production,
+        Testing,
+        Azure
+    ];
 }

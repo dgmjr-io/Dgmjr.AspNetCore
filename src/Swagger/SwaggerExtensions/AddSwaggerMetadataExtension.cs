@@ -29,9 +29,9 @@ using Swashbuckle.AspNetCore.Swagger;
 using static System.String;
 using static ThisAssembly.Project;
 
-public static partial class SwaggerExtensions
+internal static partial class InternalSwaggerExtensions
 {
-    private static IHostApplicationBuilder AddSwaggerMetadata(
+    public static IHostApplicationBuilder AddSwaggerMetadata(
         this IHostApplicationBuilder builder,
         Type tThisAssemblyProject,
         string version = "v1",
@@ -55,7 +55,7 @@ public static partial class SwaggerExtensions
         return builder;
     }
 
-    private static IHostApplicationBuilder AddApiKeyToSwaggerSecurity(
+    public static IHostApplicationBuilder AddApiKeyToSwaggerSecurity(
         this IHostApplicationBuilder builder
     )
     {
@@ -77,7 +77,7 @@ public static partial class SwaggerExtensions
         return builder;
     }
 
-    private static IHostApplicationBuilder DescribeBasicApiAuthentication(
+    public static IHostApplicationBuilder DescribeBasicApiAuthentication(
         this IHostApplicationBuilder builder
     )
     {
@@ -114,7 +114,7 @@ public static partial class SwaggerExtensions
         return builder;
     }
 
-    private static IHostApplicationBuilder AddSwaggerHeaderOperationFilter(
+    public static IHostApplicationBuilder AddSwaggerHeaderOperationFilter(
         this IHostApplicationBuilder builder
     )
     {
@@ -129,7 +129,7 @@ public static partial class SwaggerExtensions
         return builder;
     }
 
-    private static IHostApplicationBuilder DescribeDataTypesToSwagger(
+    public static IHostApplicationBuilder DescribeDataTypesToSwagger(
         this IHostApplicationBuilder builder
     )
     {
