@@ -1,15 +1,10 @@
-namespace Dgmjr.MicrosoftGraph;
+namespace Dgmjr.Graph.Abstractions;
 
 using Microsoft.Extensions.Logging;
 using Microsoft.Graph;
 
-public interface IUsersService : ILog
+public interface IUsersService : IMsGraphService
 {
-    /// <summary>
-    /// Represents the GUID of the Extensions App Client ID.
-    /// </summary>
-    guid ExtensionsAppClientId { get; }
-
     /// <summary>
     /// Assigns an app role to a user asynchronously.
     /// </summary>
@@ -22,7 +17,7 @@ public interface IUsersService : ILog
         string userId,
         string appId,
         string appRoleId,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -37,7 +32,7 @@ public interface IUsersService : ILog
         guid userId,
         guid appId,
         guid appRoleId,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -46,7 +41,7 @@ public interface IUsersService : ILog
     /// <param name="user">The user object to create.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the created user.</returns>
-    Task<User> CreateAsync(User user, CancellationToken cancellationToken);
+    Task<User> CreateAsync(User user, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Deletes a user asynchronously based on their ID.
@@ -54,7 +49,7 @@ public interface IUsersService : ILog
     /// <param name="id">The ID of the user to delete.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation.</returns>
-    Task DeleteAsync(string id, CancellationToken cancellationToken);
+    Task DeleteAsync(string id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Gets a user asynchronously based on their ID.
@@ -62,7 +57,7 @@ public interface IUsersService : ILog
     /// <param name="id">The ID of the user to get.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the retrieved user.</returns>
-    Task<User> GetAsync(string id, CancellationToken cancellationToken);
+    Task<User> GetAsync(string id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Gets a user asynchronously based on their ID and a specific property.
@@ -71,21 +66,25 @@ public interface IUsersService : ILog
     /// <param name="property">The specific property to retrieve.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the retrieved user.</returns>
-    Task<User> GetAsync(string id, string property, CancellationToken cancellationToken);
+    Task<User> GetAsync(string id, string property, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Gets extension properties asynchronously.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains an array of extension properties.</returns>
-    Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken);
+    Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Gets the currently logged-in user asynchronously.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the current user.</returns>
-    Task<User> GetMeAsync(CancellationToken cancellationToken);
+    Task<User> GetMeAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>Gets the ID of the currently logged-in user asynchronously.</summary>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    Task<guid> GetMyIdAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Finds a user by their sign-in name asynchronously.
@@ -93,7 +92,7 @@ public interface IUsersService : ILog
     /// <param name="name">The sign-in name of the user.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task representing the asynchronous operation. The task result contains the found user, or null if not found.</returns>
-    Task<User?> FindBySignInNameAsync(string name, CancellationToken cancellationToken);
+    Task<User?> FindBySignInNameAsync(string name, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Gets a list of users with a specific custom attribute.
@@ -105,7 +104,7 @@ public interface IUsersService : ILog
     Task<List<User>> GetUsersWithCustomAttribute(
         GraphServiceClient graphClient,
         string attributeName,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -120,7 +119,7 @@ public interface IUsersService : ILog
         string id,
         string appId,
         string appRoleId,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -150,7 +149,7 @@ public interface IUsersService : ILog
         string userId,
         string appId,
         string appRoleId,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
     /// <summary>
@@ -165,25 +164,23 @@ public interface IUsersService : ILog
         guid userId,
         guid appId,
         guid appRoleId,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 
-    /// <summary>
-    /// Updates a user asynchronously.
-    /// </summary>
-    /// <param name="user">The updated user object.</param>
+    /// <summary>Updates a user property asynchronously.</summary>
+    /// <param name="id">The ID of the user to update.</param>
+    /// <param name="property">The name of the property to update.</param>
+    /// <param name="value">The new value for the property.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the updated user object.</returns>
-    Task<User> UpdateAsync(User user, CancellationToken cancellationToken);
+    Task<User> UpdateAsync(guid id, string property, string value, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates a user asynchronously.
     /// </summary>
-    /// <param name="id">The ID of the user to update.</param>
     /// <param name="user">The updated user object.</param>
     /// <param name="cancellationToken">The cancellation token.</param>
     /// <returns>A task that represents the asynchronous operation. The task result contains the updated user object.</returns>
-    Task<User> UpdateAsync(string id, User user, CancellationToken cancellationToken);
+    Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Updates a user property asynchronously.
@@ -197,6 +194,6 @@ public interface IUsersService : ILog
         string id,
         string property,
         string value,
-        CancellationToken cancellationToken
+        CancellationToken cancellationToken = default
     );
 }

@@ -17,15 +17,49 @@ using Microsoft.Extensions.FileProviders;
 
 using CorsOptions = Dgmjr.AspNetCore.Http.Services.CorsOptions;
 
-public class HttpServicesOptions
+public interface IHttpServicesOptions
+{
+    bool UseWelcomePage { get; set; }
+    WelcomePageOptions WelcomePage { get; set; }
+    bool UseCookiePolicy { get; set; }
+    CookiePolicyOptions CookiePolicy { get; set; }
+    CorsOptions Cors { get; set; }
+    bool UseCors { get; set; }
+    FileServerOptions FileServer { get; set; }
+    bool UseFileServer { get; set; }
+    bool UseStaticFiles { get; set; }
+    bool UseForwardedHeaders { get; set; }
+    ForwardedHeadersOptions ForwardedHeaders { get; set; }
+    HstsOptions Hsts { get; set; }
+    bool UseHsts { get; set; }
+    HttpsRedirectionOptions HttpsRedirection { get; set; }
+    bool UseHttpsRedirection { get; set; }
+    IISServerOptions IIS { get; set; }
+    KestrelServerOptions Kestrel { get; set; }
+    OutputCacheOptions OutputCache { get; set; }
+    bool UseOutputCaching { get; set; }
+    RequestDecompressionOptions RequestDecompression { get; set; }
+    bool UseRequestDecompression { get; set; }
+    ResponseCachingOptions ResponseCaching { get; set; }
+    bool UseResponseCaching { get; set; }
+    ResponseCompressionOptions ResponseCompression { get; set; }
+    bool UseResponseCompression { get; set; }
+    SessionOptions Session { get; set; }
+    bool UseSession { get; set; }
+    bool AddHttpContextAccessor { get; set; }
+    bool UseExceptionHandler { get; set; }
+    ExceptionHandlerOptions ExceptionHandling { get; set; }
+}
+
+public class HttpServicesOptions : IHttpServicesOptions
 {
     public bool UseWelcomePage { get; set; } = true;
-    public WelcomePageOptions WelcomePage { get; set; } = new () { Path = "/welcome" };
+    public WelcomePageOptions WelcomePage { get; set; } = new() { Path = "/welcome" };
 
     public bool UseCookiePolicy { get; set; } = true;
     public CookiePolicyOptions CookiePolicy { get; set; } = new();
 
-    public CorsOptions Cors { get; set; } = [];
+    public CorsOptions Cors { get; set; } = new();
     public bool UseCors { get; set; } = true;
 
     public FileServerOptions FileServer { get; set; } = DefaultFilFileServerOptions;

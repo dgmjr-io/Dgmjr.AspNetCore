@@ -4,4 +4,8 @@
     <Content Include="$(MSBuildProjectDirectory)appsettings/*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
     <Content Include="$(MSBuildProjectDirectory)settings/*.json" CopyToOutputDirectory="Always" CopyToPublishDirectory="Always" />
   </ItemGroup>
+  <ItemGroup>
+    <Using Include="Dgmjr.Configuration.Extensions" />
+    <Using Include="Dgmjr.Extensions.Configuration" />
+  </ItemGroup>
 </Project>

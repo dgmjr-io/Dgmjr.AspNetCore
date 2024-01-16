@@ -1,20 +1,18 @@
 namespace Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Identity.Web;
-using Dgmjr.MicrosoftGraph;
-using Dgmjr.Web.DownstreamApis;
-using static Dgmjr.Graph.MsGraphConstants;
 
-public static class MicrosoftGraphExtensions
+public static class MicrosoftGraphServiceCollectionExtensions
 {
     public static IServiceCollection AddMicrosoftGraph(this IServiceCollection services, IConfiguration config)
     {
         services.AddMicrosoftGraph(options => config.Bind(options))
+            .AddMicrosoftIdentityConsentHandler()
             .ConfigureDownstreamApi(
                 MicrosoftGraph,
                 config.GetSection(DownstreamApis_MicrosoftGraph)
             );
         services.AddScoped<IUsersService, UsersService>();
+        services.Configure<MicrosoftB2CGraphOptions>(config.GetSection(DownstreamApis_MicrosoftGraph));
+        services.AddScoped<IApplicationService, ApplicationService>();
         services.AddSingleton<IPassphraseGenerator, PassphraseGenerator>();
         return services;
     }

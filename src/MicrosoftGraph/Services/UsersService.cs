@@ -1,65 +1,57 @@
-namespace Dgmjr.MicrosoftGraph;
+namespace Dgmjr.Graph.Services;
 
-using Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.Graph;
-using Microsoft.Extensions.Options;
-
-public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, CancellationToken cancellationToken = default) : IUsersService
+public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : MsGraphService(graph, logger, options, msidOptions, cache), IUsersService
 {
-    public ILogger Logger => logger;
-    private MicrosoftB2CGraphOptions _options => options.CurrentValue;
-    public guid ExtensionsAppClientId => _options.AzureAdB2CExtensionsApplicationId;
-
-    protected virtual GraphServiceClient Graph => graph;
-
     public async Task<User> GetMeAsync(CancellationToken cancellationToken = default)
     {
-        return await Graph.Me.Request().GetAsync();
+        return await Graph.Me.Request().GetAsync(cancellationToken);
+    }
+    public async Task<guid> GetMyIdAsync(CancellationToken cancellationToken = default)
+    {
+        return new ((await GetMeAsync(cancellationToken)).Id);
     }
 
     public async Task<User> UpdateAsync(User user, CancellationToken cancellationToken = default)
     {
-        return await Graph.Me.Request().UpdateAsync(user);
+        return await Graph.Users[user.Id].Request().UpdateAsync(user, cancellationToken);
     }
 
-    public async Task<User> UpdateAsync(string id, User user, CancellationToken cancellationToken = default)
-    {
-        return await Graph.Users[id].Request().UpdateAsync(user);
-    }
+    public async Task<User> UpdateAsync(guid id, string property, string value, CancellationToken cancellationToken = default)
+        => await UpdateAsync(id.ToString(), property, value, cancellationToken);
 
     public async Task<User> UpdateAsync(string id, string property, string value, CancellationToken cancellationToken = default)
     {
-        var user = await Graph.Users[id].Request().GetAsync();
+        var user = await Graph.Users[id].Request().GetAsync(cancellationToken);
         user.AdditionalData[property] = value;
-        return await Graph.Users[id].Request().UpdateAsync(user);
+        return await Graph.Users[id].Request().UpdateAsync(user, cancellationToken);
     }
 
     public async Task<User> GetAsync(string id, CancellationToken cancellationToken = default)
     {
-        return await Graph.Users[id].Request().GetAsync();
+        return await Graph.Users[id].Request().GetAsync(cancellationToken);
     }
 
     public async Task<User> GetAsync(string id, string property, CancellationToken cancellationToken = default)
     {
-        return await Graph.Users[id].Request().Select(property).GetAsync();
+        var extensionPropertyName = (property, ExtensionsAppClientId).GetExtensionPropertyName();
+        return await Graph.Users[id].Request().Select(property).Select(extensionPropertyName).GetAsync(cancellationToken);
     }
 
     public async Task<User> CreateAsync(User user, CancellationToken cancellationToken = default)
     {
-        return await Graph.Users.Request().AddAsync(user);
+        return await Graph.Users.Request().AddAsync(user, cancellationToken);
     }
 
     public async Task DeleteAsync(string id, CancellationToken cancellationToken = default)
     {
-        await Graph.Users[id].Request().DeleteAsync();
+        await Graph.Users[id].Request().DeleteAsync(cancellationToken);
     }
 
     public async Task<bool> IsInAppRoleAsync(string id, string appId, string appRoleId, CancellationToken cancellationToken = default)
-        => (await Graph.Users[id].Request().GetAsync()).AppRoleAssignments.Any(a => a.AppRoleId == new guid(appRoleId) && a.ResourceId == new guid(appId));
+        => (await Graph.Users[id].Request().GetAsync(cancellationToken)).AppRoleAssignments.Any(a => a.AppRoleId == new guid(appRoleId) && a.ResourceId == new guid(appId));
 
     public async Task<AppRoleAssignment> AssignToAppRoleAsync(string userId, string appId, string appRoleId, CancellationToken cancellationToken = default)
-        => await AssignToAppRoleAsync(new guid(userId), new guid(appId), new guid(appRoleId));
+        => await AssignToAppRoleAsync(new guid(userId), new guid(appId), new guid(appRoleId), cancellationToken);
 
     public async Task<AppRoleAssignment> AssignToAppRoleAsync(guid userId, guid appId, guid appRoleId, CancellationToken cancellationToken = default)
     {
@@ -68,21 +60,17 @@ public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger
             PrincipalId = userId,
             ResourceId = appId,
             AppRoleId = appRoleId
-        });
+        }, cancellationToken);
     }
 
     public async Task UnassignAppRoleAsync(string userId, string appId, string appRoleId, CancellationToken cancellationToken = default)
-        => await UnassignAppRoleAsync(new guid(userId), new(appId), new(appRoleId));
+        => await UnassignAppRoleAsync(new guid(userId), new(appId), new(appRoleId), cancellationToken);
 
     public async Task UnassignAppRoleAsync(guid userId, guid appId, guid appRoleId, CancellationToken cancellationToken = default)
     {
-        var assignments = await Graph.Users[userId.ToString()].AppRoleAssignments.Request().GetAsync();
-        var assignment = assignments.FirstOrDefault(a => a.AppRoleId == appRoleId && a.ResourceId == appId);
-        if (assignment is null)
-        {
-            throw new KeyNotFoundException($"No app role assignment found for user {userId} with app {appId} and role {appRoleId}");
-        }
-        await Graph.Users[userId.ToString()].AppRoleAssignments[assignment.Id].Request().DeleteAsync();
+        var assignments = await Graph.Users[userId.ToString()].AppRoleAssignments.Request().GetAsync(cancellationToken);
+        var assignment = assignments.FirstOrDefault(a => a.AppRoleId == appRoleId && a.ResourceId == appId) ?? throw new KeyNotFoundException($"No app role assignment found for user {userId} with app {appId} and role {appRoleId}");
+        await Graph.Users[userId.ToString()].AppRoleAssignments[assignment.Id].Request().DeleteAsync(cancellationToken);
     }
 
     public async Task<User?> FindByEmailAsync(
@@ -151,7 +139,7 @@ public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger
             // Update user by object ID
             await Graph.Users[userId]
                 .Request()
-                .UpdateAsync(user);
+                .UpdateAsync(user, cancellationToken);
 
             Logger.LogInformation($"User with object ID '{userId}' successfully updated.");
         }
@@ -164,7 +152,7 @@ public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger
 
     public async Task<List<User>> GetUsersWithCustomAttribute(GraphServiceClient graphClient, string attributeName, CancellationToken cancellationToken = default)
     {
-        var extensionAttribute = new DgmjrExtensionProperty(attributeName, ExtensionsAppClientId);
+        var extensionAttribute = new DGraphExtensionProperty(attributeName, ExtensionsAppClientId);
 
         Logger.LogInformation($"Getting list of users with the custom attributes '{attributeName}' (string)");
 
@@ -172,24 +160,9 @@ public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger
         var result = await graphClient.Users
             .Request()
             .Select($"id,displayName,identities,{extensionAttribute}")
-            .GetAsync();
+            .GetAsync(cancellationToken);
 
         return [.. result];
-
-        // foreach (var user in result.CurrentPage)
-        // {
-        //     Console.WriteLine(Serialize(user));
-
-        //     // Only output the custom attributes...
-        //     //Console.WriteLine(JsonSerializer.Serialize(user.AdditionalData));
-        // }
-    }
-
-    public async Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken = default)
-    {
-
-        var extensionProperties = await Graph.Applications[ExtensionsAppClientId.ToString()].ExtensionProperties.Request().GetAsync();
-        return extensionProperties.AsEnumerable().ToArray();
     }
 
     // public async Task RemoveAppRoleByNameAsync(string userId, string appId, string appRoleName, CancellationToken cancellationToken = default)

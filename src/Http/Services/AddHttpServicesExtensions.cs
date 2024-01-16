@@ -7,7 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 using Dgmjr.AspNetCore.Http;
-
+using Dgmjr.AspNetCore.Http.Services;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 public static partial class HttpServicesExtensions
 {
@@ -34,8 +35,7 @@ public static partial class HttpServicesExtensions
             .Get<HttpServicesOptions>();
 
         builder.Services.Configure<HttpServicesOptions>(
-            options =>
-                builder.Configuration.Bind(configurationSectionKey, options)
+            options => builder.Configuration.Bind(configurationSectionKey, options)
         );
 
         if (options is not null)
@@ -60,7 +60,8 @@ public static partial class HttpServicesExtensions
                     options.Providers.Add<BrotliCompressionProvider>();
                     builder.Configuration.Bind(
                         $"{configurationSectionKey}:{ResponseCompression}",
-                        options);
+                        options
+                    );
                 });
             }
 
@@ -111,9 +112,11 @@ public static partial class HttpServicesExtensions
 
             if (options.UseCors)
             {
+                builder.Services.Configure<CorsOptions>(
+                    options => new CorsOptionsConfigurator(builder.Configuration).Configure(options)
+                );
                 builder.Services.AddCors(
-                    options =>
-                        builder.Configuration.Bind($"{configurationSectionKey}:{Cors}", options)
+                    new CorsOptionsConfigurator(builder.Configuration).Configure
                 );
             }
 
@@ -125,7 +128,7 @@ public static partial class HttpServicesExtensions
                 );
             }
 
-            if(options.IIS != null)
+            if (options.IIS != null)
             {
                 builder.Services.Configure<IISServerOptions>(
                     options =>
@@ -133,7 +136,7 @@ public static partial class HttpServicesExtensions
                 );
             }
 
-            if(options.Kestrel != null)
+            if (options.Kestrel != null)
             {
                 builder.Services.Configure<KestrelServerOptions>(
                     options =>
@@ -141,12 +144,21 @@ public static partial class HttpServicesExtensions
                 );
             }
 
-            if(options.ExceptionHandling != null)
+            if (options.ExceptionHandling != null)
             {
                 builder.Services.Configure<ExceptionHandlerOptions>(
                     options =>
-                        builder.Configuration.Bind($"{configurationSectionKey}:{ExceptionHandling}", options)
+                        builder.Configuration.Bind(
+                            $"{configurationSectionKey}:{ExceptionHandling}",
+                            options
+                        )
                 );
+            }
+
+            if (options.AddHttpContextAccessor)
+            {
+                builder.Services.AddHttpContextAccessor();
+                builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             }
         }
 

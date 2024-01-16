@@ -6,9 +6,10 @@ internal static class AssemblyLoadExtensions
     {
         try
         {
-            return Assembly.LoadFile(filename);
+            using var asmStream = File.OpenRead(filename);
+            return Assembly.Load(asmStream.ReadAllBytes());
         }
-        catch (Exception)
+        catch
         {
             return null;
         }
@@ -20,7 +21,7 @@ internal static class AssemblyLoadExtensions
         {
             return Assembly.Load(name);
         }
-        catch (Exception)
+        catch
         {
             return null;
         }
@@ -30,8 +31,9 @@ internal static class AssemblyLoadExtensions
         Directory
             .EnumerateFiles(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "*.dll")
             .Select(TryLoadAssemblyFromFile)
+            .WhereNotNull()
             .SelectMany(assembly => assembly.GetReferencedAssemblies().Select(TryLoadAssembly))
-            .Distinct()
+            // .Distinct()
             .WhereNotNull()
             .ToList();
 
@@ -41,7 +43,7 @@ internal static class AssemblyLoadExtensions
         {
             return asm.GetTypes();
         }
-        catch (Exception)
+        catch
         {
             return Enumerable.Empty<type>();
         }

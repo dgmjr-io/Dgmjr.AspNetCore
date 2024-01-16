@@ -1,5 +1,7 @@
-namespace Dgmjr.MicrosoftGraph.Models;
+namespace Dgmjr.Graph.Models;
+using System.Runtime.InteropServices;
 
+[StructLayout(LayoutKind.Sequential, Pack = 1)]
 public partial record struct ExtensionProperty
 {
     /// <summary>The name of the extension property</summary>

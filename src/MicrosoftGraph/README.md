@@ -3,19 +3,19 @@ title:
 lastmod: 2023-36-31T14:36:04.3724-06:00Z
 date: 2023-36-31T14:36:04.3726-06:00Z
 license: MIT
-slug: Dgmjr.MicrosoftGraph-readme
+slug: Dgmjr.Graph-readme
 version:
 authors:
   - dgmjr;
-description: Dgmjr.MicrosoftGraph Readme #TODO: write description for Dgmjr.MicrosoftGraph Readme
+description: Dgmjr.Graph Readme #TODO: write description for Dgmjr.Graph Readme
 keywords:
-- Dgmjr.MicrosoftGraph
+- Dgmjr.Graph
   - dgmjr
   - dgmjr-io
 type: readme
 ---
-# Dgmjr.MicrosoftGraph Readme
-<!-- TODO: Write the contents of the Dgmjr.MicrosoftGraph Readme file -->
+# Dgmjr.Graph Readme
+<!-- TODO: Write the contents of the Dgmjr.Graph Readme file -->
 ## Package Description
 ## Getting Started
 ## Prerequisites

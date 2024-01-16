@@ -10,7 +10,7 @@
  *      License: MIT (https://opensource.org/licenses/MIT)
  */
 
-namespace Dgmr.Http;
+namespace Dgmjr.Http;
 
 public static class HttpRequestMethodNames
 {

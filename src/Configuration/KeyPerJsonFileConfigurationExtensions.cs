@@ -12,9 +12,9 @@ using Microsoft.Extensions.Primitives;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using static JsonFileConfigurationExtensions;
+using static KeyPerJsonFileConfigurationExtensions;
 
-public static partial class JsonFileConfigurationExtensions
+public static partial class KeyPerJsonFileConfigurationExtensions
 {
     public const string AppSettings = "all_appsettings";
     public const string AppSettings_Json = "/" + AppSettings + ".json";
@@ -86,13 +86,13 @@ public static partial class JsonFileConfigurationExtensions
 
     internal static readonly string[] EnvironmentNames = Hosting.EnvironmentNames.All;
 
-    internal static readonly string EnvironmentizedRegexString = $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?:\.(?<Environment>{Join("|", EnvironmentNames.Select(env => $"(?:{env})"))}))?\.json$";
+    internal static readonly string EnvironmentizedRegexString = $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?::(?<Environment>{Join("|", EnvironmentNames.Select(env => $"(?:{env})"))}))?\.json$";
     public static Regx EnvironmentizedRegex =>
         new(EnvironmentizedRegexString, Rxo.Compiled | Rxo.IgnoreCase);
 
     public static Regx ThisEnvironmentRegex =>
         new(
-            $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?:\.(?<Environment>{ThisEnvironmentName}))\.json$",
+            $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?::(?<Environment>{ThisEnvironmentName}))\.json$",
             Rxo.Compiled | Rxo.IgnoreCase
         );
 

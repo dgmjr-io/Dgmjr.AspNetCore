@@ -20,26 +20,25 @@
     <FeameworkReferene Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
-    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
-    <PackageReference Include="ThisAssembly.Project" />
-    <!-- <PackageReference Include="ThisAssembly.Resources" /> -->
-    <!-- <PackageReference Include="ThisAssembly.Project" /> -->
-    <!-- <PackageReference Include="ThisAssembly.AssemblyInfo" /> -->
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-    <PackageReference Include="Unchase.Swashbuckle.AspNetCore.Extensions" />
-    <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Configuration.Extensions" />
+    <PackageReference Include="Dgmjr.Extensions.Caching" />
+    <PackageReference Include="Dgmjr.Extensions.Logging" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="System.Usings" />
-    <PackageReference Include="System.Text.Usings" />
-    <PackageReference Include="System.Xml.XPath" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" />
-    <PackageReference Include="Dgmjr.Extensions.Caching" />
     <PackageReference Include="MimeKit" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" />
+    <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
+    <PackageReference Include="System.Text.Usings" />
+    <PackageReference Include="System.Usings" />
+    <PackageReference Include="System.Xml.XPath" />
+    <PackageReference Include="Telegram.Bot.Extensions" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="ThisAssembly.Project" />
+    <PackageReference Include="Unchase.Swashbuckle.AspNetCore.Extensions" />
     <!-- <PackageReference Include="Dgmjr.Primitives" /> -->
   </ItemGroup>
   <ItemGroup>

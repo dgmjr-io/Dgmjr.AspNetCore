@@ -1,4 +1,4 @@
-namespace Dgmjr.MicrosoftGraph.Models;
+namespace Dgmjr.Graph.Models;
 using System.Text.RegularExpressions;
 
 [RegexDto(@"^extension_(?<AppId:Guid>[a-fA-F0-9]{32})_(?<PropertyName>\w+)$", BaseType: typeof(MgExtensionProperty), RegexOptions: _RegexOptions)]
@@ -22,7 +22,7 @@ public readonly partial record struct ExtensionProperty
 
     public const string UriFormatString = "https://graph.microsoft.com/v1.0/applications/{0}/extensionProperties/{1}";
 
-    public static ExtensionProperty Empty => new(EmptyString, guid.Empty);
+    public static DGraphExtensionProperty Empty => new(EmptyString, guid.Empty);
 
     public string Name => Format(FormatString, AppId, PropertyName);
 
@@ -30,36 +30,29 @@ public readonly partial record struct ExtensionProperty
 
     public bool IsEmpty => Name == EmptyString;
 
-    public ExtensionProperty ExampleValue => new(ExampleString);
+    public DGraphExtensionProperty ExampleValue => new(ExampleString);
 
     public Uri Uri => new(Format(UriFormatString, AppId, PropertyName), Absolute);
 
-    public int CompareTo(ExtensionProperty other) => Value.CompareTo(other.Value);
+    public int CompareTo(DGraphExtensionProperty other) => Value.CompareTo(other.Value);
 
-    public int CompareTo(object obj) => obj is ExtensionProperty other ? CompareTo(other) : -1;
+    public int CompareTo(object obj) => obj is DGraphExtensionProperty other ? CompareTo(other) : -1;
 
-    public static implicit operator ExtensionProperty(MgExtensionProperty extensionProperty) => new(extensionProperty.Name);
-
-    // public static implicit operator DgmjrExtensionProperty(string key) => new (key, guid.Empty);
-
-    // public static implicit operator DgmjrExtensionProperty((string key, guid appId) key) => new (key.key, key.appId);
-
-// #if NET6_0_OR_GREATER
-//     public static Regx IRegexValueObject<ExtensionProperty>.Regex => Regex();
-// #else
-//     Regx IRegexValueObject<ExtensionProperty>.Regex() => Regex();
-
-//     bool IEquatable<ExtensionProperty>.Equals(ExtensionProperty other)
-//     {
-//         throw new NotImplementedException();
-//     }
-// #endif
+    public static implicit operator DGraphExtensionProperty(MgExtensionProperty extensionProperty) => new(extensionProperty.Name);
 }
 
 public static class Helpers
 {
-    public static ExtensionProperty GetExtensionPropertyKey(string extensionPropertyName, guid extensionAppClientId)
+    public static DGraphExtensionProperty GetExtensionPropertyObject(string extensionPropertyName, guid extensionAppClientId)
     {
-        return new ExtensionProperty(extensionPropertyName, extensionAppClientId);
+        return new DGraphExtensionProperty(extensionPropertyName, extensionAppClientId);
+    }
+    public static DGraphExtensionProperty GetExtensionPropertyObject((string extensionPropertyName, guid extensionAppClientId) extensionProperty)
+    {
+        return new DGraphExtensionProperty(extensionProperty.extensionPropertyName, extensionProperty.extensionAppClientId);
+    }
+    public static string GetExtensionPropertyName(this (string extensionPropertyName, guid extensionAppClientId) extensionProperty)
+    {
+        return new DGraphExtensionProperty(extensionProperty.extensionPropertyName, extensionProperty.extensionAppClientId).Name;
     }
 }

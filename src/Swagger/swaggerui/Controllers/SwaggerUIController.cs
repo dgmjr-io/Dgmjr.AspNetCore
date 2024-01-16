@@ -48,11 +48,11 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
             var extension = Path.GetExtension(swaggerUiFileName);
             if (document is not null)
             {
-                Logger.LogCacheHit(cacheKey);
+                Logger.CacheHit(cacheKey);
                 return File(document, MimeTypes.GetMimeType(extension));
             }
-            Logger.LogCacheMiss(cacheKey);
-            Logger.LogTrace($"Swagger UI file request URI: {BaseUrl}{swaggerUiFileName}");
+            Logger.CacheMiss(cacheKey);
+            Logger.Get($"{BaseUrl}{swaggerUiFileName}");
             var content = await _httpClient.GetByteArrayAsync($"{BaseUrl}{swaggerUiFileName}");
             await _cache.SetAsync(cacheKey, content);
             return File(content, MimeTypes.GetMimeType(extension));
@@ -79,10 +79,10 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
         var document = Options.UseCache ? await _cache.GetAsync(cacheKey) : null;
         if (document is not null)
         {
-            Logger.LogCacheHit(cacheKey);
+            Logger.CacheHit(cacheKey);
             return File(document, Text.Html.DisplayName);
         }
-        Logger.LogCacheMiss(cacheKey);
+        Logger.CacheMiss(cacheKey);
         var content = await GetType().Assembly.GetManifestResourceStream(SwaggerUIIndex_Html).ReadAllBytesAsync();
         await _cache.SetAsync(cacheKey, content);
         return File(content, Text.Html.DisplayName);
@@ -102,11 +102,11 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
         var contentBytes = Options.UseCache ? await _cache.GetAsync(cacheKey) : null;
         if (contentBytes is not null)
         {
-            Logger.LogCacheHit(cacheKey);
+            Logger.CacheHit(cacheKey);
         }
         else
         {
-            Logger.LogCacheMiss(cacheKey);
+            Logger.CacheMiss(cacheKey);
             contentBytes = await _httpClient.GetByteArrayAsync($"{BaseUrl}/assets/swagger-ui.js");
         }
         var stringContent = contentBytes.ToUTF8String();
@@ -127,10 +127,10 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
         var document = Options.UseCache ? await _cache.GetAsync(cacheKey) : null;
         if (document is not null)
         {
-            Logger.LogCacheHit(cacheKey);
+            Logger.CacheHit(cacheKey);
             return File(document, Text.Html.DisplayName);
         }
-        Logger.LogCacheMiss(cacheKey);
+        Logger.CacheMiss(cacheKey);
         var content = await GetType().Assembly.ReadAssemblyResourceAllTextAsync(SwaggerUIInit_js);
         content = content.Replace("${ConfigObject}", ConfigObjectJson);
         content = content.Replace("${OAuthConfigObject}", OAuthConfigObjectJson);
@@ -147,11 +147,11 @@ public partial class SwaggerUIController(ILogger<SwaggerUIController> logger, Ht
         var documentBytes = Options.UseCache ? await _cache.GetAsync(cacheKey) : null;
         if (documentBytes is not null)
         {
-            Logger.LogCacheHit(cacheKey);
+            Logger.CacheHit(cacheKey);
         }
         else
         {
-            Logger.LogCacheMiss(cacheKey);
+            Logger.CacheMiss(cacheKey);
             var baseServerUri = GetBaseServerUri();
             var requestUri = $"{baseServerUri}/{SwaggerOptions.RouteTemplate.Replace("{documentName}", documentName)}";
             Logger.LogTrace($"Swagger document request URI: {requestUri}");

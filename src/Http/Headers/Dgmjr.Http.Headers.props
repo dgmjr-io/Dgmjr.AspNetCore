@@ -14,5 +14,6 @@
   <ItemGroup>
     <Using Include="Dgmjr.Http.Headers.HttpRequestHeaderNames" Alias="HReqH" />
     <Using Include="Dgmjr.Http.Headers.HttpResponseHeaderNames" Alias="HResH" />
+    <Using Include="Dgmjr.Http.HttpRequestMethodNames" Alias="HReqM" />
   </ItemGroup>
 </Project>

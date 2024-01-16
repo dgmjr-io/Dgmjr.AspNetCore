@@ -1,4 +1,4 @@
-namespace Dgmjr.MicrosoftGraph;
+namespace Dgmjr.Graph;
 
 public enum ExtensionPropertyDataType
 {

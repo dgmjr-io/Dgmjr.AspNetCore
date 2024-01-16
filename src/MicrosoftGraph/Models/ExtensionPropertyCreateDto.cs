@@ -1,6 +1,6 @@
-namespace Dgmjr.MicrosoftGraph.Models;
+namespace Dgmjr.Graph.Models;
 
-public class ExtensionPropertyCreateDto
+public record struct ExtensionPropertyCreateDto
 {
     /// <summary>The name of the extension property</summary>
     [Required, JProp("name")]

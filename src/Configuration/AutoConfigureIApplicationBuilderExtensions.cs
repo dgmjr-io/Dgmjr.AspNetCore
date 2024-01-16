@@ -7,16 +7,20 @@ public static class AutoConfigureIApplicationBuilderExtensions
 {
     public static IApplicationBuilder AutoConfigure(this IApplicationBuilder builder)
     {
-        var configurators = AssemblyLoadExtensions
-            .GetTypesAssignableTo<IConfigureIApplicationBuilder>()
-            .Select(Activator.CreateInstance)
-            .OfType<IConfigureIApplicationBuilder>()
+        var configurators = builder.ApplicationServices
+            .GetServices<IConfigureIApplicationBuilder>()
             .OrderBy(configurator => configurator.Order)
             .ToList();
 
+        Console.WriteLine(
+            $"Configuring IApplicationBuilder with the following configurators: {Join(", ", configurators.Select(configurator => configurator.GetType().Name))}."
+        );
+
         foreach (var configurator in configurators)
         {
-            Console.WriteLine($"Configuring {configurator.GetType().Name}.");
+            Console.WriteLine(
+                $"Configuring IApplicationBuilder with {configurator.GetType().Name}."
+            );
             configurator.Configure(builder);
         }
 

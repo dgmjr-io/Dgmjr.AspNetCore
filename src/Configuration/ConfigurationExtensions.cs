@@ -2,12 +2,12 @@ namespace Dgmjr.Extensions.Configuration;
 
 public static class ConfigurationExtensions
 {
-    public static string ToJson(this IConfiguration config) =>
-        JsonSerializer.Serialize(config.AsEnumerable(), new Jso
+    public static string ToJson(this IConfiguration config)
+    {
+        return JsonSerializer.Serialize(config, new Jso
         {
             WriteIndented = true,
-            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-            DictionaryKeyPolicy = JsonNamingPolicy.CamelCase,
+            Converters = { new ConfigurationJsonConverter() }
         });
+    }
 }

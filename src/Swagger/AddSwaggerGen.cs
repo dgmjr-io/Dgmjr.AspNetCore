@@ -31,7 +31,7 @@ public static partial class SwaggerExtensions
         builder.Services.AddSwaggerGen(c =>
         {
             builder.Configuration.Bind(configurationSectionKey, c);
-            c.CustomSchemaIds(type => $"{type.Namespace}.{type.GetDisplayName()}");
+            // c.CustomSchemaIds(type => type.FullName ?? guid.NewGuid().ToString()/*type.GetDisplayName().Contains("$") ? type.FullName : $"{type.Namespace}.{type.GetDisplayName()}"*/);
             c.AddAuthorizeSummary();
             c.DocumentFilter<PathLowercaseDocumentFilter>();
         });

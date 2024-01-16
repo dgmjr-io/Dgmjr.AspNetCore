@@ -1,4 +1,4 @@
-namespace Dgmjr.MicrosoftGraph;
+namespace Dgmjr.Graph.Options;
 
 public class MicrosoftB2CGraphOptions : Microsoft.Identity.Web.MicrosoftGraphOptions
 {

@@ -1,9 +1,10 @@
+namespace Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Options;
 using Dgmjr.AspNetCore.Http;
 using System.Runtime.Serialization;
-
-namespace Microsoft.Extensions.DependencyInjection;
+using AspNetCorsOptions = Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 public static partial class HttpServicesExtensions
 {
@@ -53,7 +54,29 @@ public static partial class HttpServicesExtensions
 
         if(options.UseCors)
         {
-            app.UseCors();
+            var corsOptions = app.ApplicationServices.GetRequiredService<IOptions<AspNetCorsOptions>>().Value;
+            app.UseCors(builder =>
+            {
+                var defaultPolicy = corsOptions.GetPolicy(options.Cors.DefaultPolicyName);
+                builder.WithExposedHeaders([.. defaultPolicy.ExposedHeaders])
+                    .WithHeaders([.. defaultPolicy.Headers])
+                    .WithMethods([.. defaultPolicy.Methods])
+                    .WithOrigins([.. defaultPolicy.Origins])
+
+                    .SetPreflightMaxAge(defaultPolicy.PreflightMaxAge ?? duration.Zero);
+                if(defaultPolicy.AllowAnyHeader)
+                {
+                    builder.AllowAnyHeader();
+                }
+                if(defaultPolicy.AllowAnyMethod)
+                {
+                    builder.AllowAnyMethod();
+                }
+                if(defaultPolicy.AllowAnyOrigin)
+                {
+                    builder.AllowAnyOrigin();
+                }
+            });
             // _ = app.UseCors(corsOptions => corsOptions
             //     .WithExposedHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).ExposedHeaders.ToArray())
             //     .WithHeaders(options.Cors.GetPolicy(options.Cors.DefaultPolicyName).Headers.ToArray())
