@@ -65,7 +65,7 @@ public static class IHostApplicationBuilderMvcExtensions
                 mvcBuilder.AddXmlDataContractSerializerFormatters();
             }
 
-            if(mvcOptions.AddMicrosoftIdentityUI)
+            if (mvcOptions.AddMicrosoftIdentityUI)
             {
                 mvcBuilder.AddMicrosoftIdentityUI();
             }
