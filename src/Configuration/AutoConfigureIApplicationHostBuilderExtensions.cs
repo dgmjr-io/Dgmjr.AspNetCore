@@ -19,7 +19,7 @@ public static class AutoConfigureIApplicationHostBuilderExtensions
             .GetTypesAssignableTo<IConfigureIApplicationBuilder>();
 
         var services = new ServiceCollection();
-        foreach(var serviceDescriptor in builder.Services)
+        foreach (var serviceDescriptor in builder.Services)
         {
             services.Add(serviceDescriptor);
         }
@@ -30,7 +30,7 @@ public static class AutoConfigureIApplicationHostBuilderExtensions
             builder.Services.TryAddEnumerable(new ServiceDescriptor(typeof(IConfigureIHostApplicationBuilder), configuratorType, ServiceLifetime.Singleton));
         }
 
-        foreach(var configuratorType in appBuilderConfiguratorTypes)
+        foreach (var configuratorType in appBuilderConfiguratorTypes)
         {
             services.TryAddEnumerable(new ServiceDescriptor(typeof(IConfigureIApplicationBuilder), configuratorType, ServiceLifetime.Singleton));
             builder.Services.TryAddEnumerable(new ServiceDescriptor(typeof(IConfigureIApplicationBuilder), configuratorType, ServiceLifetime.Singleton));

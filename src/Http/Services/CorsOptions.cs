@@ -10,7 +10,7 @@ using CorsPolicyDictionary = Dictionary<
     string,
     Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy
 >;
-using ICorsPolicyCollection = ICollection<KeyValuePair<string,  Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
+using ICorsPolicyCollection = ICollection<KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
 using ICorsPolicyEnumerable = IEnumerable<KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
 using System.Diagnostics.CodeAnalysis;
 
