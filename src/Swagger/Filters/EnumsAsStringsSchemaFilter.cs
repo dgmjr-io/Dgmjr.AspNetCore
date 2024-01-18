@@ -26,8 +26,7 @@ public class EnumsAsStringsSchemaFilter : ISchemaFilter
                             .OfType<EnumMemberAttribute>()
                             .FirstOrDefault();
                 string label =
-                    enumMemberAttribute == null
-                    || string.IsNullOrWhiteSpace(enumMemberAttribute.Value)
+                    enumMemberAttribute == null || IsNullOrWhiteSpace(enumMemberAttribute.Value)
                         ? enumName
                         : enumMemberAttribute.Value;
                 model.Enum.Add(new OpenApiString(label));

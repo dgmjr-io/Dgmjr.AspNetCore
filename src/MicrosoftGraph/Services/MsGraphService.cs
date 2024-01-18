@@ -1,6 +1,7 @@
 namespace Dgmjr.Graph.Services;
+using global::Dgmjr.Abstractions;
 
-public interface IMsGraphService : ILog, IHaveAGraphClient
+public interface IMsGraphService : IHaveAGraphClient
 {
     /// <summary>The client ID of the extensions application</summary>
     guid ExtensionsAppClientId { get; }
@@ -21,7 +22,7 @@ public interface IMsGraphService : ILog, IHaveAGraphClient
     Task<MgApplication?> GetExtensionsApplicationAsync();
 }
 
-public class MsGraphService(GraphServiceClient graph, ILogger logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : ILog, IMsGraphService
+public class MsGraphService(GraphServiceClient graph, ILogger logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : IMsGraphService
 {
     private static readonly duration CacheDuration = duration.FromDays(1000);
     private static readonly DateTimeOffset CacheExpiration = DateTimeOffset.UtcNow.Add(CacheDuration);

@@ -1,10 +1,12 @@
+namespace Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.AspNetCore.Builder;
 
-namespace Dgmjr.AspNetCore.Swagger;
-
-public class SwaggerAutoConfigurator : IConfigureIHostApplicationBuilder, IConfigureIApplicationBuilder
+public class SwaggerAutoConfigurator
+    : IConfigureIHostApplicationBuilder,
+        IConfigureIApplicationBuilder
 {
-    public ConfigurationOrder Order => throw new NotImplementedException();
+    public ConfigurationOrder Order => ConfigurationOrder.AnyTime;
 
     public void Configure(IHostApplicationBuilder builder)
     {

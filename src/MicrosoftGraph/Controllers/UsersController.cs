@@ -1,14 +1,16 @@
 namespace Dgmjr.Graph.Controllers;
+
 using Dgmjr.Graph.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Application = Dgmjr.Mime.Application;
+using Dgmjr.Abstractions;
 
-[Route($"{MsGraphApi}/{Users}")]
 [AuthorizeForScopes(ScopeKeySection = DownstreamApis_MicrosoftGraph_Scopes)]
-public class UsersController(ILogger<UsersController> logger, IServiceProvider services) : ControllerBase, ILog
+[Route($"{MsGraphApi}{Users}")]
+public class UsersController(ILogger<UsersController> logger, IServiceProvider services)
+    : MsGraphController(logger, services)
 {
-    public ILogger Logger => logger;
     private readonly IUsersService _users = services.GetRequiredService<IUsersService>();
 
     [HttpGet("{userId:guid}")]
@@ -16,18 +18,24 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
     [Produces(MsGraphUserJson, MsGraphUserXml, MsGraphUserBson, MsGraphUserMsgPack)]
     public async Task<IActionResult> Get([FromRoute] guid userId)
     {
-        Logger.PageVisited(Http.Get, $"{Users}/{userId}");
+        Logger.PageVisited(Http.Get, Request.Path);
         return Ok(await _users.GetAsync(userId.ToString()));
     }
 
     [HttpGet("{property}")]
-    [Produces(Text.Plain.DisplayName, Application.Json.DisplayName, Application.Xml.DisplayName, Application.Bson.DisplayName, Application.MessagePack.DisplayName)]
+    [Produces(
+        Text.Plain.DisplayName,
+        Application.Json.DisplayName,
+        Application.Xml.DisplayName,
+        Application.Bson.DisplayName,
+        Application.MessagePack.DisplayName
+    )]
     [ProducesResponseType(typeof(string), Status200OK)]
     [ProducesResponseType(typeof(int), Status200OK)]
     [ProducesResponseType(typeof(long), Status200OK)]
     public async Task<IActionResult> Get([FromRoute] string property)
     {
-        Logger.PageVisited(Http.Get, $"{Users}/{property}");
+        Logger.PageVisited(Http.Get, Request.Path);
         var result = await _users.GetAsync((await _users.GetMyIdAsync()).ToString(), property);
         var value = result.AdditionalData[new DGraphExtensionProperty(property).Name];
         return Ok(value);
@@ -35,19 +43,30 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
 
     [HttpPost("{userId}/{property}")]
     [Produces(MsGraphUserJson, MsGraphUserXml, MsGraphUserBson, MsGraphUserMsgPack)]
-    public async Task<IActionResult> Post([FromRoute] guid userId, [FromRoute] string property, [FromQuery] string value)
+    public async Task<IActionResult> Post(
+        [FromRoute] guid userId,
+        [FromRoute] string property,
+        [FromQuery] string value
+    )
     {
-        Logger.PageVisited(Http.Post, $"{Users}/{userId}/{property}");
+        Logger.PageVisited(Http.Post, Request.Path);
         var user = await _users.UpdateAsync(userId.ToString(), property, value);
         return Ok(user);
     }
 
     [HttpGet(Uris.ExtensionProperties)]
     [ProducesResponseType(typeof(DGraphExtensionProperty[]), Status200OK)]
-    [Produces(MsGraphExtensionPropertiesListJson, MsGraphExtensionPropertiesListXml, MsGraphExtensionPropertiesListBson, MsGraphExtensionPropertiesListMsgPack)]
+    [Produces(
+        MsGraphExtensionPropertiesListJson,
+        MsGraphExtensionPropertiesListXml,
+        MsGraphExtensionPropertiesListBson,
+        MsGraphExtensionPropertiesListMsgPack
+    )]
     public async Task<IActionResult> GetExtensionProperties()
     {
-        Logger.PageVisited(Http.Get, $"{Users}/{Uris.ExtensionProperties}");
-        return Ok((await _users.GetExtensionPropertiesAsync(default)).Cast<DGraphExtensionProperty>());
+        Logger.PageVisited(Http.Get, Request.Path);
+        return Ok(
+            (await _users.GetExtensionPropertiesAsync(default)).Cast<DGraphExtensionProperty>()
+        );
     }
 }

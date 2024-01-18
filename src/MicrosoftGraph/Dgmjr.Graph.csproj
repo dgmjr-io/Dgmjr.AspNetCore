@@ -8,6 +8,7 @@
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
     <PackageReference Include="Dgmjr.Extensions.Caching" />
+    <PackageReference Include="Dgmjr.Logging.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../DownstreamApis/Dgmjr.Web.DownstreamApis.csproj" />
@@ -15,6 +16,7 @@
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Configuration.Extensions" />
+    <Using Include="Dgmjr.Abstractions" />
     <Using Include="Dgmjr.Graph.Abstractions" />
     <Using Include="Dgmjr.Graph.Constants.CacheKeys" Static="true" />
     <Using Include="Dgmjr.Graph.Constants.MimeTypes" Static="true" />

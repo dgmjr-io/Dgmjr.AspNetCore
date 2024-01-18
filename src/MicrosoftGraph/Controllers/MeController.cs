@@ -3,13 +3,15 @@ using Dgmjr.Graph.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Application = Dgmjr.Mime.Application;
+using Dgmjr.Abstractions;
+using Microsoft.Extensions.Logging;
+using Microsoft.Identity.Web.Resource;
 
-[Route($"{MsGraphApi}/{Me}")]
-[AuthorizeForScopes(Scopes = [MsGraphScopes.User.ReadWrite.All])]
-public class MeController(ILogger<MeController> logger, IServiceProvider services) : ControllerBase, ILog, IHaveAGraphClient
+[AuthorizeForScopes(Scopes = [MsGraphScopes.User.Read.Base])]
+[RequiredScope([MsGraphScopes.User.Read.Base])]
+[Route($"{MsGraphApi}{Me}")]
+public class MeController(ILogger<MeController> logger, IServiceProvider services) : MsGraphController(logger, services)
 {
-    public ILogger Logger => logger;
-    public GraphServiceClient Graph => services.GetRequiredService<GraphServiceClient>();
     private readonly IUsersService _users = services.GetRequiredService<IUsersService>();
 
     [HttpGet]
@@ -28,7 +30,7 @@ public class MeController(ILogger<MeController> logger, IServiceProvider service
     [ProducesResponseType(typeof(long), Status200OK)]
     public async Task<IActionResult> Get([FromRoute] string property)
     {
-        Logger.PageVisited(Http.Get, $"{Me}/{property}");
+        Logger.PageVisited(Http.Get, Request.Path);
         var propertyFullName = new DGraphExtensionProperty(property).Name;
         var result = await Graph.Me.Request().Select(u => u.AdditionalData[propertyFullName]).GetAsync();
         var value = result.AdditionalData[new DGraphExtensionProperty(property).Name];
@@ -39,7 +41,7 @@ public class MeController(ILogger<MeController> logger, IServiceProvider service
     [Produces(MsGraphUserJson, MsGraphUserXml, MsGraphUserBson, MsGraphUserMsgPack)]
     public async Task<IActionResult> Post([FromRoute] string property, [FromQuery] string value)
     {
-        Logger.PageVisited(Http.Post, $"{Me}/{property}");
+        Logger.PageVisited(Http.Post, Request.Path);
         var me = await Graph.Me.Request().GetAsync();
         me.AdditionalData[property] = value;
         return Ok(await Graph.Me.Request().UpdateAsync(me));

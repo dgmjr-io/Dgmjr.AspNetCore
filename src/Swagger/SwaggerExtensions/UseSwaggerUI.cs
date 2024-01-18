@@ -26,7 +26,7 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
-public static partial class UseSwaggerUIExtensions
+internal static partial class UseSwaggerUIExtensions
 {
     private static readonly Assembly Assembly = typeof(UseSwaggerUIExtensions).Assembly;
 

@@ -31,7 +31,7 @@
 //         /*** Add Azure AppConfig ***/
 //         // Retrieve the connection string
 //         var connectionString = builder.Configuration[connectionStringKey];
-//         if (connectionString.IsNullOrEmpty())
+//         if (connectionIsNullOrEmpty())
 //         {
 //             throw new ArgumentException(
 //                 $"The connection string for Azure App Configuration was not found. "
