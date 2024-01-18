@@ -21,7 +21,8 @@ public class Result<T> : OneOfBase<ContentResult, ObjectResult>, IConvertToActio
 {
     public Result(T value, string contentType)
         : base(value is string ? new ContentResult { Content = value as string, ContentType = contentType, StatusCode = Status200OK } :
-            new ObjectResult(value) { ContentTypes = [contentType], StatusCode = Status200OK, DeclaredType = typeof(T) }) { }
+            new ObjectResult(value) { ContentTypes = [contentType], StatusCode = Status200OK, DeclaredType = typeof(T) })
+    { }
 
     protected Result(ContentResult contentResult) : base(contentResult) { }
     protected Result(ObjectResult contentResult) : base(contentResult) { }

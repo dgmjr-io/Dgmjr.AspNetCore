@@ -21,5 +21,5 @@ public abstract class MsGraphController(ILogger logger, IServiceProvider service
         IHaveAGraphClient
 {
     public ILogger Logger => logger;
-    public GraphServiceClient Graph => services.GetRequiredService<GraphServiceClient>();
+public GraphServiceClient Graph => services.GetRequiredService<GraphServiceClient>();
 }
