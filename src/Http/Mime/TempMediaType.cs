@@ -18,8 +18,7 @@ using Abstractions;
 
 using Dgmjr.Mime.Enums;
 
-public readonly record struct TempMediaType(string Name)
-    : IMediaType
+public readonly record struct TempMediaType(string Name) : IMediaType
 {
     public string DisplayName { get; } = Name;
     private static readonly MD5 MD5 = MD5.Create();
@@ -38,8 +37,8 @@ public readonly record struct TempMediaType(string Name)
     public int Order => 0;
     public string Prompt => "";
 
-    uri IMediaType.Uri => UriString;
-    uri IHaveAuri.Uri => UriString;
+    // uri IMediaType.Uri => UriString;
+    // uri IHaveAuri.Uri => UriString;
 
     object IHaveAValue.Value => Value;
 

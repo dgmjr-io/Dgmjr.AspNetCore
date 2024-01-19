@@ -106,6 +106,11 @@ public static partial class HttpServicesExtensions
             app.UseHttpsRedirection();
         }
 
+        if(options.ExceptionHandling?.UseDeveloperExceptionPage == true)
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
         if(options.UseExceptionHandler)
         {
             app.UseExceptionHandler(options.ExceptionHandling);

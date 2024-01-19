@@ -86,13 +86,20 @@ public static partial class KeyPerJsonFileConfigurationExtensions
 
     internal static readonly string[] EnvironmentNames = Hosting.EnvironmentNames.All;
 
-    internal static readonly string EnvironmentizedRegexString = $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?::(?<Environment>{Join("|", EnvironmentNames.Select(env => $"(?:{env})"))}))?\.json$";
+    internal static readonly string EnvironmentizedRegexString =
+        $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?::(?<Environment>{Join("|", EnvironmentNames.Select(env => $"(?:{env})"))}))?\.json$";
     public static Regx EnvironmentizedRegex =>
         new(EnvironmentizedRegexString, Rxo.Compiled | Rxo.IgnoreCase);
 
     public static Regx ThisEnvironmentRegex =>
         new(
             $@"^(?<Filename>[a-zA-Z0-9:\-]*(?:\.[a-zA-Z0-9:\-])*)(?::(?<Environment>{ThisEnvironmentName}))\.json$",
+            Rxo.Compiled | Rxo.IgnoreCase
+        );
+
+    public static Regx NonEnvironmentizedRegex =>
+        new(
+            @"^(?<Filename>[a-zA-Z0-9\-]*(?:\.[a-zA-Z0-9\-])*)\.json$",
             Rxo.Compiled | Rxo.IgnoreCase
         );
 
@@ -125,15 +132,17 @@ public static partial class KeyPerJsonFileConfigurationExtensions
     internal static int CountLines(this string s) => LineBreakRegex().Matches(s).Count;
 
     internal static bool IsForThisEnvironment(this FileInfo jsonFile) =>
-        ThisEnvironmentRegex.IsMatch(jsonFile.Name) || !EnvironmentizedRegex.IsMatch(jsonFile.Name);
+        NonEnvironmentizedRegex.IsMatch(jsonFile.Name)
+        || ThisEnvironmentRegex.IsMatch(jsonFile.Name)
+        || !EnvironmentizedRegex.IsMatch(jsonFile.Name);
 
     public static string MakeAppsettingsJsonFile(this DirectoryInfo directory, bool recursive)
     {
         var appsettingsJsonFileName = Path.Join(directory.FullName, "../" + AppSettings_Json);
-        var jsonWriter = new StringBuilder();
+        var jsonBuilder = new StringBuilder();
         using (var appsettingsJsonFile = File.CreateText(appsettingsJsonFileName))
-        using (var jsonStringWriter = new StringWriter(jsonWriter))
-        using (var multiWriter = new MultiWriter(appsettingsJsonFile, jsonStringWriter))
+        using (var jsonWriter = new StringWriter(jsonBuilder))
+        using (var multiWriter = new MultiWriter(appsettingsJsonFile, jsonWriter))
         {
             var jsonFiles = directory.GetJsonFiles(recursive);
 
@@ -154,6 +163,6 @@ public static partial class KeyPerJsonFileConfigurationExtensions
 
             multiWriter.WriteLine("}");
         }
-        return jsonWriter.ToString();
+        return jsonBuilder.ToString();
     }
 }

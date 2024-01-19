@@ -146,7 +146,7 @@ public static partial class HttpServicesExtensions
 
             if (options.ExceptionHandling != null)
             {
-                builder.Services.Configure<ExceptionHandlerOptions>(
+                builder.Services.Configure<Dgmjr.AspNetCore.Http.ExceptionHandlerOptions>(
                     options =>
                         builder.Configuration.Bind(
                             $"{configurationSectionKey}:{ExceptionHandling}",

@@ -1,7 +1,9 @@
-namespace Dgmjr.AspNetCore.Mvc;
+namespace Microsoft.Extensions.DependencyInjection;
+
 using Microsoft.AspNetCore.Builder;
 using Dgmjr.Configuration.Extensions;
 using static Microsoft.Extensions.DependencyInjection.IHostApplicationBuilderMvcExtensions;
+
 public class MvcAutoConfigurator : IConfigureIHostApplicationBuilder, IConfigureIApplicationBuilder
 {
     private const string Mvc = nameof(Mvc);

@@ -1,9 +1,12 @@
 namespace Microsoft.Extensions.DependencyInjection;
+
 using Dgmjr.Configuration.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 
-public class HttpServicesOptionsAutoConfigurator : IConfigureIHostApplicationBuilder, IConfigureIApplicationBuilder
+public class HttpServicesOptionsAutoConfigurator
+    : IConfigureIHostApplicationBuilder,
+        IConfigureIApplicationBuilder
 {
     public ConfigurationOrder Order => ConfigurationOrder.AnyTime;
 

@@ -10,10 +10,15 @@ using CorsPolicyDictionary = Dictionary<
     string,
     Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy
 >;
-using ICorsPolicyCollection = ICollection<KeyValuePair<string,  Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
-using ICorsPolicyEnumerable = IEnumerable<KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>>;
+using ICorsPolicyCollection = ICollection<
+    KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>
+>;
+using ICorsPolicyEnumerable = IEnumerable<
+    KeyValuePair<string, Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy>
+>;
 using System.Diagnostics.CodeAnalysis;
 
+/// <inheritdoc cref="Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions" />
 public class CorsOptions : Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions
 {
     public CorsOptions() { }
@@ -22,12 +27,15 @@ public class CorsOptions : Microsoft.AspNetCore.Cors.Infrastructure.CorsOptions
 
     public CorsOptions(IConfigurationSection section) => section.Bind(this);
 
-    public CorsOptions(ICorsPolicyEnumerable collection) =>
-        collection.ToList().ForEach(Add);
+    public CorsOptions(ICorsPolicyEnumerable collection) => collection.ToList().ForEach(Add);
 
     public CorsOptions(int capacity) { }
 
-    public CorsPolicy this[string key] { get => Policies[key]; set => Policies[key] = value; }
+    public CorsPolicy this[string key]
+    {
+        get => Policies[key];
+        set => Policies[key] = value;
+    }
 
     public ICorsPolicyDictionary Policies { get; } = new CorsPolicyDictionary();
 
