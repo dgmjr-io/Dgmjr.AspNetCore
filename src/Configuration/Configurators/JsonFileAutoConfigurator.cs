@@ -9,7 +9,10 @@ public class JsonFileAutoConfigurator : IConfigureIHostApplicationBuilder
 
     public void Configure(IHostApplicationBuilder builder)
     {
-        builder.Configuration.AddKeyPerJsonFile(Path.Join(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Configuration"));
+        builder.Configuration.AddKeyPerJsonFile(
+            Path.Join(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Configuration")
+        );
         builder.Configuration.AddSubstitution();
+        Console.WriteLine($"Configuration: {builder.Configuration.ToJson()}");
     }
 }

@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.IO;
 using static KeyPerJsonFileConfigurationExtensions;
 
-public static partial class KeyPerJsonFileConfigurationExtensions
+internal static partial class KeyPerJsonFileConfigurationExtensions
 {
     public const string AppSettings = "all_appsettings";
     public const string AppSettings_Json = "/" + AppSettings + ".json";

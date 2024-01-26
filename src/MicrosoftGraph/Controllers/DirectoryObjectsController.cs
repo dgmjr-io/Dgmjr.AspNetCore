@@ -27,7 +27,7 @@ public class DirectoryObjectsController(
     [HttpGet(Uris.ExtensionProperties)]
     public async Task<IActionResult> GetExtensionPropertiesAsync()
     {
-        Logger.PageVisited(Http.Get, Request.Path);
+        Logger.Get(Request.Path);
         return Ok(
             (
                 await DirectoryObjectsService.GetExtensionPropertiesAsync(default)

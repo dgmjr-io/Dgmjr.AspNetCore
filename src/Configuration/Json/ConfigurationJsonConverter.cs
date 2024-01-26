@@ -1,4 +1,4 @@
-namespace Dgmjr.Extensions.Configuration;
+namespace Dgmjr.Configuration.Extensions;
 
 public class ConfigurationJsonConverter : JsonConverter<IConfiguration>
 {

@@ -18,7 +18,7 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
     [Produces(MsGraphUserJson, MsGraphUserXml, MsGraphUserBson, MsGraphUserMsgPack)]
     public async Task<IActionResult> Get([FromRoute] guid userId)
     {
-        Logger.PageVisited(Http.Get, Request.Path);
+        Logger.Get(Request.Path);
         return Ok(await _users.GetAsync(userId.ToString()));
     }
 
@@ -35,7 +35,7 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
     [ProducesResponseType(typeof(long), Status200OK)]
     public async Task<IActionResult> Get([FromRoute] string property)
     {
-        Logger.PageVisited(Http.Get, Request.Path);
+        Logger.Get(Request.Path);
         var result = await _users.GetAsync((await _users.GetMyIdAsync()).ToString(), property);
         var value = result.AdditionalData[new DGraphExtensionProperty(property).Name];
         return Ok(value);
@@ -49,7 +49,7 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
         [FromQuery] string value
     )
     {
-        Logger.PageVisited(Http.Post, Request.Path);
+        Logger.Post(Request.Path);
         var user = await _users.UpdateAsync(userId.ToString(), property, value);
         return Ok(user);
     }
@@ -64,7 +64,7 @@ public class UsersController(ILogger<UsersController> logger, IServiceProvider s
     )]
     public async Task<IActionResult> GetExtensionProperties()
     {
-        Logger.PageVisited(Http.Get, Request.Path);
+        Logger.Get(Request.Path);
         return Ok(
             (await _users.GetExtensionPropertiesAsync(default)).Cast<DGraphExtensionProperty>()
         );

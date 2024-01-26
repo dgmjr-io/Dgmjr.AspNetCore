@@ -6,6 +6,6 @@
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Configuration.Extensions" />
-    <Using Include="Dgmjr.Extensions.Configuration" />
+    <Using Include="Dgmjr.Configuration.Extensions" />
   </ItemGroup>
 </Project>

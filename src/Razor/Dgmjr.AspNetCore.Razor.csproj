@@ -1,0 +1,20 @@
+<!--
+ * Dgmjr.AspNetCore.Razor.csproj
+ *
+ *   Created: 2024-25-26T16:25:37-05:00
+ *   Modified: 2024-25-26T16:25:37-05:00
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2023 - 2024 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.RazorPages" />
+  </ItemGroup>
+</Project>
