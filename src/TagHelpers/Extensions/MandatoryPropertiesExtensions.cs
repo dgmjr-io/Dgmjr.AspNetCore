@@ -18,8 +18,8 @@ public static class MandatoryPropertiesExtensions
         where T : TagHelper
     {
         foreach (var item in from pi in tagHelper.GetType().GetProperties()
-                                    where pi.HasCustomAttribute<MandatoryAttribute>()
-                                    select pi)
+                             where pi.HasCustomAttribute<MandatoryAttribute>()
+                             select pi)
         {
             var value = item.GetValue(tagHelper);
             var htmlAttributeName = item.GetHtmlAttributeName();

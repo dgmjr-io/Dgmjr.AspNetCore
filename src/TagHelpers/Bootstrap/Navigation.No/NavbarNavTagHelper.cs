@@ -12,14 +12,14 @@ public class NavbarNavTagHelper(IActionContextAccessor actionContextAccessor)
 {
     public IActionContextAccessor ActionContextAccessor => actionContextAccessor;
 
-    [CopyToOutput]
-    public string Id { get; set; } = guid.NewGuid().ToString()[..8];
+[CopyToOutput]
+public string Id { get; set; } = guid.NewGuid().ToString()[..8];
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        await base.ProcessAsync(context, output);
-        output.TagName = "ul";
-        output.AddCssClass(CssClasses.Nav);
-        output.AddCssClass(CssClasses.NavbarNav);
-    }
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    await base.ProcessAsync(context, output);
+    output.TagName = "ul";
+    output.AddCssClass(CssClasses.Nav);
+    output.AddCssClass(CssClasses.NavbarNav);
+}
 }

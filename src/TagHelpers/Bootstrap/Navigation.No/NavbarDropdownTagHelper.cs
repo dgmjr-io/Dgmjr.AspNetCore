@@ -21,33 +21,33 @@ public class NavbarDropdownTagHelper() : DgmjrTagHelperBase(TagNames.Li)
 {
     #region --- Attribute Names ---
 
-    private const string TitleAttributeName = "title";
+private const string TitleAttributeName = "title";
 
-    #endregion
+#endregion
 
-    #region --- Properties ---
+#region --- Properties ---
 
-    [HtmlAttributeName(TitleAttributeName)]
-    public string Title { get; set; }
+[HtmlAttributeName(TitleAttributeName)]
+public string Title { get; set; }
 
-    #endregion
+#endregion
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        await output.GetChildContentAsync();
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    await output.GetChildContentAsync();
 
-        output.TagName = "li";
-        output.AddCssClass("nav-item dropdown");
+    output.TagName = "li";
+    output.AddCssClass("nav-item dropdown");
 
-        // Dropdown Button
-        output.PreContent.AppendHtml(
-            $"<button href=\"#\" class=\"nav-link dropdown-toggle\" id=\"{this.Id}\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">{this.Title}</button>"
-        );
+    // Dropdown Button
+    output.PreContent.AppendHtml(
+        $"<button href=\"#\" class=\"nav-link dropdown-toggle\" id=\"{this.Id}\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">{this.Title}</button>"
+    );
 
-        // Dropdown Items
-        output.PreContent.AppendHtml(
-            $"<div class=\"dropdown-menu\" aria-labelledby=\"{this.Id}\">"
-        );
-        output.PostContent.AppendHtml("</div>");
-    }
+    // Dropdown Items
+    output.PreContent.AppendHtml(
+        $"<div class=\"dropdown-menu\" aria-labelledby=\"{this.Id}\">"
+    );
+    output.PostContent.AppendHtml("</div>");
+}
 }

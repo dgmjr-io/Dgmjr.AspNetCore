@@ -18,25 +18,25 @@ using Dgmjr.AspNetCore.TagHelpers.Enumerations;
 public class PageHeader(IHtmlGenerator generator) : TagHelper(), IHaveAWritableId<string>
 {
     [HtmlAttributeName(AttributeNames.HeadingType)]
-    public HeadingType HeadingType { get; set; } = HeadingType.h1;
+public HeadingType HeadingType { get; set; } = HeadingType.h1;
 
-    [HtmlAttributeName(AttributeNames.Id)]
-    public string Id { get; set; }
+[HtmlAttributeName(AttributeNames.Id)]
+public string Id { get; set; }
 
-    [HtmlAttributeName(AttributeNames.Title)]
-    public string Title { get; set; } = string.Empty;
+[HtmlAttributeName(AttributeNames.Title)]
+public string Title { get; set; } = string.Empty;
 
-    [ViewContext]
-    public ViewContext ViewContext { get; set; }
+[ViewContext]
+public ViewContext ViewContext { get; set; }
 
-    protected IHtmlGenerator Generator => generator;
+protected IHtmlGenerator Generator => generator;
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        output.TagName = "div";
-        output.AddClass("page-header", HtmlEncoder.Default);
-        output.Content.AppendHtml(
-            $"<{HeadingType.ToString().ToLower()}>{Title}</{HeadingType.ToString().ToLower()}>"
-        );
-    }
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    output.TagName = "div";
+    output.AddClass("page-header", HtmlEncoder.Default);
+    output.Content.AppendHtml(
+        $"<{HeadingType.ToString().ToLower()}>{Title}</{HeadingType.ToString().ToLower()}>"
+    );
+}
 }

@@ -15,10 +15,10 @@ namespace No.Dgmjr.AspNetCore.TagHelpers.Bootstrap;
 public class NavbarDropdownDividerTagHelper() : DgmjrTagHelperBase(TagNames.Divider)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        await base.ProcessAsync(context, output);
-        output.TagName = TagNames.Divider;
-        output.AddCssClass(CssClasses.DropdownDivider);
-        output.WrapOutside($"<{TagNames.Li}>", $"</{TagNames.Li}>");
-    }
+{
+    await base.ProcessAsync(context, output);
+    output.TagName = TagNames.Divider;
+    output.AddCssClass(CssClasses.DropdownDivider);
+    output.WrapOutside($"<{TagNames.Li}>", $"</{TagNames.Li}>");
+}
 };

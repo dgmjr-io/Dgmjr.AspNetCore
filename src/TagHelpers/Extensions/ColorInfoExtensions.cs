@@ -44,9 +44,9 @@ public readonly record struct ColorInfo(ColorInfoAttribute? ColorInfoAttribute)
 {
     public string Name => ColorInfoAttribute?.Name ?? string.Empty;
 
-    public string TextCssClass => ColorInfoAttribute?.TextCssClass ?? string.Empty;
+public string TextCssClass => ColorInfoAttribute?.TextCssClass ?? string.Empty;
 
-    public string BackgroundCssClass => ColorInfoAttribute?.BackgroundCssClass ?? string.Empty;
+public string BackgroundCssClass => ColorInfoAttribute?.BackgroundCssClass ?? string.Empty;
 
-    public string BorderCssClass => ColorInfoAttribute?.BorderCssClass ?? string.Empty;
+public string BorderCssClass => ColorInfoAttribute?.BorderCssClass ?? string.Empty;
 }

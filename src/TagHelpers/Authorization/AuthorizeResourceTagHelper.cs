@@ -23,63 +23,63 @@ public class AuthorizeResourceTagHelper(
     /// Gets or sets the policy name that determines access to the HTML block.
     /// </summary>
     [HtmlAttributeName("asp-policy")]
-    public string Policy { get; set; }
+public string Policy { get; set; }
 
-    /// <summary>
-    /// Gets or sets a comma delimited list of roles that are allowed to access the HTML  block.
-    /// </summary>
-    [HtmlAttributeName("asp-requirement")]
-    public IAuthorizationRequirement Requirement { get; set; }
+/// <summary>
+/// Gets or sets a comma delimited list of roles that are allowed to access the HTML  block.
+/// </summary>
+[HtmlAttributeName("asp-requirement")]
+public IAuthorizationRequirement Requirement { get; set; }
 
-    /// <summary>
-    /// Gets or sets the resource to be authorized against a particular policy
-    /// </summary>
-    [HtmlAttributeName("asp-authorize-resource")]
-    public object Resource { get; set; }
+/// <summary>
+/// Gets or sets the resource to be authorized against a particular policy
+/// </summary>
+[HtmlAttributeName("asp-authorize-resource")]
+public object Resource { get; set; }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    if (Resource == null)
     {
-        if (Resource == null)
-        {
-            throw new ArgumentException("Resource cannot be null");
-        }
-        if (IsNullOrWhiteSpace(Policy) && Requirement == null)
-        {
-            throw new ArgumentException("Either Policy or Requirement must be specified");
-        }
-        if (!IsNullOrWhiteSpace(Policy) && Requirement != null)
-        {
-            throw new ArgumentException(
-                "Policy and Requirement cannot be specified at the same time"
-            );
-        }
-
-        AuthorizationResult authorizeResult;
-
-        if (!IsNullOrWhiteSpace(Policy))
-        {
-            authorizeResult = await authorizationService.AuthorizeAsync(
-                httpContextAccessor.HttpContext.User,
-                Resource,
-                Policy
-            );
-        }
-        else if (Requirement != null)
-        {
-            authorizeResult = await authorizationService.AuthorizeAsync(
-                httpContextAccessor.HttpContext.User,
-                Resource,
-                Requirement
-            );
-        }
-        else
-        {
-            throw new ArgumentException("Either Policy or Requirement must be specified");
-        }
-
-        if (!authorizeResult.Succeeded)
-        {
-            output.SuppressOutput();
-        }
+        throw new ArgumentException("Resource cannot be null");
     }
+    if (IsNullOrWhiteSpace(Policy) && Requirement == null)
+    {
+        throw new ArgumentException("Either Policy or Requirement must be specified");
+    }
+    if (!IsNullOrWhiteSpace(Policy) && Requirement != null)
+    {
+        throw new ArgumentException(
+            "Policy and Requirement cannot be specified at the same time"
+        );
+    }
+
+    AuthorizationResult authorizeResult;
+
+    if (!IsNullOrWhiteSpace(Policy))
+    {
+        authorizeResult = await authorizationService.AuthorizeAsync(
+            httpContextAccessor.HttpContext.User,
+            Resource,
+            Policy
+        );
+    }
+    else if (Requirement != null)
+    {
+        authorizeResult = await authorizationService.AuthorizeAsync(
+            httpContextAccessor.HttpContext.User,
+            Resource,
+            Requirement
+        );
+    }
+    else
+    {
+        throw new ArgumentException("Either Policy or Requirement must be specified");
+    }
+
+    if (!authorizeResult.Succeeded)
+    {
+        output.SuppressOutput();
+    }
+}
 }

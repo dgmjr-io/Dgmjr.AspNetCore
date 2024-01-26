@@ -25,5 +25,6 @@ public sealed class Produces405ErrorAttribute : SwaggerResponseAttribute
             Http.StatusCode.MethodNotAllowed.Description,
             typeof(MethodNotAllowedProblemDetails),
             ApplicationMediaTypeNames.ProblemJson
-        ) { }
+        )
+    { }
 }

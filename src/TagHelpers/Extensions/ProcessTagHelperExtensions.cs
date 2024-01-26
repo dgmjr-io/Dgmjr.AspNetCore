@@ -21,7 +21,7 @@ public static class ProcessTagHelperExtensions
         @this.CheckMandatoryProperties();
         @this.CopyIdentifier();
         process(context, output);
-        if(@this is IIdentifiable<string> iis)
+        if (@this is IIdentifiable<string> iis)
         {
             iis.RenderIdentifier(output);
         }

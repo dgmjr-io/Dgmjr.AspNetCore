@@ -27,8 +27,8 @@ public static class CopyToOutputExtensions
         }
         foreach (
             var item in from pI in target.GetType().GetProperties()
-            where pI.HasCustomAttribute<CopyToOutputAttribute>()
-            select pI
+                        where pI.HasCustomAttribute<CopyToOutputAttribute>()
+                        select pI
         )
         {
             var obj = item.GetValue(target);

@@ -19,50 +19,50 @@ namespace Dgmjr.AspNetCore.TagHelpers.Bootstrap;
 public class FooterNavLinkTagHelper(IHtmlGenerator generator) : AnchorTagHelper(generator)
 {
     public override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        base.ProcessAsync(context, output);
-        output.TagName = "a";
+{
+    base.ProcessAsync(context, output);
+    output.TagName = "a";
 
-        if (ShouldBeActive())
-        {
-            MakeActive(output);
-        }
-        return Task.CompletedTask;
+    if (ShouldBeActive())
+    {
+        MakeActive(output);
+    }
+    return Task.CompletedTask;
+}
+
+private bool ShouldBeActive()
+{
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+
+    if (
+        !IsNullOrWhiteSpace(Controller) && Controller?.ToLower() != currentController?.ToLower()
+    )
+    {
+        return false;
     }
 
-    private bool ShouldBeActive()
+    if (!IsNullOrWhiteSpace(Action) && Action?.ToLower() != currentAction?.ToLower())
     {
-        var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+        return false;
+    }
 
+    foreach (var routeValue in RouteValues)
+    {
         if (
-            !IsNullOrWhiteSpace(Controller) && Controller?.ToLower() != currentController?.ToLower()
+            !ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
+            || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value
         )
         {
             return false;
         }
-
-        if (!IsNullOrWhiteSpace(Action) && Action?.ToLower() != currentAction?.ToLower())
-        {
-            return false;
-        }
-
-        foreach (var routeValue in RouteValues)
-        {
-            if (
-                !ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
-                || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value
-            )
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
-    private static void MakeActive(TagHelperOutput output)
-    {
-        output.AddCssClass("active");
-    }
+    return true;
+}
+
+private static void MakeActive(TagHelperOutput output)
+{
+    output.AddCssClass("active");
+}
 }

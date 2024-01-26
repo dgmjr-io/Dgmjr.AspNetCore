@@ -16,14 +16,14 @@ public static class TagHelperOutputExtensions
 {
     public static void AddCssClass(this TagHelperOutput output, string cssClass)
     {
-        output.AddCssClass([ cssClass ]);
+        output.AddCssClass([cssClass]);
     }
 
     public static void AddCssClass(this TagHelperOutput output, IEnumerable<string> cssClasses)
     {
         if (output.Attributes.ContainsName("class") && output.Attributes["class"] != null)
         {
-            var classes = output.Attributes["class"].Value.ToString().Split([ ' ' ]).ToList();
+            var classes = output.Attributes["class"].Value.ToString().Split([' ']).ToList();
             classes.AddRange(cssClasses.Where((string cssClass) => !classes.Contains(cssClass)));
             output.Attributes.SetAttribute("class", classes.Aggregate((string s, string s1) => s + " " + s1));
         }
@@ -43,7 +43,7 @@ public static class TagHelperOutputExtensions
         {
             return;
         }
-        var list = output.Attributes["class"].Value.ToString().Split([ ' ' ]).ToList();
+        var list = output.Attributes["class"].Value.ToString().Split([' ']).ToList();
         list.Remove(cssClass);
         if (list.Count == 0)
         {

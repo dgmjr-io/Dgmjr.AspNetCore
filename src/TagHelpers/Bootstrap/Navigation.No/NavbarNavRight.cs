@@ -19,10 +19,10 @@ public class NavbarNavRightTagHelper(IActionContextAccessor actionContextAccesso
     : NavbarNavTagHelper(actionContextAccessor)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        await base.ProcessAsync(context, output);
-        output.AddCssClass(CssClasses.Nav);
-        output.AddCssClass(CssClasses.NavbarNav);
-        output.AddCssClass(CssClasses.NavRight);
-    }
+{
+    await base.ProcessAsync(context, output);
+    output.AddCssClass(CssClasses.Nav);
+    output.AddCssClass(CssClasses.NavbarNav);
+    output.AddCssClass(CssClasses.NavRight);
+}
 }

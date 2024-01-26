@@ -21,97 +21,97 @@ public class DgmjrTagHelperBase(
 {
     protected const string AttributePrefix = "dgmjr-";
 
-    [HtmlAttributeNotBound]
-    public string TagName { get; set; } = tagName;
+[HtmlAttributeNotBound]
+public string TagName { get; set; } = tagName;
 
-    private const string DisableBootstrapAttributeName = "disable-bootstrap";
+private const string DisableBootstrapAttributeName = "disable-bootstrap";
 
-    [HtmlAttributeName(DisableBootstrapAttributeName)]
-    [HtmlAttributeNotBound]
-    [HtmlAttributeMinimizable]
-    public bool DisableBootstrap { get; set; }
+[HtmlAttributeName(DisableBootstrapAttributeName)]
+[HtmlAttributeNotBound]
+[HtmlAttributeMinimizable]
+public bool DisableBootstrap { get; set; }
 
-    [HtmlAttributeNotBound]
-    public string GeneratedId { get; set; }
+[HtmlAttributeNotBound]
+public string GeneratedId { get; set; }
 
-    [CopyToOutput]
-    public string Id { get; set; }
+[CopyToOutput]
+public string Id { get; set; }
 
-    [CopyToOutput]
-    public string Name { get; set; }
+[CopyToOutput]
+public string Name { get; set; }
 
-    [HtmlAttributeNotBound]
-    public TagHelperOutput Output { get; set; }
+[HtmlAttributeNotBound]
+public TagHelperOutput Output { get; set; }
 
-    [HtmlAttributeNotBound]
-    public IActionContextAccessor ActionContextAccessor
-    {
-        get => _actionContextAccessor ??= Services.GetRequiredService<IActionContextAccessor>();
-        set => _actionContextAccessor = value;
-    }
-    private IActionContextAccessor _actionContextAccessor;
+[HtmlAttributeNotBound]
+public IActionContextAccessor ActionContextAccessor
+{
+    get => _actionContextAccessor ??= Services.GetRequiredService<IActionContextAccessor>();
+    set => _actionContextAccessor = value;
+}
+private IActionContextAccessor _actionContextAccessor;
 
-    protected IServiceProvider Services => ViewContext.HttpContext.RequestServices;
+protected IServiceProvider Services => ViewContext.HttpContext.RequestServices;
 
-    [ViewContext]
-    [HtmlAttributeNotBound]
-    public ViewContext ViewContext { get; set; }
+[ViewContext]
+[HtmlAttributeNotBound]
+public ViewContext ViewContext { get; set; }
 
-    private IUrlHelper _urlHelper;
+private IUrlHelper _urlHelper;
 
-    [HtmlAttributeNotBound]
-    public IUrlHelper UrlHelper
-    {
-        get =>
-            _urlHelper ??= Services
-                .GetRequiredService<IUrlHelperFactory>()
-                .GetUrlHelper(ViewContext);
-        set => _urlHelper = value;
-    }
+[HtmlAttributeNotBound]
+public IUrlHelper UrlHelper
+{
+    get =>
+        _urlHelper ??= Services
+            .GetRequiredService<IUrlHelperFactory>()
+            .GetUrlHelper(ViewContext);
+    set => _urlHelper = value;
+}
 
-    // public override void Init(TagHelperContext context)
-    // {
-    //     this.SetContexts(context);
-    //     this.SetContext(context);
-    //     this.FillMinimizableAttributes(context);
-    //     this.ConvertUrls(ActionContextAccessor);
-    // }
+// public override void Init(TagHelperContext context)
+// {
+//     this.SetContexts(context);
+//     this.SetContext(context);
+//     this.FillMinimizableAttributes(context);
+//     this.ConvertUrls(ActionContextAccessor);
+// }
 
-    // public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    // {
-    //     Output = output;
-    //     if (!DisableBootstrap)
-    //     {
-    //         this.CopyPropertiesToOutput(output);
-    //         this.CheckMandatoryProperties();
-    //         this.CopyIdentifier();
-    //         RenderProcess(context, output);
-    //         this.RenderIdentifier(this, output);
-    //         RemoveMinimizableAttributes(output);
-    //     }
-    // }
+// public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+// {
+//     Output = output;
+//     if (!DisableBootstrap)
+//     {
+//         this.CopyPropertiesToOutput(output);
+//         this.CheckMandatoryProperties();
+//         this.CopyIdentifier();
+//         RenderProcess(context, output);
+//         this.RenderIdentifier(this, output);
+//         RemoveMinimizableAttributes(output);
+//     }
+// }
 
-    // public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    // {
-    //     Output = output;
-    //     if (!DisableBootstrap)
-    //     {
-    //         CopyToOutputAttribute.CopyPropertiesToOutput(this, output);
-    //         MandatoryAttribute.CheckProperties(this);
-    //         GenerateIdAttribute.CopyIdentifier(this);
-    //         await RenderProcessAsync(context, output);
-    //         GenerateIdAttribute.RenderIdentifier(this, output);
-    //         RemoveMinimizableAttributes(output);
-    //     }
-    // }
+// public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+// {
+//     Output = output;
+//     if (!DisableBootstrap)
+//     {
+//         CopyToOutputAttribute.CopyPropertiesToOutput(this, output);
+//         MandatoryAttribute.CheckProperties(this);
+//         GenerateIdAttribute.CopyIdentifier(this);
+//         await RenderProcessAsync(context, output);
+//         GenerateIdAttribute.RenderIdentifier(this, output);
+//         RemoveMinimizableAttributes(output);
+//     }
+// }
 
-    protected virtual void RenderProcess(TagHelperContext context, TagHelperOutput output) { }
+protected virtual void RenderProcess(TagHelperContext context, TagHelperOutput output) { }
 
-    protected virtual async Task RenderProcessAsync(
-        TagHelperContext context,
-        TagHelperOutput output
-    )
-    {
-        RenderProcess(context, output);
-    }
+protected virtual async Task RenderProcessAsync(
+    TagHelperContext context,
+    TagHelperOutput output
+)
+{
+    RenderProcess(context, output);
+}
 }

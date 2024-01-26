@@ -13,42 +13,42 @@
 
         private const string VerticalAlignmentAttributeName = "vertical-alignment";
 
-        #endregion
+    #endregion
 
-        #region --- Properties ---
+    #region --- Properties ---
 
-        [CopyToOutput]
-        [ConvertVirtualUrl]
-        public string Src { get; set; }
+    [CopyToOutput]
+    [ConvertVirtualUrl]
+    public string Src { get; set; }
 
-        [HtmlAttributeName(VerticalAlignmentAttributeName)]
-        public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Default;
+    [HtmlAttributeName(VerticalAlignmentAttributeName)]
+    public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Default;
 
-        [ActionContext]
-        public IActionContextAccessor ActionContextAccessor => actionContextAccessor;
+    [ActionContext]
+    public IActionContextAccessor ActionContextAccessor => actionContextAccessor;
 
-        #endregion
+    #endregion
 
-        public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    {
+        output.TagName = "img";
+        output.TagMode = TagMode.SelfClosing;
+
+        output.AddCssClass("d-flex");
+
+        // Vertical Alignment
+        switch (this.VerticalAlignment)
         {
-            output.TagName = "img";
-            output.TagMode = TagMode.SelfClosing;
-
-            output.AddCssClass("d-flex");
-
-            // Vertical Alignment
-            switch (this.VerticalAlignment)
-            {
-                case VerticalAlignment.Top:
-                    output.AddCssClass("align-self-start");
-                    break;
-                case VerticalAlignment.Middle:
-                    output.AddCssClass("align-self-center");
-                    break;
-                case VerticalAlignment.Bottom:
-                    output.AddCssClass("align-self-end");
-                    break;
-            }
+            case VerticalAlignment.Top:
+                output.AddCssClass("align-self-start");
+                break;
+            case VerticalAlignment.Middle:
+                output.AddCssClass("align-self-center");
+                break;
+            case VerticalAlignment.Bottom:
+                output.AddCssClass("align-self-end");
+                break;
         }
     }
+}
 }
