@@ -19,54 +19,54 @@ public class NavLinkTagHelper(IHtmlGenerator generator) : AnchorTagHelper(genera
 {
     protected IServiceProvider Services => ViewContext.HttpContext.RequestServices;
 
-    private IUrlHelper _urlHelper;
+private IUrlHelper _urlHelper;
 
-    [HtmlAttributeNotBound]
-    public IUrlHelper UrlHelper
+[HtmlAttributeNotBound]
+public IUrlHelper UrlHelper
+{
+    get =>
+        _urlHelper ??= Services
+            .GetRequiredService<IUrlHelperFactory>()
+            .GetUrlHelper(ViewContext);
+    set => _urlHelper = value;
+}
+
+private bool ShouldBeActive()
+{
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+
+    if (
+        !IsNullOrWhiteSpace(Controller) && Controller?.ToLower() != currentController?.ToLower()
+    )
     {
-        get =>
-            _urlHelper ??= Services
-                .GetRequiredService<IUrlHelperFactory>()
-                .GetUrlHelper(ViewContext);
-        set => _urlHelper = value;
+        return false;
     }
 
-    private bool ShouldBeActive()
+    if (!IsNullOrWhiteSpace(Action) && Action?.ToLower() != currentAction?.ToLower())
     {
-        var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+        return false;
+    }
 
+    foreach (var routeValue in RouteValues)
+    {
         if (
-            !IsNullOrWhiteSpace(Controller) && Controller?.ToLower() != currentController?.ToLower()
+            !ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
+            || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value
         )
         {
             return false;
         }
-
-        if (!IsNullOrWhiteSpace(Action) && Action?.ToLower() != currentAction?.ToLower())
-        {
-            return false;
-        }
-
-        foreach (var routeValue in RouteValues)
-        {
-            if (
-                !ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
-                || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value
-            )
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    return true;
+}
+
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    if (ShouldBeActive())
     {
-        if (ShouldBeActive())
-        {
-            output.AddCssClass(CssClasses.Active);
-        }
+        output.AddCssClass(CssClasses.Active);
     }
+}
 }

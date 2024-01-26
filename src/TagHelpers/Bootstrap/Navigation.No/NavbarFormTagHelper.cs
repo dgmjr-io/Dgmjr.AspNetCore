@@ -5,8 +5,8 @@
 public class NavbarFormTagHelper() : DgmjrTagHelperBase(TagNames.Form)
 {
     public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        output.TagName = "form";
-        output.AddCssClass("form-inline");
-    }
+{
+    output.TagName = "form";
+    output.AddCssClass("form-inline");
+}
 }

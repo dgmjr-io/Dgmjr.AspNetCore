@@ -17,9 +17,9 @@ public class GenerateIdAttribute(string prefix, bool renderIdAttribute = true) :
 {
     private string _id;
 
-    public string Prefix { get; set; } = prefix;
+public string Prefix { get; set; } = prefix;
 
-    public bool RenderIdAttribute { get; set; } = renderIdAttribute;
+public bool RenderIdAttribute { get; set; } = renderIdAttribute;
 
-    public string Id => _id ??= Prefix + guid.NewGuid().ToString("N");
+public string Id => _id ??= Prefix + guid.NewGuid().ToString("N");
 }

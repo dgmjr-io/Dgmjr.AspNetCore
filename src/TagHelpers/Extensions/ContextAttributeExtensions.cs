@@ -34,8 +34,8 @@ public static class ContextAttributeExtensions
                         | BindingFlags.Public
                         | BindingFlags.NonPublic
                 )
-            where pi.HasCustomAttribute<ContextAttribute>()
-            select pi
+                        where pi.HasCustomAttribute<ContextAttribute>()
+                        select pi
         )
         {
             var customAttribute = item.GetCustomAttribute<ContextAttribute>();

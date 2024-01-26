@@ -11,30 +11,30 @@
     {
         public IActionContextAccessor ActionContextAccessor => actionContextAccessor;
 
-        #region --- Attribute Names ---
+    #region --- Attribute Names ---
 
-        private const string PositionAttributeName = "position";
+    private const string PositionAttributeName = "position";
 
-        #endregion
+    #endregion
 
-        #region --- Properties ---
+    #region --- Properties ---
 
-        // [HtmlAttributeName(PositionAttributeName)]
-        public CardImagePosition Position { get; set; } = CardImagePosition.Top;
+    // [HtmlAttributeName(PositionAttributeName)]
+    public CardImagePosition Position { get; set; } = CardImagePosition.Top;
 
-        [CopyToOutput]
-        [ConvertVirtualUrl]
-        public string Src { get; set; }
+    [CopyToOutput]
+    [ConvertVirtualUrl]
+    public string Src { get; set; }
 
-        #endregion
+    #endregion
 
-        public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-        {
-            output.TagName = "img";
-            output.TagMode = TagMode.SelfClosing;
+    public async override Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+    {
+        output.TagName = "img";
+        output.TagMode = TagMode.SelfClosing;
 
-            // Position
-            output.AddCssClass($"card-img-{this.Position.GetEnumInfo().Name}");
-        }
+        // Position
+        output.AddCssClass($"card-img-{this.Position.GetEnumInfo().Name}");
     }
+}
 }

@@ -22,6 +22,6 @@ public class ApiControllerBase(ILogger? logger = null) : ControllerBase, ILog
 {
     public ILogger Logger => logger ?? new NullLogger<ApiControllerBase>();
 
-    public IActionResult Result<T>(T value, string contentType) =>
-        ControllerExtensions.Result(this, value, contentType);
+public IActionResult Result<T>(T value, string contentType) =>
+    ControllerExtensions.Result(this, value, contentType);
 }

@@ -20,7 +20,7 @@ public static class InitExtensions
         @this.SetContexts(context);
         @this.SetContext(context);
         @this.FillMinimizableAttributes(context);
-        if(@this is IHaveAnActionContextAccessor ihaaaca)
+        if (@this is IHaveAnActionContextAccessor ihaaaca)
         {
             @this.ConvertUrls(ihaaaca.ActionContextAccessor);
         }

@@ -17,22 +17,22 @@ public class NavDropdownLink(IHtmlGenerator generator) : AnchorTagHelper(generat
 {
     #region --- Attribute Names ---
 
-    private const string TitleAttributeName = "title";
+private const string TitleAttributeName = "title";
 
-    #endregion
+#endregion
 
-    #region --- Properties ---
+#region --- Properties ---
 
-    [HtmlAttributeName(TitleAttributeName)]
-    public string Title { get; set; }
+[HtmlAttributeName(TitleAttributeName)]
+public string Title { get; set; }
 
-    #endregion
+#endregion
 
-    public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
-    {
-        var childContent = await output.GetChildContentAsync();
+public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
+{
+    var childContent = await output.GetChildContentAsync();
 
-        output.TagName = TagNames.Anchor;
-        output.AddCssClass("dropdown-item");
-    }
+    output.TagName = TagNames.Anchor;
+    output.AddCssClass("dropdown-item");
+}
 }

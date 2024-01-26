@@ -22,8 +22,8 @@ public static class ConvertUrlAttributeExtensions
             throw new ArgumentNullException(nameof(target));
         }
         var convertVirtualUrlAttributeProperties = (from pi in target.GetType().GetProperties()
-                                where pi.HasCustomAttribute<ConvertVirtualUrlAttribute>()
-                                select pi).ToList();
+                                                    where pi.HasCustomAttribute<ConvertVirtualUrlAttribute>()
+                                                    select pi).ToList();
         if (!convertVirtualUrlAttributeProperties.Any())
         {
             return;

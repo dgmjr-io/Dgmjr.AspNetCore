@@ -27,8 +27,8 @@ public static class MinimizableAttributeExtensions
         }
         foreach (
             var item in from pI in target.GetType().GetProperties()
-            where pI.GetCustomAttribute<HtmlAttributeMinimizableAttribute>() != null
-            select pI
+                        where pI.GetCustomAttribute<HtmlAttributeMinimizableAttribute>() != null
+                        select pI
         )
         {
             var htmlAttributeName = item.GetHtmlAttributeName();
