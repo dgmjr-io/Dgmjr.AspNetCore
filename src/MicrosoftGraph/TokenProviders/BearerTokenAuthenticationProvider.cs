@@ -25,9 +25,10 @@ public class BearerTokenAuthenticationProvider(IAccessTokenProvider accessTokenP
         IAuthenticationProvider
 {
     public Task AuthenticateRequestAsync(HttpRequestMessage request)
-    {
-        return base.AuthenticateRequestAsync(new HttpRequestMessageWrapper(request));
-    }
+{
+    return base.AuthenticateRequestAsync(new HttpRequestMessageWrapper(request));
+}
 }
 
-internal class HttpRequestMessageWrapper(HttpRequestMessage request) : RequestInformation { }
+internal class HttpRequestMessageWrapper(HttpRequestMessage request) : RequestInformation
+{ }

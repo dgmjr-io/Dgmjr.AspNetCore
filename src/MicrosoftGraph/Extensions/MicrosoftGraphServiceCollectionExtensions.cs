@@ -66,7 +66,7 @@ public static class MicrosoftGraphServiceCollectionExtensions
         foreach (var appRole in myAppRoles)
         {
             var theAppRole = appRoles.FirstOrDefault(x => x.Id.ToString() == appRole.Id);
-            if(theAppRole != null)
+            if (theAppRole != null)
             {
                 claims.Add(new(ClaimTypes.Role, theAppRole.Value));
             }
