@@ -32,39 +32,39 @@ namespace Dgmjr.Graph.TokenProviders
             "graph.microsoft.de",
             "microsoftgraph.chinacloudapi.cn",
         };
-        private readonly ClaimsPrincipal _user =
-            user ?? throw new SecurityException("User claims principal is required.");
+    private readonly ClaimsPrincipal _user =
+        user ?? throw new SecurityException("User claims principal is required.");
 
-        /// <summary>
-        /// Gets the allowed host validator.
-        /// </summary>
-        public AllowedHostsValidator AllowedHostsValidator => new(validHosts);
+    /// <summary>
+    /// Gets the allowed host validator.
+    /// </summary>
+    public AllowedHostsValidator AllowedHostsValidator => new(validHosts);
 
-        /// <summary>
-        /// Gets an access token for the user.
-        /// </summary>
-        /// <param name="uri">The API URI of the request that the token will be added to.</param>
-        /// <param name="additionalAuthenticationContext">Additional name value pairs to add to the token request.</param>
-        /// <param name="cancellationToken">The cancellation token.</param>
-        /// <returns>The access token.</returns>
-        /// <exception cref="Exception">Thrown if the URI is not HTTPS.</exception>
-        public async Task<string> GetAuthorizationTokenAsync(
-            Uri uri,
-            Dictionary<string, object>? additionalAuthenticationContext = null,
-            CancellationToken cancellationToken = default
-        )
+    /// <summary>
+    /// Gets an access token for the user.
+    /// </summary>
+    /// <param name="uri">The API URI of the request that the token will be added to.</param>
+    /// <param name="additionalAuthenticationContext">Additional name value pairs to add to the token request.</param>
+    /// <param name="cancellationToken">The cancellation token.</param>
+    /// <returns>The access token.</returns>
+    /// <exception cref="Exception">Thrown if the URI is not HTTPS.</exception>
+    public async Task<string> GetAuthorizationTokenAsync(
+        Uri uri,
+        Dictionary<string, object>? additionalAuthenticationContext = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (!AllowedHostsValidator.IsUrlHostValid(uri))
         {
-            if (!AllowedHostsValidator.IsUrlHostValid(uri))
-            {
-                return string.Empty;
-            }
-
-            if (uri.Scheme != "https")
-            {
-                throw new ArgumentOutOfRangeException(nameof(uri), "URL must use https.");
-            }
-
-            return await tokenAcquisition.GetAccessTokenForUserAsync(scopes, user: _user);
+            return string.Empty;
         }
+
+        if (uri.Scheme != "https")
+        {
+            throw new ArgumentOutOfRangeException(nameof(uri), "URL must use https.");
+        }
+
+        return await tokenAcquisition.GetAccessTokenForUserAsync(scopes, user: _user);
     }
+}
 }

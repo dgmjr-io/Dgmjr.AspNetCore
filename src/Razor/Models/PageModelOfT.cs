@@ -19,33 +19,33 @@ public class PageModel(object? model = default) : PageModelBase
 {
     public object? ViewModel { get; set; } = model;
 
-    public string? Title
-    {
-        get => ViewData[nameof(Title)]?.ToString();
-        set => ViewData[nameof(Title)] = value;
-    }
-    public string? Description
-    {
-        get => ViewData[nameof(Description)]?.ToString();
-        set => ViewData[nameof(Description)] = value;
-    }
-    public string[]? Keywords
-    {
-        get => ViewData[nameof(Keywords)] as string[];
-        set => ViewData[nameof(Keywords)] = value;
-    }
-    public string? Author
-    {
-        get => ViewData[nameof(Author)]?.ToString();
-        set => ViewData[nameof(Author)] = value;
-    }
+public string? Title
+{
+    get => ViewData[nameof(Title)]?.ToString();
+    set => ViewData[nameof(Title)] = value;
+}
+public string? Description
+{
+    get => ViewData[nameof(Description)]?.ToString();
+    set => ViewData[nameof(Description)] = value;
+}
+public string[]? Keywords
+{
+    get => ViewData[nameof(Keywords)] as string[];
+    set => ViewData[nameof(Keywords)] = value;
+}
+public string? Author
+{
+    get => ViewData[nameof(Author)]?.ToString();
+    set => ViewData[nameof(Author)] = value;
+}
 }
 
-public class PageModel<T>(T? model) : PageModel(model)
+public class PageModel<T>(T ? model) : PageModel(model)
 {
     public new T? ViewModel
-    {
-        get => (T?)base.ViewModel;
-        set => base.ViewModel = value;
-    }
+{
+    get => (T?)base.ViewModel;
+    set => base.ViewModel = value;
+}
 }
