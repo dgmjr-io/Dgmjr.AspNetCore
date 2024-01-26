@@ -30,7 +30,7 @@ namespace Dgmjr.Payloads
         /// <value>records</value>
         public const string Records = "records";
 
-        public const string Description = "Requested range of values to return";
+        public const string DescriptionString = "Requested range of values to return";
         public const string ExampleString = "items 0-10";
         public const string EmptyString = "items 0-0";
         public const string UriPrefix = "https://dgmjr.io/range";
@@ -60,13 +60,14 @@ namespace Dgmjr.Payloads
         public static Regex Regex() => _regex;
 #endif
 
-#if !NET6_0_OR_GREATER
-        Regex IRegexValueObject<Range>.Regex() => Regex();
+        // #if !NET6_0_OR_GREATER
+        // public Regex Regex() => Regex();
 
-        string IRegexValueObject<Range>.RegexString => RegexString;
-        string IRegexValueObject<Range>.Description => Description;
-        Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);
-#endif
+        // public string RegexString => RegexString;
+        public string Description => DescriptionString;
+        public Range ExampleValue => From(ExampleString);
+
+        // #endif
         Uri IHaveAUri.Uri => Uri;
 
         /// <value>2147483647</value>
@@ -159,15 +160,14 @@ namespace Dgmjr.Payloads
         }
 
         public readonly string OriginalString { get; init; } = string.Empty;
-        readonly string IRegexValueObject<Range>.Value => $"{Units} {Start}-{End}";
-        readonly bool IRegexValueObject<Range>.IsEmpty =>
-            Value.Start.Value == 0 && Value.End.Value == 0;
+        public readonly string StringValue => $"{Units} {Start}-{End}";
+        readonly bool IsEmpty => Value.Start.Value == 0 && Value.End.Value == 0;
 
 #if NET6_0_OR_GREATER
-        static string IRegexValueObject<Range>.RegexString => RegexString;
-        static string IRegexValueObject<Range>.Description => Description;
-        static Range IRegexValueObject<Range>.ExampleValue => From(ExampleString);
-        static Range IRegexValueObject<Range>.Empty => From(EmptyString);
+        // static string RegexString => RegexString;
+        // static string Description => Description;
+        // static Range ExampleValue => From(ExampleString);
+        // static Range Empty => From(EmptyString);
 #endif
 
         public int CompareTo(Range other) => Value.Start.Value.CompareTo(other.Value.Start.Value);

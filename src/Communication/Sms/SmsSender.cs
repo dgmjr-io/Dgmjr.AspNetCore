@@ -24,12 +24,16 @@ using Microsoft.Extensions.Options;
 /// <summary>
 /// An sms sender.
 /// </summary>
-public class SmsSender
+/// <remarks>
+/// Initializes a new instance of the <see cref="SmsSender"/> class.
+/// </remarks>
+/// <param name="options">The options.</param>
+public class SmsSender(SmsSenderOptions? options) : ISmsSender
 {
     /// <summary>
     /// The options.
     /// </summary>
-    private readonly SmsSenderOptions _options;
+    private readonly SmsSenderOptions _options = options;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSender"/> class.
@@ -37,12 +41,6 @@ public class SmsSender
     /// <param name="options">The options.</param>
     public SmsSender(IOptions<SmsSenderOptions> options)
         : this(options?.Value) { }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SmsSender"/> class.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    public SmsSender(SmsSenderOptions? options) => _options = options;
 
     /// <summary>
     /// Creates the client.
@@ -63,10 +61,13 @@ public class SmsSender
     /// <param name="to">The number of the recipient.</param>
     /// <param name="message">The message.</param>
     /// <returns>A <![CDATA[Task<SmsSendResult>]]></returns>
-    public async Task<SmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
+    public async Task<ISmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
     {
-        return new(
+        return new SmsSendResult(
             (await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)).Value
         );
     }
+
+    public Task<ISmsSendResult> SendSmsAsync(string to, string message) =>
+        SendSmsAsync(PhoneNumber.From(to), message);
 }

@@ -28,7 +28,7 @@ public class EmailSender : IEmailSender
     public EmailSender(IOptions<EmailSenderOptions> options)
     {
         _options = options?.Value;
-        _client = new EmailClient(new Uri(_options.ConnectionString), new DefaultAzureCredential());
+        _client = new EmailClient(_options.Endpoint, new DefaultAzureCredential());
     }
 
     public async Task SendEmailAsync(string email, string subject, string htmlMessage)

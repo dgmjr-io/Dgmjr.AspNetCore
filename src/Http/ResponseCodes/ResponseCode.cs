@@ -230,11 +230,11 @@ public enum StatusCode : ushort
 
     /// <summary>In this case, the request should be repeated with another URI; however, future requests should still use the original URI. In contrast to how 302 was historically implemented, the request method is not allowed to be changed when reissuing the original request. For example, a POST request should be repeated using another POST request.</summary>
     /// <value>307</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307" />
     [Display(
         Name = "Temporary Redirect",
         Description = "In this case, the request should be repeated with another URI; however, future requests should still use the original URI. In contrast to how 302 was historically implemented, the request method is not allowed to be changed when reissuing the original request. For example, a POST request should be repeated using another POST request."
     )]
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/307" />
     [Uri($"{UriBase}307")]
     TemporaryRedirect = 307,
 
@@ -280,11 +280,11 @@ public enum StatusCode : ushort
 
     /// <summary>The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource, or may need an account of some sort.</summary>
     /// <value>403</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403" />
     [Display(
         Name = "Forbidden",
         Description = "The request was valid, but the server is refusing action. The user might not have the necessary permissions for a resource, or may need an account of some sort."
     )]
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403" />
     [Uri($"{UriBase}403")]
     Forbidden = 403,
 

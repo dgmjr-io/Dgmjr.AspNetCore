@@ -26,20 +26,19 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
     <PackageReference Include="Microsoft.Identity.Web.UI" />
-    <PackageReference Include="System.Private.CoreLib.Polyfills" IncludeAssets="ContentFiles;Build;BuildTransitive;BuildMultitargeting" ExcludeAssets="Analyzers;Runtime;Native" PrivateAssets="All" />
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.Net.Http.Json" />
     <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
     <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="../Http/ResponseCodes/Dgmjr.Http.StatusCodes.csproj" />
-    <ProjectReference Include="../Mvc.Polyfills/Dgmjr.AspNetCore.Mvc.Polyfills.csproj" Condition="$(TargetFramework.StartsWith('netstandard'))" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Microsoft.AspNetCore.Http.StatusCodes" Static="true" />
     <Using Include="Microsoft.Extensions.DependencyInjection" />
     <Using Include="Swashbuckle.AspNetCore.Annotations" />
     <Using Include="Dgmjr.Mime" />
+    <Using Include="System.IO.Path" Static="true" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />

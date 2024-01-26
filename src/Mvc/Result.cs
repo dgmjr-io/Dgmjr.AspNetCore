@@ -12,12 +12,14 @@
 
 namespace Dgmjr.AspNetCore.Mvc;
 
+using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 using OneOf;
 
-public class Result<T> : OneOfBase<ContentResult, ObjectResult>, IConvertToActionResult
+public class Result<T> : OneOfBase<ContentResult, ObjectResult>, IConvertToActionResult, IActionResult
 {
     public Result(T value, string contentType)
         : base(value is string ? new ContentResult { Content = value as string, ContentType = contentType, StatusCode = Status200OK } :
@@ -26,13 +28,16 @@ public class Result<T> : OneOfBase<ContentResult, ObjectResult>, IConvertToActio
     protected Result(ContentResult contentResult) : base(contentResult) { }
     protected Result(ObjectResult contentResult) : base(contentResult) { }
 
-    public IActionResult Convert() => IsT0 ? AsT0 : AsT1;
+    public IActionResult Convert() => this;
+
+    public Task ExecuteResultAsync(ActionContext context)
+        => IsT0 ? AsT0.ExecuteResultAsync(context) : AsT1.ExecuteResultAsync(context);
 
     public static implicit operator Result<T>(ContentResult contentResult) => new(contentResult);
 
     public static implicit operator Result<T>(ObjectResult objectResult) => new(objectResult);
 
-    public static implicit operator ActionResult(Result<T> result) => result.Convert() as ActionResult;
+    public static implicit operator ActionResult?(Result<T> result) => result.Convert() as ActionResult;
 }
 
 public class Result : Result<object>

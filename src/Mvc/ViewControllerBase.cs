@@ -12,10 +12,17 @@
 
 namespace Dgmjr.AspNetCore.Mvc;
 
-using Microsoft.AspNetCore.Mvc;
+using Dgmjr.Abstractions;
 
-public class ViewControllerBase : Controller
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.IdentityModel.LoggingExtensions;
+
+public class ViewControllerBase(ILogger? logger = null) : Controller, ILog
 {
+    public ILogger Logger => logger ?? new NullLogger<ViewControllerBase>();
+
     public IActionResult Result<T>(T value, string contentType) =>
         ControllerExtensions.Result(this, value, contentType);
 }

@@ -12,12 +12,16 @@
 
 namespace Dgmjr.AspNetCore.Communication.Email;
 
+using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Mail;
 using Dgmjr.AspNetCore.Communication;
 
 public record class EmailSenderOptions : AzureCommunicationServicesOptions<EmailAddress>
 {
+    public new const string ConfigurationSectionName =
+        $"{AzureCommunicationServicesOptionsBase.ConfigurationSectionName}:Email";
+
     public override required EmailAddress DefaultFrom { get; set; }
 
     public static new EmailSenderOptions Parse(string connectionString)
@@ -42,6 +46,9 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
         : base(options)
     {
         DefaultFrom = options.DefaultFrom;
+        AdminFrom = options.AdminFrom;
+        MassDistributionFrom = options.MassDistributionFrom;
+        SecurityFrom = options.SecurityFrom;
     }
 
     [SetsRequiredMembers]
@@ -58,5 +65,5 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
 
     [SetsRequiredMembers]
     public EmailSenderOptions()
-        : this(string.Empty) { }
+        : this(EmptyValue) { }
 }

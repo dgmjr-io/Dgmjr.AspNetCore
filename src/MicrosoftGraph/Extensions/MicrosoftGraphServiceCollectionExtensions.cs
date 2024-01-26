@@ -8,6 +8,7 @@ public static class MicrosoftGraphServiceCollectionExtensions
     )
     {
         var configSection = config.GetSection(DownstreamApis_MicrosoftGraph);
+        var options = configSection.Get<MicrosoftB2CGraphOptions>();
         services
             .AddMicrosoftGraph(options => config.Bind(options))
             .AddMicrosoftIdentityConsentHandler()
@@ -15,7 +16,7 @@ public static class MicrosoftGraphServiceCollectionExtensions
         services.AddScoped<IUsersService, UsersService>();
         services.Configure<MicrosoftB2CGraphOptions>(configSection);
         services.AddScoped<IApplicationService, ApplicationService>();
-        services.AddSingleton<IPassphraseGenerator, PassphraseGenerator>();
+        services.AddPassphraseGenerator(config);
         return services;
     }
 

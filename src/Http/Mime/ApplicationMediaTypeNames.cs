@@ -41,7 +41,7 @@ public static class ApplicationMediaTypeNames
     public const string Json = Base + "/json";
 
     /// <value><inheritdoc cref="Base" />/x-www-formurlencoded</value>
-    public const string FormUrlEncoded = Base + "/x-www-formurlencoded";
+    public const string FormUrlEncoded = Base + "/x-www-form-urlencoded";
 
     /// <value><inheritdoc cref="Base" />/problem+json</value>
     public const string ProblemJson = Base + "/problem+json";
@@ -68,10 +68,12 @@ public static class ApplicationMediaTypeNames
     public const string JavaScript = Base + "/javascript";
 
     /// <value><inheritdoc cref="MediaType.Application.DisplayName" path="/value" />/openapi<inheritdoc cref="Mime.Suffixes.Json.DisplayName" path="/value" /></value>
-    public const string OpenApiJson = $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Json.DisplayName}";
+    public const string OpenApiJson =
+        $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Json.DisplayName}";
 
     /// <value><inheritdoc cref="MediaType.Application.DisplayName" path="/value" />/openapi<inheritdoc cref="Mime.Suffixes.Yaml.DisplayName" path="/value" /></value>
-    public const string OpenApiYaml = $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Yaml.DisplayName}";
+    public const string OpenApiYaml =
+        $"{MediaType.Application.DisplayName}/openapi{Mime.Suffixes.Yaml.DisplayName}";
 
     /// <value><inheritdoc cref="OpenApiJson" path="/value" />; version=2.x</value>
     public const string OpenApiV2Json = $"{OpenApiJson}; version=2.x";
@@ -82,6 +84,6 @@ public static class ApplicationMediaTypeNames
     /// <value><inheritdoc cref="OpenApiJson" path="/value" />; version=3.x</value>
     public const string OpenApiV3Json = $"{OpenApiJson}; version=3.x";
 
-     /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=3.x</value>
+    /// <value><inheritdoc cref="OpenApiYaml" path="/value" />; version=3.x</value>
     public const string OpenApiV3Yaml = $"{OpenApiYaml}; version=3.x";
 }

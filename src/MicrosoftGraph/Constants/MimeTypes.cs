@@ -1,6 +1,7 @@
 namespace Dgmjr.Graph.Constants;
 
 using Dgmjr.Mime;
+using Application = Dgmjr.Mime.Application;
 
 public static class MimeTypes
 {

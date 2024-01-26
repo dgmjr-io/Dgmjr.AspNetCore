@@ -17,6 +17,9 @@ using System.Domain;
 
 public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNumber>
 {
+    public new const string ConfigurationSectionName =
+        $"{AzureCommunicationServicesOptionsBase.ConfigurationSectionName}:Sms";
+
     /// <summary>
     /// The default phone number string.
     /// </summary>
@@ -47,7 +50,7 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.
     /// </summary>
     public SmsSenderOptions()
-        : this(string.Empty) { }
+        : this(EmptyValue) { }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SmsSenderOptions"/> class.

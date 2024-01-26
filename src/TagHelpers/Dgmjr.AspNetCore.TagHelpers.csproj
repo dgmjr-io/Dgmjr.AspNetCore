@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommonMark.NET" />
+    <PacageReference Include="Microsoft.AspNetCore.Razor" />
+    <PacageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
+    <PacageReference Include="Microsoft.AspNetCore.Html.Abstractions" />
+    <PacageReference Include="Dgmjr.Abstractions" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator.Runtime" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../../Types/Abstractions/Dgmjr.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="CommonMark" />
+    <Using Include="Dgmjr.Abstractions" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.Abstractions" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.Attributes" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.Enumerations" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.Exceptions" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.Extensions" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers.TagHelperConstants" Static="true" />
+    <Using Include="Dgmjr.AspNetCore.TagHelpers" />
+    <Using Include="Microsoft.AspNetCore.Authorization.Policy" />
+    <Using Include="Microsoft.AspNetCore.Authorization" />
+    <Using Include="Microsoft.AspNetCore.Html" />
+    <Using Include="Microsoft.AspNetCore.Http" />
+    <Using Include="Microsoft.AspNetCore.Mvc.Infrastructure" />
+    <Using Include="Microsoft.AspNetCore.Mvc.Rendering" />
+    <Using Include="Microsoft.AspNetCore.Mvc.Routing" />
+    <Using Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
+    <Using Include="Microsoft.AspNetCore.Mvc.ViewFeatures" />
+    <Using Include="Microsoft.AspNetCore.Mvc" />
+    <Using Include="Microsoft.AspNetCore.Razor.TagHelpers" />
+    <Using Include="Microsoft.Extensions.Logging" />
+    <Using Include="System.Collections" />
+    <Using Include="System.Diagnostics.Contracts" />
+    <Using Include="System.Diagnostics" />
+    <Using Include="System.Reflection" />
+    <Using Include="System.String" Static="true" />
+    <Using Include="System.Text.Encodings.Web" />
+    <Using Include="System.Text" />
+    <Using Include="System.Threading.Tasks" />
+    <Using Include="System" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="./Bootstrap/Navigation.No/*.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="./Resources//ClientSideValidationScript.js" />
+  </ItemGroup>
+
+  <Import Project="../../../Types/Abstractions/Dgmjr.Abstractions.props" />
+
+</Project>

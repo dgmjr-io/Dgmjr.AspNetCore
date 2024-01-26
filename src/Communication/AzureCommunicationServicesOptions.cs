@@ -6,14 +6,32 @@ using SS = System.Diagnostics.CodeAnalysis.StringSyntaxAttribute;
 
 using System;
 
+using Dgmjr.AspNetCore.Communication.Email;
+using Dgmjr.AspNetCore.Communication.Sms;
+
+public class AzureCommunicationServicesOptions
+{
+    public EmailSenderOptions Email { get; set; } = new EmailSenderOptions();
+    public SmsSenderOptions Sms { get; set; } = new SmsSenderOptions();
+}
+
 [RegexDto(_RegexString)]
 public partial record class AzureCommunicationServicesOptionsBase
 {
+    public const string EmptyValue = "endpoint=https://empty.example;accessKey=NOTHING";
+    public const string ConfigurationSectionName = "CommunicationServices";
+
 #if NET8_0_OR_GREATER
-    [StringSyntax(SS.Regex)]
+    [@StringSyntax(SS.Regex)]
 #endif
     public const string _RegexString =
-        "^endpoint=(?<Endpoint:uri>https://.*);accessKey=(?<AccessKey:string>.*)$";
+        "^endpoint=(?<EndpointString:string>https://.*);accessKey=(?<AccessKey:string>.*)$";
+
+    public uri Endpoint
+    {
+        get => EndpointString;
+        init => EndpointString = value;
+    }
 
     public AzureCommunicationServicesOptionsBase(uri endpoint, string accessKey)
     {
@@ -47,7 +65,7 @@ public abstract partial record class AzureCommunicationServicesOptions<TAddressT
         : base(endpoint, accessKey) { }
 
     protected AzureCommunicationServicesOptions()
-        : this(string.Empty) { }
+        : this(EmptyValue) { }
 
     public abstract TAddressType DefaultFrom { get; set; }
 

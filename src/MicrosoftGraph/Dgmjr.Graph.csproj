@@ -43,7 +43,4 @@
     <Using Include="Microsoft.Identity.Web" />
     <Using Include="System.Net.WebRequestMethods" Static="true" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
-  </ItemGroup>
 </Project>

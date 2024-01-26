@@ -65,7 +65,7 @@ public static class IHostApplicationBuilderMvcExtensions
                 mvcBuilder.AddXmlDataContractSerializerFormatters();
             }
 
-            if(mvcOptions.AddMicrosoftIdentityUI)
+            if (mvcOptions.AddMicrosoftIdentityUI)
             {
                 mvcBuilder.AddMicrosoftIdentityUI();
             }
@@ -74,12 +74,17 @@ public static class IHostApplicationBuilderMvcExtensions
             {
                 // mvcBuilder.AddMvcOptions(options => builder.Configuration.Bind(configurationSectionKey, options));
             }
-        }
 
-        builder.Services.Configure<JsonOptions>(
-            options =>
-                builder.Configuration.GetSection(JsonSerializer).Bind(options.JsonSerializerOptions)
-        );
+            if (mvcOptions.AddJsonOptions)
+            {
+                builder.Services.Configure<JsonOptions>(
+                    options =>
+                        builder.Configuration
+                            .GetSection(JsonSerializer)
+                            .Bind(options.JsonSerializerOptions)
+                );
+            }
+        }
 
         return builder;
     }

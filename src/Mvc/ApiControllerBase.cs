@@ -12,10 +12,16 @@
 
 namespace Dgmjr.AspNetCore.Mvc;
 
-using Microsoft.AspNetCore.Mvc;
+using Dgmjr.Abstractions;
 
-public class ApiControllerBase : ControllerBase
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Abstractions;
+
+public class ApiControllerBase(ILogger? logger = null) : ControllerBase, ILog
 {
+    public ILogger Logger => logger ?? new NullLogger<ApiControllerBase>();
+
     public IActionResult Result<T>(T value, string contentType) =>
         ControllerExtensions.Result(this, value, contentType);
 }

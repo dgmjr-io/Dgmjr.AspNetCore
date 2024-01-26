@@ -18,5 +18,5 @@ public static class ControllerExtensions
         this ControllerBase controller,
         T value,
         string contentType
-    ) => new Result<T>(value, contentType).Convert();
+    ) => new Result<T>(value, contentType);
 }

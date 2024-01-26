@@ -7,6 +7,7 @@
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator.Runtime" />
     <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
   </ItemGroup>
 </Project>

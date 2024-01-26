@@ -24,14 +24,30 @@ public static partial class SwaggerExtensions
 
     const string SwaggerUI = nameof(SwaggerUI);
 
-    public static IHostApplicationBuilder AddSwaggerGen(this IHostApplicationBuilder builder, string configurationSectionKey = Swagger, Action<SwaggerGenOptions>? configure = default)
+    public static IHostApplicationBuilder AddSwaggerGen(
+        this IHostApplicationBuilder builder,
+        string configurationSectionKey = Swagger,
+        Action<SwaggerGenOptions>? configure = default
+    )
     {
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddSwaggerGen(c =>
         {
+            var schemaNames = new HashSet<string>();
             builder.Configuration.Bind(configurationSectionKey, c);
-            // c.CustomSchemaIds(type => type.FullName ?? guid.NewGuid().ToString()/*type.GetDisplayName().Contains("$") ? type.FullName : $"{type.Namespace}.{type.GetDisplayName()}"*/);
+            c.CustomSchemaIds(type =>
+            {
+                var schemaName = type.IsGenericParameter
+                    ? guid.NewGuid().ToString()
+                    : $"{type.Namespace}.{type.GetDisplayName()}";
+                if (!schemaNames.Add(schemaName))
+                {
+                    schemaName += guid.NewGuid().ToString();
+                    schemaNames.Add(schemaName);
+                }
+                return schemaName;
+            });
             c.AddAuthorizeSummary();
             c.DocumentFilter<PathLowercaseDocumentFilter>();
         });
@@ -51,7 +67,10 @@ public static partial class SwaggerExtensions
         return builder;
     }
 
-    public static IApplicationBuilder UseCustomSwaggerUI(this IApplicationBuilder app, string configurationSectionKey = SwaggerUI)
+    public static IApplicationBuilder UseCustomSwaggerUI(
+        this IApplicationBuilder app,
+        string configurationSectionKey = SwaggerUI
+    )
     {
         app.InjectUICustomizations();
         app.UseSwagger();

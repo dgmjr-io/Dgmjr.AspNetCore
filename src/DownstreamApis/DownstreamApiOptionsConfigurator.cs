@@ -1,5 +1,6 @@
 namespace Dgmjr.Web.DownstreamApis;
 
+using Application = Dgmjr.Mime.Application;
 using System.Net.Http;
 
 public class DownstreamApiOptionsConfigurator(IOptions<JsonOptions> jsonOptions)

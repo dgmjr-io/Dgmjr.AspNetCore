@@ -1,3 +1,6 @@
 [submodule "lib/AspNetCore.Hashids"]
 	path = lib/AspNetCore.Hashids
 	url = https://github.com/dgmjr/AspNetCore.Hashids.git
+[submodule "src/Http/CorrelationId"]
+	path = src/Http/CorrelationId
+	url = https://github.com/dgmjr-io/CorrelationId.git
