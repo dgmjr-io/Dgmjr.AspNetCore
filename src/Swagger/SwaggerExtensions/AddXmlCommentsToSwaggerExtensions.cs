@@ -33,7 +33,7 @@ internal static partial class InternalSwaggerExtensions
         return false;
     }
 
-    public static IHostApplicationBuilder AddXmlCommentsToSwagger(this IHostApplicationBuilder builder)
+    public static WebApplicationBuilder AddXmlCommentsToSwagger(this WebApplicationBuilder builder)
     {
         var binRoot = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
         var xmlDocs = Directory

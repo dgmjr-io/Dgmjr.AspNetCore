@@ -22,9 +22,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 internal static partial class InternalSwaggerExtensions
 {
-    public static IHostApplicationBuilder DescribeFileUploads(
-        this IHostApplicationBuilder builder
-    )
+    public static WebApplicationBuilder DescribeFileUploads(this WebApplicationBuilder builder)
     {
         builder.Services.ConfigureSwaggerGen(
             options => options.OperationFilter<SwaggerFileOperationFilter>()

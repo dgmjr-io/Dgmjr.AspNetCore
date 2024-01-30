@@ -63,6 +63,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="./Resources//ClientSideValidationScript.js" />
+    <EmbeddedResource Include="./Resources/code.css" />
   </ItemGroup>
 
   <Import Project="../../../Types/Abstractions/Dgmjr.Abstractions.props" />

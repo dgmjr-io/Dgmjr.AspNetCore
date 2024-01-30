@@ -62,4 +62,7 @@ public record class SmsSenderOptions : AzureCommunicationServicesOptions<PhoneNu
     {
         DefaultFrom = fromPhoneNumber.HasValue ? fromPhoneNumber.Value : PhoneNumber.Empty;
     }
+
+    public IDictionary<string, PhoneNumber> Numbers { get; set; } =
+        new Dictionary<string, PhoneNumber>();
 }

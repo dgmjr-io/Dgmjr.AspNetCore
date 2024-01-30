@@ -25,8 +25,8 @@ public static partial class HttpServicesExtensions
     public const string Kestrel = nameof(Kestrel);
     public const string ExceptionHandling = nameof(ExceptionHandling);
 
-    public static IHostApplicationBuilder AddHttpServices(
-        this IHostApplicationBuilder builder,
+    public static WebApplicationBuilder AddHttpServices(
+        this WebApplicationBuilder builder,
         string configurationSectionKey = Http
     )
     {

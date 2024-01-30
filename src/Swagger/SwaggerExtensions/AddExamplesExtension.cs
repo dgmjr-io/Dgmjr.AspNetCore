@@ -17,8 +17,8 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 internal static partial class InternalSwaggerExtensions
 {
-    public static IHostApplicationBuilder AddSwaggerExamples(
-        this IHostApplicationBuilder builder,
+    public static WebApplicationBuilder AddSwaggerExamples(
+        this WebApplicationBuilder builder,
         params Assembly[]? assemblies
     )
     {

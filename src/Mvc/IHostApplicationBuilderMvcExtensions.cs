@@ -15,8 +15,8 @@ public static class IHostApplicationBuilderMvcExtensions
     private const string Mvc = nameof(Mvc);
     private const string JsonSerializer = nameof(JsonSerializer);
 
-    public static IHostApplicationBuilder AddMvc(
-        this IHostApplicationBuilder builder,
+    public static WebApplicationBuilder AddMvc(
+        this WebApplicationBuilder builder,
         string configurationSectionKey = Mvc
     )
     {

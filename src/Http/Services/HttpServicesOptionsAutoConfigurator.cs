@@ -10,7 +10,7 @@ public class HttpServicesOptionsAutoConfigurator
 {
     public ConfigurationOrder Order => ConfigurationOrder.AnyTime;
 
-    public void Configure(IHostApplicationBuilder builder)
+    public void Configure(WebApplicationBuilder builder)
     {
         builder.AddHttpServices();
     }

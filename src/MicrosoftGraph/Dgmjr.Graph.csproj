@@ -7,7 +7,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" />
     <PackageReference Include="Dgmjr.Abstractions" />
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
-    <PackageReference Include="Dgmjr.Extensions.Caching" />
+    <PackageReference Include="Dgmjr.Caching.Extensions" />
     <PackageReference Include="Dgmjr.Logging.Extensions" />
     <PackageReference Include="Microsoft.Kiota.Abstractions" />
   </ItemGroup>
@@ -32,7 +32,7 @@
     <Using Include="Dgmjr.Graph.Models.ExtensionProperty" Alias="DGraphExtensionProperty" />
     <Using Include="Dgmjr.Graph.Models" />
     <Using Include="Dgmjr.Graph.MsGraphConstants" Static="true" />
-    <Using Include="Dgmjr.Graph.Options.MicrosoftB2CGraphOptions" Alias="MicrosoftB2CGraphOptions" />
+    <Using Include="Dgmjr.Graph.Options.AzureAdB2CGraphOptions" Alias="AzureAdB2CGraphOptions" />
     <Using Include="Dgmjr.Graph.Options" />
     <Using Include="Dgmjr.Graph.Services" />
     <Using Include="Dgmjr.Mime" />

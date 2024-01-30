@@ -1,6 +1,6 @@
 namespace Dgmjr.Graph.Services;
 
-public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : MsGraphService(graph, logger, options, msidOptions, cache), IUsersService
+public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger, IOptionsMonitor<AzureAdB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : MsGraphService(graph, logger, options, msidOptions, cache), IUsersService
 {
     public async Task<User> GetMeAsync(CancellationToken cancellationToken = default)
     {

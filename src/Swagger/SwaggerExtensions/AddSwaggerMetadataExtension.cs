@@ -31,8 +31,8 @@ using static ThisAssembly.Project;
 
 internal static partial class InternalSwaggerExtensions
 {
-    public static IHostApplicationBuilder AddSwaggerMetadata(
-        this IHostApplicationBuilder builder,
+    public static WebApplicationBuilder AddSwaggerMetadata(
+        this WebApplicationBuilder builder,
         Type tThisAssemblyProject,
         string version = "v1",
         OpenApiInfo? openApiInfo = default
@@ -55,8 +55,8 @@ internal static partial class InternalSwaggerExtensions
         return builder;
     }
 
-    public static IHostApplicationBuilder AddApiKeyToSwaggerSecurity(
-        this IHostApplicationBuilder builder
+    public static WebApplicationBuilder AddApiKeyToSwaggerSecurity(
+        this WebApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(c =>
@@ -77,8 +77,8 @@ internal static partial class InternalSwaggerExtensions
         return builder;
     }
 
-    public static IHostApplicationBuilder DescribeBasicApiAuthentication(
-        this IHostApplicationBuilder builder
+    public static WebApplicationBuilder DescribeBasicApiAuthentication(
+        this WebApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(c =>
@@ -114,8 +114,8 @@ internal static partial class InternalSwaggerExtensions
         return builder;
     }
 
-    public static IHostApplicationBuilder AddSwaggerHeaderOperationFilter(
-        this IHostApplicationBuilder builder
+    public static WebApplicationBuilder AddSwaggerHeaderOperationFilter(
+        this WebApplicationBuilder builder
     )
     {
         builder.Services.ConfigureSwaggerGen(
@@ -129,8 +129,8 @@ internal static partial class InternalSwaggerExtensions
         return builder;
     }
 
-    public static IHostApplicationBuilder DescribeDataTypesToSwagger(
-        this IHostApplicationBuilder builder
+    public static WebApplicationBuilder DescribeDataTypesToSwagger(
+        this WebApplicationBuilder builder
     )
     {
         builder.Services.Describe<uri>();

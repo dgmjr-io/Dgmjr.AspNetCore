@@ -16,8 +16,8 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 internal static partial class InternalSwaggerExtensions
 {
-    public static IHostApplicationBuilder DescribeSchemasViaAttributes(
-        this IHostApplicationBuilder builder
+    public static WebApplicationBuilder DescribeSchemasViaAttributes(
+        this WebApplicationBuilder builder
     )
     {
         builder.Services.DescribeSchemasViaAttributes();

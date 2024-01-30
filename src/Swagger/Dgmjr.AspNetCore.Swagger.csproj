@@ -21,8 +21,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
-    <PackageReference Include="Dgmjr.Extensions.Caching" />
-    <PackageReference Include="Dgmjr.Extensions.Logging" ExcludeAssets="ContentFiles" />
+    <PackageReference Include="Dgmjr.Caching.Extensions" />
+    <PackageReference Include="Dgmjr.Logging.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />

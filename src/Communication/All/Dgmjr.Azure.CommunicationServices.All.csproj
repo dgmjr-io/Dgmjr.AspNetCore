@@ -1,0 +1,21 @@
+<!--
+ * Dgmjr.Azure.CommunicationServices.csproj
+ *
+ *   Created: 2024-40-29T05:40:02-05:00
+ *   Modified: 2024-40-29T05:40:02-05:00
+ *
+ *   Author: David G. Moore, Jr. <david@jsonschema.xyz>
+ *
+ *   Copyright © 2024 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+-->
+
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>$(TargetedDotNetFrameworks)</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Communcation/Dgmjr.Azure.CommunicationServices.csproj" />
+    <ProjectReference Include="../Communication.Abstractions/Dgmjr.Azure.CommunicationServices.Abstractions.csproj" />
+  </ItemGroup>
+</Project>

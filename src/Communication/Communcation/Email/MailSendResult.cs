@@ -1,18 +1,19 @@
 namespace Dgmjr.AspNetCore.Communication.Email;
 
+using System.Runtime.CompilerServices;
+
 /// <summary>
 /// Represents the result of sending an email.
 /// </summary>
-public readonly record struct MailSendResult : IMailSendResult
+public readonly record struct MailSendResult(Azure.Communication.Email.EmailSendResult result)
+    : IMailSendResult
 {
     /// <summary>
     /// Gets or sets the response code of the email send result.
     /// </summary>
-    public Abstractions.IMailSendResponseCode Status
-    {
-        get => MailSendResponseCode.FromId(StatusCode)!;
-        init => StatusCode = ((IIdentifiable<int>)value).Id;
-    }
+    public Abstractions.IMailSendResponseCode Status => MailSendResponseCode.Parse(StatusName);
+
+    public string StatusName => result.Status.ToString();
 
     /// <summary>
     /// Gets a value indicating whether the email send operation was successful.
@@ -24,5 +25,5 @@ public readonly record struct MailSendResult : IMailSendResult
     /// <summary>
     /// Gets or sets the status code of the email send result.
     /// </summary>
-    public int StatusCode { get; init; }
+    public int StatusCode => ((IIdentifiable<int>)Status).Id;
 }

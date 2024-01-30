@@ -28,8 +28,8 @@ namespace Microsoft.Extensions.DependencyInjection
             return services;
         }
 
-        public static IHostApplicationBuilder DescribeTypesForAllOutputFormatters(
-            this IHostApplicationBuilder builder
+        public static WebApplicationBuilder DescribeTypesForAllOutputFormatters(
+            this WebApplicationBuilder builder
         )
         {
             builder.Services.ConfigureSwaggerGen(

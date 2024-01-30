@@ -24,8 +24,8 @@ public static partial class SwaggerExtensions
 
     const string SwaggerUI = nameof(SwaggerUI);
 
-    public static IHostApplicationBuilder AddSwaggerGen(
-        this IHostApplicationBuilder builder,
+    public static WebApplicationBuilder AddSwaggerGen(
+        this WebApplicationBuilder builder,
         string configurationSectionKey = Swagger,
         Action<SwaggerGenOptions>? configure = default
     )

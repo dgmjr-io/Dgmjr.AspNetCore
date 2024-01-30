@@ -22,7 +22,8 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
     public new const string ConfigurationSectionName =
         $"{AzureCommunicationServicesOptionsBase.ConfigurationSectionName}:Email";
 
-    public override required EmailAddress DefaultFrom { get; set; }
+    [Required]
+    public override EmailAddress DefaultFrom { get; set; }
 
     public static new EmailSenderOptions Parse(string connectionString)
     {
@@ -30,7 +31,6 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
         return new EmailSenderOptions(options);
     }
 
-    [SetsRequiredMembers]
     public EmailSenderOptions(
         AzureCommunicationServicesOptionsBase options,
         EmailAddress? defaultFrom = null
@@ -41,7 +41,6 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
         AccessKey = options.AccessKey;
     }
 
-    [SetsRequiredMembers]
     public EmailSenderOptions(AzureCommunicationServicesOptions<EmailAddress> options)
         : base(options)
     {
@@ -51,11 +50,9 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
         SecurityFrom = options.SecurityFrom;
     }
 
-    [SetsRequiredMembers]
     public EmailSenderOptions(string connectionString, EmailAddress? defaultFrom = null)
         : this(Parse(connectionString) with { DefaultFrom = defaultFrom ?? EmailAddress.Empty }) { }
 
-    [SetsRequiredMembers]
     public EmailSenderOptions(string endpoint, string accessKey, EmailAddress? defaultFrom = null)
     {
         DefaultFrom = defaultFrom ?? EmailAddress.Empty;
@@ -63,7 +60,9 @@ public record class EmailSenderOptions : AzureCommunicationServicesOptions<Email
         AccessKey = accessKey;
     }
 
-    [SetsRequiredMembers]
     public EmailSenderOptions()
         : this(EmptyValue) { }
+
+    public IDictionary<string, EmailAddress> Addresses { get; set; } =
+        new Dictionary<string, EmailAddress>();
 }

@@ -48,7 +48,7 @@ public class AzureCommunicationServicesAutoConfigurator(
         }
     }
 
-    public void Configure(IHostApplicationBuilder builder)
+    public void Configure(WebApplicationBuilder builder)
     {
         var optionsSection = builder.Configuration.GetSection(
             AzureCommunicationServicesOptionsBase.ConfigurationSectionName

@@ -13,9 +13,27 @@ namespace Dgmjr.AspNetCore.Communication.Email.Enums;
 [GenerateEnumerationRecordStruct("MailSendResponseCode", "Dgmjr.AspNetCore.Communication.Email")]
 public enum MailSendResponseCode
 {
+    [Display(
+        Name = "Succeeded",
+        Description = "The request was successful and the message has been queued for delivery."
+    )]
     Succeeded = 200,
+
+    [Display(
+        Name = "Accepted",
+        Description = "The request was successful and the message has been accepted to be queued for delivery."
+    )]
     NotStarted = 201,
+
+    [Display(
+        Name = "Running",
+        Description = "The request is running and the message is being sent"
+    )]
     Running = 202,
+
+    [Display(Name = "Cancelled", Description = "The request has been cancelled.")]
     Canceled = 406,
+
+    [Display(Name = "Failed", Description = "The request failed.")]
     Failed = 500
 }

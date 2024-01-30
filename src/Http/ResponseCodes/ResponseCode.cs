@@ -59,25 +59,25 @@ public enum StatusCode : ushort
     OK = 200,
 
     ///// <summary>The request has succeeded and a new resource has been created as a result. This is typically the response sent after a PUT request.</summary>
-    /// <summary>I created the thing for you.</summary>
+    /// <summary>Here.  I created the thing for you.  Are you fucking happy?!</summary>
     /// <value>201</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201" />
     [Display(
         Name = "Created",
         // Description = "The request has succeeded and a new resource has been created as a result. This is typically the response sent after a PUT request."
-        Description = "I created the thing for you."
+        Description = "Here.  I created the thing for you.  Are you fucking happy?!"
     )]
     [Uri($"{UriBase}201")]
     Created = 201,
 
     ///// <summary>The request has been received but not yet acted upon. It is non-committal, meaning that there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing.</summary>
-    /// <summary>I got it and you can go do other stuff while I work on it for you.</summary>
+    /// <summary>I got it, I'm taking care of it, and you can go do other stuff while I work on it for you; don't wait for me.</summary>
     /// <value>202</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202" />
     [Display(
         Name = "Accepted",
         // Description = "The request has been received but not yet acted upon. It is non-committal, meaning that there is no way in HTTP to later send an asynchronous response indicating the outcome of processing the request. It is intended for cases where another process or server handles the request, or for batch processing."
-        Description = "I got it and you can go do other stuff while I work on it for you."
+        Description = "I got it, I'm taking care of it, and you can go do other stuff while I work on it for you; don't wait for me."
     )]
     [Uri($"{UriBase}202")]
     Accepted = 202,
@@ -93,13 +93,15 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}203")]
     NonAuthoritativeInformation = 203,
 
-    /// <summary>The server successfully processed the request and is not returning any content.</summary>
+    //// / <summary>The server successfully processed the request and is not returning any content.</summary>
+    /// <summary>I got it and I took care of it but I don't have anything else to say about it.</summary>
     /// <value>204</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204" />
     [Display(
         Name = "No Content",
         ShortName = "NoContent",
-        Description = "The server successfully processed the request and is not returning any content."
+        // Description = "The server successfully processed the request and is not returning any content."
+        Description = "I got it and I took care of it but I don't have anything else to say about it."
     )]
     [Uri($"{UriBase}204")]
     NoContent = 204,
@@ -148,6 +150,16 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}208")]
     AlreadyReported = 208,
 
+    /// <summary>Used by Apache servers. A catch-all error condition allowing the passage of message bodies through the server when the ProxyErrorOverride setting is enabled. It is displayed in this situation instead of a 4xx or 5xx error message.</summary>
+    /// <value>218</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/218" />
+    [Display(
+        Name = "This Is Fine",
+        Description = "Used by Apache servers. A catch-all error condition allowing the passage of message bodies through the server when the ProxyErrorOverride setting is enabled. It is displayed in this situation instead of a 4xx or 5xx error message."
+    )]
+    [Uri($"{UriBase}218")]
+    ThisIsFine = 218,
+
     /// <summary>The server has fulfilled a request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.</summary>
     /// <value>226</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/226" />
@@ -168,22 +180,26 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}300")]
     MultipleChoices = 300,
 
-    /// <summary>The URL of the requested resource has been changed permanently. This and all future requests should be directed to the given URI.</summary>
+    ///// <summary>The URL of the requested resource has been changed permanently. This and all future requests should be directed to the given URI.</summary>
+    /// <summary>The shit you're looking for ain't here any more.  Look over here instead.</summary>
     /// <value>301</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/301" />
     [Display(
         Name = "Moved Permanently",
-        Description = "The URL of the requested resource has been changed permanently. This and all future requests should be directed to the given URI."
+        // Description = "The URL of the requested resource has been changed permanently. This and all future requests should be directed to the given URI."
+        Description = "The shit you're looking for ain't here any more.  Look over here instead."
     )]
     [Uri($"{UriBase}301")]
     MovedPermanently = 301,
 
-    /// <summary>Tells the client to look at (browse to) another URL. The HTTP/1.0 specification required the client to perform a temporary redirect with the same method (the original describing phrase was "Moved Temporarily"),[9] but popular browsers implemented 302 redirects by changing the method to GET. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviors.</summary>
+    ///// <summary>Tells the client to look at (browse to) another URL. The HTTP/1.0 specification required the client to perform a temporary redirect with the same method (the original describing phrase was "Moved Temporarily"),[9] but popular browsers implemented 302 redirects by changing the method to GET. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviors.</summary>
+    /// <summary>The shit you're looking for has been moved, but it might move back so don't remember this redirection.  Just do it this once and keep asking me whenever you want the shit that you asked for.</summary>
     /// <value>302</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302" />
     [Display(
         Name = "Found",
-        Description = "Tells the client to look at (browse to) another URL. The HTTP/1.0 specification required the client to perform a temporary redirect with the same method (the original describing phrase was \\\"Moved Temporarily\\\"), but popular browsers implemented 302 redirects by changing the method to GET. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviors."
+        // Description = "Tells the client to look at (browse to) another URL. The HTTP/1.0 specification required the client to perform a temporary redirect with the same method (the original describing phrase was \\\"Moved Temporarily\\\"), but popular browsers implemented 302 redirects by changing the method to GET. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviors."
+        Description = "The shit you're looking for has been moved, but it might move back so don't remember this redirection.  Just do it this once and keep asking me whenever you want the shit that you asked for."
     )]
     [Uri($"{UriBase}302")]
     Found = 302,
@@ -198,12 +214,14 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}303")]
     SeeOther = 303,
 
-    /// <summary>Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy.</summary>
+    ///// <summary>Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy.</summary>
+    /// <summary>Nothing's new; you can use the copy that you already have.</summary>
     /// <value>304</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/304" />
     [Display(
         Name = "Not Modified",
-        Description = "Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy."
+        // Description = "Indicates that the resource has not been modified since the version specified by the request headers If-Modified-Since or If-None-Match. In such case, there is no need to retransmit the resource since the client still has a previously-downloaded copy."
+        Description = "Nothing's new; you can use the copy that you already have."
     )]
     [Uri($"{UriBase}304")]
     NotModified = 304,
@@ -248,12 +266,13 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}308")]
     PermanentRedirect = 308,
 
-    /// <summary>The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing).</summary>
+    /// <summary>You dumb fuck!</summary>
     /// <value>400</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/400" />
     [Display(
         Name = "Bad Request",
-        Description = "The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing)."
+        // Description = "The server cannot or will not process the request due to an apparent client error (e.g., malformed request syntax, size too large, invalid request message framing, or deceptive request routing)."
+        Description = "You dumb fuck!"
     )]
     [Uri($"{UriBase}400")]
     BadRequest = 400,
@@ -438,6 +457,26 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}418")]
     ImATeapot = 418,
 
+    /// <summary>Used by the Laravel Framework when a CSRF Token is missing or expired.<summary>
+    /// <value>419</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/419" />
+    [Display(
+        Name = "Page Expired",
+        Description = "Used by the Laravel Framework when a CSRF Token is missing or expired."
+    )]
+    [Uri($"{UriBase}419")]
+    PageExpired = 419,
+
+    /// <summary>Returned by version 1 of the Twitter Search and Trends API when the client is being rate limited; versions 1.1 and later use the 429 Too Many Requests response code instead. The phrase "Enhance your calm" comes from the 1993 movie Demolition Man, and its association with this number is likely a reference to cannabis.</summary>
+    /// <value>420</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/420" />
+    [Display(
+        Name = "Enhance Your Calm",
+        Description = "Returned by version 1 of the Twitter Search and Trends API when the client is being rate limited; versions 1.1 and later use the 429 Too Many Requests response code instead. The phrase \\\"Enhance your calm\\\" comes from the 1993 movie Demolition Man, and its association with this number is likely a reference to cannabis."
+    )]
+    [Uri($"{UriBase}420")]
+    EnhanceYourCalm = 420,
+
     /// <summary>The request was directed at a server that is not able to produce a response (for example because of connection reuse).</summary>
     /// <value>421</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/421" />
@@ -515,6 +554,16 @@ public enum StatusCode : ushort
     [Uri($"{UriBase}431")]
     RequestHeaderFieldsTooLarge = 431,
 
+    /// <summary>Used in Exchange ActiveSync if there either is a more efficient server to use or the server cannot access the users' mailbox.[citation needed]</summary>
+    /// <value>449</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/449" />
+    [Display(
+        Name = "Retry With",
+        Description = "Used in Exchange ActiveSync if there either is a more efficient server to use or the server cannot access the users' mailbox."
+    )]
+    [Uri($"{UriBase}449")]
+    RetryWith = 449,
+
     /// <summary>A server operator has received a legal demand to deny access to a resource or to a set of resources that includes the requested resource.[60] The code 451 was chosen as a reference to the novel Fahrenheit 451 (see the Acknowledgements in the RFC).</summary>
     /// <value>451</value>
     /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451" />
@@ -524,6 +573,36 @@ public enum StatusCode : ushort
     )]
     [Uri($"{UriBase}451")]
     UnavailableForLegalReasons = 451,
+
+    /// <summary>A Microsoft extension. The request should be retried after performing the appropriate action.</summary>
+    /// <value>451</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451" />
+    [Display(
+        Name = "Redirect",
+        Description = "A Microsoft extension. The request should be retried after performing the appropriate action."
+    )]
+    [Uri($"{UriBase}451")]
+    Redirect = 451,
+
+    /// <summary>Returned by ArcGIS for Server. A code of 498 indicates an expired or otherwise invalid token.</summary>
+    /// <value>498</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/498" />
+    [Display(
+        Name = "Invalid Token",
+        Description = "Returned by ArcGIS for Server. A code of 498 indicates an expired or otherwise invalid token."
+    )]
+    [Uri($"{UriBase}498")]
+    InvalidToken = 498,
+
+    /// <summary>Returned by ArcGIS for Server. A code of 499 indicates that a token is required (if no token was submitted).</summary>
+    /// <value>499</value>
+    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/499" />
+    [Display(
+        Name = "Token Required",
+        Description = "Returned by ArcGIS for Server. A code of 499 indicates that a token is required (if no token was submitted)."
+    )]
+    [Uri($"{UriBase}499")]
+    TokenRequired = 499,
 
     /// <summary>A generic error message, given when an unexpected condition was encountered and no more specific message is suitable.</summary>
     /// <value>500</value>
@@ -734,75 +813,5 @@ public enum StatusCode : ushort
         Description = "This status code is not specified in any RFCs, but is used by CloudFlare's reverse proxies to signal an \\\"unknown connection issue between CloudFlare and the origin web server\\\" to a client in front of the proxy."
     )]
     [Uri($"{UriBase}530")]
-    SiteIsFrozen = 530,
-
-    /// <summary>Used by Apache servers. A catch-all error condition allowing the passage of message bodies through the server when the ProxyErrorOverride setting is enabled. It is displayed in this situation instead of a 4xx or 5xx error message.</summary>
-    /// <value>218</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/218" />
-    [Display(
-        Name = "This Is Fine",
-        Description = "Used by Apache servers. A catch-all error condition allowing the passage of message bodies through the server when the ProxyErrorOverride setting is enabled. It is displayed in this situation instead of a 4xx or 5xx error message."
-    )]
-    [Uri($"{UriBase}218")]
-    ThisIsFine = 218,
-
-    /// <summary>Used by the Laravel Framework when a CSRF Token is missing or expired.<summary>
-    /// <value>419</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/419" />
-    [Display(
-        Name = "Page Expired",
-        Description = "Used by the Laravel Framework when a CSRF Token is missing or expired."
-    )]
-    [Uri($"{UriBase}419")]
-    PageExpired = 419,
-
-    /// <summary>Returned by version 1 of the Twitter Search and Trends API when the client is being rate limited; versions 1.1 and later use the 429 Too Many Requests response code instead. The phrase "Enhance your calm" comes from the 1993 movie Demolition Man, and its association with this number is likely a reference to cannabis.</summary>
-    /// <value>420</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/420" />
-    [Display(
-        Name = "Enhance Your Calm",
-        Description = "Returned by version 1 of the Twitter Search and Trends API when the client is being rate limited; versions 1.1 and later use the 429 Too Many Requests response code instead. The phrase \\\"Enhance your calm\\\" comes from the 1993 movie Demolition Man, and its association with this number is likely a reference to cannabis."
-    )]
-    [Uri($"{UriBase}420")]
-    EnhanceYourCalm = 420,
-
-    /// <summary>Returned by ArcGIS for Server. A code of 498 indicates an expired or otherwise invalid token.</summary>
-    /// <value>498</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/498" />
-    [Display(
-        Name = "Invalid Token",
-        Description = "Returned by ArcGIS for Server. A code of 498 indicates an expired or otherwise invalid token."
-    )]
-    [Uri($"{UriBase}498")]
-    InvalidToken = 498,
-
-    /// <summary>Returned by ArcGIS for Server. A code of 499 indicates that a token is required (if no token was submitted).</summary>
-    /// <value>499</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/499" />
-    [Display(
-        Name = "Token Required",
-        Description = "Returned by ArcGIS for Server. A code of 499 indicates that a token is required (if no token was submitted)."
-    )]
-    [Uri($"{UriBase}499")]
-    TokenRequired = 499,
-
-    /// <summary>Used in Exchange ActiveSync if there either is a more efficient server to use or the server cannot access the users' mailbox.[citation needed]</summary>
-    /// <value>449</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/449" />
-    [Display(
-        Name = "Retry With",
-        Description = "Used in Exchange ActiveSync if there either is a more efficient server to use or the server cannot access the users' mailbox."
-    )]
-    [Uri($"{UriBase}449")]
-    RetryWith = 449,
-
-    /// <summary>A Microsoft extension. The request should be retried after performing the appropriate action.</summary>
-    /// <value>451</value>
-    /// <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/451" />
-    [Display(
-        Name = "Redirect",
-        Description = "A Microsoft extension. The request should be retried after performing the appropriate action."
-    )]
-    [Uri($"{UriBase}451")]
-    Redirect = 451
+    SiteIsFrozen = 530
 }

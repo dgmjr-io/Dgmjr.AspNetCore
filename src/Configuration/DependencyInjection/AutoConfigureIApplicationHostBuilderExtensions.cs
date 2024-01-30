@@ -2,6 +2,7 @@ namespace Microsoft.Extensions.DependencyInjection;
 
 using Dgmjr.Configuration.Extensions;
 
+using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -10,9 +11,7 @@ using System.Reflection;
 
 public static class AutoConfigureIApplicationHostBuilderExtensions
 {
-    public static IHostApplicationBuilder AutoConfigure<TProgram>(
-        this IHostApplicationBuilder builder
-    )
+    public static WebApplicationBuilder AutoConfigure<TProgram>(this WebApplicationBuilder builder)
     {
         builder.Configuration.AddKeyPerJsonFile(
             Path.Join(Path.GetDirectoryName(typeof(TProgram).Assembly.Location), "./Configuration/")

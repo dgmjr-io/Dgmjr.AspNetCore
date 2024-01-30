@@ -22,12 +22,12 @@ public interface IMsGraphService : IHaveAGraphClient
     Task<MgApplication?> GetExtensionsApplicationAsync();
 }
 
-public class MsGraphService(GraphServiceClient graph, ILogger logger, IOptionsMonitor<MicrosoftB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : IMsGraphService
+public class MsGraphService(GraphServiceClient graph, ILogger logger, IOptionsMonitor<AzureAdB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : IMsGraphService
 {
     private static readonly duration CacheDuration = duration.FromDays(1000);
     private static readonly DateTimeOffset CacheExpiration = DateTimeOffset.UtcNow.Add(CacheDuration);
     public ILogger Logger => logger;
-    private MicrosoftB2CGraphOptions Options => options.CurrentValue;
+    private AzureAdB2CGraphOptions Options => options.CurrentValue;
     private MicrosoftIdentityOptions MsidOptions => msidOptions.CurrentValue;
     public guid ExtensionsAppClientId => Options.AzureAdB2CExtensionsApplicationId;
     public guid ClientId => new(MsidOptions.ClientId);

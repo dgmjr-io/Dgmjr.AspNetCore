@@ -16,6 +16,7 @@
     <SlnGenSolutionFolder>comms</SlnGenSolutionFolder>
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <TargetFrameworks>$(TargetedDotNetFrameworks)</TargetFrameworks>
+    <ProjectGuid>3d36177c-5640-4ba3-86fd-7e73a849ec55</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
@@ -24,16 +25,19 @@
     <PackageReference Include="Azure.Communication.Email" />
     <PackageReference Include="Azure.Communication.Sms" />
     <PackageReference Include="Azure.Identity" />
-    <PackageReference Include="Dgmjr.Primitives" />
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
     <PackageReference Include="Dgmjr.Enumerations.Abstractions" />
+    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
+    <PackageReference Include="Dgmjr.Primitives" />
+    <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
     <PackageReference Include="Microsoft.Extensions.Options" />
-    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
-    <PackageReference Include="Dgmjr.RegexDtoGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
-    <ProjectReference Include="../Communication.Abstractions/Dgmjr.AspNetCore.Communication.Abstractions.csproj" />
+    <PackageReference Include="System.Polyfills" />
+    <ProjectReference Include="../Communication.Abstractions/Dgmjr.Azure.CommunicationServices.Abstractions.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Dgmjr.Enumerations" />
+    <Using Include="System.Domain" />
+    <Using Include="System.Net.Mail" />
   </ItemGroup>
 </Project>

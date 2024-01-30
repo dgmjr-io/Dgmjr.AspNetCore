@@ -13,7 +13,7 @@ public class CorrelationIdAutoConfigurator
 {
     public ConfigurationOrder Order => ConfigurationOrder.VeryEarly;
 
-    public void Configure(IHostApplicationBuilder builder)
+    public void Configure(WebApplicationBuilder builder)
     {
         builder.Services.AddDefaultCorrelationId(
             options => builder.Configuration.GetSection(nameof(CorrelationId)).Bind(options)

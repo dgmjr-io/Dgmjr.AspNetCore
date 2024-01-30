@@ -1,6 +1,18 @@
-namespace Microsoft.AspNetCore.Mvc;
+/*
+ * JsonOptions.cs
+ *
+ *   Created: 2023-06-27T00:06:27-05:00
+ *   Modified: 2024-15-28T14:15:18-05:00
+ *
+ *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *
+ *   Copyright © 2024 David G. Moore, Jr., All Rights Reserved
+ *      License: MIT (https://opensource.org/licenses/MIT)
+ */
 
 #if !NET5_0_OR_GREATER
+namespace Microsoft.AspNetCore.Mvc;
+
 public class JsonOptions
 {
     /// <summary>

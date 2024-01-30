@@ -16,6 +16,8 @@ public static class Activities
 {
     private static readonly Version AssemblyVersion = typeof(Activities).Assembly.GetName().Version;
 
+    public static readonly ActivitySource ActivitySource = new(TraceNames.Basic, ServiceVersion);
+
     /// <summary>
     /// Base ActivitySource
     /// </summary>
@@ -47,6 +49,12 @@ public static class Activities
         new(TraceNames.Validation, ServiceVersion);
 
     /// <summary>
+    /// Detailed validation ActivitySource
+    /// </summary>
+    public static readonly ActivitySource TokenAcquisitionActivitySource =
+        new(TraceNames.TokenAcquisition, ServiceVersion);
+
+    /// <summary>
     /// Service version
     /// </summary>
     public static readonly string ServiceVersion =
@@ -63,22 +71,27 @@ public static class TraceNames
     /// <summary>
     /// Service name for store traces
     /// </summary>
-    public const string Store = Basic + ".Stores";
+    public const string Store = Basic + "." + nameof(Store) + "s";
 
     /// <summary>
     /// Service name for caching traces
     /// </summary>
-    public const string Cache = Basic + ".Cache";
+    public const string Cache = Basic + "." + nameof(Cache);
 
     /// <summary>
     /// Service name for caching traces
     /// </summary>
-    public const string Services = Basic + ".Services";
+    public const string Services = Basic + "." + nameof(Services);
 
     /// <summary>
     /// Service name for detailed validation traces
     /// </summary>
-    public const string Validation = Basic + ".Validation";
+    public const string Validation = Basic + nameof(Validation);
+
+    /// <summary>
+    /// Service name for detailed token acquisition traces
+    /// </summary>
+    public const string TokenAcquisition = Basic + "." + nameof(TokenAcquisition);
 
     public static readonly string ServiceVersion = Activities.ServiceVersion;
 }

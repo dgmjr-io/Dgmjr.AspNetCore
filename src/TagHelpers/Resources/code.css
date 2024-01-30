@@ -1,0 +1,37 @@
+.keyword {
+    color: light-dark(#0077aa, #3b5f7c);
+    font-weight: bold;
+}
+
+.primitive {
+    color: light-dark(#0077aa, #3b5f7c);
+}
+
+.method {
+    color: light-dark(rgb(50, 40, 20), rgb(77, 77, 60));
+}
+
+.type {
+    color: light-dark(#0077aa, #4fc7af);
+}
+
+.constant {
+    color: light-dark(#0077aa, #579cd6);
+}
+
+.comment {
+    color: light-dark(#999988, #557846);
+    font-style: italic;
+}
+
+.string {
+    color: light-dark(#22aa22, #936b5a);
+}
+
+.number {
+    color: light-dark(#aa2222, #880000);
+}
+
+code {
+    color: light-dark(#000000, #ffffff);
+}

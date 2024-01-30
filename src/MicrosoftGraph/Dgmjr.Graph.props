@@ -4,7 +4,7 @@
     <Using Include="Dgmjr.Graph.Constants" />
     <Using Include="Dgmjr.Graph.Models.ExtensionProperty" Alias="DGraphExtensionProperty" />
     <Using Include="Dgmjr.Graph.Models" />
-    <Using Include="Dgmjr.Graph.Options.MicrosoftB2CGraphOptions" Alias="MicrosoftB2CGraphOptions" />
+    <Using Include="Dgmjr.Graph.Options.AzureAdB2CGraphOptions" Alias="AzureAdB2CGraphOptions" />
     <Using Include="Dgmjr.Graph.Options" />
     <Using Include="Dgmjr.Graph.Services" />
     <Using Include="Dgmjr.Graph" />

@@ -43,11 +43,13 @@ internal static partial class KeyPerJsonFileConfigurationExtensions
             $"Regenerated {AppSettings_Json} with {json.CountLines()} lines and {json.Length} bytes{env.NewLine}{json}"
         );
 
-        config.AddJsonFile(
-            Path.Join(directory.FullName, "../" + AppSettings_Json),
-            false,
-            reloadOnChange
-        );
+        config
+            .AddJsonFile(
+                Path.Join(directory.FullName, "../" + AppSettings_Json),
+                false,
+                reloadOnChange
+            )
+            .AddSubstitution();
         if (reloadOnChange)
         {
             ChangeToken.OnChange(

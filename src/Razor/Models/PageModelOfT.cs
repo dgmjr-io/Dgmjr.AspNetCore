@@ -17,24 +17,24 @@ using PageModelBase = Microsoft.AspNetCore.Mvc.RazorPages.PageModel;
 
 public class PageModel(object? model = default) : PageModelBase
 {
-    public object? ViewModel { get; set; } = model;
+    public virtual object? ViewModel { get; set; } = model;
 
-    public string? Title
+    public virtual string? Title
     {
         get => ViewData[nameof(Title)]?.ToString();
         set => ViewData[nameof(Title)] = value;
     }
-    public string? Description
+    public virtual string? Description
     {
         get => ViewData[nameof(Description)]?.ToString();
         set => ViewData[nameof(Description)] = value;
     }
-    public string[]? Keywords
+    public virtual string[]? Keywords
     {
         get => ViewData[nameof(Keywords)] as string[];
         set => ViewData[nameof(Keywords)] = value;
     }
-    public string? Author
+    public virtual string? Author
     {
         get => ViewData[nameof(Author)]?.ToString();
         set => ViewData[nameof(Author)] = value;
@@ -43,7 +43,7 @@ public class PageModel(object? model = default) : PageModelBase
 
 public class PageModel<T>(T? model) : PageModel(model)
 {
-    public new T? ViewModel
+    public new virtual T? ViewModel
     {
         get => (T?)base.ViewModel;
         set => base.ViewModel = value;
