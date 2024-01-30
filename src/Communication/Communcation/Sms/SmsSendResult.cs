@@ -14,21 +14,21 @@ public readonly record struct SmsSendResult(Azure.Communication.Sms.SmsSendResul
     // }
 
     public string? ErrorMessage => result.ErrorMessage;
-    public PhoneNumber To => (PhoneNumber)result.To;
+public PhoneNumber To => (PhoneNumber)result.To;
 
-    /// <summary>
-    /// Gets the status code of the message send result.
-    /// </summary>
-    public int StatusCode => result.HttpStatusCode;
+/// <summary>
+/// Gets the status code of the message send result.
+/// </summary>
+public int StatusCode => result.HttpStatusCode;
 
-    /// <summary>
-    /// Gets a value indicating whether the SMS message was sent successfully.
-    /// </summary>
-    public bool IsSuccess =>
-        StatusCode is SmsSendResponseCode.Success.Id or SmsSendResponseCode.Accepted.Id;
+/// <summary>
+/// Gets a value indicating whether the SMS message was sent successfully.
+/// </summary>
+public bool IsSuccess =>
+    StatusCode is SmsSendResponseCode.Success.Id or SmsSendResponseCode.Accepted.Id;
 
-    /// <summary>
-    /// Gets or sets the response code of the SMS send result.
-    /// </summary>
-    public Abstractions.ISmsSendResponseCode Status => SmsSendResponseCode.FromId(StatusCode);
+/// <summary>
+/// Gets or sets the response code of the SMS send result.
+/// </summary>
+public Abstractions.ISmsSendResponseCode Status => SmsSendResponseCode.FromId(StatusCode);
 }

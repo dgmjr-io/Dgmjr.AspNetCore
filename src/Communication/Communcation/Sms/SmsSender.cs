@@ -35,39 +35,39 @@ public class SmsSender(SmsSenderOptions? options) : ISmsSender
     /// </summary>
     private readonly SmsSenderOptions _options = options;
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="SmsSender"/> class.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    public SmsSender(IOptions<SmsSenderOptions> options)
-        : this(options?.Value) { }
+/// <summary>
+/// Initializes a new instance of the <see cref="SmsSender"/> class.
+/// </summary>
+/// <param name="options">The options.</param>
+public SmsSender(IOptions<SmsSenderOptions> options)
+    : this(options?.Value) { }
 
-    /// <summary>
-    /// Creates the client.
-    /// </summary>
-    /// <returns>An <see cref="SmsClient" />.</returns>
-    protected SmsClient CreateClient() => new(_options.ConnectionString);
+/// <summary>
+/// Creates the client.
+/// </summary>
+/// <returns>An <see cref="SmsClient" />.</returns>
+protected SmsClient CreateClient() => new(_options.ConnectionString);
 
-    private SmsClient _client;
+private SmsClient _client;
 
-    /// <summary>
-    /// Gets the client.
-    /// </summary>
-    protected SmsClient Client => _client ??= CreateClient();
+/// <summary>
+/// Gets the client.
+/// </summary>
+protected SmsClient Client => _client ??= CreateClient();
 
-    /// <summary>
-    /// Sends the sms asynchronously.
-    /// </summary>
-    /// <param name="to">The number of the recipient.</param>
-    /// <param name="message">The message.</param>
-    /// <returns>A <![CDATA[Task<SmsSendResult>]]></returns>
-    public async Task<ISmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
-    {
-        return new SmsSendResult(
-            (await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)).Value
-        );
-    }
+/// <summary>
+/// Sends the sms asynchronously.
+/// </summary>
+/// <param name="to">The number of the recipient.</param>
+/// <param name="message">The message.</param>
+/// <returns>A <![CDATA[Task<SmsSendResult>]]></returns>
+public async Task<ISmsSendResult> SendSmsAsync(PhoneNumber @to, string message)
+{
+    return new SmsSendResult(
+        (await Client.SendAsync(from: _options.DefaultFrom, to: @to, message: message)).Value
+    );
+}
 
-    public Task<ISmsSendResult> SendSmsAsync(string to, string message) =>
-        SendSmsAsync(PhoneNumber.From(to), message);
+public Task<ISmsSendResult> SendSmsAsync(string to, string message) =>
+    SendSmsAsync(PhoneNumber.From(to), message);
 }

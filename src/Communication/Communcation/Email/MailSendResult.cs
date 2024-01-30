@@ -13,17 +13,17 @@ public readonly record struct MailSendResult(Azure.Communication.Email.EmailSend
     /// </summary>
     public Abstractions.IMailSendResponseCode Status => MailSendResponseCode.Parse(StatusName);
 
-    public string StatusName => result.Status.ToString();
+public string StatusName => result.Status.ToString();
 
-    /// <summary>
-    /// Gets a value indicating whether the email send operation was successful.
-    /// </summary>
-    public bool IsSuccess =>
-        ((IHaveAValue<Enums.MailSendResponseCode>)Status).Value
-        is Enums.MailSendResponseCode.Succeeded;
+/// <summary>
+/// Gets a value indicating whether the email send operation was successful.
+/// </summary>
+public bool IsSuccess =>
+    ((IHaveAValue<Enums.MailSendResponseCode>)Status).Value
+    is Enums.MailSendResponseCode.Succeeded;
 
-    /// <summary>
-    /// Gets or sets the status code of the email send result.
-    /// </summary>
-    public int StatusCode => ((IIdentifiable<int>)Status).Id;
+/// <summary>
+/// Gets or sets the status code of the email send result.
+/// </summary>
+public int StatusCode => ((IIdentifiable<int>)Status).Id;
 }

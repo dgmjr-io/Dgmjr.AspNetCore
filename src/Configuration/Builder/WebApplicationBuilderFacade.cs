@@ -15,26 +15,26 @@ internal class WebApplicationBuilderFacade(WebApplicationBuilder wrappedBuilder)
 {
     public IDictionary<object, object> Properties { get; set; }
 
-    public IConfigurationManager Configuration => wrappedBuilder.Configuration;
+public IConfigurationManager Configuration => wrappedBuilder.Configuration;
 
-    public IHostEnvironment Environment => wrappedBuilder.Environment;
+public IHostEnvironment Environment => wrappedBuilder.Environment;
 
-    public ILoggingBuilder Logging => wrappedBuilder.Logging;
+public ILoggingBuilder Logging => wrappedBuilder.Logging;
 
-    public IMetricsBuilder Metrics { get; set; }
+public IMetricsBuilder Metrics { get; set; }
 
-    public IServiceCollection Services => wrappedBuilder.Services;
+public IServiceCollection Services => wrappedBuilder.Services;
 
-    public void ConfigureContainer<TContainerBuilder>(
-        IServiceProviderFactory<TContainerBuilder> factory,
-        Action<TContainerBuilder>? configure = null
-    )
-        where TContainerBuilder : notnull
-    {
-        wrappedBuilder.Host.ConfigureContainer<TContainerBuilder>(
-            (ctx, builder) => configure(builder)
-        );
-    }
+public void ConfigureContainer<TContainerBuilder>(
+    IServiceProviderFactory<TContainerBuilder> factory,
+    Action<TContainerBuilder>? configure = null
+)
+    where TContainerBuilder : notnull
+{
+    wrappedBuilder.Host.ConfigureContainer<TContainerBuilder>(
+        (ctx, builder) => configure(builder)
+    );
+}
 
-    public IApplicationBuilder Build() => wrappedBuilder.Build();
+public IApplicationBuilder Build() => wrappedBuilder.Build();
 }
