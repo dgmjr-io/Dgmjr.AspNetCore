@@ -26,99 +26,99 @@ public class AzureCommunicationServicesAutoConfigurator(
 {
     public ConfigurationOrder Order => ConfigurationOrder.AnyTime;
 
-    public ILogger Logger => logger;
+public ILogger Logger => logger;
 
-    public void Configure(IApplicationBuilder builder)
+public void Configure(IApplicationBuilder builder)
+{
+    var emailSenderOptions = builder.ApplicationServices.GetService<
+        IOptions<EmailSenderOptions>
+    >();
+    if (emailSenderOptions is null)
     {
-        var emailSenderOptions = builder.ApplicationServices.GetService<
-            IOptions<EmailSenderOptions>
-        >();
-        if (emailSenderOptions is null)
+        Logger.LogWarning(
+            "Azure Email Communication Services options are not configured. Please configure them in your appsettings.json file."
+        );
+    }
+    var smsSenderOptions = builder.ApplicationServices.GetService<IOptions<SmsSenderOptions>>();
+    if (smsSenderOptions is null)
+    {
+        Logger.LogWarning(
+            "Azure SMS Communication Services options are not configured. Please configure them in your appsettings.json file."
+        );
+    }
+}
+
+public void Configure(WebApplicationBuilder builder)
+{
+    var optionsSection = builder.Configuration.GetSection(
+        AzureCommunicationServicesOptionsBase.ConfigurationSectionName
+    );
+    if (!optionsSection.Exists())
+    {
+        Logger.LogWarning(
+            "Azure Communication Services options are not configured. Please configure them in your appsettings.json file."
+        );
+    }
+    else
+    {
+        builder.Services.Configure<AzureCommunicationServicesOptions>(optionsSection);
+
+        var emailCommunicationSection = builder.Configuration.GetSection(
+            EmailSenderOptions.ConfigurationSectionName
+        );
+        if (!emailCommunicationSection.Exists())
         {
             Logger.LogWarning(
                 "Azure Email Communication Services options are not configured. Please configure them in your appsettings.json file."
             );
-        }
-        var smsSenderOptions = builder.ApplicationServices.GetService<IOptions<SmsSenderOptions>>();
-        if (smsSenderOptions is null)
-        {
-            Logger.LogWarning(
-                "Azure SMS Communication Services options are not configured. Please configure them in your appsettings.json file."
-            );
-        }
-    }
-
-    public void Configure(WebApplicationBuilder builder)
-    {
-        var optionsSection = builder.Configuration.GetSection(
-            AzureCommunicationServicesOptionsBase.ConfigurationSectionName
-        );
-        if (!optionsSection.Exists())
-        {
-            Logger.LogWarning(
-                "Azure Communication Services options are not configured. Please configure them in your appsettings.json file."
+            builder.Services.AddSingleton<IEmailSender>(
+                y =>
+                    throw new KeyNotFoundException(
+                        $"The {nameof(EmailSenderOptions)} configuration section was not found in the appsettings.json file."
+                    )
             );
         }
         else
         {
-            builder.Services.Configure<AzureCommunicationServicesOptions>(optionsSection);
-
-            var emailCommunicationSection = builder.Configuration.GetSection(
-                EmailSenderOptions.ConfigurationSectionName
+            builder.Services.Configure<EmailSenderOptions>(emailCommunicationSection);
+            builder.Services.AddSingleton<IEmailSender>(
+                y =>
+                    new EmailSender(
+                        y.GetService<IOptions<EmailSenderOptions>>()
+                            ?? throw new KeyNotFoundException(
+                                $"The {nameof(EmailSenderOptions)} configuration section was not found in the appsettings.json file."
+                            )
+                    )
             );
-            if (!emailCommunicationSection.Exists())
-            {
-                Logger.LogWarning(
-                    "Azure Email Communication Services options are not configured. Please configure them in your appsettings.json file."
-                );
-                builder.Services.AddSingleton<IEmailSender>(
-                    y =>
-                        throw new KeyNotFoundException(
-                            $"The {nameof(EmailSenderOptions)} configuration section was not found in the appsettings.json file."
-                        )
-                );
-            }
-            else
-            {
-                builder.Services.Configure<EmailSenderOptions>(emailCommunicationSection);
-                builder.Services.AddSingleton<IEmailSender>(
-                    y =>
-                        new EmailSender(
-                            y.GetService<IOptions<EmailSenderOptions>>()
-                                ?? throw new KeyNotFoundException(
-                                    $"The {nameof(EmailSenderOptions)} configuration section was not found in the appsettings.json file."
-                                )
-                        )
-                );
-            }
-            var smsCommunicationSection = builder.Configuration.GetSection(
-                SmsSenderOptions.ConfigurationSectionName
+        }
+        var smsCommunicationSection = builder.Configuration.GetSection(
+            SmsSenderOptions.ConfigurationSectionName
+        );
+        if (!smsCommunicationSection.Exists())
+        {
+            Logger.LogWarning(
+                "Azure SMS Communication Services options are not configured. Please configure them in your appsettings.json file."
             );
-            if (!smsCommunicationSection.Exists())
-            {
-                Logger.LogWarning(
-                    "Azure SMS Communication Services options are not configured. Please configure them in your appsettings.json file."
-                );
-                builder.Services.AddSingleton<ISmsSender>(
-                    y =>
-                        throw new KeyNotFoundException(
-                            $"The {nameof(SmsSenderOptions)} configuration section was not found in the appsettings.json file."
-                        )
-                );
-            }
-            else
-            {
-                builder.Services.Configure<SmsSenderOptions>(smsCommunicationSection);
-                builder.Services.AddSingleton<ISmsSender>(
-                    y =>
-                        new SmsSender(
-                            y.GetService<IOptions<SmsSenderOptions>>()
-                                ?? throw new KeyNotFoundException(
-                                    $"The {nameof(SmsSenderOptions)} configuration section was not found in the appsettings.json file."
-                                )
-                        )
-                );
-            }
+            builder.Services.AddSingleton<ISmsSender>(
+                y =>
+                    throw new KeyNotFoundException(
+                        $"The {nameof(SmsSenderOptions)} configuration section was not found in the appsettings.json file."
+                    )
+            );
+        }
+        else
+        {
+            builder.Services.Configure<SmsSenderOptions>(smsCommunicationSection);
+            builder.Services.AddSingleton<ISmsSender>(
+                y =>
+                    new SmsSender(
+                        y.GetService<IOptions<SmsSenderOptions>>()
+                            ?? throw new KeyNotFoundException(
+                                $"The {nameof(SmsSenderOptions)} configuration section was not found in the appsettings.json file."
+                            )
+                    )
+            );
         }
     }
+}
 }

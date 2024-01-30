@@ -25,43 +25,44 @@ public interface IMsGraphService : IHaveAGraphClient
 public class MsGraphService(GraphServiceClient graph, ILogger logger, IOptionsMonitor<AzureAdB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : IMsGraphService
 {
     private static readonly duration CacheDuration = duration.FromDays(1000);
-    private static readonly DateTimeOffset CacheExpiration = DateTimeOffset.UtcNow.Add(CacheDuration);
-    public ILogger Logger => logger;
-    private AzureAdB2CGraphOptions Options => options.CurrentValue;
-    private MicrosoftIdentityOptions MsidOptions => msidOptions.CurrentValue;
-    public guid ExtensionsAppClientId => Options.AzureAdB2CExtensionsApplicationId;
-    public guid ClientId => new(MsidOptions.ClientId);
-    protected IDistributedCache Cache => cache;
+private static readonly DateTimeOffset CacheExpiration = DateTimeOffset.UtcNow.Add(CacheDuration);
+public ILogger Logger => logger;
+private AzureAdB2CGraphOptions Options => options.CurrentValue;
+private MicrosoftIdentityOptions MsidOptions => msidOptions.CurrentValue;
+public guid ExtensionsAppClientId => Options.AzureAdB2CExtensionsApplicationId;
+public guid ClientId => new(MsidOptions.ClientId);
+protected IDistributedCache Cache => cache;
 
-    public virtual GraphServiceClient Graph => graph;
+public virtual GraphServiceClient Graph => graph;
 
-    public async Task<MgApplication?> GetApplicationAsync()
+public async Task<MgApplication?> GetApplicationAsync()
+{
+    return await Graph.Applications[ClientId.ToString()].Request().GetAsync();
+}
+
+public async Task<MgApplication?> GetExtensionsApplicationAsync()
+{
+    return await Graph.Applications[ExtensionsAppClientId.ToString()].Request().GetAsync();
+}
+
+public async Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken = default)
+{
+    await Cache.SetStringAsync("test", "test", CacheExpiration, cancellationToken: cancellationToken);
+    var extensionPropertiesJson = await Cache.GetStringAsync(CacheKeys.ExtensionProperties, cancellationToken);
+    MgExtensionProperty[]? extensionProperties;
+    if (extensionPropertiesJson is not null)
     {
-        return await Graph.Applications[ClientId.ToString()].Request().GetAsync();
+        Logger.CacheHit(CacheKeys.ExtensionProperties);
+        extensionProperties = Deserialize<MgExtensionProperty[]>(extensionPropertiesJson)!;
     }
-
-    public async Task<MgApplication?> GetExtensionsApplicationAsync()
+    else
     {
-        return await Graph.Applications[ExtensionsAppClientId.ToString()].Request().GetAsync();
-    }
+        Logger.CacheMiss(CacheKeys.ExtensionProperties);
+        extensionProperties =
 
-    public async Task<MgExtensionProperty[]> GetExtensionPropertiesAsync(CancellationToken cancellationToken = default)
-    {
-        await Cache.SetStringAsync("test", "test", CacheExpiration, cancellationToken: cancellationToken);
-        var extensionPropertiesJson = await Cache.GetStringAsync(CacheKeys.ExtensionProperties, cancellationToken);
-        MgExtensionProperty[]? extensionProperties;
-        if (extensionPropertiesJson is not null)
-        {
-            Logger.CacheHit(CacheKeys.ExtensionProperties);
-            extensionProperties = Deserialize<MgExtensionProperty[]>(extensionPropertiesJson)!;
-        }
-        else
-        {
-            Logger.CacheMiss(CacheKeys.ExtensionProperties);
-            extensionProperties =
-                [..await Graph.DirectoryObjects.GetAvailableExtensionProperties().Request().PostAsync(cancellationToken)];
-            await Cache.SetAsync(CacheKeys.ExtensionProperties, extensionProperties, CacheExpiration, cancellationToken: cancellationToken);
-        }
-        return extensionProperties;
+            [..await Graph.DirectoryObjects.GetAvailableExtensionProperties().Request().PostAsync(cancellationToken)];
+        await Cache.SetAsync(CacheKeys.ExtensionProperties, extensionProperties, CacheExpiration, cancellationToken: cancellationToken);
     }
+    return extensionProperties;
+}
 }
