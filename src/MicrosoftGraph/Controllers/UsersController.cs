@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Application = Dgmjr.Mime.Application;
 using Dgmjr.Abstractions;
+using User = Microsoft.Graph.User;
 
 [AuthorizeForScopes(ScopeKeySection = DownstreamApis_MicrosoftGraph_Scopes)]
 [Route($"{MsGraphApi}{Users}")]

@@ -65,4 +65,16 @@ public class MsGraphScopes
             public const string All = Base + ".All";
         }
     }
+
+    public static class Directory
+    {
+        public const string Base = MsGraphScopes.Base + "Directory.";
+
+        public static class Read
+        {
+            public const string Base = Directory.Base + "Read";
+
+            public const string All = Base + ".All";
+        }
+    }
 }

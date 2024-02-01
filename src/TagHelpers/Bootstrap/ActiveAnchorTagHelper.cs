@@ -47,32 +47,48 @@ public class ActiveAnchorTagHelper(IHtmlGenerator generator)
 
     private bool ShouldBeActive()
     {
-        var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
-        var currentAction = ViewContext.RouteData.Values["Action"]?.ToString();
+        // Get the current page's area
+        var currentArea = ViewContext.RouteData.Values["area"]?.ToString();
 
+        // Get the current page's controller
+        var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+
+        // Get the current page's page name
+        var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+
+        // Get the current page's action
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+
+        // Get the anchor's area
+        var anchorArea = Area;
+
+        // Get the anchor's controller
+        var anchorController = Controller;
+
+        // Get the anchor's page name
+        var anchorPage = Page;
+
+        // Get the anchor's action
+        var anchorAction = Action;
+
+        // Compare the current page's area, controller, page name, and action to the anchor's properties
+        // If they all match, return true
         if (
-            !IsNullOrWhiteSpace(Controller) && Controller?.ToLower() != currentController?.ToLower()
+            string.Equals(currentArea, anchorArea, OrdinalIgnoreCase)
+            && string.Equals(currentController, anchorController, OrdinalIgnoreCase)
+            && string.Equals(currentPage, anchorPage, OrdinalIgnoreCase)
+            && string.Equals(currentAction, anchorAction, OrdinalIgnoreCase)
         )
         {
-            return false;
+            return true;
         }
 
-        if (!IsNullOrWhiteSpace(Action) && Action?.ToLower() != currentAction?.ToLower())
+        if(anchorPage != null && currentPage?.StartsWith(anchorPage, OrdinalIgnoreCase) == true)
         {
-            return false;
+            return true;
         }
 
-        foreach (var routeValue in RouteValues)
-        {
-            if (
-                !ViewContext.RouteData.Values.ContainsKey(routeValue.Key)
-                || ViewContext.RouteData.Values[routeValue.Key].ToString() != routeValue.Value
-            )
-            {
-                return false;
-            }
-        }
-
-        return true;
+        // If any of the above comparisons fail, return false
+        return false;
     }
 }

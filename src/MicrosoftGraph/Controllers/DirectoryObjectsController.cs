@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
 [Route($"{MsGraphApi}{DirectoryObjects}")]
+[AuthorizeForScopes(Scopes = [MsGraphScopes.Directory.Read.All])]
 public class DirectoryObjectsController(
     ILogger<DirectoryObjectsController> logger,
     IServiceProvider services

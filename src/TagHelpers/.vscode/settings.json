@@ -2,5 +2,8 @@
     "cSpell.words": [
         "ihaaaca",
         "ihagiaiis"
-    ]
+    ],
+    "files.exclude": {
+        "**/.vs": false
+    }
 }

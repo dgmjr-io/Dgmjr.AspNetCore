@@ -2,6 +2,7 @@ namespace Dgmjr.Configuration.Extensions;
 
 public enum ConfigurationOrder
 {
+    First = -1000,
     VeryEarly = 0,
     Early = 100,
     Middle = 200,

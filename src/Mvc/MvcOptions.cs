@@ -1,133 +1,227 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
-
 namespace Dgmjr.AspNetCore.Mvc;
 
-public class MvcOptions : Microsoft.AspNetCore.Mvc.MvcOptions
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+using OneOf.Types;
+
+using MsMvcOptions = Microsoft.AspNetCore.Mvc.MvcOptions;
+
+public class MvcOptions(MsMvcOptions mvc)
 {
-    /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
-    public bool AddControllersWithViews { get; set; } = false;
+    public MvcOptions()
+        : this(
+            new MsMvcOptions
+            {
+                AllowEmptyInputInBodyModelBinding = false,
+                RespectBrowserAcceptHeader = true
+            }
+        ) { }
 
     /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
-    public bool AddRazorPages { get; set; } = false;
+    public virtual bool AddControllersWithViews { get; set; } = false;
+    public virtual bool AddControllersAsServices { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
-    public bool AddControllersAsServices { get; set; } = false;
+    public virtual bool AddRazorPages { get; set; } = false;
+
+    /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
+    /// public virtual bool AddControllersAsServices { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add the Microsoft Identity UI, <see langword="false" /> otherwise</summary>
-    public bool AddMicrosoftIdentityUI { get; set; } = false;
+    public virtual bool AddMicrosoftIdentityUI { get; set; } = false;
 
-    /// <summary><see langword="true" /> if you want to add JSON serializer options, <see langword="false" /> otherwise</summary>
-    public bool AddJsonOptions { get; set; } = false;
+    /// <summary><see langword="true" /> if you want to add JSON serializer  <see langword="false" /> otherwise</summary>
+    public virtual bool AddJsonOptions { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add XML serializer formatters, <see langword="false" /> otherwise</summary>
-    public bool AddXmlSerializerFormatters { get; set; } = false;
+    public virtual bool AddXmlSerializerFormatters { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add XML data contract serializer formatters, <see langword="false" /> otherwise</summary>
-    public bool AddXmlDataContractSerializerFormatters { get; set; } = false;
+    public virtual bool AddXmlDataContractSerializerFormatters { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add the DGMJR MVC conventions, <see langword="false" /> otherwise</summary>
-    public bool AddMvcConventions { get; set; } = false;
+    public virtual bool AddMvcConventions { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add controllers, <see langword="false" /> otherwise</summary>
-    public bool AddControllers { get; set; } = false;
+    public virtual bool AddControllers { get; set; } = false;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.AllowEmptyInputInBodyModelBinding" />
-    public new bool AllowEmptyInputInBodyModelBinding
-    {
-        get => base.AllowEmptyInputInBodyModelBinding;
-        set => base.AllowEmptyInputInBodyModelBinding = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.AllowEmptyInputInBodyModelBinding" />
+    public virtual bool AllowEmptyInputInBodyModelBinding { get; set; } =
+        mvc.AllowEmptyInputInBodyModelBinding;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.EnableActionInvokers" />
-    public new bool EnableActionInvokers
-    {
-        get => base.EnableActionInvokers;
-        set => base.EnableActionInvokers = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.EnableActionInvokers" />
+    public virtual bool EnableActionInvokers { get; set; } = mvc.EnableActionInvokers;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.EnableEndpointRouting" />
-    public new bool EnableEndpointRouting
-    {
-        get => base.EnableEndpointRouting;
-        set => base.EnableEndpointRouting = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.EnableEndpointRouting" />
+    public virtual bool EnableEndpointRouting { get; set; } = mvc.EnableEndpointRouting;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.RespectBrowserAcceptHeader" />
-    public new bool RespectBrowserAcceptHeader
-    {
-        get => base.RespectBrowserAcceptHeader;
-        set => base.RespectBrowserAcceptHeader = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.RespectBrowserAcceptHeader" />
+    public virtual bool RespectBrowserAcceptHeader { get; set; } = mvc.RespectBrowserAcceptHeader;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.RequireHttpsPermanent" />
-    public new bool RequireHttpsPermanent
-    {
-        get => base.RequireHttpsPermanent;
-        set => base.RequireHttpsPermanent = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.RequireHttpsPermanent" />
+    public virtual bool RequireHttpsPermanent { get; set; } = mvc.RequireHttpsPermanent;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.SuppressAsyncSuffixInActionNames" />
-    public new bool SuppressAsyncSuffixInActionNames
-    {
-        get => base.SuppressAsyncSuffixInActionNames;
-        set => base.SuppressAsyncSuffixInActionNames = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.SuppressAsyncSuffixInActionNames" />
+    public virtual bool SuppressAsyncSuffixInActionNames { get; set; } =
+        mvc.SuppressAsyncSuffixInActionNames;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.SuppressInputFormatterBuffering" />
-    public new bool SuppressInputFormatterBuffering
-    {
-        get => base.SuppressInputFormatterBuffering;
-        set => base.SuppressInputFormatterBuffering = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.SuppressInputFormatterBuffering" />
+    public virtual bool SuppressInputFormatterBuffering { get; set; } =
+        mvc.SuppressInputFormatterBuffering;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.SuppressOutputFormatterBuffering" />
-    public new bool SuppressOutputFormatterBuffering
-    {
-        get => base.SuppressOutputFormatterBuffering;
-        set => base.SuppressOutputFormatterBuffering = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.SuppressOutputFormatterBuffering" />
+    public virtual bool SuppressOutputFormatterBuffering { get; set; } =
+        mvc.SuppressOutputFormatterBuffering;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.ValidateComplexTypesIfChildValidationFails" />
-    public new bool ValidateComplexTypesIfChildValidationFails
-    {
-        get => base.ValidateComplexTypesIfChildValidationFails;
-        set => base.ValidateComplexTypesIfChildValidationFails = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.ValidateComplexTypesIfChildValidationFails" />
+    public virtual bool ValidateComplexTypesIfChildValidationFails { get; set; } =
+        mvc.ValidateComplexTypesIfChildValidationFails;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes" />
-    public new bool SuppressImplicitRequiredAttributeForNonNullableReferenceTypes
-    {
-        get => base.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes;
-        set => base.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes" />
+    public virtual bool SuppressImplicitRequiredAttributeForNonNullableReferenceTypes { get; set; } =
+        mvc.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.ReturnHttpNotAcceptable" />
-    public new bool ReturnHttpNotAcceptable
-    {
-        get => base.ReturnHttpNotAcceptable;
-        set => base.ReturnHttpNotAcceptable = value;
-    }
+    /// <inheritdoc cref="MsMvcOptions.ReturnHttpNotAcceptable" />
+    public virtual bool ReturnHttpNotAcceptable { get; set; } = mvc.ReturnHttpNotAcceptable;
 
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.CacheProfiles" />
-    public new IDictionary<string, CacheProfile> CacheProfiles
+    /// <inheritdoc cref="MsMvcOptions.CacheProfiles" />
+    public virtual IDictionary<string, CacheProfile> CacheProfiles { get; set; } =
+        mvc.CacheProfiles;
+
+    /// <inheritdoc cref="MsMvcOptions.Conventions" />
+    public virtual IList<IApplicationModelConvention> Conventions { get; set; } = mvc.Conventions;
+
+    /// <inheritdoc cref="MsMvcOptions.Filters" />
+    public virtual FilterCollection Filters { get; set; } = mvc.Filters;
+
+    /// <inheritdoc cref="MsMvcOptions.FormatterMappings" />
+    public virtual FormatterMappings FormatterMappings { get; set; } = mvc.FormatterMappings;
+
+    /// <inheritdoc cref="MsMvcOptions.InputFormatters" />
+    public virtual FormatterCollection<IInputFormatter> InputFormatters { get; set; } =
+        mvc.InputFormatters;
+
+    /// <inheritdoc cref="MsMvcOptions.ModelBinderProviders" />
+    public virtual int MaxModelValidationErrors { get; set; } = mvc.MaxModelValidationErrors;
+
+    /// <inheritdoc cref="MsMvcOptions.ModelBinderProviders" />
+    public virtual IList<IModelBinderProvider> ModelBinderProviders { get; set; } =
+        mvc.ModelBinderProviders;
+
+    /// <inheritdoc cref="MsMvcOptions.ModelBindingMessageProvider" />
+    public virtual DefaultModelBindingMessageProvider ModelBindingMessageProvider { get; set; } =
+        mvc.ModelBindingMessageProvider;
+
+    /// <inheritdoc cref="MsMvcOptions.ModelMetadataDetailsProviders" />
+    public virtual IList<IMetadataDetailsProvider> ModelMetadataDetailsProviders { get; set; } =
+        mvc.ModelMetadataDetailsProviders;
+
+    /// <inheritdoc cref="MsMvcOptions.ModelValidatorProviders" />
+    public virtual IList<IModelValidatorProvider> ModelValidatorProviders { get; set; } =
+        mvc.ModelValidatorProviders;
+
+    /// <inheritdoc cref="MsMvcOptions.OutputFormatters" />
+    public virtual FormatterCollection<IOutputFormatter> OutputFormatters { get; set; } =
+        mvc.OutputFormatters;
+
+    /// <inheritdoc cref="MsMvcOptions.ValueProviderFactories" />
+    public virtual IList<IValueProviderFactory> ValueProviderFactories { get; set; } =
+        mvc.ValueProviderFactories;
+
+    /// <inheritdoc cref="MsMvcOptions.SslPort" />
+    public virtual int? SslPort { get; set; } = mvc.SslPort;
+
+    /// <inheritdoc cref="MsMvcOptions.MaxValidationDepth" />
+    public virtual int? MaxValidationDepth { get; set; } = mvc.MaxValidationDepth;
+
+    /// <inheritdoc cref="MsMvcOptions.MaxModelBindingCollectionSize" />
+    public virtual int MaxModelBindingCollectionSize { get; set; } =
+        mvc.MaxModelBindingCollectionSize;
+
+    /// <inheritdoc cref="MsMvcOptions.MaxModelBindingRecursionDepth" />
+    public virtual int MaxModelBindingRecursionDepth { get; set; } =
+        mvc.MaxModelBindingRecursionDepth;
+
+    /// <inheritdoc cref="MsMvcOptions.MaxIAsyncEnumerableBufferLimit" />
+    public virtual int MaxIAsyncEnumerableBufferLimit { get; set; } =
+        mvc.MaxIAsyncEnumerableBufferLimit;
+
+    public static implicit operator MsMvcOptions(MvcOptions options) =>
+        options.CopyTo(new MsMvcOptions());
+
+    public virtual MsMvcOptions CopyTo(MsMvcOptions mvcOpts)
     {
-        get => base.CacheProfiles;
-        set
+        mvcOpts.AllowEmptyInputInBodyModelBinding = AllowEmptyInputInBodyModelBinding;
+        mvcOpts.EnableActionInvokers = EnableActionInvokers;
+        mvcOpts.EnableEndpointRouting = EnableEndpointRouting;
+        mvcOpts.MaxIAsyncEnumerableBufferLimit = MaxIAsyncEnumerableBufferLimit;
+        mvcOpts.MaxModelBindingCollectionSize = MaxModelBindingCollectionSize;
+        mvcOpts.MaxModelBindingRecursionDepth = MaxModelBindingRecursionDepth;
+        mvcOpts.MaxModelValidationErrors = MaxModelValidationErrors;
+        mvcOpts.MaxValidationDepth = MaxValidationDepth;
+        mvcOpts.RequireHttpsPermanent = RequireHttpsPermanent;
+        mvcOpts.RespectBrowserAcceptHeader = RespectBrowserAcceptHeader;
+        mvcOpts.ReturnHttpNotAcceptable = ReturnHttpNotAcceptable;
+        mvcOpts.SslPort = SslPort;
+        mvcOpts.SuppressAsyncSuffixInActionNames = SuppressAsyncSuffixInActionNames;
+        mvcOpts.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes =
+            SuppressImplicitRequiredAttributeForNonNullableReferenceTypes;
+        mvcOpts.SuppressInputFormatterBuffering = SuppressInputFormatterBuffering;
+        mvcOpts.SuppressOutputFormatterBuffering = SuppressOutputFormatterBuffering;
+        mvcOpts.ValidateComplexTypesIfChildValidationFails =
+            ValidateComplexTypesIfChildValidationFails;
+
+        // mvcOpts.CacheProfiles.Clear();
+        foreach (var profile in CacheProfiles)
         {
-            base.CacheProfiles.Clear();
-            ForEach(value.ToArray(), cp => base.CacheProfiles.Add(cp));
+            mvcOpts.CacheProfiles[profile.Key] = profile.Value;
         }
-    }
-
-    /// <inheritdoc cref="Microsoft.AspNetCore.Mvc.MvcOptions.Conventions" />
-    public new IList<IApplicationModelConvention> Conventions
-    {
-        get => base.Conventions;
-        set
+        // mvcOpts.Filters.Clear();
+        foreach (var v in Filters)
         {
-            base.Conventions.Clear();
-            ForEach(value.ToArray(), c => base.Conventions.Add(c));
+            mvcOpts.Filters.Add(v);
         }
+        // mvcOpts.InputFormatters.Clear();
+        foreach (var v in InputFormatters)
+        {
+            mvcOpts.InputFormatters.Add(v);
+        }
+        // mvcOpts.OutputFormatters.Clear();
+        foreach (var v in OutputFormatters)
+        {
+            mvcOpts.OutputFormatters.Add(v);
+        }
+        // mvcOpts.Conventions.Clear();
+        foreach (var v in Conventions)
+        {
+            mvcOpts.Conventions.Add(v);
+        }
+        // mvcOpts.ValueProviderFactories.Clear();
+        foreach (var v in ValueProviderFactories)
+        {
+            mvcOpts.ValueProviderFactories.Add(v);
+        }
+        // mvcOpts.ModelBinderProviders.Clear();
+        foreach (var v in ModelBinderProviders)
+        {
+            mvcOpts.ModelBinderProviders.Add(v);
+        }
+        // mvcOpts.ModelMetadataDetailsProviders.Clear();
+        foreach (var v in ModelMetadataDetailsProviders)
+        {
+            mvcOpts.ModelMetadataDetailsProviders.Add(v);
+        }
+        // mvcOpts.ModelValidatorProviders.Clear();
+        foreach (var v in ModelValidatorProviders)
+        {
+            mvcOpts.ModelValidatorProviders.Add(v);
+        }
+        return mvcOpts;
     }
 }

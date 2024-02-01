@@ -4,3 +4,6 @@
 [submodule "src/Http/CorrelationId"]
 	path = src/Http/CorrelationId
 	url = https://github.com/dgmjr-io/CorrelationId.git
+[submodule "src/AzureAdB2C/api-connector-samples"]
+	path = src/AzureAdB2C/api-connector-samples
+	url = https://github.com/azure-ad-b2c/api-connector-samples.git

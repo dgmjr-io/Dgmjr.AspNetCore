@@ -22,4 +22,13 @@ public static class MsGraphConstants
 
     public const string DownstreamApis_MicrosoftGraph_AzureAdB2CExtensionsApplicationId =
         $"{DownstreamApis_MicrosoftGraph}:{AzureAdB2CExtensionsApplicationId}";
+
+    public static readonly string[] ValidMsGraphHosts =
+    [
+        "graph.microsoft.com",
+        "graph.microsoft.us",
+        "dod-graph.microsoft.us",
+        "graph.microsoft.de",
+        "microsoftgraph.chinacloudapi.cn"
+    ];
 }

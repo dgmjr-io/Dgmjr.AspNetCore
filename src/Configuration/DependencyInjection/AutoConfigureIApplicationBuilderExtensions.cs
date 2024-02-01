@@ -13,7 +13,7 @@ public static class AutoConfigureIApplicationBuilderExtensions
             .ToList();
 
         Console.WriteLine(
-            $"Configuring IApplicationBuilder with the following configurators: {Join(", ", configurators.Select(configurator => configurator.GetType().Name))}."
+            $"Configuring IApplicationBuilder with the following configurators: {Join(env.NewLine, configurators.Select(configurator => $"{configurator.Order}: {configurator.GetType().Name}"))}."
         );
 
         foreach (var configurator in configurators)

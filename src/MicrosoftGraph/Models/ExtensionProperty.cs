@@ -1,12 +1,12 @@
 namespace Dgmjr.Graph.Models;
 using System.Runtime.InteropServices;
 
-[StructLayout(LayoutKind.Sequential, Pack = 1)]
+[StructLayout(LayoutKind.Auto, Pack = 1)]
 public partial record struct ExtensionProperty
 {
-    /// <summary>The name of the extension property</summary>
-    [JProp("@odata.context")]
-    public Uri OdataContext { get; init; }
+    /// <value><inheritdoc cref="ODataUris.ExtensionPropertyODataTypeString" path="/value" /></value>
+    [JProp("@odata.type")]
+    public Uri OdataContext { get; init; } = new(ODataUris.ExtensionPropertyODataTypeString);
 
     /// <summary>The name of the extension property</summary>
     [JProp("id")]

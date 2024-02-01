@@ -1,22 +1,28 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
+using Dgmjr.AspNetCore.Http.Services;
 using Dgmjr.Configuration.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
-public class HttpServicesOptionsAutoConfigurator
+public class HttpServicesOptionsAutoConfigurator(ILogger<HttpServicesOptionsAutoConfigurator>? logger = null)
     : IConfigureIHostApplicationBuilder,
-        IConfigureIApplicationBuilder
+        IConfigureIApplicationBuilder, ILog
 {
-    public ConfigurationOrder Order => ConfigurationOrder.AnyTime;
+    public ILogger? Logger => logger;
+
+    public ConfigurationOrder Order => ConfigurationOrder.VeryEarly;
 
     public void Configure(WebApplicationBuilder builder)
     {
-        builder.AddHttpServices();
+        Logger?.HttpServicesOptionsAutoConfiguratorConfigureWebApplicationBuilder();
+        builder.AddHttpServices(logger: Logger);
     }
 
-    public void Configure(IApplicationBuilder builder)
+    public void Configure(IApplicationBuilder app)
     {
-        builder.UseHttpServices();
+        Logger?.HttpServicesOptionsAutoConfiguratorConfigureIApplicationBuilder();
+        app.UseHttpServices(logger: Logger);
     }
 }

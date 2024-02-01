@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Using Include="Microsoft.AspNetCore.Http.StatusCodes" Static="true" />
+    <Using Include="Microsoft.AspNetCore.Mvc.MvcOptions" Alias="MsMvcOptions" />
     <Using Include="Microsoft.Extensions.DependencyInjection" />
     <Using Include="Swashbuckle.AspNetCore.Annotations" />
     <Using Include="Dgmjr.Mime" />

@@ -1,58 +1,20 @@
 <!--
  * Dgmjr.AspNetCore.Authentication.csproj
  *
- *   Created: 2023-56-18T15:56:43-04:00
- *   Modified: 2023-29-03T22:29:41-04:00
+ *   Created: 2024-12-30T02:12:45-05:00
+ *   Modified: 2024-12-30T02:12:45-05:00
  *
- *   Author: David G. Moore, Jr. <david@dgmjr.io>
+ *   Author: David G. Moore, Jr. <david@jsonschema.xyz>
  *
- *   Copyright © 2022 - 2023 David G. Moore, Jr., All Rights Reserved
+ *   Copyright © 2024 David G. Moore, Jr., All Rights Reserved
  *      License: MIT (https://opensource.org/licenses/MIT)
 -->
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
-    <!-- <TargetFrameworks>net8.0</TargetFrameworks> -->
-    <SlnGenSolutionFolder>security</SlnGenSolutionFolder>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <FrameworkReferenece Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OAuth" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    <PackageReference Include="Microsoft.OpenApi" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" />
-    <PackageReference Include="System.Runtime" />
-    <PackageReference Include="System.Usings" />
-    <PackageReference Include="Telegram.Identity" />
-    <PackageReference Include="Dgmjr.Enumerations.CodeGenerator" />
-    <PackageReference Include="Dgmjr.InterfaceGenerator" />
-    <PackageReference Include="System.Text.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
-  </ItemGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Constants.DbTypesNamesAndSchemas" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore.Constants" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.EntityFrameworkCore.Abstractions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Abstractions" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Primitives" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.Claims" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.Models" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.EntityFrameworkCore" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.Identity.AspNetCore" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="Dgmjr.System.Extensions" ExcludeAssets="ContentFiles; Build" />
-    <PackageReference Include="Telegram.Identity" ExcludeAssets="ContentFiles" />
-    <PackageReference Include="SendPulse.Identity" ExcludeAssets="ContentFiles" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="@(Compile)" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 </Project>

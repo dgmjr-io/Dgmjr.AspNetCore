@@ -48,6 +48,7 @@ public class PageFooter : TagHelper
     {
         output.TagName = TagNames.Footer;
         var childContent = await output.GetChildContentAsync();
+
         output.Content.AppendHtml(childContent);
         output.AddCssClass(
             $"footer border-top bg-{BackgroundColor.GetName()} text-{TextColor.GetName()} {Position.GetName()}"
@@ -92,7 +93,6 @@ public class PageFooter : TagHelper
                     <a href="mailto:{{{CopyrightHolderEmail}}}">
                     {{{CopyrightHolder}}}
                     </a>
-                    |
                     """
                 );
             }
@@ -101,6 +101,13 @@ public class PageFooter : TagHelper
                 output.PreContent.AppendHtml(
                     $$$"""
                     {{{CopyrightHolder}}}
+                    """
+                );
+            }
+            if(!IsNullOrWhiteSpace(childContent.GetContent()))
+            {
+                output.PreContent.AppendHtml(
+                    """
 
                     |
 

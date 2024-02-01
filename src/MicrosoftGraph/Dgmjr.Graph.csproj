@@ -10,6 +10,7 @@
     <PackageReference Include="Dgmjr.Caching.Extensions" />
     <PackageReference Include="Dgmjr.Logging.Extensions" />
     <PackageReference Include="Microsoft.Kiota.Abstractions" />
+    <PackageReference Include="Dgmjr.Security.Extensions" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="../DownstreamApis/Dgmjr.Web.DownstreamApis.csproj" />

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Dgmjr.AspNetCore.Http;
 using Dgmjr.AspNetCore.Http.Services;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
 
 public static partial class HttpServicesExtensions
 {
@@ -27,7 +29,8 @@ public static partial class HttpServicesExtensions
 
     public static WebApplicationBuilder AddHttpServices(
         this WebApplicationBuilder builder,
-        string configurationSectionKey = Http
+        string configurationSectionKey = Http,
+        ILogger? logger = null
     )
     {
         var options = builder.Configuration
@@ -42,6 +45,7 @@ public static partial class HttpServicesExtensions
         {
             if (options.UseRequestDecompression)
             {
+                logger?.SettingUpHttpService(RequestDecompression, options.RequestDecompression);
                 builder.Services.AddRequestDecompression(
                     options =>
                         builder.Configuration.Bind(
@@ -53,6 +57,7 @@ public static partial class HttpServicesExtensions
 
             if (options.UseResponseCompression)
             {
+                logger?.SettingUpHttpService(ResponseCompression, options.ResponseCompression);
                 builder.Services.AddResponseCompression(options =>
                 {
                     options.EnableForHttps = true;
@@ -67,6 +72,7 @@ public static partial class HttpServicesExtensions
 
             if (options.UseResponseCaching)
             {
+                logger?.SettingUpHttpService(ResponseCaching, options.ResponseCaching);
                 builder.Services.AddResponseCaching(
                     options =>
                         builder.Configuration.Bind(
@@ -78,6 +84,7 @@ public static partial class HttpServicesExtensions
 
             if (options.UseOutputCaching)
             {
+                logger?.SettingUpHttpService(OutputCache, options.OutputCache);
                 builder.Services.AddOutputCache(
                     options =>
                         builder.Configuration.Bind(
@@ -89,6 +96,7 @@ public static partial class HttpServicesExtensions
 
             if (options.UseSession)
             {
+                logger?.SettingUpHttpService(Session, options.Session);
                 builder.Services.AddSession(
                     options =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{Session}", options)
@@ -97,17 +105,23 @@ public static partial class HttpServicesExtensions
 
             if (options.UseFileServer && options.FileServer.EnableDirectoryBrowsing)
             {
+                logger?.SettingUpHttpService(
+                    $"{nameof(options.FileServer)}:{nameof(options.FileServer.EnableDirectoryBrowsing)}",
+                    options.FileServer
+                );
                 builder.Services.AddDirectoryBrowser();
             }
 
             if (options.UseCookiePolicy)
             {
+                logger?.SettingUpHttpService(Cookies, options.CookiePolicy);
                 builder.Services.AddCookiePolicy(
                     policy =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{Cookies}", policy)
                 );
             }
 
+            logger?.SettingUpHttpService(Cors, options.Cors);
             builder.Services.AddCors();
 
             if (options.UseCors)
@@ -122,6 +136,7 @@ public static partial class HttpServicesExtensions
 
             if (options.UseHsts)
             {
+                logger?.SettingUpHttpService(Hsts, options.Hsts);
                 builder.Services.AddHsts(
                     options =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{Hsts}", options)
@@ -130,6 +145,7 @@ public static partial class HttpServicesExtensions
 
             if (options.IIS != null)
             {
+                logger?.SettingUpHttpService(IIS, options.IIS);
                 builder.Services.Configure<IISServerOptions>(
                     options =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{IIS}", options)
@@ -138,6 +154,7 @@ public static partial class HttpServicesExtensions
 
             if (options.Kestrel != null)
             {
+                logger?.SettingUpHttpService(Kestrel, options.Kestrel);
                 builder.Services.Configure<KestrelServerOptions>(
                     options =>
                         builder.Configuration.Bind($"{configurationSectionKey}:{Kestrel}", options)
@@ -146,6 +163,7 @@ public static partial class HttpServicesExtensions
 
             if (options.ExceptionHandling != null)
             {
+                logger?.SettingUpHttpService(ExceptionHandling, options.ExceptionHandling);
                 builder.Services.Configure<Dgmjr.AspNetCore.Http.ExceptionHandlerOptions>(
                     options =>
                         builder.Configuration.Bind(
@@ -157,6 +175,7 @@ public static partial class HttpServicesExtensions
 
             if (options.AddHttpContextAccessor)
             {
+                logger?.SettingUpHttpService(nameof(IHttpContextAccessor), options.AddHttpContextAccessor);
                 builder.Services.AddHttpContextAccessor();
                 builder.Services.AddSingleton<IActionContextAccessor, ActionContextAccessor>();
             }

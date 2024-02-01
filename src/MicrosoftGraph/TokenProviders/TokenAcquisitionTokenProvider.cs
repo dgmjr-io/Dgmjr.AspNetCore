@@ -6,6 +6,8 @@ using System.Security.Claims;
 using Microsoft.Identity.Web;
 using Microsoft.Kiota.Abstractions.Authentication;
 
+using ClaimsPrincipal = System.Security.Claims.ClaimsPrincipal;
+
 namespace Dgmjr.Graph.TokenProviders
 {
     /// <summary>

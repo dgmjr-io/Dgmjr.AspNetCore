@@ -1,4 +1,5 @@
 namespace Dgmjr.Graph.Services;
+using User = Microsoft.Graph.User;
 
 public class UsersService(GraphServiceClient graph, ILogger<UsersService> logger, IOptionsMonitor<AzureAdB2CGraphOptions> options, IOptionsMonitor<MicrosoftIdentityOptions> msidOptions, IDistributedCache cache) : MsGraphService(graph, logger, options, msidOptions, cache), IUsersService
 {

@@ -6,6 +6,7 @@ using Application = Dgmjr.Mime.Application;
 using Dgmjr.Abstractions;
 using Microsoft.Extensions.Logging;
 using Microsoft.Identity.Web.Resource;
+using User = Microsoft.Graph.User;
 
 [AuthorizeForScopes(Scopes = [MsGraphScopes.User.Read.Base])]
 [RequiredScope([MsGraphScopes.User.Read.Base])]

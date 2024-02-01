@@ -9,15 +9,17 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 #endif
 using MvcOptions = Dgmjr.AspNetCore.Mvc.MvcOptions;
 using Microsoft.Identity.Web.UI;
+using Microsoft.Extensions.Logging;
+using static Dgmjr.AspNetCore.Mvc.ServiceNames;
 
 public static class IHostApplicationBuilderMvcExtensions
 {
     private const string Mvc = nameof(Mvc);
-    private const string JsonSerializer = nameof(JsonSerializer);
 
     public static WebApplicationBuilder AddMvc(
         this WebApplicationBuilder builder,
-        string configurationSectionKey = Mvc
+        string configurationSectionKey = Mvc,
+        ILogger? logger = null
     )
     {
         var mvcBuilder = builder.Services.AddMvc(
@@ -25,48 +27,57 @@ public static class IHostApplicationBuilderMvcExtensions
         );
 
         var mvcOptionsSection = builder.Configuration.GetSection(configurationSectionKey);
-        builder.Services.Configure<MvcOptions>(mvcOptionsSection);
         var mvcOptions = mvcOptionsSection.Get<MvcOptions>();
+        builder.Services.Configure<MvcOptions>(mvcOptionsSection);
+        builder.Services.Configure<MsMvcOptions>(mvc => mvcOptions.CopyTo(mvc));
 
         if (mvcOptions is not null)
         {
             if (mvcOptions.EnableEndpointRouting)
             {
+                logger?.SettingUpMvcService(EndpointRouting);
                 builder.Services.AddRouting();
             }
 
             if (mvcOptions.AddControllersWithViews)
             {
+                logger?.SettingUpMvcService(ControllersWithViews);
                 builder.Services.AddControllersWithViews();
             }
 
             if (mvcOptions.AddRazorPages)
             {
+                logger?.SettingUpMvcService(RazorPages);
                 builder.Services.AddRazorPages();
             }
 
             if (mvcOptions.AddControllers)
             {
+                logger?.SettingUpMvcService(Controllers);
                 builder.Services.AddControllers();
             }
 
             if (mvcOptions.AddControllersAsServices)
             {
+                logger?.SettingUpMvcService(ControllersAsServices);
                 mvcBuilder.AddControllersAsServices();
             }
 
             if (mvcOptions.AddXmlSerializerFormatters)
             {
+                logger?.SettingUpMvcService(XmlSerializerFormatters);
                 mvcBuilder.AddXmlSerializerFormatters();
             }
 
             if (mvcOptions.AddXmlDataContractSerializerFormatters)
             {
+                logger?.SettingUpMvcService(XmlDataContractSerializerFormatters);
                 mvcBuilder.AddXmlDataContractSerializerFormatters();
             }
 
             if (mvcOptions.AddMicrosoftIdentityUI)
             {
+                logger?.SettingUpMvcService(MicrosoftIdentityUI);
                 mvcBuilder.AddMicrosoftIdentityUI();
             }
 
@@ -77,11 +88,19 @@ public static class IHostApplicationBuilderMvcExtensions
 
             if (mvcOptions.AddJsonOptions)
             {
+                logger?.SettingUpMvcService(JsonSerializer);
                 builder.Services.Configure<JsonOptions>(
                     options =>
                         builder.Configuration
                             .GetSection(JsonSerializer)
                             .Bind(options.JsonSerializerOptions)
+                );
+                builder.Services.AddSingleton<IConfigureOptions<JsonOptions>>(
+                    new TypeNameAndAssemblyConfigurator<JsonOptions, JConverter>(
+                        builder.Configuration,
+                        $"{JsonSerializer}:{nameof(Jso.Converters)}",
+                        options => options.JsonSerializerOptions.Converters
+                    )
                 );
             }
         }
@@ -91,7 +110,8 @@ public static class IHostApplicationBuilderMvcExtensions
 
     public static IApplicationBuilder UseMvc(
         this IApplicationBuilder app,
-        string configurationSectionKey = Mvc
+        string configurationSectionKey = Mvc,
+        ILogger? logger = null
     )
     {
         var webApp = app as WebApplication;
@@ -104,21 +124,25 @@ public static class IHostApplicationBuilderMvcExtensions
         {
             if (mvcOptions.EnableEndpointRouting)
             {
+                logger?.AddingMvcServiceToThePipeline(EndpointRouting);
                 webApp?.UseRouting();
             }
 
             if (mvcOptions.AddControllersWithViews)
             {
+                logger?.AddingMvcServiceToThePipeline(ControllersWithViews);
                 webApp?.MapControllers();
             }
 
             if (mvcOptions.AddRazorPages)
             {
+                logger?.AddingMvcServiceToThePipeline(RazorPages);
                 webApp?.MapRazorPages();
             }
 
             if (mvcOptions.AddControllers)
             {
+                logger?.AddingMvcServiceToThePipeline(Controllers);
                 webApp?.MapControllers();
             }
         }

@@ -12,7 +12,9 @@ using System.Reflection;
 public static class AutoConfigureIApplicationHostBuilderExtensions
 {
     public static WebApplicationBuilder AutoConfigure<TProgram>(this WebApplicationBuilder builder)
+        where TProgram : class
     {
+        builder.Configuration.AddUserSecrets<TProgram>();
         builder.Configuration.AddKeyPerJsonFile(
             Path.Join(Path.GetDirectoryName(typeof(TProgram).Assembly.Location), "./Configuration/")
         );
@@ -83,7 +85,7 @@ public static class AutoConfigureIApplicationHostBuilderExtensions
             .ToList();
 
         Console.WriteLine(
-            $"Configuring IHostApplicationBuilder with the following configurators: {Join(", ", configurators.Select(configurator => configurator.GetType().Name))}."
+            $"Configuring IHostApplicationBuilder with the following configurators: {Join(env.NewLine, configurators.Select(configurator => $"{configurator.Order}: {configurator.GetType().Name}"))}."
         );
 
         foreach (var configurator in configurators)
