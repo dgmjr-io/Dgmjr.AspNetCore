@@ -18,8 +18,8 @@ public interface IClaimsGenerator
 public abstract class ClaimsGenerator(IOptions<Version> version) : IClaimsGenerator
 {
     public virtual Version Version => version.Value;
-    public abstract Task<ApiResponse> GenerateClaimsAsync(
-        ApiRequest request,
-        CancellationToken cancellationToken = default
-    );
+public abstract Task<ApiResponse> GenerateClaimsAsync(
+    ApiRequest request,
+    CancellationToken cancellationToken = default
+);
 }

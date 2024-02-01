@@ -18,7 +18,7 @@ public class JsonApiContinueResponseConverter : JsonConverter<ApiContinueRespons
         writer.WriteString("version", value.Version.ToString());
         writer.WriteString("action", value.Action.ToString());
         writer.WriteNumber("status", value.StatusCode ?? StatusCodes.Status200OK);
-        foreach(var (claimType, claimValue) in value.Claims)
+        foreach (var (claimType, claimValue) in value.Claims)
         {
             writer.WriteString(claimType, claimValue);
         }

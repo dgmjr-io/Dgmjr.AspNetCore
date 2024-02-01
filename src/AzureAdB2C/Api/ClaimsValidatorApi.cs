@@ -16,24 +16,24 @@ public abstract class ClaimsValidatorApi(
 {
     public virtual IClaimsValidator ClaimsValidator => claimsValidator;
 
-    [HttpPost]
-    [Route("api/claims/generate")]
-    public async Task<IActionResult> GenerateAsync(
-        [FromBody] ApiRequest request,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var result = await ClaimsValidator.ValidateAsync(request, cancellationToken);
+[HttpPost]
+[Route("api/claims/generate")]
+public async Task<IActionResult> GenerateAsync(
+    [FromBody] ApiRequest request,
+    CancellationToken cancellationToken = default
+)
+{
+    var result = await ClaimsValidator.ValidateAsync(request, cancellationToken);
 
-        if(IsNullOrWhiteSpace(result.ErrorMessage))
-        {
-            var response = new ApiContinueResponse { Version = ClaimsValidator.Version };
-            return Ok(response);
-        }
-        else
-        {
-            var response = new ApiValidationErrorResponse(result.ErrorMessage) { Version = ClaimsValidator.Version };
-            return BadRequest(response);
-        }
+    if (IsNullOrWhiteSpace(result.ErrorMessage))
+    {
+        var response = new ApiContinueResponse { Version = ClaimsValidator.Version };
+        return Ok(response);
     }
+    else
+    {
+        var response = new ApiValidationErrorResponse(result.ErrorMessage) { Version = ClaimsValidator.Version };
+        return BadRequest(response);
+    }
+}
 }

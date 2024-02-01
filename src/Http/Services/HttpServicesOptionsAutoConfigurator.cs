@@ -12,17 +12,17 @@ public class HttpServicesOptionsAutoConfigurator(ILogger<HttpServicesOptionsAuto
 {
     public ILogger? Logger => logger;
 
-    public ConfigurationOrder Order => ConfigurationOrder.VeryEarly;
+public ConfigurationOrder Order => ConfigurationOrder.VeryEarly;
 
-    public void Configure(WebApplicationBuilder builder)
-    {
-        Logger?.HttpServicesOptionsAutoConfiguratorConfigureWebApplicationBuilder();
-        builder.AddHttpServices(logger: Logger);
-    }
+public void Configure(WebApplicationBuilder builder)
+{
+    Logger?.HttpServicesOptionsAutoConfiguratorConfigureWebApplicationBuilder();
+    builder.AddHttpServices(logger: Logger);
+}
 
-    public void Configure(IApplicationBuilder app)
-    {
-        Logger?.HttpServicesOptionsAutoConfiguratorConfigureIApplicationBuilder();
-        app.UseHttpServices(logger: Logger);
-    }
+public void Configure(IApplicationBuilder app)
+{
+    Logger?.HttpServicesOptionsAutoConfiguratorConfigureIApplicationBuilder();
+    app.UseHttpServices(logger: Logger);
+}
 }

@@ -36,8 +36,8 @@ public class ClaimsValidatorOptions
 public abstract class ClaimsValidator(IOptions<ClaimsValidatorOptions> options) : IClaimsValidator
 {
     public Version Version => options.Value.Version;
-    public abstract Task<ValidationResult> ValidateAsync(
-        ApiRequest request,
-        CancellationToken cancellationToken = default
-    );
+public abstract Task<ValidationResult> ValidateAsync(
+    ApiRequest request,
+    CancellationToken cancellationToken = default
+);
 }
