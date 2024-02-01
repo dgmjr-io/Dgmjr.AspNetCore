@@ -1,9 +1,6 @@
 {
-    "cSpell.words": [
-        "ihaaaca",
-        "ihagiaiis"
-    ],
-    "files.exclude": {
-        "**/.vs": false
-    }
+  "cSpell.words": [ "ihaaaca", "ihagiaiis" ],
+  "files.exclude": {
+    "**/.vs": false
+  }
 }

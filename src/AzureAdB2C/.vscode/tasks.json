@@ -1,57 +1,28 @@
 {
-    "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Build AzureADB2C Claims Populator/Validator",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "build",
-                "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign",
-                "-c:Local",
-                "-p:BuildFromSource=false"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "Launch ngrok (Dgmjr.AzureAdB2C.Testing)",
-            "command": "ngrok",
-            "type": "process",
-            "args": [
-                "tunnel",
-                "--label",
-                "edge=edghts_2YVlve6yoIHeHG4dzj3cV1Ojnqn",
-                "https://localhost:7162"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary;ForceNoAlign",
-                "-c:Local",
-                "-p:BuildFromSource=false"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "watch",
-                "run",
-                "--project",
-                "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj"
-            ],
-            "problemMatcher": "$msCompile"
-        }
-    ]
+  "tasks": [ {
+    "args": [ "build", "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary;ForceNoAlign", "-c:Local", "-p:BuildFromSource=false" ],
+    "command": "dotnet",
+    "label": "Build AzureADB2C Claims Populator/Validator",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  }, {
+    "args": [ "tunnel", "--label", "edge=edghts_2YVlve6yoIHeHG4dzj3cV1Ojnqn", "https://localhost:7162" ],
+    "command": "ngrok",
+    "label": "Launch ngrok (Dgmjr.AzureAdB2C.Testing)",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  }, {
+    "args": [ "publish", "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj", "/property:GenerateFullPaths=true", "/consoleloggerparameters:NoSummary;ForceNoAlign", "-c:Local", "-p:BuildFromSource=false" ],
+    "command": "dotnet",
+    "label": "publish",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  }, {
+    "args": [ "watch", "run", "--project", "${workspaceFolder}/Testing/Dgmjr.AzureAdB2C.Testing.csproj" ],
+    "command": "dotnet",
+    "label": "watch",
+    "problemMatcher": "$msCompile",
+    "type": "process"
+  } ],
+  "version": "2.0.0"
 }
