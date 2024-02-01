@@ -25,14 +25,14 @@ public class DirectoryObjectsController(
     private IDirectoryObjectsService DirectoryObjectsService =>
         services.GetRequiredService<IDirectoryObjectsService>();
 
-    [HttpGet(Uris.ExtensionProperties)]
-    public async Task<IActionResult> GetExtensionPropertiesAsync()
-    {
-        Logger.Get(Request.Path);
-        return Ok(
-            (
-                await DirectoryObjectsService.GetExtensionPropertiesAsync(default)
-            ).Cast<DGraphExtensionProperty>()
-        );
-    }
+[HttpGet(Uris.ExtensionProperties)]
+public async Task<IActionResult> GetExtensionPropertiesAsync()
+{
+    Logger.Get(Request.Path);
+    return Ok(
+        (
+            await DirectoryObjectsService.GetExtensionPropertiesAsync(default)
+        ).Cast<DGraphExtensionProperty>()
+    );
+}
 }

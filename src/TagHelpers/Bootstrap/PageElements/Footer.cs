@@ -55,7 +55,7 @@ public class PageFooter : TagHelper
         );
         output.PreContent.AppendHtml(
             $$$"""
-            <div class="{{{CssClasses.Container}}}">
+            < div class="{{{CssClasses.Container}}}">
             """
         );
         if (!IsNullOrEmpty(CopyrightHolder))
@@ -71,49 +71,51 @@ public class PageFooter : TagHelper
                 output.PreContent.AppendHtml(
                     $$$"""
 
-                    {{{datetime.Now.Year}}}
+                    {{{datetime.Now.Year
+}
+}}
 
                     """
                 );
             }
             if (CopyrightEndYear.HasValue && CopyrightEndYear != CopyrightStartYear)
-            {
-                output.PreContent.AppendHtml(
+{
+    output.PreContent.AppendHtml(
                     $$$"""
 
-                    - {{{datetime.Now.Year}}}
-                    """
+        - { { { datetime.Now.Year} } }
+    """
                 );
-            }
-            if (!IsNullOrEmpty(CopyrightHolderEmail))
-            {
-                output.PreContent.AppendHtml(
+}
+if (!IsNullOrEmpty(CopyrightHolderEmail))
+{
+    output.PreContent.AppendHtml(
                     $$$"""
 
-                    <a href="mailto:{{{CopyrightHolderEmail}}}">
-                    {{{CopyrightHolder}}}
-                    </a>
+        < a href = "mailto:{{{CopyrightHolderEmail}}}" >
+                    { { { CopyrightHolder} } }
+                    </ a >
                     """
                 );
-            }
-            else
-            {
-                output.PreContent.AppendHtml(
+}
+else
+{
+    output.PreContent.AppendHtml(
                     $$$"""
-                    {{{CopyrightHolder}}}
-                    """
+                    { { { CopyrightHolder} } }
+    """
                 );
-            }
-            if(!IsNullOrWhiteSpace(childContent.GetContent()))
-            {
-                output.PreContent.AppendHtml(
-                    """
+}
+if (!IsNullOrWhiteSpace(childContent.GetContent()))
+{
+    output.PreContent.AppendHtml(
+        """
 
-                    |
+        |
 
-                    """
-                );
-            }
+        """
+    );
+}
         }
     }
 }

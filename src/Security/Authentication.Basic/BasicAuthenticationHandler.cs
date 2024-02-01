@@ -14,5 +14,5 @@ public abstract class BasicAuthenticationHandler<TOptions>(
     where TOptions : AuthenticationSchemeOptions, new()
 {
     private ILogger _logger;
-    public new virtual ILogger Logger => _logger ??= loggerFactory.CreateLogger(GetType().FullName);
+public new virtual ILogger Logger => _logger ??= loggerFactory.CreateLogger(GetType().FullName);
 }

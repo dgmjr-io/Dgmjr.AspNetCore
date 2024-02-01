@@ -30,10 +30,10 @@ public abstract class ApiErrorResponse(string userMessage, string? developerMess
     : ApiResponse
 {
     public virtual string? UserMessage => userMessage;
-    public virtual string? DeveloperMessage => developerMessage ?? userMessage;
+public virtual string? DeveloperMessage => developerMessage ?? userMessage;
 }
 
-public class ApiBlockResponse(string userMessage, string? developerMessage = default)
+public class ApiBlockResponse(string userMessage, string ? developerMessage = default)
     : ApiErrorResponse(userMessage, developerMessage)
 {
     public override ApiResponseAction Action => ApiResponseAction.ShowBlockPage;
@@ -41,11 +41,11 @@ public class ApiBlockResponse(string userMessage, string? developerMessage = def
 
 public class ApiValidationErrorResponse(
     string userMessage,
-    string? developerMessage = default
+    string ? developerMessage = default
 ) : ApiErrorResponse(userMessage, developerMessage)
 {
     public override int? StatusCode => StatusCodes.Status400BadRequest;
-    public override ApiResponseAction Action => ApiResponseAction.ValidationError;
+public override ApiResponseAction Action => ApiResponseAction.ValidationError;
 }
 
 [JsonConverter(typeof(JStringEnumConverter))]

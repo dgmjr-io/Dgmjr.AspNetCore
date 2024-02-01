@@ -25,50 +25,50 @@ public class BasicAuthenticationWithUsersHandler(
 {
     private ICollection<UsernameAndPassword> Users => Options.Users;
 
-    protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+{
+    var authHeader = Request.Headers[HReqH.Authorization.DisplayName].FirstOrDefault();
+    if (authHeader == null)
     {
-        var authHeader = Request.Headers[HReqH.Authorization.DisplayName].FirstOrDefault();
-        if (authHeader == null)
-        {
-            return AuthenticateResult.NoResult();
-        }
+        return AuthenticateResult.NoResult();
+    }
 
-        var authHeaderVal = AuthenticationHeaderValue.Parse(authHeader);
-        if (
-            !authHeaderVal.Scheme.Equals(
-                BasicAuthenticationWithUsersDefaults.AuthenticationScheme,
-                OrdinalIgnoreCase
+    var authHeaderVal = AuthenticationHeaderValue.Parse(authHeader);
+    if (
+        !authHeaderVal.Scheme.Equals(
+            BasicAuthenticationWithUsersDefaults.AuthenticationScheme,
+            OrdinalIgnoreCase
+        )
+    )
+    {
+        return AuthenticateResult.NoResult();
+    }
+
+    var credentialBytes = Convert.FromBase64String(authHeaderVal.Parameter);
+    var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':', 2);
+    if (credentials.Length != 2)
+    {
+        return AuthenticateResult.Fail("Invalid Basic authentication header");
+    }
+
+    var (username, password) = (credentials[0], credentials[1]);
+    if (!Users.Any(u => u.Username == username && u.Password == password))
+    {
+        return AuthenticateResult.Fail("Invalid username or password");
+    }
+
+    return await Task.FromResult(
+        AuthenticateResult.Success(
+            new AuthenticationTicket(
+                new ClaimsPrincipal(
+                    new ClaimsIdentity(
+                        new[] { new Claim(ClaimTypes.Name, username) },
+                        BasicAuthenticationWithUsersDefaults.AuthenticationScheme
+                    )
+                ),
+                BasicAuthenticationWithUsersDefaults.AuthenticationScheme
             )
         )
-        {
-            return AuthenticateResult.NoResult();
-        }
-
-        var credentialBytes = Convert.FromBase64String(authHeaderVal.Parameter);
-        var credentials = Encoding.UTF8.GetString(credentialBytes).Split(':', 2);
-        if (credentials.Length != 2)
-        {
-            return AuthenticateResult.Fail("Invalid Basic authentication header");
-        }
-
-        var (username, password) = (credentials[0], credentials[1]);
-        if (!Users.Any(u => u.Username == username && u.Password == password))
-        {
-            return AuthenticateResult.Fail("Invalid username or password");
-        }
-
-        return await Task.FromResult(
-            AuthenticateResult.Success(
-                new AuthenticationTicket(
-                    new ClaimsPrincipal(
-                        new ClaimsIdentity(
-                            new[] { new Claim(ClaimTypes.Name, username) },
-                            BasicAuthenticationWithUsersDefaults.AuthenticationScheme
-                        )
-                    ),
-                    BasicAuthenticationWithUsersDefaults.AuthenticationScheme
-                )
-            )
-        );
-    }
+    );
+}
 }
