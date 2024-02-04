@@ -1,0 +1,16 @@
+{
+  "compileOnSave": true,
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "preserveCompilationContext": true,
+    "copyToOutput": {
+      "include": [
+        "appsettings.json",
+        "appsettings.Development.json"
+      ]
+    }
+  },
+  "compilerOptions": {
+    "outDir": "../wwwroot/"
+  }
+}

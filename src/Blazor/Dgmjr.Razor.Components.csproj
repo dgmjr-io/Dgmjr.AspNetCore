@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageFile Include="./bin/**/*.dll" PackagePath="lib/$(TargetFramework)/%(Filename)%(Extension)" />
+    <PackageFile Include="./icon.png" PackagePath="%(Filename)%(Extension)" />
+    <PackageFile Include="./LICENSE.md" PackagePath="%(Filename)%(Extension)" />
+    <PackageFile Include="./wwwroot/**/*.*" PackagePath="wwwroot/%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+  </ItemGroup>
+
+</Project>

@@ -33,7 +33,7 @@
     <PackageReference Include="Microsoft.Extensions.Options" />
     <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
     <PackageReference Include="Azure.Identity" />
-    <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" />
+    <!-- <PackageReference Include="Microsoft.Azure.AppConfiguration.AspNetCore" ExcludeAssets="ContentFiles" /> -->
     <PackageReference Include="System.Text.RegularExpressions.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />
     <PackageReference Include="Workleap.Extensions.Configuration.Substitution" />
   </ItemGroup>

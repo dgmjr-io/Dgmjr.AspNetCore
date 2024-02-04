@@ -1,0 +1,20 @@
+﻿@namespace Dgmjr.Razor.Components
+
+<a href="@Href">
+  <img src="@ImgSrc" alt="@ImgAlt"/>
+  @ChildContent
+  @Title
+</a>
+
+@code {
+  [Parameter] public string Href { get; set; } = "#";
+
+  [Parameter] public RenderFragment ChildContent { get; set; }
+
+  [Parameter] public string ImgSrc { get; set; } = "";
+
+  private string? _imgAlt;
+  [Parameter] public string ImgAlt { get => _imgAlt ??= Title; set => _imgAlt = value; }
+
+  [Parameter] public string Title { get; set; } = "";
+}

@@ -62,6 +62,7 @@ public enum ImageMediaTypes
     [Display(Name = ImageMediaTypeNames.Icon, Description = "Icon image")]
     [EnumMember(Value = ImageMediaTypeNames.Icon)]
     [Uri(IanaMediaTypeUrlBase + ImageMediaTypeNames.Icon)]
+    // [Synonyms([ImageMediaTypeNames.XIcon])]
     Icon,
 
     /// <summary>AVIF image</summary>

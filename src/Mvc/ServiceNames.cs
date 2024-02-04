@@ -12,4 +12,5 @@ public static class ServiceNames
     public const string XmlDataContractSerializerFormatters = nameof(XmlDataContractSerializerFormatters);
     public const string Cors = nameof(Cors);
     public const string MicrosoftIdentityUI = nameof(MicrosoftIdentityUI);
+    public const string RazorComponents = nameof(RazorComponents);
 }

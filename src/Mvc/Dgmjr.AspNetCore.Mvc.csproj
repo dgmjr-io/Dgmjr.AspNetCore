@@ -13,7 +13,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-    <SlnGenSolutionFolder>mvc</SlnGenSolutionFolder>
+    <TargetFramework>net8.0</TargetFramework>
     <Description>This package contains a set of extensions and things for ASP.NET Core MVC</Description>
   </PropertyGroup>
   <ItemGroup>
@@ -30,6 +30,7 @@
     <PackageReference Include="System.Net.Http.Json" />
     <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
     <PackageReference Include="Dgmjr.Configuration.Extensions" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" />
     <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="../Http/ResponseCodes/Dgmjr.Http.StatusCodes.csproj" />
   </ItemGroup>
@@ -43,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly Microsoft.AspNetCore.Components.Endpoints" />
   </ItemGroup>
   <Import Project="../Http/Mime/Dgmjr.Mime.props" />
 </Project>

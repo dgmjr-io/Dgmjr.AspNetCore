@@ -27,8 +27,12 @@ public class MvcOptions(MsMvcOptions mvc)
     public virtual bool AddControllersWithViews { get; set; } = false;
     public virtual bool AddControllersAsServices { get; set; } = false;
 
-    /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
+    /// <summary><see langword="true" /> if you want to add Razor pages, <see langword="false" /> otherwise</summary>
     public virtual bool AddRazorPages { get; set; } = false;
+    /// <summary><see langword="true" /> if you want to add Razor components, <see langword="false" /> otherwise</summary>
+    public virtual bool AddRazorComponents { get; set; } = false;
+    /// <summary><see langword="true" /> if you want to add interactive server components, <see langword="false" /> otherwise</summary>
+    public virtual bool AddInteractiveServerComponents { get; set; } = false;
 
     /// <summary><see langword="true" /> if you want to add controllers with views, <see langword="false" /> otherwise</summary>
     /// public virtual bool AddControllersAsServices { get; set; } = false;
@@ -89,6 +93,10 @@ public class MvcOptions(MsMvcOptions mvc)
 
     /// <inheritdoc cref="MsMvcOptions.ReturnHttpNotAcceptable" />
     public virtual bool ReturnHttpNotAcceptable { get; set; } = mvc.ReturnHttpNotAcceptable;
+
+    /// <summary><see langword="true" /> if you want to use antiforgery, <see langword="false" /> otherwise</summary>
+    /// <remarks>!!! Only supported in .NET 8.0+ !!!!  Ignored otherwise.</remarks>
+    public virtual bool UseAntiforgery { get; set; } = true;
 
     /// <inheritdoc cref="MsMvcOptions.CacheProfiles" />
     public virtual IDictionary<string, CacheProfile> CacheProfiles { get; set; } =

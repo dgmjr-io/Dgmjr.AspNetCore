@@ -1,0 +1,9 @@
+{
+  "author": {
+    "name": "David G. Moore, Jr.",
+    "email": "david@dgmjr.io"
+  },
+  "dependencies": {
+    "@microsoft/dotnet-js-interop": "^8.0.0"
+  }
+}

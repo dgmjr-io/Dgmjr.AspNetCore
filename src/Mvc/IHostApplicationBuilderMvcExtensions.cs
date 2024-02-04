@@ -11,6 +11,7 @@ using MvcOptions = Dgmjr.AspNetCore.Mvc.MvcOptions;
 using Microsoft.Identity.Web.UI;
 using Microsoft.Extensions.Logging;
 using static Dgmjr.AspNetCore.Mvc.ServiceNames;
+using Microsoft.AspNetCore.Components.Server;
 
 public static class IHostApplicationBuilderMvcExtensions
 {
@@ -81,9 +82,11 @@ public static class IHostApplicationBuilderMvcExtensions
                 mvcBuilder.AddMicrosoftIdentityUI();
             }
 
-            if (mvcOptions.AddMvcConventions)
+            if (mvcOptions.AddRazorComponents)
             {
-                // mvcBuilder.AddMvcOptions(options => builder.Configuration.Bind(configurationSectionKey, options));
+                logger?.SettingUpMvcService(RazorComponents);
+                // Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddServerSideBlazor(builder.Services);
+                // builder.Services.AddRazorComponents();
             }
 
             if (mvcOptions.AddJsonOptions)
