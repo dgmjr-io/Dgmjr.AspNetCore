@@ -1,7 +1,7 @@
 {
   "author": {
-    "name": "David G. Moore, Jr.",
-    "email": "david@dgmjr.io"
+    "email": "david@dgmjr.io",
+    "name": "David G. Moore, Jr."
   },
   "dependencies": {
     "@microsoft/dotnet-js-interop": "^8.0.0"
