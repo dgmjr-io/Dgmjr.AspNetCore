@@ -6,7 +6,10 @@ using static Microsoft.Extensions.DependencyInjection.IHostApplicationBuilderMvc
 using Microsoft.Extensions.Logging;
 using Dgmjr.Abstractions;
 
-public class MvcAutoConfigurator(ILogger<MvcAutoConfigurator> logger) : IConfigureIHostApplicationBuilder, IConfigureIApplicationBuilder, ILog
+public class MvcAutoConfigurator(ILogger<MvcAutoConfigurator> logger)
+    : IConfigureIHostApplicationBuilder,
+        IConfigureIApplicationBuilder,
+        ILog
 {
     public ILogger? Logger => logger;
     private const string Mvc = nameof(Mvc);

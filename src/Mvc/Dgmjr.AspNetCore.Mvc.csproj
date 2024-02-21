@@ -12,8 +12,8 @@
 
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1;net6.0;net8.0</TargetFrameworks>
+    <!-- <TargetFramework>net8.0</TargetFramework> -->
     <Description>This package contains a set of extensions and things for ASP.NET Core MVC</Description>
   </PropertyGroup>
   <ItemGroup>
@@ -29,8 +29,8 @@
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="System.Net.Http.Json" />
     <PackageReference Include="Dgmjr.InterfaceGenerator" IncludeAssets="Analyzers;Build" ExcludeAssets="Native;BuildTransitive;BuildMultitargeting;ContentFiles;Compile;Runtime" PrivateAssets="All" />
-    <PackageReference Include="Dgmjr.Configuration.Extensions" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" />
+    <PackageReference Include="Dgmjr.Configuration.Extensions" Condition="!$(TargetFramework.StartsWith('netstandard'))"  />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Condition="'$(TargetFramework)' == 'net8.0'" />
     <ProjectReference Include="../Http/Mime/Dgmjr.Mime.csproj" />
     <ProjectReference Include="../Http/ResponseCodes/Dgmjr.Http.StatusCodes.csproj" />
   </ItemGroup>
@@ -43,10 +43,19 @@
     <Using Include="System.IO.Path" Static="true" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+    <PackageFile Include="LICENSE.md" Pack="true" PackagePath="LICENSE.md" />
+    <PackageFile Include="icon.png" Pack="true" PackagePath="icon.png" />
+    <PackageFile Include="./bin/$(Configuration)/$(TargetFramework)/**/*.*" Pack="true" PackagePath="lib/$(TargetFramework)/%(RecursiveDir)%(Filename)%(Extension)" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly Microsoft.AspNetCore.Components.Endpoints" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="./IHostApplicationBuilderMvcExtensions.cs" Condition="$(TargetFramework.StartsWith('netstandard'))" />
+    <Compile Remove="./MvcAutoConfigurator.cs" Condition="$(TargetFramework.StartsWith('netstandard'))" />
+    <Compile Remove="./ViewControllerBase.cs" Condition="$(TargetFramework.StartsWith('netstandard'))" />
+    <Compile Remove="./TypeNameAndAssemblyConfigurator.cs" Condition="$(TargetFramework.StartsWith('netstandard'))" />
+    <Compile Remove="./MvcOptions.cs" Condition="$(TargetFramework.StartsWith('netstandard'))" />
   </ItemGroup>
   <Import Project="../Http/Mime/Dgmjr.Mime.props" />
 </Project>

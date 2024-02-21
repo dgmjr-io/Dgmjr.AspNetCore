@@ -29,8 +29,10 @@ public class MvcOptions(MsMvcOptions mvc)
 
     /// <summary><see langword="true" /> if you want to add Razor pages, <see langword="false" /> otherwise</summary>
     public virtual bool AddRazorPages { get; set; } = false;
+
     /// <summary><see langword="true" /> if you want to add Razor components, <see langword="false" /> otherwise</summary>
     public virtual bool AddRazorComponents { get; set; } = false;
+
     /// <summary><see langword="true" /> if you want to add interactive server components, <see langword="false" /> otherwise</summary>
     public virtual bool AddInteractiveServerComponents { get; set; } = false;
 

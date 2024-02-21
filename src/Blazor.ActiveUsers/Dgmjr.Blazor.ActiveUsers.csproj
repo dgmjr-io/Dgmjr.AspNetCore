@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Usings" />
+    <PackageReference Include="Microsoft.Identity.Web" />
+    <PackageReference Include="Dgmjr.Identity.Claims" />
+    <PackageReference Include="Dgmjr.Configuration.Extensions" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageFile Include="./icon.png" PackagePath="icon.png" />
+    <PackageFile Include="./bin/$(Configuration)/$(TargetFramework)/**/*.dll" PackagePath="lib/$(TargetFramework)/%(Filename)%(Extension)" />
+  </ItemGroup>
+</Project>

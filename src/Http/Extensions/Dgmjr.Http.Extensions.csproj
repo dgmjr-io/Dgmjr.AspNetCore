@@ -28,7 +28,7 @@
   <ItemGroup>
     <PackageReference Include="System.Text.Json" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" />
+    <!-- <PackageReference Include="Microsoft.AspNetCore.Mvc" /> -->
     <!-- <PackageReference Include="Dgmjr.Enumerations.Enumeration" /> -->
     <!-- <PackageReference Include="Dgmjr.Mime" /> -->
     <PackageReference Include="System.ComponentModel.Usings" IncludeAssets="Build;BuildTransitive;BuildMultitargeting;Runtime;Compile" ExcludeAssets="ContentFiles;Native;Analyzers" PrivateAssets="None" />

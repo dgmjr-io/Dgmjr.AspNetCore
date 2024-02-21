@@ -9,7 +9,9 @@ public static class ServiceNames
     public const string Controllers = nameof(Controllers);
     public const string ControllersAsServices = nameof(ControllersAsServices);
     public const string XmlSerializerFormatters = nameof(XmlSerializerFormatters);
-    public const string XmlDataContractSerializerFormatters = nameof(XmlDataContractSerializerFormatters);
+    public const string XmlDataContractSerializerFormatters = nameof(
+        XmlDataContractSerializerFormatters
+    );
     public const string Cors = nameof(Cors);
     public const string MicrosoftIdentityUI = nameof(MicrosoftIdentityUI);
     public const string RazorComponents = nameof(RazorComponents);

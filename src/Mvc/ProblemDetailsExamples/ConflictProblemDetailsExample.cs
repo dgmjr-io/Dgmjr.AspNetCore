@@ -27,5 +27,6 @@ public record class ConflictProblemDetailsExample : IProblemDetails
 
     /// <value>{ { "traceId", "0HLQ9V1J3Q0:40000003" } }</value>
     /// <example>{ { "traceId", "0HLQ9V1J3Q0:40000003" } }</example>
-    public IDictionary<string, object?> Extensions => new Dictionary<string, object?> { { "traceId", "0HLQ9V1J3Q0:40000003" } };
+    public IDictionary<string, object?> Extensions =>
+        new Dictionary<string, object?> { { "traceId", "0HLQ9V1J3Q0:40000003" } };
 }
