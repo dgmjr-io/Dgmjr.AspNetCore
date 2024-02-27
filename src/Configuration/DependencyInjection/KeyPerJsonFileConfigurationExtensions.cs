@@ -1,6 +1,8 @@
 namespace Microsoft.Extensions.DependencyInjection;
 
-using Dgmjr.Configuration.Extensions;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -9,10 +11,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
+using Dgmjr.Configuration.Extensions;
+
 using static KeyPerJsonFileConfigurationExtensions;
+using System.CodeDom.Compiler;
 
 internal static partial class KeyPerJsonFileConfigurationExtensions
 {
@@ -144,11 +146,12 @@ internal static partial class KeyPerJsonFileConfigurationExtensions
         var jsonBuilder = new StringBuilder();
         using (var appsettingsJsonFile = File.CreateText(appsettingsJsonFileName))
         using (var jsonWriter = new StringWriter(jsonBuilder))
-        using (var multiWriter = new MultiWriter(appsettingsJsonFile, jsonWriter))
+        using (var multiWriter = new IndentedTextWriter(new MultiWriter(appsettingsJsonFile, jsonWriter)))
         {
             var jsonFiles = directory.GetJsonFiles(recursive);
 
-            appsettingsJsonFile.WriteLine("{");
+            multiWriter.WriteLine("{");
+            multiWriter.IncreaseIndent();
 
             foreach (var jsonFile in jsonFiles)
             {
@@ -162,6 +165,7 @@ internal static partial class KeyPerJsonFileConfigurationExtensions
                 multiWriter.WriteLine(File.ReadAllText(jsonFile.FullName));
                 multiWriter.WriteLine(",");
             }
+            multiWriter.DecreaseIndent();
 
             multiWriter.WriteLine("}");
         }
