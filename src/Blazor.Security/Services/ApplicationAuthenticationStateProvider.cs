@@ -12,33 +12,33 @@ public class ApplicationAuthenticationStateProvider(ISecurityService securitySer
 {
     private ApplicationAuthenticationState? _authenticationState;
 
-    public override async Task<AuthenticationState> GetAuthenticationStateAsync()
-    {
-        var identity = new ClaimsIdentity();
+public override async Task<AuthenticationState> GetAuthenticationStateAsync()
+{
+    var identity = new ClaimsIdentity();
 
-        try
+    try
+    {
+        var state = await GetApplicationAuthenticationStateAsync();
+
+        if (state.IsAuthenticated)
         {
-            var state = await GetApplicationAuthenticationStateAsync();
-
-            if (state.IsAuthenticated)
-            {
-                identity = new ClaimsIdentity(
-                    state.Claims.Select(c => new Claim(c.Type, c.Value)),
-                    BlazorSecurityConstants.BlazorSecurity
-                );
-            }
+            identity = new ClaimsIdentity(
+                state.Claims.Select(c => new Claim(c.Type, c.Value)),
+                BlazorSecurityConstants.BlazorSecurity
+            );
         }
-        catch (HttpRequestException) { /* swallow the exception */ }
-
-        var result = new AuthenticationState(new ClaimsPrincipal(identity));
-
-        securityService.Initialize(result);
-
-        return result;
     }
+    catch (HttpRequestException) { /* swallow the exception */ }
 
-    private async Task<ApplicationAuthenticationState> GetApplicationAuthenticationStateAsync()
-    {
-        return _authenticationState ??= await securityService.GetAuthenticationStateAsync();
-    }
+    var result = new AuthenticationState(new ClaimsPrincipal(identity));
+
+    securityService.Initialize(result);
+
+    return result;
+}
+
+private async Task<ApplicationAuthenticationState> GetApplicationAuthenticationStateAsync()
+{
+    return _authenticationState ??= await securityService.GetAuthenticationStateAsync();
+}
 }
