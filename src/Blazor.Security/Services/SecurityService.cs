@@ -1,22 +1,22 @@
+namespace Dgmjr.Blazor.Security.Services;
 using System;
-using System.Web;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
-using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-using Radzen;
-
 using Dgmjr.Blazor.Security.Models;
 
-namespace Dgmjr.Blazor.Security.Services;
+using Radzen;
 
-public partial class SecurityService(NavigationManager navigationManager, IHttpClientFactory factory) : ISecurityService
+public class SecurityService(NavigationManager navigationManager, IHttpClientFactory factory) : ISecurityService
 {
     private readonly HttpClient _httpClient = factory.CreateClient(BlazorSecurityConstants.BlazorSecurity);
 
@@ -26,7 +26,7 @@ public partial class SecurityService(NavigationManager navigationManager, IHttpC
 
     public async Task<ApplicationAuthenticationState> GetAuthenticationStateAsync()
     {
-        var uri = new Uri($"{navigationManager.BaseUri}Account/CurrentUser");
+        var uri = new Uri($"{navigationManager.BaseUri}{Uris.CurrentUser}");
 
         var response = await _httpClient.SendAsync(new HttpRequestMessage(HttpMethod.Post, uri));
 
@@ -34,29 +34,11 @@ public partial class SecurityService(NavigationManager navigationManager, IHttpC
     }
 
     public bool IsInRole(params string[] roles)
-    {
-        if (roles.Contains("Everybody"))
-        {
-            return true;
-        }
-
-        if (!IsAuthenticated())
-        {
-            return false;
-        }
-
-        if (roles.Contains("Authenticated"))
-        {
-            return true;
-        }
-
-        return roles.Any(role => Principal.IsInRole(role));
-    }
+        => roles.Contains("Everybody")
+            || (IsAuthenticated() && (roles.Contains("Authenticated") || Exists(roles, role => Principal.IsInRole(role))));
 
     public bool IsAuthenticated()
-    {
-        return Principal?.Identity.IsAuthenticated == true;
-    }
+        => Principal?.Identity.IsAuthenticated == true;
 
     public bool Initialize(AuthenticationState result)
     {
@@ -73,12 +55,8 @@ public partial class SecurityService(NavigationManager navigationManager, IHttpC
     }
 
     public void Logout()
-    {
-        navigationManager.NavigateTo("Account/Logout", true);
-    }
+        => navigationManager.NavigateTo(Uris.Logout, true);
 
     public void Login()
-    {
-        navigationManager.NavigateTo("Login", true);
-    }
+        => navigationManager.NavigateTo(Uris.Login, true);
 }

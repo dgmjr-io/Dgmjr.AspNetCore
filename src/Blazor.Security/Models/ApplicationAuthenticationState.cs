@@ -1,11 +1,10 @@
+namespace Dgmjr.Blazor.Security.Models;
 using System;
 using System.Collections.Generic;
 
-namespace Dgmjr.Blazor.Security.Models;
-
-public partial class ApplicationAuthenticationState
+public readonly record struct ApplicationAuthenticationState
 {
-    public bool IsAuthenticated { get; set; }
-    public string Name { get; set; }
-    public IEnumerable<ApplicationClaim> Claims { get; set; }
+    public bool IsAuthenticated { get; init; }
+    public string Name { get; init; }
+    public IEnumerable<ApplicationClaim> Claims { get; init; }
 }

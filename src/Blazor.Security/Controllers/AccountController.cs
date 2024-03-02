@@ -15,6 +15,7 @@ namespace Dgmjr.Blazor.Security.Controllers;
 [ApiController]
 public partial class AccountController(ILogger<AccountController> logger) : ApiControllerBase(logger)
 {
+    [HttpGet]
     public IActionResult Login(string redirectUri)
     {
         var redirectUrl = redirectUri ?? Url.Content("~/");
@@ -25,6 +26,7 @@ public partial class AccountController(ILogger<AccountController> logger) : ApiC
         );
     }
 
+    [HttpGet]
     public IActionResult Logout()
     {
         var redirectUrl = Url.Content("~/");
@@ -36,7 +38,7 @@ public partial class AccountController(ILogger<AccountController> logger) : ApiC
         );
     }
 
-    [HttpPost]
+    [HttpPost("current-user")]
     public ApplicationAuthenticationState CurrentUser()
     {
         return new ApplicationAuthenticationState

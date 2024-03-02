@@ -1,3 +1,4 @@
+namespace Dgmjr.Blazor.Security.Services;
 using System;
 using System.Diagnostics;
 using System.Linq;
@@ -7,12 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.Authorization;
 
 using Dgmjr.Blazor.Security.Models;
-
-namespace Dgmjr.Blazor.Security.Services;
-
 public class ApplicationAuthenticationStateProvider(ISecurityService securityService) : AuthenticationStateProvider
 {
-    private ApplicationAuthenticationState _authenticationState;
+    private ApplicationAuthenticationState? _authenticationState;
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {

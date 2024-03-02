@@ -1,10 +1,9 @@
-using Dgmjr.Blazor.Security.Services;
-
 namespace Microsoft.Extensions.DependencyInjection;
+using Dgmjr.Blazor.Security.Services;
 
 public static class SecurityServiceCollectionExtensions
 {
-    public static IServiceCollection AddSecurityService(this IServiceCollection services)
+    public static IServiceCollection AddBlazorSecurityService(this IServiceCollection services)
     {
         services.AddScoped<ISecurityService, SecurityService>();
         return services;

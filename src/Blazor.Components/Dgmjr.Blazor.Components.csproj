@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+    <PackageReference Include="Blazorise.Components" />
+    <PackageReference Include="Dgmjr.Abstractions" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageFile Include="./icon.png" />
+    <PackageFile Include="./bin/$(Configuration)/$(TargetFramework)/*.*" PackagePath="lib/$(TargetFramework)/%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>
